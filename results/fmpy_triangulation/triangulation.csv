@@ -1,0 +1,105 @@
+model,scenario,mode,execution,checks_defined,checks_pass,checks_fail,unsupported_inputs
+BooleanLogica,TC-BL-001,me,ok,3,3,0,[]
+BooleanLogica,TC-BL-001,cs,ok,3,3,0,[]
+BooleanLogica,TC-BL-002,me,ok,3,3,0,[]
+BooleanLogica,TC-BL-002,cs,ok,3,3,0,[]
+BooleanLogica,TC-BL-003,me,ok,4,4,0,[]
+BooleanLogica,TC-BL-003,cs,ok,4,4,0,[]
+BooleanLogica,TC-BL-004,me,ok,2,2,0,[]
+BooleanLogica,TC-BL-004,cs,ok,2,2,0,[]
+BooleanLogica,TC-BL-005,me,ok,3,1,2,[]
+BooleanLogica,TC-BL-005,cs,ok,3,1,2,[]
+BooleanLogica,TC-BL-006,me,ok,3,2,1,[]
+BooleanLogica,TC-BL-006,cs,ok,3,2,1,[]
+BooleanLogica,TC-BL-007,me,ok,3,0,3,[]
+BooleanLogica,TC-BL-007,cs,ok,3,0,3,[]
+BooleanLogica,TC-BL-008,me,ok,4,0,4,[]
+BooleanLogica,TC-BL-008,cs,ok,4,0,4,[]
+BooleanLogica,TC-BL-009,me,ok,6,4,2,[]
+BooleanLogica,TC-BL-009,cs,ok,6,4,2,[]
+BooleanLogica,TC-BL-010,me,ok,6,4,2,[]
+BooleanLogica,TC-BL-010,cs,ok,6,4,2,[]
+ContadorEventos,TC-CE-001,me,ok,4,4,0,[]
+ContadorEventos,TC-CE-001,cs,ok,4,4,0,[]
+ContadorEventos,TC-CE-002,me,ok,4,2,2,[]
+ContadorEventos,TC-CE-002,cs,ok,4,2,2,[]
+ContadorEventos,TC-CE-003,me,ok,3,1,2,[]
+ContadorEventos,TC-CE-003,cs,ok,3,1,2,[]
+ContadorEventos,TC-CE-004,me,ok,4,1,3,[]
+ContadorEventos,TC-CE-004,cs,ok,4,1,3,[]
+ContadorEventos,TC-CE-005,me,ok,3,2,1,[]
+ContadorEventos,TC-CE-005,cs,ok,3,2,1,[]
+ContadorEventos,TC-CE-006,me,ok,2,0,2,[]
+ContadorEventos,TC-CE-006,cs,ok,2,0,2,[]
+ContadorEventos,TC-CE-007,me,ok,2,1,1,[]
+ContadorEventos,TC-CE-007,cs,ok,2,1,1,[]
+ContadorEventos,TC-CE-008,me,ok,3,2,1,[]
+ContadorEventos,TC-CE-008,cs,ok,3,2,1,[]
+ContadorEventos,TC-CE-009,me,ok,2,2,0,[]
+ContadorEventos,TC-CE-009,cs,ok,2,2,0,[]
+ContadorEventos,TC-CE-010,me,ok,4,0,4,[]
+ContadorEventos,TC-CE-010,cs,error,4,0,0,[]
+EtapaSecuenciador,TC-ES-001,me,ok,3,3,0,[]
+EtapaSecuenciador,TC-ES-001,cs,error,3,0,0,[]
+EtapaSecuenciador,TC-ES-002,me,ok,2,1,1,[]
+EtapaSecuenciador,TC-ES-002,cs,error,2,0,0,[]
+EtapaSecuenciador,TC-ES-003,me,ok,3,1,2,[]
+EtapaSecuenciador,TC-ES-003,cs,error,3,0,0,[]
+EtapaSecuenciador,TC-ES-004,me,ok,2,0,2,[]
+EtapaSecuenciador,TC-ES-004,cs,error,2,0,0,[]
+EtapaSecuenciador,TC-ES-005,me,ok,2,0,2,[]
+EtapaSecuenciador,TC-ES-005,cs,error,2,0,0,[]
+EtapaSecuenciador,TC-ES-006,me,ok,1,0,1,[]
+EtapaSecuenciador,TC-ES-006,cs,error,1,0,0,[]
+EtapaSecuenciador,TC-ES-007,me,ok,2,1,1,[]
+EtapaSecuenciador,TC-ES-007,cs,error,2,0,0,[]
+EtapaSecuenciador,TC-ES-008,me,ok,2,0,2,[]
+EtapaSecuenciador,TC-ES-008,cs,error,2,0,0,[]
+EtapaSecuenciador,TC-ES-009,me,ok,3,1,2,[]
+EtapaSecuenciador,TC-ES-009,cs,error,3,0,0,[]
+EtapaSecuenciador,TC-ES-010,me,ok,2,0,2,[]
+EtapaSecuenciador,TC-ES-010,cs,error,2,0,0,[]
+EtapaSecuenciador,TC-ES-011,me,ok,2,0,2,[]
+EtapaSecuenciador,TC-ES-011,cs,error,2,0,0,[]
+EtapaSecuenciador,TC-ES-012,me,ok,4,2,2,[]
+EtapaSecuenciador,TC-ES-012,cs,error,4,0,0,[]
+MatrizEstado,TC-MZ-001,me,ok,5,5,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-001,cs,ok,5,5,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-002,me,ok,1,1,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-002,cs,ok,1,1,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-003,me,ok,3,0,3,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-003,cs,ok,3,0,3,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-004,me,ok,3,0,3,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-004,cs,ok,3,0,3,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-005,me,ok,1,1,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-005,cs,ok,1,1,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-006,me,ok,4,4,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-006,cs,ok,4,4,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-007,me,ok,3,0,3,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-007,cs,ok,3,0,3,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-008,me,ok,2,0,2,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-008,cs,ok,2,0,2,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-009,me,ok,1,1,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-009,cs,ok,1,1,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-010,me,ok,4,4,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+MatrizEstado,TC-MZ-010,cs,ok,4,4,0,"[{""requested"": ""u_1_"", ""fmi_name"": ""u[1]"", ""causality"": ""local"", ""reason"": ""not FMI-settable input metadata""}]"
+ValoresExtremos,TC-VE-001,me,ok,6,6,0,[]
+ValoresExtremos,TC-VE-001,cs,ok,6,6,0,[]
+ValoresExtremos,TC-VE-002,me,ok,5,5,0,[]
+ValoresExtremos,TC-VE-002,cs,ok,5,5,0,[]
+ValoresExtremos,TC-VE-003,me,ok,5,5,0,[]
+ValoresExtremos,TC-VE-003,cs,ok,5,5,0,[]
+ValoresExtremos,TC-VE-004,me,ok,4,4,0,[]
+ValoresExtremos,TC-VE-004,cs,ok,4,4,0,[]
+ValoresExtremos,TC-VE-005,me,ok,3,3,0,[]
+ValoresExtremos,TC-VE-005,cs,ok,3,3,0,[]
+ValoresExtremos,TC-VE-006,me,ok,3,3,0,[]
+ValoresExtremos,TC-VE-006,cs,ok,3,3,0,[]
+ValoresExtremos,TC-VE-007,me,ok,4,4,0,[]
+ValoresExtremos,TC-VE-007,cs,ok,4,4,0,[]
+ValoresExtremos,TC-VE-008,me,ok,4,4,0,[]
+ValoresExtremos,TC-VE-008,cs,ok,4,4,0,[]
+ValoresExtremos,TC-VE-009,me,ok,4,4,0,[]
+ValoresExtremos,TC-VE-009,cs,ok,4,4,0,[]
+ValoresExtremos,TC-VE-010,me,error,4,0,0,[]
+ValoresExtremos,TC-VE-010,cs,ok,4,4,0,[]

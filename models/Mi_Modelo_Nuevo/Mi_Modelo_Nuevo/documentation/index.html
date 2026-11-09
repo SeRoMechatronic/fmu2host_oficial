@@ -1,0 +1,19 @@
+
+<h1>Mi_Modelo_Nuevo</h1>
+<p> <i>Name-with-hyphens stress test for CMake prefix and FMI function naming</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>Mi_Modelo_Nuevo — Name Hyphen Stress Test</h3>
+      <p>This model's name contains hyphens (<code>Mi-Modelo-Nuevo</code>) and
+         mixed case. It tests whether the codegen tool correctly handles
+         the FMI ModelIdentifier when it contains characters that are invalid
+         in C identifiers (hyphens).</p>
+      <h4>Test variants</h4>
+      <ul>
+        <li>Save as <code>Mi_Modelo_Nuevo.mo</code> (underscores) — must work</li>
+        <li>Save as <code>Mi-Modelo-Nuevo.mo</code> (hyphens in filename) — may break CMake</li>
+      </ul>
+      <h4>The model dynamics</h4>
+      <p>First-order low-pass filter: τ·x' = u - x  (or -x when inactive).
+         Time constant τ=1 s. Output reaches 63% of input in 1 s, 99% in ~5 s.</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

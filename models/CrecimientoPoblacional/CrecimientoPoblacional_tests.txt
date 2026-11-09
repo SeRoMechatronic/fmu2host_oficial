@@ -1,0 +1,173 @@
+================================================================================
+  TEST BATTERY — CrecimientoPoblacional
+  Logistic Population Growth — Fast Transient Near Inflection Point
+================================================================================
+
+OVERVIEW
+--------
+CrecimientoPoblacional implements the logistic growth equation with a carrying
+capacity K=100 and growth rate r=3.5. Starting from N=2, the population grows
+through the inflection point (N=K/2=50) where the growth rate is maximum, and
+then converges to the steady state N*=100.
+
+This model includes one real input (immigration rate) and a Boolean output
+(overpopulation flag), exercising both the set/get paths and event-like Boolean
+transitions in the codegen output.
+
+WHY THIS MODEL EXISTS
+---------------------
+The logistic equation creates a fast transient near N=50 where the derivative
+is at its maximum (r·K/4 = 87.5). This is the hardest region to integrate:
+  - Euler overshoots K and produces damped oscillations above and below 100
+  - RK4 monotonically approaches K from below without overshoot
+
+Additionally, the superpoblacion Boolean output transitions from FALSE → TRUE
+only if integration overshoots (Euler), providing a clear binary indicator
+of integration quality beyond just a numeric drift value.
+
+PHYSICS
+-------
+ODE: dN/dt = r·N·(1 - N/K) + u
+
+Parameters: r=3.5, K=100.0
+Initial:    N(0) = 2.0 individuals
+Input:      u = tasa_entrada (immigration rate, default 0)
+
+Key quantities:
+  Equilibrium:     N* = K = 100 (when u=0)
+  Inflection:      N_inf = K/2 = 50
+  Max growth rate: f_max = r·K/4 = 87.5 individuals/time
+  Approx time to inflection (from N=2): t_inf ≈ 1.0 time unit
+
+FMU INTERFACE
+-------------
+  Inputs:
+    tasa_entrada (Real) — immigration rate [individuals/time]
+                          Set to 0.0 for pure logistic dynamics
+
+  Outputs:
+    poblacion        (Real)    — N(t), converges to 100
+    tasa_crecimiento (Real)    — dN/dt, peaks near N=50, → 0 as N→100
+    saturacion       (Real)    — N/K ∈ [0,1], reaches 1.0 at equilibrium
+    superpoblacion   (Boolean) — TRUE if N > 100 (only Euler overshoots)
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(CrecimientoPoblacional) — expect 1 state, 1 input, 4 outputs
+  2. buildModelFMU(CrecimientoPoblacional, version="2.0", fmuType="me")
+  3. Run with tasa_entrada = 0.0 for all integration quality tests
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-CP-001 — Initial conditions (t = 0)
+------------------------------------------
+  Input:   tasa_entrada = 0.0
+  Expected at t = 0:
+    poblacion        = 2.0
+    tasa_crecimiento ≈ 3.5·2·(1-2/100) = 6.86
+    saturacion       = 0.02
+    superpoblacion   = FALSE
+  Tolerance: ±0.01
+  Rationale: Verifies initial state and growth rate formula.
+
+TEST-CP-002 — Convergence to K with RK4 (t = 5 s)
+----------------------------------------------------
+  Input:   tasa_entrada = 0.0
+  Simulate: t_end = 5.0 s, h = 0.1 s, using RK4
+  Expected at t = 5.0:
+    poblacion        > 95.0        (close to K=100)
+    tasa_crecimiento < 2.0         (nearly at equilibrium)
+    saturacion       > 0.95
+    superpoblacion   = FALSE       (RK4 must NOT overshoot)
+  Rationale: PRIMARY PASS CRITERION for RK4 — converges without overshoot.
+
+TEST-CP-003 — Euler overshoot
+------------------------------
+  Input:   tasa_entrada = 0.0
+  Simulate: t_end = 3.0 s, h = 0.1 s, using Euler
+  Expected: superpoblacion = TRUE at some point before t = 3 s
+  Rationale: PRIMARY DISCRIMINATOR. Euler overshoots K with h=0.1.
+             If Euler does not overshoot, reduce h to h=0.2 s.
+
+TEST-CP-004 — Growth rate peak at inflection
+---------------------------------------------
+  Input:   tasa_entrada = 0.0
+  Simulate: t_end = 5.0 s, h = 0.01 s, using RK4
+  Expected: max(tasa_crecimiento) ≈ 87.5 individuals/time (r·K/4)
+            This maximum occurs near N = 50.0
+  Tolerance: ±5.0
+  Rationale: Peak growth rate confirms the logistic shape is correct.
+
+TEST-CP-005 — Monotonic convergence (no overshoot with RK4)
+-------------------------------------------------------------
+  Input:   tasa_entrada = 0.0
+  Simulate: t_end = 10.0 s, h = 0.1 s, using RK4
+  Expected: poblacion is STRICTLY INCREASING for all t > 0
+  Expected: poblacion never exceeds 100.5 (within numerical tolerance)
+  Rationale: RK4 must converge monotonically — no oscillation around K.
+
+TEST-CP-006 — Saturation reaches 1.0
+--------------------------------------
+  Input:   tasa_entrada = 0.0
+  Simulate: t_end = 10.0 s, h = 0.01 s, using RK4
+  Expected at t = 10.0:
+    |saturacion - 1.0| < 0.005  (within 0.5% of full capacity)
+  Rationale: Long-term convergence check.
+
+TEST-CP-007 — Non-zero immigration
+------------------------------------
+  Input:   tasa_entrada = 5.0  (constant immigration)
+  Simulate: t_end = 5.0 s, h = 0.01 s, using RK4
+  Expected: final equilibrium poblacion > 100 (immigration pushes N above K)
+  At equilibrium: 0 = r·N*(1 - N*/K) + 5 → N* > K
+  Expected: poblacion at t=5 > 102.0
+  Rationale: Verifies the input correctly modifies the ODE.
+
+TEST-CP-008 — Negative immigration (emigration)
+-------------------------------------------------
+  Input:   tasa_entrada = -1.0  (emigration, population loss)
+  Simulate: t_end = 5.0 s, h = 0.01 s, using RK4, starting from N=2
+  Expected: final equilibrium poblacion < 100 (emigration reduces N*)
+  At equilibrium: 0 = r·N*(1-N*/K) - 1 → N* < K
+  Expected: poblacion at t=5 ∈ [95, 100]
+  Rationale: Negative input test for fmi2SetReal sign handling.
+
+TEST-CP-009 — Step change in immigration at t = 2 s
+-----------------------------------------------------
+  Simulate: t_end = 5.0 s, h = 0.01 s, using RK4
+  Time sequence:
+    t = 0 to 2.0: tasa_entrada = 0.0
+    t = 2.0+:     tasa_entrada = 20.0
+  Expected: poblacion responds to step change — faster convergence after t=2
+  Expected: at t=5.0, poblacion > value at t=5.0 from TEST-CP-002
+  Rationale: Step input test — verifies fmi2SetReal is called in the loop.
+
+TEST-CP-010 — Codegen structural check
+----------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] State vector size = 1 (only N)
+    [ ] fmi2SetReal called once (for tasa_entrada) before each step
+    [ ] fmi2GetReal called 3 times (poblacion, tasa_crecimiento, saturacion)
+    [ ] fmi2GetBoolean called once (superpoblacion)
+    [ ] Multiplication N*(1 - N/K) appears in derivative (not linearized)
+  Rationale: Structural audit — single state, single input path.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  Real outputs:      absolute tolerance = 0.1 individuals
+  Saturation:        absolute tolerance = 0.005
+  Boolean outputs:   exact match required
+  Growth rate peak:  tolerance = ±5.0 individuals/time
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Standard run: t_end=5.0 s, h=0.1 s, tasa_entrada=0.0
+  - RK4 must NOT set superpoblacion=TRUE → primary pass criterion
+  - Euler MUST set superpoblacion=TRUE → discriminator (use h=0.1 or 0.2)
+  - If both Euler and RK4 give superpoblacion=FALSE, increase h to 0.2 s
+  - Record tasa_crecimiento over time to verify S-curve shape
+================================================================================

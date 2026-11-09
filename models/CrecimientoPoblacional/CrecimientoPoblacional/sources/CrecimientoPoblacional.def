@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  CrecimientoPoblacional_fmiGetTypesPlatform @1
+  CrecimientoPoblacional_fmiGetVersion @2
+  CrecimientoPoblacional_fmiSetDebugLogging @3
+  CrecimientoPoblacional_fmiInstantiate @4
+  CrecimientoPoblacional_fmiFreeInstance @5
+  CrecimientoPoblacional_fmiSetupExperiment @6
+  CrecimientoPoblacional_fmiEnterInitializationMode @7
+  CrecimientoPoblacional_fmiExitInitializationMode @8
+  CrecimientoPoblacional_fmiTerminate @9
+  CrecimientoPoblacional_fmiReset @10
+  CrecimientoPoblacional_fmiGetReal @11
+  CrecimientoPoblacional_fmiGetInteger @12
+  CrecimientoPoblacional_fmiGetBoolean @13
+  CrecimientoPoblacional_fmiGetString @14
+  CrecimientoPoblacional_fmiSetReal @15
+  CrecimientoPoblacional_fmiSetInteger @16
+  CrecimientoPoblacional_fmiSetBoolean @17
+  CrecimientoPoblacional_fmiSetString @18
+  CrecimientoPoblacional_fmiGetFMUstate @19
+  CrecimientoPoblacional_fmiSetFMUstate @20
+  CrecimientoPoblacional_fmiFreeFMUstate @21
+  CrecimientoPoblacional_fmiSerializedFMUstateSize @22
+  CrecimientoPoblacional_fmiSerializeFMUstate @23
+  CrecimientoPoblacional_fmiDeSerializeFMUstate @24
+  CrecimientoPoblacional_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  CrecimientoPoblacional_fmiEnterEventMode @26
+  CrecimientoPoblacional_fmiNewDiscreteStates @27
+  CrecimientoPoblacional_fmiEnterContinuousTimeMode @28
+  CrecimientoPoblacional_fmiCompletedIntegratorStep @29
+  CrecimientoPoblacional_fmiSetTime @30
+  CrecimientoPoblacional_fmiSetContinuousStates @31
+  CrecimientoPoblacional_fmiGetDerivatives @32
+  CrecimientoPoblacional_fmiGetEventIndicators @33
+  CrecimientoPoblacional_fmiGetContinuousStates @34
+  CrecimientoPoblacional_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  CrecimientoPoblacional_fmiSetRealInputDerivatives @36
+  CrecimientoPoblacional_fmiGetRealOutputDerivatives @37
+  CrecimientoPoblacional_fmiDoStep @38
+  CrecimientoPoblacional_fmiCancelStep @39
+  CrecimientoPoblacional_fmiGetStatus @40
+  CrecimientoPoblacional_fmiGetRealStatus @41
+  CrecimientoPoblacional_fmiGetIntegerStatus @42
+  CrecimientoPoblacional_fmiGetBooleanStatus @43
+  CrecimientoPoblacional_fmiGetStringStatus @44

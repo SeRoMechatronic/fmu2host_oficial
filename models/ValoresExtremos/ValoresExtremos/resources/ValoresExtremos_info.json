@@ -1,0 +1,29 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"ValoresExtremos","description":"Extreme and edge-case real values \uffffffe2\uffffff80\uffffff94 Inf, near-zero, saturation, log/sqrt protection"},
+"variables":{
+"$cse1":{"comment":"","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+"u":{"comment":"Input signal \uffffffe2\uffffff80\uffffff94 test with 0, negative, very large, very small values","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":31,"lineEnd":32,"colStart":3,"colEnd":67}}},
+"y_inv":{"comment":"Protected reciprocal: 1/u when |u|>1e-10, returns 1e30 near zero","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":34,"lineEnd":35,"colStart":3,"colEnd":64}}},
+"y_log":{"comment":"Protected natural log: ln(u) when u>1e-10, returns -1e30 near/below zero","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":38,"lineEnd":39,"colStart":3,"colEnd":64}}},
+"y_sat":{"comment":"Saturated output: clamp(u, -1.0, +1.0) \uffffffe2\uffffff80\uffffff94 always in range [-1, 1]","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":40,"lineEnd":41,"colStart":3,"colEnd":66}}},
+"y_sqrt":{"comment":"Protected square root: \uffffffe2\uffffff88\uffffff9au when u\uffffffe2\uffffff89\uffffffa50, returns 0 for negative input","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":36,"lineEnd":37,"colStart":3,"colEnd":64}}},
+"es_finito":{"comment":"TRUE when |u| < 1e29 (finite range check \uffffffe2\uffffff80\uffffff94 FALSE for Inf-like inputs)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":42,"lineEnd":43,"colStart":3,"colEnd":123}}},
+"u":{"comment":"Input signal \uffffffe2\uffffff80\uffffff94 test with 0, negative, very large, very small values","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":31,"lineEnd":32,"colStart":3,"colEnd":67}}},
+"$outputAlias_es_finito":{"comment":"TRUE when |u| < 1e29 (finite range check \uffffffe2\uffffff80\uffffff94 FALSE for Inf-like inputs)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":42,"lineEnd":43,"colStart":3,"colEnd":123}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"tag":"alias","equation":[6],"section":"initial"},
+{"eqIndex":2,"section":"initial","tag":"assign","defines":["y_sat"],"uses":["u"],"equation":["min(1.0, max(-1.0, u))"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":52,"lineEnd":52,"colStart":3,"colEnd":33}}},
+{"eqIndex":3,"tag":"alias","equation":[9],"section":"initial"},
+{"eqIndex":4,"tag":"alias","equation":[10],"section":"initial"},
+{"eqIndex":5,"tag":"alias","equation":[11],"section":"initial"},
+{"eqIndex":6,"section":"regular","tag":"assign","defines":["es_finito"],"uses":["u"],"equation":["abs(u) < 1e29"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":54,"lineEnd":54,"colStart":3,"colEnd":30}}},
+{"eqIndex":7,"section":"regular","tag":"assign","defines":["$cse1"],"uses":["u"],"equation":["max(-1.0, u)"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":8,"section":"regular","tag":"assign","defines":["y_sat"],"uses":["$cse1"],"equation":["min(1.0, $cse1)"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":9,"section":"regular","tag":"assign","defines":["y_log"],"uses":["u"],"equation":["if u > 1e-10 then log(u) else -1e30"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":50,"lineEnd":50,"colStart":3,"colEnd":50}}},
+{"eqIndex":10,"section":"regular","tag":"assign","defines":["y_sqrt"],"uses":["u"],"equation":["if u >= 0.0 then sqrt(u) else 0.0"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":48,"lineEnd":48,"colStart":3,"colEnd":45}}},
+{"eqIndex":11,"section":"regular","tag":"assign","defines":["y_inv"],"uses":["u"],"equation":["if abs(u) > 1e-10 then 1.0 / u else 1e30"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ValoresExtremos/ValoresExtremos.mo","lineStart":46,"lineEnd":46,"colStart":3,"colEnd":53}}}
+],
+"functions":[
+]
+}

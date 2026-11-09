@@ -1,0 +1,190 @@
+================================================================================
+  TEST BATTERY — BooleanLogica
+  Combinational + Sequential Boolean Logic — Latch, Edge Counter, XOR
+================================================================================
+
+OVERVIEW
+--------
+BooleanLogica implements a mix of combinational and sequential Boolean logic
+driven by three Boolean inputs (a, b, clk) and one Real input (umbral). It
+produces four Boolean outputs, one Integer output, and one mixed Real→Boolean
+output.
+
+WHY THIS MODEL EXISTS
+---------------------
+This model covers several FMI codegen code paths simultaneously:
+  1. fmi2SetBoolean for three Boolean inputs in the same step
+  2. fmi2GetBoolean for four Boolean outputs
+  3. fmi2GetInteger for the edge counter (different type from Boolean)
+  4. fmi2SetReal + comparison → Boolean output (above_threshold)
+  5. edge() event detection — the codegen must handle when clauses triggered
+     by Boolean signal edges, not just fixed time steps
+  6. pre() operator — sequential logic requires the previous value of flancos
+
+The D-latch and edge counter are discrete-event systems that fire only when
+clk transitions from FALSE to TRUE. A codegen tool that does not handle
+Modelica when/edge correctly will miss the latch captures and leave
+cuenta_flancos permanently at zero.
+
+FMU INTERFACE
+-------------
+  Inputs:
+    a      (Boolean) — logic input 1
+    b      (Boolean) — logic input 2
+    clk    (Boolean) — clock: latch captures a and counter increments on FALSE→TRUE
+    umbral (Real)    — threshold for above_threshold output
+
+  Outputs:
+    y_and           (Boolean) — a AND b
+    y_or            (Boolean) — a OR b
+    y_xor           (Boolean) — a XOR b  (TRUE when a ≠ b)
+    y_latch         (Boolean) — D-latch: value of a at last rising edge of clk
+    cuenta_flancos  (Integer) — total rising edges counted on clk since start
+    above_threshold (Boolean) — TRUE when umbral > 0.5
+
+COMBINATIONAL TRUTH TABLE
+--------------------------
+  a     b     y_and  y_or   y_xor
+  FALSE FALSE FALSE  FALSE  FALSE
+  FALSE TRUE  FALSE  TRUE   TRUE
+  TRUE  FALSE FALSE  TRUE   TRUE
+  TRUE  TRUE  TRUE   TRUE   FALSE
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(BooleanLogica) — expect 0 continuous states, 2 discrete states
+  2. buildModelFMU(BooleanLogica, version="2.0", fmuType="me")
+  3. Verify modelDescription.xml has 3 Boolean inputs, 1 Real input,
+     4 Boolean outputs, 1 Integer output
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-BL-001 — Full combinational truth table
+----------------------------------------------
+  For all 4 combinations of (a, b), with clk=FALSE, umbral=0.0:
+  
+  Case a:  a=FALSE, b=FALSE → y_and=FALSE, y_or=FALSE, y_xor=FALSE
+  Case b:  a=FALSE, b=TRUE  → y_and=FALSE, y_or=TRUE,  y_xor=TRUE
+  Case c:  a=TRUE,  b=FALSE → y_and=FALSE, y_or=TRUE,  y_xor=TRUE
+  Case d:  a=TRUE,  b=TRUE  → y_and=TRUE,  y_or=TRUE,  y_xor=FALSE
+  
+  Rationale: Complete truth table verification for all three gates.
+
+TEST-BL-002 — XOR boundary: a == b
+-------------------------------------
+  Input:  a=TRUE, b=TRUE
+  Expected: y_xor = FALSE  (equal inputs → XOR is FALSE)
+  Input:  a=FALSE, b=FALSE
+  Expected: y_xor = FALSE
+  Rationale: XOR must be FALSE when both inputs are identical (both T or both F).
+
+TEST-BL-003 — D-latch captures a=TRUE at rising edge
+------------------------------------------------------
+  Sequence:
+    Step 1: a=TRUE,  clk=FALSE → y_latch=FALSE (initial), flancos=0
+    Step 2: a=TRUE,  clk=TRUE  → rising edge! y_latch=TRUE, flancos=1
+    Step 3: a=FALSE, clk=TRUE  → no edge (clk stays TRUE), y_latch=TRUE (held)
+    Step 4: a=FALSE, clk=FALSE → falling edge (no capture), y_latch=TRUE (held)
+    Step 5: a=FALSE, clk=TRUE  → rising edge! y_latch=FALSE, flancos=2
+  Expected final: y_latch=FALSE, cuenta_flancos=2
+  Rationale: Latch captures a on each rising edge; holds value between edges.
+
+TEST-BL-004 — D-latch captures a=FALSE at rising edge
+------------------------------------------------------
+  Sequence:
+    Step 1: a=FALSE, clk=FALSE → y_latch=FALSE, flancos=0
+    Step 2: a=FALSE, clk=TRUE  → rising edge: capture a=FALSE, flancos=1
+    Step 3: a=TRUE,  clk=TRUE  → no edge (clk still TRUE), y_latch=FALSE (held!)
+  Expected: y_latch=FALSE even though a is now TRUE (latch only captures on edge)
+  Rationale: Latch is edge-triggered, NOT level-triggered. a changing while
+             clk=TRUE must NOT update the latch.
+
+TEST-BL-005 — Edge counter increments correctly
+-------------------------------------------------
+  Apply N=5 full clock cycles (FALSE→TRUE→FALSE = one cycle):
+    Each cycle: clk transitions FALSE → TRUE (rising edge, +1 count)
+    Then:       clk transitions TRUE → FALSE (falling edge, no count)
+  After 5 cycles: cuenta_flancos = 5
+  Rationale: Each FALSE→TRUE transition must increment exactly once.
+             Falling edges must NOT increment the counter.
+
+TEST-BL-006 — Edge counter: no double-counting
+------------------------------------------------
+  Sequence:
+    t=0: clk=FALSE → flancos=0
+    t=1: clk=TRUE  → flancos=1  (rising edge)
+    t=2: clk=TRUE  → flancos=1  (clk still TRUE, no new edge)
+    t=3: clk=TRUE  → flancos=1  (still no change)
+    t=4: clk=FALSE → flancos=1  (falling edge, no increment)
+    t=5: clk=TRUE  → flancos=2  (new rising edge)
+  Rationale: Holding clk=TRUE for multiple steps must not count multiple edges.
+
+TEST-BL-007 — above_threshold: Real input drives Boolean output
+----------------------------------------------------------------
+  Input:  umbral = 0.0    → above_threshold = FALSE
+  Input:  umbral = 0.5    → above_threshold = FALSE  (strict >, not >=)
+  Input:  umbral = 0.5001 → above_threshold = TRUE
+  Input:  umbral = 1.0    → above_threshold = TRUE
+  Input:  umbral = -1.0   → above_threshold = FALSE
+  Rationale: Tests Real→Boolean conversion with boundary condition at 0.5.
+             Verifies fmi2SetReal is in the same step loop as fmi2GetBoolean.
+
+TEST-BL-008 — All inputs TRUE simultaneously
+----------------------------------------------
+  Input:  a=TRUE, b=TRUE, clk=TRUE (assume first rising edge), umbral=1.0
+  Expected:
+    y_and           = TRUE
+    y_or            = TRUE
+    y_xor           = FALSE
+    y_latch         = TRUE   (rising edge captures a=TRUE)
+    cuenta_flancos  = 1      (first edge)
+    above_threshold = TRUE
+  Rationale: All outputs active simultaneously — stresses multi-type read order.
+
+TEST-BL-009 — Reset: back to all FALSE
+----------------------------------------
+  After TEST-BL-008 state:
+  New step: a=FALSE, b=FALSE, clk=FALSE, umbral=0.0
+  Expected:
+    y_and           = FALSE
+    y_or            = FALSE
+    y_xor           = FALSE
+    y_latch         = TRUE   (latch HOLDS — no new clock edge)
+    cuenta_flancos  = 1      (counter HOLDS — no new edge)
+    above_threshold = FALSE
+  Rationale: Combinational outputs reset immediately; sequential state held.
+
+TEST-BL-010 — Codegen structural check
+----------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] fmi2SetBoolean called 3 times (a, b, clk) before each step
+    [ ] fmi2SetReal called once (umbral) before each step
+    [ ] fmi2GetBoolean called 5 times (y_and, y_or, y_xor, y_latch, above_threshold)
+    [ ] fmi2GetInteger called once (cuenta_flancos)
+    [ ] edge() or equivalent rising-edge detection present
+    [ ] pre() operator correctly reads the previous-step value of flancos
+    [ ] No continuous ODE solver (this model has no der())
+    [ ] Discrete state variables (latch, flancos) correctly preserved between steps
+  Rationale: Mixed combinational+sequential audit. edge() and pre() are the
+             most commonly broken constructs in codegen tools.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  Boolean comparisons: exact match required (no tolerance)
+  Integer comparisons: exact match required
+  above_threshold:     exact Boolean, threshold = 0.5 (strict >)
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - TEST-BL-001 (truth table) can run as 4 independent single-step tests
+  - TEST-BL-003 and TEST-BL-005 require a multi-step sequence with clk changes
+  - TEST-BL-006 (no double-counting) is the key edge() correctness test
+  - If cuenta_flancos stays at 0 for all tests → edge() was not generated
+  - If cuenta_flancos increments on EVERY step → edge() was replaced with level
+  - TEST-BL-004 is the latch vs level-trigger discriminator
+  - Standard sequence for CI: run TEST-BL-001, then TEST-BL-003, then TEST-BL-005
+================================================================================

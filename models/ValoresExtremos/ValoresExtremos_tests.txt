@@ -1,0 +1,176 @@
+================================================================================
+  TEST BATTERY — ValoresExtremos
+  Extreme Floating-Point Values — NaN, Inf, Zero, Saturation, Log/Sqrt Guards
+================================================================================
+
+OVERVIEW
+--------
+ValoresExtremos applies five floating-point operations to a single real input,
+each protected against edge-case inputs that would normally produce NaN, Inf,
+or undefined results (division by zero, sqrt of negative, log of zero).
+
+WHY THIS MODEL EXISTS
+---------------------
+A codegen tool that transpiles FMI equations into C code must preserve the
+if/else guards that protect each operation. If a guard is dropped, inlined
+incorrectly, or optimized away, the generated C code will produce NaN or Inf
+at runtime for certain inputs. These failures are often silent — the program
+runs but produces wrong outputs without error messages.
+
+This model creates unavoidable NaN/Inf conditions unless the guards are correct.
+
+FMU INTERFACE
+-------------
+  Input:
+    u (Real) — test with values: 0, negative, very small, very large, exact ±1
+
+  Outputs:
+    y_inv     (Real)    — 1/u  if |u|>1e-10,  else 1e30
+    y_sqrt    (Real)    — √u   if u≥0,        else 0.0
+    y_log     (Real)    — ln(u) if u>1e-10,   else -1e30
+    y_sat     (Real)    — min(1, max(-1, u))
+    es_finito (Boolean) — TRUE when |u| < 1e29
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(ValoresExtremos)
+  2. buildModelFMU(ValoresExtremos, version="2.0", fmuType="me")
+  3. After codegen, inspect generated C for presence of all if/else guards
+  4. Run with u=0.0 as a smoke test — must not crash or produce NaN
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-VE-001 — u = 0.0 (division by zero, log of zero)
+-------------------------------------------------------
+  Input:  u = 0.0
+  Expected:
+    y_inv     = 1.0e30    (guard activates: |0| is not > 1e-10)
+    y_sqrt    = 0.0       (√0 = 0, guard not needed but works)
+    y_log     = -1.0e30   (guard activates: 0 is not > 1e-10)
+    y_sat     = 0.0       (0 is within [-1,1])
+    es_finito = TRUE      (0 < 1e29)
+  Rationale: CRITICAL — most likely to produce NaN/Inf if guards are missing.
+
+TEST-VE-002 — u = -5.0 (negative: sqrt undefined, log undefined)
+-----------------------------------------------------------------
+  Input:  u = -5.0
+  Expected:
+    y_inv     = -0.2      (-5 is not near zero, guard does not activate)
+    y_sqrt    = 0.0       (guard: negative → return 0)
+    y_log     = -1.0e30   (guard: negative → return -1e30)
+    y_sat     = -1.0      (clamp(-5, -1, 1) = -1)
+    es_finito = TRUE      (|-5| < 1e29)
+  Rationale: Negative input — tests sqrt and log guards simultaneously.
+
+TEST-VE-003 — u = 1.0 (nominal positive)
+------------------------------------------
+  Input:  u = 1.0
+  Expected:
+    y_inv     = 1.0
+    y_sqrt    = 1.0
+    y_log     = 0.0       (ln(1) = 0)
+    y_sat     = 1.0       (exactly at upper saturation boundary)
+    es_finito = TRUE
+  Rationale: Nominal case where all operations are well-defined.
+
+TEST-VE-004 — u = -1.0 (negative unit)
+----------------------------------------
+  Input:  u = -1.0
+  Expected:
+    y_inv     = -1.0
+    y_sqrt    = 0.0       (negative → guarded to 0)
+    y_log     = -1.0e30   (negative → guarded)
+    y_sat     = -1.0      (exactly at lower boundary)
+    es_finito = TRUE
+  Rationale: Symmetric to TEST-VE-003.
+
+TEST-VE-005 — u = 2.0 (above saturation)
+------------------------------------------
+  Input:  u = 2.0
+  Expected:
+    y_inv     ≈ 0.5
+    y_sqrt    ≈ 1.414
+    y_log     ≈ 0.693      (ln(2))
+    y_sat     = 1.0        (clamped at upper limit)
+    es_finito = TRUE
+  Rationale: y_sat must return 1.0, not 2.0 — saturation is working.
+
+TEST-VE-006 — u = -10.0 (below saturation)
+--------------------------------------------
+  Input:  u = -10.0
+  Expected:
+    y_inv     = -0.1
+    y_sqrt    = 0.0
+    y_log     = -1.0e30
+    y_sat     = -1.0       (clamped at lower limit)
+    es_finito = TRUE
+  Rationale: Deep negative — saturation clamps at -1.
+
+TEST-VE-007 — u = 1.0e-11 (below guard threshold)
+----------------------------------------------------
+  Input:  u = 1.0e-11
+  Expected:
+    y_inv     = 1.0e30     (|1e-11| < 1e-10 → guard activates)
+    y_sqrt    ≈ 1.0e-5.5   (positive → √(1e-11) ≈ 3.16e-6)
+    y_log     = -1.0e30    (1e-11 < 1e-10 → guard activates)
+    y_sat     = 1.0e-11    (within [-1, 1])
+    es_finito = TRUE
+  Rationale: Near-zero positive — both y_inv and y_log guards activate.
+
+TEST-VE-008 — u = 1.0e30 (near Inf)
+--------------------------------------
+  Input:  u = 1.0e30
+  Expected:
+    y_inv     ≈ 1.0e-30    (valid: 1/1e30)
+    y_sqrt    ≈ 1.0e15     (√(1e30))
+    y_log     ≈ 69.08      (ln(1e30) = 30·ln(10) ≈ 69.08)
+    y_sat     = 1.0        (1e30 >> 1 → clamped)
+    es_finito = FALSE      (1e30 is NOT < 1e29)
+  Rationale: Very large value — tests all operations at large magnitude.
+             es_finito must be FALSE.
+
+TEST-VE-009 — u = 100.0 (typical positive, all operations active)
+------------------------------------------------------------------
+  Input:  u = 100.0
+  Expected:
+    y_inv     = 0.01
+    y_sqrt    = 10.0
+    y_log     ≈ 4.605      (ln(100) = 2·ln(10) ≈ 4.6052)
+    y_sat     = 1.0
+    es_finito = TRUE
+  Tolerance: ±1e-6 for y_log
+  Rationale: Cross-check with known values; verifies no guard incorrectly fires.
+
+TEST-VE-010 — Codegen guard integrity check
+---------------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] if (fabs(u) > 1e-10) { y_inv = 1.0/u; } else { y_inv = 1e30; }
+        (or equivalent — guard must be present)
+    [ ] if (u >= 0.0) { y_sqrt = sqrt(u); } else { y_sqrt = 0.0; }
+    [ ] if (u > 1e-10) { y_log = log(u); } else { y_log = -1e30; }
+    [ ] y_sat = fmin(1.0, fmax(-1.0, u));  (or equivalent)
+    [ ] No call to sqrt(), log(), or 1/u WITHOUT the corresponding guard
+    [ ] No NaN or Inf appears in output for any of TEST-VE-001..009
+  Rationale: Guards must not be optimized away. A static analysis step
+             should confirm each dangerous operation is guarded in the C source.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  Regular Real values:  absolute tolerance = 1e-6
+  Guard sentinels:      exact match (1e30 and -1e30)
+  Boolean:              exact match
+  NaN/Inf check:        any NaN or Inf in output = automatic test failure
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Run TEST-VE-001 (u=0) as a mandatory smoke test before all others
+  - If y_inv, y_sqrt, or y_log produce NaN → guards were not generated
+  - Use isnan() and isinf() checks in the test harness for all Real outputs
+  - TEST-VE-010 (guard integrity) should run at build time, not runtime
+  - Particularly important: verify the C compiler does not optimize away
+    the guards with -O2 or higher optimization levels
+================================================================================

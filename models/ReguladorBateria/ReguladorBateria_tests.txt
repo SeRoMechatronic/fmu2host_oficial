@@ -1,0 +1,117 @@
+================================================================================
+  ReguladorBateria — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+ReguladorBateria is a second-order state-space battery charge regulator with
+2 continuous states (x1, x2) and anti-windup feedback.
+
+INPUTS
+------
+  tension_bateria   Real [0.0, 1.0]   Normalized battery voltage.
+  carga_conectada   Boolean           Charger enable signal.
+
+OUTPUTS
+-------
+  corriente_carga    Real [0.0, 1.0]   Charging current output.
+  cargando           Boolean           Charger on and below full-charge.
+  carga_completa     Boolean           tension >= 0.98
+  fallo_sobretension Boolean           tension > 0.95
+
+PARAMETERS
+----------
+  V_nominal        = 0.75   Target voltage
+  V_max            = 0.95   Overvoltage limit
+  V_carga_completa = 0.98   Full charge threshold
+  wn               = 10.0   Natural frequency (rad/s)
+  zeta             = 0.70   Damping ratio
+  I_max            = 1.0    Max charging current
+  Ki_aw            = 0.5    Anti-windup gain
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+--------------------------------------------------------------------------------
+TC-RB-001   Charger disconnected — no current
+--------------------------------------------------------------------------------
+  Initial states: x1=0, x2=0
+  Inputs:         tension_bateria=0.50, carga_conectada=false
+  Expected:
+    error_v        = 0.0  (charger off)
+    corriente_carga= 0.0
+    cargando       = false
+    carga_completa = false
+    fallo_sobretension = false
+  Purpose: Verify no current flows when charger is disconnected.
+
+--------------------------------------------------------------------------------
+TC-RB-002   Charger connected — low battery
+--------------------------------------------------------------------------------
+  Initial states: x1=0, x2=0
+  Inputs:         tension_bateria=0.30, carga_conectada=true
+  Simulation:     t=0
+  Expected:
+    error_v        = 0.75 - 0.30 = 0.45
+    der(x1)        = 0.0   (x2=0 initially)
+    der(x2)        = 100 * 0.45 = 45.0  (wn²*error_v, with x1=x2=0)
+    corriente_carga≈ 0.0   (states still 0 at t=0)
+    cargando       = true
+  Purpose: Verify initial derivative is positive under charging demand.
+
+--------------------------------------------------------------------------------
+TC-RB-003   Full charge detection
+--------------------------------------------------------------------------------
+  Inputs:  tension_bateria=0.98, carga_conectada=true
+  Expected:
+    carga_completa    = true
+    cargando          = false  (tension >= V_carga_completa)
+    fallo_sobretension= false
+  Purpose: Verify full-charge flag and charging disable at V_carga_completa.
+
+--------------------------------------------------------------------------------
+TC-RB-004   Overvoltage fault
+--------------------------------------------------------------------------------
+  Inputs:  tension_bateria=0.96, carga_conectada=true
+  Expected:
+    fallo_sobretension= true   (0.96 > 0.95)
+    cargando          = false  (overvoltage disables charging flag)
+    carga_completa    = false  (< 0.98)
+  Purpose: Verify overvoltage protection activates above V_max.
+
+--------------------------------------------------------------------------------
+TC-RB-005   Voltage exactly at V_max — no fault
+--------------------------------------------------------------------------------
+  Inputs:  tension_bateria=0.95, carga_conectada=true
+  Expected:
+    fallo_sobretension= false  (> is strict, 0.95 is NOT > 0.95)
+    cargando          = true
+  Purpose: Verify strict > boundary on overvoltage detection.
+
+--------------------------------------------------------------------------------
+TC-RB-006   Voltage exactly at V_nominal — near-zero error
+--------------------------------------------------------------------------------
+  Inputs:  tension_bateria=0.75, carga_conectada=true
+  Initial: x1=0, x2=0
+  Expected:
+    error_v        = 0.0
+    der(x2)        = 0.0 + 0.0 + 0.0 = 0.0 (all zero initial)
+    corriente_carga= 0.0  (states at zero)
+    cargando       = true
+  Purpose: Verify no demand at operating point with zero initial states.
+
+--------------------------------------------------------------------------------
+TC-RB-007   Anti-windup — sustained demand then reconnect
+--------------------------------------------------------------------------------
+  Scenario:
+    t=0..5:  tension_bateria=0.30, carga_conectada=true  (charging)
+    t=5:     carga_conectada=false  (disconnect)
+    t=5+:    carga_conectada=true   (reconnect)
+  Verify at t=5+ that corriente_carga recovers smoothly (no large spike).
+  Expected: corriente_carga remains bounded after reconnection.
+  Purpose: Verify anti-windup prevents sudden current jump on reconnection.
+
+================================================================================
+  END OF REGULADORBATERIA TESTS
+================================================================================

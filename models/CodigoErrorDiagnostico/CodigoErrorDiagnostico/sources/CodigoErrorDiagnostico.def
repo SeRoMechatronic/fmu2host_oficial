@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  CodigoErrorDiagnostico_fmiGetTypesPlatform @1
+  CodigoErrorDiagnostico_fmiGetVersion @2
+  CodigoErrorDiagnostico_fmiSetDebugLogging @3
+  CodigoErrorDiagnostico_fmiInstantiate @4
+  CodigoErrorDiagnostico_fmiFreeInstance @5
+  CodigoErrorDiagnostico_fmiSetupExperiment @6
+  CodigoErrorDiagnostico_fmiEnterInitializationMode @7
+  CodigoErrorDiagnostico_fmiExitInitializationMode @8
+  CodigoErrorDiagnostico_fmiTerminate @9
+  CodigoErrorDiagnostico_fmiReset @10
+  CodigoErrorDiagnostico_fmiGetReal @11
+  CodigoErrorDiagnostico_fmiGetInteger @12
+  CodigoErrorDiagnostico_fmiGetBoolean @13
+  CodigoErrorDiagnostico_fmiGetString @14
+  CodigoErrorDiagnostico_fmiSetReal @15
+  CodigoErrorDiagnostico_fmiSetInteger @16
+  CodigoErrorDiagnostico_fmiSetBoolean @17
+  CodigoErrorDiagnostico_fmiSetString @18
+  CodigoErrorDiagnostico_fmiGetFMUstate @19
+  CodigoErrorDiagnostico_fmiSetFMUstate @20
+  CodigoErrorDiagnostico_fmiFreeFMUstate @21
+  CodigoErrorDiagnostico_fmiSerializedFMUstateSize @22
+  CodigoErrorDiagnostico_fmiSerializeFMUstate @23
+  CodigoErrorDiagnostico_fmiDeSerializeFMUstate @24
+  CodigoErrorDiagnostico_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  CodigoErrorDiagnostico_fmiEnterEventMode @26
+  CodigoErrorDiagnostico_fmiNewDiscreteStates @27
+  CodigoErrorDiagnostico_fmiEnterContinuousTimeMode @28
+  CodigoErrorDiagnostico_fmiCompletedIntegratorStep @29
+  CodigoErrorDiagnostico_fmiSetTime @30
+  CodigoErrorDiagnostico_fmiSetContinuousStates @31
+  CodigoErrorDiagnostico_fmiGetDerivatives @32
+  CodigoErrorDiagnostico_fmiGetEventIndicators @33
+  CodigoErrorDiagnostico_fmiGetContinuousStates @34
+  CodigoErrorDiagnostico_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  CodigoErrorDiagnostico_fmiSetRealInputDerivatives @36
+  CodigoErrorDiagnostico_fmiGetRealOutputDerivatives @37
+  CodigoErrorDiagnostico_fmiDoStep @38
+  CodigoErrorDiagnostico_fmiCancelStep @39
+  CodigoErrorDiagnostico_fmiGetStatus @40
+  CodigoErrorDiagnostico_fmiGetRealStatus @41
+  CodigoErrorDiagnostico_fmiGetIntegerStatus @42
+  CodigoErrorDiagnostico_fmiGetBooleanStatus @43
+  CodigoErrorDiagnostico_fmiGetStringStatus @44

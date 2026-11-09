@@ -1,0 +1,193 @@
+================================================================================
+  CTPID — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+CTPID is a continuous-time PID temperature controller. It takes two normalized
+Real inputs — a temperature sensor and a setpoint potentiometer — and produces
+a normalized fan drive output plus three Boolean status LEDs.
+
+The model has 2 continuous states (integrador, error via der()) and is
+compliant with FMI 2.0 Model Exchange.
+
+Physical temperature range: T_min=0.0 to T_max=100.0 degrees.
+Dead-band: epsilon = 1.0 degree.
+
+INPUTS
+------
+  temperatura   Real [0.0, 1.0]   Normalized temperature sensor.
+                                   0.0 → 0°C,  0.5 → 50°C,  1.0 → 100°C
+  consigna      Real [0.0, 1.0]   Normalized setpoint potentiometer.
+                                   Same mapping as temperatura.
+
+OUTPUTS
+-------
+  ventilador    Real [0.0, 1.0]   Fan drive. 0=off, 1=full speed.
+  ledPorEncima  Boolean           Setpoint > temperatura + epsilon
+  ledPorDebajo  Boolean           Setpoint < temperatura - epsilon
+  ledAlcanzado  Boolean           |setpoint - temperatura| <= epsilon
+
+INTERNAL LOGIC
+--------------
+  consigna_real    = consigna    * 100.0
+  temperatura_real = temperatura * 100.0
+  error            = consigna_real - temperatura_real
+
+  der(integrador) = error
+  derivador       = der(error)
+  pid_raw         = Kp*error + Ki*integrador + Kd*derivador
+  ventilador      = clamp(pid_raw / 100.0, 0.0, 1.0)
+
+  ledPorEncima = consigna_real > temperatura_real + 1.0
+  ledPorDebajo = consigna_real < temperatura_real - 1.0
+  ledAlcanzado = abs(error) <= 1.0
+
+PARAMETERS
+----------
+  Kp = 2.0        Proportional gain
+  Ki = 0.5        Integral gain
+  Kd = 0.1        Derivative gain
+  T_min = 0.0     Lower bound of physical temperature range
+  T_max = 100.0   Upper bound of physical temperature range
+  epsilon = 1.0   Dead-band width (degrees)
+
+NOTE ON TESTING
+---------------
+Because the model has integrators, steady-state outputs depend on simulation
+time. The test cases below specify INITIAL conditions (t=0, integrador=0)
+for instantaneous/algebraic checks, plus dynamic scenarios for transient
+behavior. In CI/CD, run the FMU for the indicated duration and sample
+the output at the specified time.
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+--------------------------------------------------------------------------------
+TC-CT-001   Setpoint equals temperature — ledAlcanzado active at t=0
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.50, consigna=0.50
+  Simulation time:    t=0 (algebraic check)
+  Expected:
+    error          = 0.0
+    ventilador     ≈ 0.0  (no error, no integral yet)
+    ledPorEncima   = false
+    ledPorDebajo   = false
+    ledAlcanzado   = true
+  Purpose: Verify dead-band logic when setpoint equals measurement exactly.
+
+--------------------------------------------------------------------------------
+TC-CT-002   Setpoint above temperature — heating demand
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.30, consigna=0.50
+  Simulation time:    t=0
+  Expected:
+    error          = 20.0 degrees
+    pid_raw (t=0)  = Kp*20 = 40.0  → ventilador = clamp(40/100, 0, 1) = 0.40
+    ledPorEncima   = true   (50 > 30 + 1)
+    ledPorDebajo   = false
+    ledAlcanzado   = false
+  Purpose: Verify positive error path and fan activation.
+
+--------------------------------------------------------------------------------
+TC-CT-003   Setpoint below temperature — cooling demand
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.70, consigna=0.50
+  Simulation time:    t=0
+  Expected:
+    error          = -20.0 degrees
+    pid_raw (t=0)  = Kp*(-20) = -40.0 → ventilador = clamp(-40/100,0,1) = 0.0
+    ledPorEncima   = false
+    ledPorDebajo   = true   (50 < 70 - 1)
+    ledAlcanzado   = false
+  Purpose: Verify negative error path — fan is OFF when overtemperature.
+
+--------------------------------------------------------------------------------
+TC-CT-004   Within dead-band above setpoint
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.51, consigna=0.50
+  Simulation time:    t=0
+  Expected:
+    error          = -1.0 degree  (|error| = 1.0 <= epsilon)
+    ledPorEncima   = false
+    ledPorDebajo   = false
+    ledAlcanzado   = true
+  Purpose: Verify that epsilon=1.0 boundary activates ledAlcanzado.
+
+--------------------------------------------------------------------------------
+TC-CT-005   Just outside dead-band
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.512, consigna=0.50
+  Simulation time:    t=0
+  Expected:
+    error          ≈ -1.2 degrees  (|error| > epsilon)
+    ledPorEncima   = false
+    ledPorDebajo   = true
+    ledAlcanzado   = false
+  Purpose: Verify boundary just outside dead-band does NOT activate ledAlcanzado.
+
+--------------------------------------------------------------------------------
+TC-CT-006   Fan saturation — maximum demand
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.0, consigna=1.0
+  Simulation time:    t=0
+  Expected:
+    error          = 100.0 degrees
+    pid_raw (t=0)  = 2.0*100 = 200.0 → ventilador = clamp(2.0, 0, 1) = 1.0
+    ledPorEncima   = true
+    ledPorDebajo   = false
+    ledAlcanzado   = false
+  Purpose: Verify fan is clamped to 1.0 under maximum demand.
+
+--------------------------------------------------------------------------------
+TC-CT-007   Integral wind-up test — setpoint above for 10 seconds
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.30, consigna=0.50
+  Simulation time:    run for 10 s, sample at t=10
+  Expected at t=10:
+    integrador     ≈ 200.0  (20 deg * 10 s)
+    ventilador     = 1.0    (saturated — integral pushes output above 1.0)
+    ledPorEncima   = true
+    ledAlcanzado   = false
+  Purpose: Verify that sustained error drives integral and saturates fan.
+
+--------------------------------------------------------------------------------
+TC-CT-008   Step change: setpoint moves from 0.50 to 0.70
+--------------------------------------------------------------------------------
+  Scenario:
+    t=0..5:   temperatura=0.50, consigna=0.50  (steady state at setpoint)
+    t=5..15:  temperatura=0.50, consigna=0.70  (step +20 degrees)
+  Sample at t=5+ (just after step):
+    Expected: ledPorEncima=true, ledAlcanzado=false, ventilador > 0.0
+  Sample at t=15 (after settling, assuming temperature tracks):
+    Expected: ledAlcanzado=true (if simulated plant tracks setpoint)
+  Purpose: Verify transient behavior after a step change in setpoint.
+
+--------------------------------------------------------------------------------
+TC-CT-009   Zero input — both zero
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=0.0, consigna=0.0
+  Simulation time:    t=0
+  Expected:
+    error          = 0.0
+    ventilador     = 0.0
+    ledAlcanzado   = true
+    ledPorEncima   = false
+    ledPorDebajo   = false
+  Purpose: Verify stable behavior at the lower bound of the range.
+
+--------------------------------------------------------------------------------
+TC-CT-010   Both inputs at maximum
+--------------------------------------------------------------------------------
+  Inputs (constant):  temperatura=1.0, consigna=1.0
+  Simulation time:    t=0
+  Expected:
+    error          = 0.0
+    ventilador     = 0.0
+    ledAlcanzado   = true
+  Purpose: Verify stable behavior at the upper bound of the range.
+
+================================================================================
+  END OF TEST BATTERY
+================================================================================

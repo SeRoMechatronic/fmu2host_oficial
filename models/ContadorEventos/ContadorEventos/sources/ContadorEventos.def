@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  ContadorEventos_fmiGetTypesPlatform @1
+  ContadorEventos_fmiGetVersion @2
+  ContadorEventos_fmiSetDebugLogging @3
+  ContadorEventos_fmiInstantiate @4
+  ContadorEventos_fmiFreeInstance @5
+  ContadorEventos_fmiSetupExperiment @6
+  ContadorEventos_fmiEnterInitializationMode @7
+  ContadorEventos_fmiExitInitializationMode @8
+  ContadorEventos_fmiTerminate @9
+  ContadorEventos_fmiReset @10
+  ContadorEventos_fmiGetReal @11
+  ContadorEventos_fmiGetInteger @12
+  ContadorEventos_fmiGetBoolean @13
+  ContadorEventos_fmiGetString @14
+  ContadorEventos_fmiSetReal @15
+  ContadorEventos_fmiSetInteger @16
+  ContadorEventos_fmiSetBoolean @17
+  ContadorEventos_fmiSetString @18
+  ContadorEventos_fmiGetFMUstate @19
+  ContadorEventos_fmiSetFMUstate @20
+  ContadorEventos_fmiFreeFMUstate @21
+  ContadorEventos_fmiSerializedFMUstateSize @22
+  ContadorEventos_fmiSerializeFMUstate @23
+  ContadorEventos_fmiDeSerializeFMUstate @24
+  ContadorEventos_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  ContadorEventos_fmiEnterEventMode @26
+  ContadorEventos_fmiNewDiscreteStates @27
+  ContadorEventos_fmiEnterContinuousTimeMode @28
+  ContadorEventos_fmiCompletedIntegratorStep @29
+  ContadorEventos_fmiSetTime @30
+  ContadorEventos_fmiSetContinuousStates @31
+  ContadorEventos_fmiGetDerivatives @32
+  ContadorEventos_fmiGetEventIndicators @33
+  ContadorEventos_fmiGetContinuousStates @34
+  ContadorEventos_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  ContadorEventos_fmiSetRealInputDerivatives @36
+  ContadorEventos_fmiGetRealOutputDerivatives @37
+  ContadorEventos_fmiDoStep @38
+  ContadorEventos_fmiCancelStep @39
+  ContadorEventos_fmiGetStatus @40
+  ContadorEventos_fmiGetRealStatus @41
+  ContadorEventos_fmiGetIntegerStatus @42
+  ContadorEventos_fmiGetBooleanStatus @43
+  ContadorEventos_fmiGetStringStatus @44

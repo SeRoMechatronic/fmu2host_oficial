@@ -1,0 +1,4 @@
+t,temperatura,tension,vibracion,factor_reduccion,codigo_error,parada_emergencia,nivel_prioridad
+0.0,0.5,0.8,0.8,0.75,303.0,0.0,1.0
+0.1,0.5,0.8,0.8,0.75,303.0,0.0,1.0
+0.2,0.5,0.8,0.8,0.75,303.0,0.0,1.0

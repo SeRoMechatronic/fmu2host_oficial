@@ -1,0 +1,33 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"SinInputs","description":"Autonomous mass-spring-damper \uffffffe2\uffffff80\uffffff94 zero inputs, exercises codegen with no fmi2SetReal calls"},
+"variables":{
+"v":{"comment":"Velocity state [m/s]","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":58,"lineEnd":58,"colStart":3,"colEnd":60}}},
+"x":{"comment":"Displacement state [m]","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":57,"lineEnd":57,"colStart":3,"colEnd":62}}},
+"der(v)":{"comment":"der(Velocity state [m/s])","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":58,"lineEnd":58,"colStart":3,"colEnd":60}}},
+"der(x)":{"comment":"der(Displacement state [m])","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":57,"lineEnd":57,"colStart":3,"colEnd":62}}},
+"energia":{"comment":"Total mechanical energy: 0.5*m*v\uffffffc2\uffffffb2 + 0.5*k*x\uffffffc2\uffffffb2 [J] \uffffffe2\uffffff80\uffffff94 decays due to damping","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":52,"lineEnd":54,"colStart":3,"colEnd":77}}},
+"posicion":{"comment":"Displacement of the mass: x(t) [m]","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":44,"lineEnd":46,"colStart":3,"colEnd":75}}},
+"velocidad":{"comment":"Velocity of the mass: x'(t) [m/s]","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":48,"lineEnd":50,"colStart":3,"colEnd":74}}},
+"amortiguacion":{"comment":"Damping coefficient [N\uffffffc2\uffffffb7s/m]","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":34,"lineEnd":34,"colStart":3,"colEnd":70}}},
+"masa":{"comment":"Mass [kg]","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":33,"lineEnd":33,"colStart":3,"colEnd":51}}},
+"rigidez":{"comment":"Spring stiffness [N/m]","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":35,"lineEnd":35,"colStart":3,"colEnd":64}}},
+"v0":{"comment":"Initial velocity [m/s]","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":37,"lineEnd":37,"colStart":3,"colEnd":64}}},
+"x0":{"comment":"Initial displacement [m]","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":36,"lineEnd":36,"colStart":3,"colEnd":66}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"section":"initial","tag":"assign","defines":["x"],"uses":["$START.x"],"equation":["$START.x"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":2,"tag":"alias","equation":[12],"section":"initial"},
+{"eqIndex":3,"section":"initial","tag":"assign","defines":["v"],"uses":["$START.v"],"equation":["$START.v"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":4,"tag":"alias","equation":[11],"section":"initial"},
+{"eqIndex":5,"tag":"alias","equation":[10],"section":"initial"},
+{"eqIndex":6,"tag":"alias","equation":[9],"section":"initial"},
+{"eqIndex":7,"tag":"alias","equation":[8],"section":"initial"},
+{"eqIndex":8,"section":"regular","tag":"assign","defines":["energia"],"uses":["x","masa","rigidez","v"],"equation":["0.5 * (masa * v ^ 2.0 + rigidez * x ^ 2.0)"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":69,"lineEnd":69,"colStart":3,"colEnd":53}}},
+{"eqIndex":9,"section":"regular","tag":"assign","defines":["der(v)"],"uses":["masa","x","v","rigidez","amortiguacion"],"equation":["((-rigidez) * x - amortiguacion * v) / masa"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":64,"lineEnd":64,"colStart":3,"colEnd":62}}},
+{"eqIndex":10,"section":"regular","tag":"assign","defines":["der(x)"],"uses":["v"],"equation":["v"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/SinInputs/SinInputs.mo","lineStart":63,"lineEnd":63,"colStart":3,"colEnd":13}}},
+{"eqIndex":11,"section":"regular","tag":"assign","defines":["velocidad"],"uses":["v"],"equation":["v"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":12,"section":"regular","tag":"assign","defines":["posicion"],"uses":["x"],"equation":["x"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}}
+],
+"functions":[
+]
+}

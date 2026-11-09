@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="SuspensionActiva"
+  guid="{d502a71c-9992-47e0-952e-c751a997751d}"
+  description="Active suspension PD controller — FMI 2.0 ME"
+  version=""
+  generationTool="OpenModelica Compiler OpenModelica v1.25.7 (64-bit)"
+  generationDateAndTime="2026-05-20T12:01:56Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="3">
+  <ModelExchange
+    modelIdentifier="SuspensionActiva"
+    needsExecutionTool="false"
+    completedIntegratorStepNotNeeded="false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="SuspensionActiva.c" />
+      <File name="SuspensionActiva_functions.c" />
+      <File name="SuspensionActiva_records.c" />
+      <File name="SuspensionActiva_01exo.c" />
+      <File name="SuspensionActiva_02nls.c" />
+      <File name="SuspensionActiva_03lsy.c" />
+      <File name="SuspensionActiva_04set.c" />
+      <File name="SuspensionActiva_05evt.c" />
+      <File name="SuspensionActiva_06inz.c" />
+      <File name="SuspensionActiva_07dly.c" />
+      <File name="SuspensionActiva_08bnd.c" />
+      <File name="SuspensionActiva_09alg.c" />
+      <File name="SuspensionActiva_10asr.c" />
+      <File name="SuspensionActiva_11mix.c" />
+      <File name="SuspensionActiva_12jac.c" />
+      <File name="SuspensionActiva_13opt.c" />
+      <File name="SuspensionActiva_14lnz.c" />
+      <File name="SuspensionActiva_15syn.c" />
+      <File name="SuspensionActiva_16dae.c" />
+      <File name="SuspensionActiva_17inl.c" />
+      <File name="SuspensionActiva_18spd.c" />
+      <File name="SuspensionActiva_init_fmu.c" />
+      <File name="SuspensionActiva_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </ModelExchange>
+  <CoSimulation
+    modelIdentifier="SuspensionActiva"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="true"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="SuspensionActiva.c" />
+      <File name="SuspensionActiva_functions.c" />
+      <File name="SuspensionActiva_records.c" />
+      <File name="SuspensionActiva_01exo.c" />
+      <File name="SuspensionActiva_02nls.c" />
+      <File name="SuspensionActiva_03lsy.c" />
+      <File name="SuspensionActiva_04set.c" />
+      <File name="SuspensionActiva_05evt.c" />
+      <File name="SuspensionActiva_06inz.c" />
+      <File name="SuspensionActiva_07dly.c" />
+      <File name="SuspensionActiva_08bnd.c" />
+      <File name="SuspensionActiva_09alg.c" />
+      <File name="SuspensionActiva_10asr.c" />
+      <File name="SuspensionActiva_11mix.c" />
+      <File name="SuspensionActiva_12jac.c" />
+      <File name="SuspensionActiva_13opt.c" />
+      <File name="SuspensionActiva_14lnz.c" />
+      <File name="SuspensionActiva_15syn.c" />
+      <File name="SuspensionActiva_16dae.c" />
+      <File name="SuspensionActiva_17inl.c" />
+      <File name="SuspensionActiva_18spd.c" />
+      <File name="SuspensionActiva_init_fmu.c" />
+      <File name="SuspensionActiva_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </CoSimulation>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="1.0" tolerance="1e-6" stepSize="0.002"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="posicion_filtrada"
+    valueReference="0"
+    description="Filtered wheel position. First-order filter with tau_filtro"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="velocidad_filtrada"
+    valueReference="1"
+    description="Filtered wheel velocity. Derived from posicion_filtrada, then filtered again"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="der(posicion_filtrada)"
+    valueReference="2"
+    description="der(Filtered wheel position. First-order filter with tau_filtro)"
+    >
+    <Real derivative="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="der(velocidad_filtrada)"
+    valueReference="3"
+    description="der(Filtered wheel velocity. Derived from posicion_filtrada, then filtered again)"
+    >
+    <Real derivative="2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="_D_cse1"
+    valueReference="4"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="fuerza_actuador"
+    valueReference="5"
+    description="Actuator force [-1,1]. Positive = upward, negative = downward"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="fuerza_raw"
+    valueReference="6"
+    description="Raw PD controller output before saturation clamp"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="perfil_bache"
+    valueReference="7"
+    description="Wheel vertical displacement from road profile. Positive = bump, negative = pothole"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="velocidad_vehiculo"
+    valueReference="8"
+    description="Normalized vehicle speed [0,1]. Used for comfort mode detection"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="Kd_susp"
+    valueReference="9"
+    description="Derivative gain. Scales force response to wheel velocity"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.8"/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="Kp_susp"
+    valueReference="10"
+    description="Proportional gain. Scales force response to wheel displacement"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="sat_actuador"
+    valueReference="11"
+    description="Maximum actuator force magnitude (normalized)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="tau_filtro"
+    valueReference="12"
+    description="Filter time constant (s). Small value = fast tracking of road profile"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="umbral_bache"
+    valueReference="13"
+    description="Bump detection threshold. Filtered position above this triggers the flag"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.3"/>
+  </ScalarVariable>
+  <!-- Index of variable = "15" -->
+  <ScalarVariable
+    name="_D_outputAlias_fuerza_actuador"
+    valueReference="5"
+    description="Actuator force [-1,1]. Positive = upward, negative = downward"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "16" -->
+  <ScalarVariable
+    name="actuador_saturado"
+    valueReference="0"
+    description="ON when raw force demand exceeds actuator physical limit"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "17" -->
+  <ScalarVariable
+    name="bache_detectado"
+    valueReference="1"
+    description="ON when |filtered position| &gt; umbral_bache"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "18" -->
+  <ScalarVariable
+    name="modo_confort"
+    valueReference="2"
+    description="ON when speed &lt; 0.3 AND no bump detected — soft ride mode"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "19" -->
+  <ScalarVariable
+    name="_D_outputAlias_actuador_saturado"
+    valueReference="0"
+    description="ON when raw force demand exceeds actuator physical limit"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "20" -->
+  <ScalarVariable
+    name="_D_outputAlias_bache_detectado"
+    valueReference="1"
+    description="ON when |filtered position| &gt; umbral_bache"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "21" -->
+  <ScalarVariable
+    name="_D_outputAlias_modo_confort"
+    valueReference="2"
+    description="ON when speed &lt; 0.3 AND no bump detected — soft ride mode"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="6" dependencies="1 2" dependenciesKind="dependent dependent" />
+      <Unknown index="16" dependencies="1 2" dependenciesKind="dependent dependent" />
+      <Unknown index="17" dependencies="1" dependenciesKind="dependent" />
+      <Unknown index="18" dependencies="1 9" dependenciesKind="dependent dependent" />
+    </Outputs>
+    <Derivatives>
+      <Unknown index="3" dependencies="1 8" dependenciesKind="dependent dependent" />
+      <Unknown index="4" dependencies="1 2 8" dependenciesKind="dependent dependent dependent" />
+    </Derivatives>
+    <InitialUnknowns>
+      <Unknown index="3" dependencies="1 8 13" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="4" dependencies="1 2 8 13" dependenciesKind="dependent dependent dependent dependent" />
+      <Unknown index="6" dependencies="1 2 10 11 12" dependenciesKind="dependent dependent dependent dependent dependent" />
+      <Unknown index="16" dependencies="1 2 10 11 12" dependenciesKind="dependent dependent dependent dependent dependent" />
+      <Unknown index="17" dependencies="1 14" dependenciesKind="dependent dependent" />
+      <Unknown index="18" dependencies="1 9 14" dependenciesKind="dependent dependent dependent" />
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

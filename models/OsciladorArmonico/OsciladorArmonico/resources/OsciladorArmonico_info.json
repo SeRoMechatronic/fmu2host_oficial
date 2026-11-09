@@ -1,0 +1,29 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"OsciladorArmonico","description":"Undamped harmonic oscillator \uffffffe2\uffffff80\uffffff94 energy conservation reveals integrator quality"},
+"variables":{
+"v":{"comment":"Velocity [m/s]","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":51,"lineEnd":51,"colStart":3,"colEnd":54}}},
+"x":{"comment":"Displacement [m]","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":50,"lineEnd":50,"colStart":3,"colEnd":56}}},
+"der(v)":{"comment":"der(Velocity [m/s])","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":51,"lineEnd":51,"colStart":3,"colEnd":54}}},
+"der(x)":{"comment":"der(Displacement [m])","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":50,"lineEnd":50,"colStart":3,"colEnd":56}}},
+"energia":{"comment":"Total mechanical energy E = 0.5\uffffffc2\uffffffb7v\uffffffc2\uffffffb2 + 0.5\uffffffc2\uffffffb7\uffffffcf\uffffff89\uffffffc2\uffffffb2\uffffffc2\uffffffb7x\uffffffc2\uffffffb2 \uffffffe2\uffffff80\uffffff94 must stay constant \uffffffe2\uffffff89\uffffff88 19.739","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":45,"lineEnd":47,"colStart":3,"colEnd":77}}},
+"posicion":{"comment":"Displacement x(t) [m] \uffffffe2\uffffff80\uffffff94 exact: cos(\uffffffcf\uffffff89\uffffffc2\uffffffb7t)","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":37,"lineEnd":39,"colStart":3,"colEnd":75}}},
+"velocidad":{"comment":"Velocity x'(t) [m/s] \uffffffe2\uffffff80\uffffff94 exact: -\uffffffcf\uffffff89\uffffffc2\uffffffb7sin(\uffffffcf\uffffff89\uffffffc2\uffffffb7t)","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":41,"lineEnd":43,"colStart":3,"colEnd":74}}},
+"omega":{"comment":"Angular frequency [rad/s] \uffffffe2\uffffff80\uffffff94 default: 2\uffffffcf\uffffff80 (one cycle per second)","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":33,"lineEnd":34,"colStart":3,"colEnd":72}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"section":"initial","tag":"assign","defines":["x"],"uses":["$START.x"],"equation":["$START.x"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":2,"tag":"alias","equation":[12],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[9],"section":"initial"},
+{"eqIndex":4,"section":"initial","tag":"assign","defines":["v"],"uses":["$START.v"],"equation":["$START.v"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":5,"tag":"alias","equation":[11],"section":"initial"},
+{"eqIndex":6,"tag":"alias","equation":[10],"section":"initial"},
+{"eqIndex":7,"tag":"alias","equation":[8],"section":"initial"},
+{"eqIndex":8,"section":"regular","tag":"assign","defines":["energia"],"uses":["v","x","omega"],"equation":["0.5 * (v ^ 2.0 + (omega * x) ^ 2.0)"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":63,"lineEnd":63,"colStart":3,"colEnd":48}}},
+{"eqIndex":9,"section":"regular","tag":"assign","defines":["der(v)"],"uses":["x","omega"],"equation":["(-omega ^ 2.0) * x"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":56,"lineEnd":56,"colStart":3,"colEnd":26}}},
+{"eqIndex":10,"section":"regular","tag":"assign","defines":["der(x)"],"uses":["v"],"equation":["v"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/OsciladorArmonico/OsciladorArmonico.mo","lineStart":55,"lineEnd":55,"colStart":3,"colEnd":13}}},
+{"eqIndex":11,"section":"regular","tag":"assign","defines":["velocidad"],"uses":["v"],"equation":["v"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":12,"section":"regular","tag":"assign","defines":["posicion"],"uses":["x"],"equation":["x"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}}
+],
+"functions":[
+]
+}

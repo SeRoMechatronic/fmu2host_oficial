@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="MatrizEstado"
+  guid="{3a0ae851-e11b-4c5c-82ce-70d83b41ce13}"
+  description="Linear state-space system with 3x3 matrix — vector/matrix ODE stress test"
+  version=""
+  generationTool="OpenModelica Compiler OpenModelica v1.25.7 (64-bit)"
+  generationDateAndTime="2026-05-20T15:47:17Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="0">
+  <ModelExchange
+    modelIdentifier="MatrizEstado"
+    needsExecutionTool="false"
+    completedIntegratorStepNotNeeded="false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="MatrizEstado.c" />
+      <File name="MatrizEstado_functions.c" />
+      <File name="MatrizEstado_records.c" />
+      <File name="MatrizEstado_01exo.c" />
+      <File name="MatrizEstado_02nls.c" />
+      <File name="MatrizEstado_03lsy.c" />
+      <File name="MatrizEstado_04set.c" />
+      <File name="MatrizEstado_05evt.c" />
+      <File name="MatrizEstado_06inz.c" />
+      <File name="MatrizEstado_07dly.c" />
+      <File name="MatrizEstado_08bnd.c" />
+      <File name="MatrizEstado_09alg.c" />
+      <File name="MatrizEstado_10asr.c" />
+      <File name="MatrizEstado_11mix.c" />
+      <File name="MatrizEstado_12jac.c" />
+      <File name="MatrizEstado_13opt.c" />
+      <File name="MatrizEstado_14lnz.c" />
+      <File name="MatrizEstado_15syn.c" />
+      <File name="MatrizEstado_16dae.c" />
+      <File name="MatrizEstado_17inl.c" />
+      <File name="MatrizEstado_18spd.c" />
+      <File name="MatrizEstado_init_fmu.c" />
+      <File name="MatrizEstado_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </ModelExchange>
+  <CoSimulation
+    modelIdentifier="MatrizEstado"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="true"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="MatrizEstado.c" />
+      <File name="MatrizEstado_functions.c" />
+      <File name="MatrizEstado_records.c" />
+      <File name="MatrizEstado_01exo.c" />
+      <File name="MatrizEstado_02nls.c" />
+      <File name="MatrizEstado_03lsy.c" />
+      <File name="MatrizEstado_04set.c" />
+      <File name="MatrizEstado_05evt.c" />
+      <File name="MatrizEstado_06inz.c" />
+      <File name="MatrizEstado_07dly.c" />
+      <File name="MatrizEstado_08bnd.c" />
+      <File name="MatrizEstado_09alg.c" />
+      <File name="MatrizEstado_10asr.c" />
+      <File name="MatrizEstado_11mix.c" />
+      <File name="MatrizEstado_12jac.c" />
+      <File name="MatrizEstado_13opt.c" />
+      <File name="MatrizEstado_14lnz.c" />
+      <File name="MatrizEstado_15syn.c" />
+      <File name="MatrizEstado_16dae.c" />
+      <File name="MatrizEstado_17inl.c" />
+      <File name="MatrizEstado_18spd.c" />
+      <File name="MatrizEstado_init_fmu.c" />
+      <File name="MatrizEstado_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </CoSimulation>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="1.0" tolerance="1e-6" stepSize="0.002"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="x_state[1]"
+    valueReference="0"
+    description="Internal state vector — initialized to zero"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="x_state[2]"
+    valueReference="1"
+    description="Internal state vector — initialized to zero"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="x_state[3]"
+    valueReference="2"
+    description="Internal state vector — initialized to zero"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="der(x_state[1])"
+    valueReference="3"
+    description="der(Internal state vector — initialized to zero)"
+    >
+    <Real derivative="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="der(x_state[2])"
+    valueReference="4"
+    description="der(Internal state vector — initialized to zero)"
+    >
+    <Real derivative="2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="der(x_state[3])"
+    valueReference="5"
+    description="der(Internal state vector — initialized to zero)"
+    >
+    <Real derivative="3"/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="_D_outputAlias_traza"
+    valueReference="6"
+    description="Trace of matrix A: A[1,1]+A[2,2]+A[3,3] = 6.0 (constant)"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="traza"
+    valueReference="7"
+    description="Trace of matrix A: A[1,1]+A[2,2]+A[3,3] = 6.0 (constant)"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="u[1]"
+    valueReference="8"
+    description="Scalar control input (wrapped as 1-element vector for matrix multiplication)"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="x[1]"
+    valueReference="9"
+    description="State vector x(t) — 3 individual Real FMI output variables"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="x[2]"
+    valueReference="10"
+    description="State vector x(t) — 3 individual Real FMI output variables"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="x[3]"
+    valueReference="11"
+    description="State vector x(t) — 3 individual Real FMI output variables"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="y_norma"
+    valueReference="12"
+    description="Euclidean norm of the state vector: ‖x‖ = √(x₁²+x₂²+x₃²)"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="A[1,1]"
+    valueReference="13"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "15" -->
+  <ScalarVariable
+    name="A[1,2]"
+    valueReference="14"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "16" -->
+  <ScalarVariable
+    name="A[1,3]"
+    valueReference="15"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "17" -->
+  <ScalarVariable
+    name="A[2,1]"
+    valueReference="16"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "18" -->
+  <ScalarVariable
+    name="A[2,2]"
+    valueReference="17"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "19" -->
+  <ScalarVariable
+    name="A[2,3]"
+    valueReference="18"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "20" -->
+  <ScalarVariable
+    name="A[3,1]"
+    valueReference="19"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "21" -->
+  <ScalarVariable
+    name="A[3,2]"
+    valueReference="20"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "22" -->
+  <ScalarVariable
+    name="A[3,3]"
+    valueReference="21"
+    description="3×3 system matrix A — diagonal with eigenvalues 1, 2, 3 (unstable system)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "23" -->
+  <ScalarVariable
+    name="B[1,1]"
+    valueReference="22"
+    description="3×1 input matrix B — uniform input to all three states"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "24" -->
+  <ScalarVariable
+    name="B[2,1]"
+    valueReference="23"
+    description="3×1 input matrix B — uniform input to all three states"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "25" -->
+  <ScalarVariable
+    name="B[3,1]"
+    valueReference="24"
+    description="3×1 input matrix B — uniform input to all three states"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "26" -->
+  <ScalarVariable
+    name="_D_outputAlias_x[1]"
+    valueReference="0"
+    description="State vector x(t) — 3 individual Real FMI output variables"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "27" -->
+  <ScalarVariable
+    name="_D_outputAlias_x[2]"
+    valueReference="1"
+    description="State vector x(t) — 3 individual Real FMI output variables"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "28" -->
+  <ScalarVariable
+    name="_D_outputAlias_x[3]"
+    valueReference="2"
+    description="State vector x(t) — 3 individual Real FMI output variables"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "29" -->
+  <ScalarVariable
+    name="_D_outputAlias_y_norma"
+    valueReference="12"
+    description="Euclidean norm of the state vector: ‖x‖ = √(x₁²+x₂²+x₃²)"
+    >
+    <Real/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="8" dependencies="" dependenciesKind="" />
+      <Unknown index="10" dependencies="1" dependenciesKind="dependent" />
+      <Unknown index="11" dependencies="2" dependenciesKind="dependent" />
+      <Unknown index="12" dependencies="3" dependenciesKind="dependent" />
+      <Unknown index="13" dependencies="1 2 3" dependenciesKind="dependent dependent dependent" />
+    </Outputs>
+    <Derivatives>
+      <Unknown index="4" dependencies="1 2 3" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="5" dependencies="1 2 3" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="6" dependencies="1 2 3" dependenciesKind="dependent dependent dependent" />
+    </Derivatives>
+    <InitialUnknowns>
+      <Unknown index="4" dependencies="1 2 3 14 15 16" dependenciesKind="dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="5" dependencies="1 2 3 17 18 19" dependenciesKind="dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="6" dependencies="1 2 3 20 21 22" dependenciesKind="dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="8" dependencies="14 18 22" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="10" dependencies="1" dependenciesKind="dependent" />
+      <Unknown index="11" dependencies="2" dependenciesKind="dependent" />
+      <Unknown index="12" dependencies="3" dependenciesKind="dependent" />
+      <Unknown index="13" dependencies="1 2 3" dependenciesKind="dependent dependent dependent" />
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

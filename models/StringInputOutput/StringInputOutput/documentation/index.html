@@ -1,0 +1,22 @@
+
+<h1>StringInputOutput</h1>
+<p> <i>String variables as FMI 2.0 inputs and outputs — exercises fmi2SetString / fmi2GetString</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>StringInputOutput — String variables as FMI 2.0 I/O</h3>
+      <p>This model exercises <b>String as runtime input and output</b>, not just
+         as parameters. This forces the codegen to generate <code>fmi2SetString</code>
+         call sites (for inputs) and <code>fmi2GetString</code> call sites (for outputs),
+         which are structurally different from the Real/Integer/Boolean paths.</p>
+      <h4>Interface</h4>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Variable</th><th>Type</th><th>Direction</th><th>Description</th></tr>
+        <tr><td>value</td><td>Real</td><td>Input</td><td>Sensor reading [0..200]</td></tr>
+        <tr><td>mode_operation</td><td>String</td><td>Input</td><td>Operating mode tag</td></tr>
+        <tr><td>tag_sensor</td><td>String</td><td>Input</td><td>Sensor identifier</td></tr>
+        <tr><td>scaled_value</td><td>Real</td><td>Output</td><td>value × 1.5</td></tr>
+        <tr><td>alarm</td><td>Boolean</td><td>Output</td><td>Out-of-range flag</td></tr>
+        <tr><td>status</td><td>String</td><td>Output</td><td>HIGH / NORMAL / LOW</td></tr>
+        <tr><td>alert_msg</td><td>String</td><td>Output</td><td>Alert text or empty</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

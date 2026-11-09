@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  PotVumetro_fmiGetTypesPlatform @1
+  PotVumetro_fmiGetVersion @2
+  PotVumetro_fmiSetDebugLogging @3
+  PotVumetro_fmiInstantiate @4
+  PotVumetro_fmiFreeInstance @5
+  PotVumetro_fmiSetupExperiment @6
+  PotVumetro_fmiEnterInitializationMode @7
+  PotVumetro_fmiExitInitializationMode @8
+  PotVumetro_fmiTerminate @9
+  PotVumetro_fmiReset @10
+  PotVumetro_fmiGetReal @11
+  PotVumetro_fmiGetInteger @12
+  PotVumetro_fmiGetBoolean @13
+  PotVumetro_fmiGetString @14
+  PotVumetro_fmiSetReal @15
+  PotVumetro_fmiSetInteger @16
+  PotVumetro_fmiSetBoolean @17
+  PotVumetro_fmiSetString @18
+  PotVumetro_fmiGetFMUstate @19
+  PotVumetro_fmiSetFMUstate @20
+  PotVumetro_fmiFreeFMUstate @21
+  PotVumetro_fmiSerializedFMUstateSize @22
+  PotVumetro_fmiSerializeFMUstate @23
+  PotVumetro_fmiDeSerializeFMUstate @24
+  PotVumetro_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  PotVumetro_fmiEnterEventMode @26
+  PotVumetro_fmiNewDiscreteStates @27
+  PotVumetro_fmiEnterContinuousTimeMode @28
+  PotVumetro_fmiCompletedIntegratorStep @29
+  PotVumetro_fmiSetTime @30
+  PotVumetro_fmiSetContinuousStates @31
+  PotVumetro_fmiGetDerivatives @32
+  PotVumetro_fmiGetEventIndicators @33
+  PotVumetro_fmiGetContinuousStates @34
+  PotVumetro_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  PotVumetro_fmiSetRealInputDerivatives @36
+  PotVumetro_fmiGetRealOutputDerivatives @37
+  PotVumetro_fmiDoStep @38
+  PotVumetro_fmiCancelStep @39
+  PotVumetro_fmiGetStatus @40
+  PotVumetro_fmiGetRealStatus @41
+  PotVumetro_fmiGetIntegerStatus @42
+  PotVumetro_fmiGetBooleanStatus @43
+  PotVumetro_fmiGetStringStatus @44

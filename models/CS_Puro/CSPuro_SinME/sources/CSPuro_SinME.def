@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  CSPuro_SinME_fmiGetTypesPlatform @1
+  CSPuro_SinME_fmiGetVersion @2
+  CSPuro_SinME_fmiSetDebugLogging @3
+  CSPuro_SinME_fmiInstantiate @4
+  CSPuro_SinME_fmiFreeInstance @5
+  CSPuro_SinME_fmiSetupExperiment @6
+  CSPuro_SinME_fmiEnterInitializationMode @7
+  CSPuro_SinME_fmiExitInitializationMode @8
+  CSPuro_SinME_fmiTerminate @9
+  CSPuro_SinME_fmiReset @10
+  CSPuro_SinME_fmiGetReal @11
+  CSPuro_SinME_fmiGetInteger @12
+  CSPuro_SinME_fmiGetBoolean @13
+  CSPuro_SinME_fmiGetString @14
+  CSPuro_SinME_fmiSetReal @15
+  CSPuro_SinME_fmiSetInteger @16
+  CSPuro_SinME_fmiSetBoolean @17
+  CSPuro_SinME_fmiSetString @18
+  CSPuro_SinME_fmiGetFMUstate @19
+  CSPuro_SinME_fmiSetFMUstate @20
+  CSPuro_SinME_fmiFreeFMUstate @21
+  CSPuro_SinME_fmiSerializedFMUstateSize @22
+  CSPuro_SinME_fmiSerializeFMUstate @23
+  CSPuro_SinME_fmiDeSerializeFMUstate @24
+  CSPuro_SinME_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  CSPuro_SinME_fmiEnterEventMode @26
+  CSPuro_SinME_fmiNewDiscreteStates @27
+  CSPuro_SinME_fmiEnterContinuousTimeMode @28
+  CSPuro_SinME_fmiCompletedIntegratorStep @29
+  CSPuro_SinME_fmiSetTime @30
+  CSPuro_SinME_fmiSetContinuousStates @31
+  CSPuro_SinME_fmiGetDerivatives @32
+  CSPuro_SinME_fmiGetEventIndicators @33
+  CSPuro_SinME_fmiGetContinuousStates @34
+  CSPuro_SinME_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  CSPuro_SinME_fmiSetRealInputDerivatives @36
+  CSPuro_SinME_fmiGetRealOutputDerivatives @37
+  CSPuro_SinME_fmiDoStep @38
+  CSPuro_SinME_fmiCancelStep @39
+  CSPuro_SinME_fmiGetStatus @40
+  CSPuro_SinME_fmiGetRealStatus @41
+  CSPuro_SinME_fmiGetIntegerStatus @42
+  CSPuro_SinME_fmiGetBooleanStatus @43
+  CSPuro_SinME_fmiGetStringStatus @44

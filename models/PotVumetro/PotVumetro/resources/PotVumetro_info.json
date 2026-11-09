@@ -1,0 +1,31 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"PotVumetro","description":"5-LED VU meter driven by a potentiometer \uffffffe2\uffffff80\uffffff94 FMI 2.0 ME compatible"},
+"variables":{
+"pot":{"comment":"Normalized potentiometer signal in range [0.0, 1.0]","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":28,"lineEnd":32,"colStart":3,"colEnd":74}}},
+"led1":{"comment":"LED 1 (green)  \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.20","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":35,"lineEnd":37,"colStart":3,"colEnd":71}}},
+"led2":{"comment":"LED 2 (green)  \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.40","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":39,"lineEnd":41,"colStart":3,"colEnd":71}}},
+"led3":{"comment":"LED 3 (yellow) \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.60","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":43,"lineEnd":45,"colStart":3,"colEnd":70}}},
+"led4":{"comment":"LED 4 (orange) \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.80","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":47,"lineEnd":49,"colStart":3,"colEnd":73}}},
+"led5":{"comment":"LED 5 (red)    \uffffffe2\uffffff80\uffffff94 ON when pot >= 1.00 (full scale)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":51,"lineEnd":53,"colStart":3,"colEnd":73}}},
+"pot":{"comment":"Normalized potentiometer signal in range [0.0, 1.0]","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":28,"lineEnd":32,"colStart":3,"colEnd":74}}},
+"$outputAlias_led1":{"comment":"LED 1 (green)  \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.20","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":35,"lineEnd":37,"colStart":3,"colEnd":71}}},
+"$outputAlias_led2":{"comment":"LED 2 (green)  \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.40","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":39,"lineEnd":41,"colStart":3,"colEnd":71}}},
+"$outputAlias_led3":{"comment":"LED 3 (yellow) \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.60","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":43,"lineEnd":45,"colStart":3,"colEnd":70}}},
+"$outputAlias_led4":{"comment":"LED 4 (orange) \uffffffe2\uffffff80\uffffff94 ON when pot >= 0.80","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":47,"lineEnd":49,"colStart":3,"colEnd":73}}},
+"$outputAlias_led5":{"comment":"LED 5 (red)    \uffffffe2\uffffff80\uffffff94 ON when pot >= 1.00 (full scale)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":51,"lineEnd":53,"colStart":3,"colEnd":73}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"tag":"alias","equation":[6],"section":"initial"},
+{"eqIndex":2,"tag":"alias","equation":[7],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[8],"section":"initial"},
+{"eqIndex":4,"tag":"alias","equation":[9],"section":"initial"},
+{"eqIndex":5,"tag":"alias","equation":[10],"section":"initial"},
+{"eqIndex":6,"section":"regular","tag":"assign","defines":["led5"],"uses":["pot"],"equation":["pot >= 1.0"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":62,"lineEnd":62,"colStart":3,"colEnd":20}}},
+{"eqIndex":7,"section":"regular","tag":"assign","defines":["led4"],"uses":["pot"],"equation":["pot >= 0.8"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":61,"lineEnd":61,"colStart":3,"colEnd":20}}},
+{"eqIndex":8,"section":"regular","tag":"assign","defines":["led3"],"uses":["pot"],"equation":["pot >= 0.6"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":60,"lineEnd":60,"colStart":3,"colEnd":20}}},
+{"eqIndex":9,"section":"regular","tag":"assign","defines":["led2"],"uses":["pot"],"equation":["pot >= 0.4"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":59,"lineEnd":59,"colStart":3,"colEnd":20}}},
+{"eqIndex":10,"section":"regular","tag":"assign","defines":["led1"],"uses":["pot"],"equation":["pot >= 0.2"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/PotVumetro/PotVumetro.mo","lineStart":58,"lineEnd":58,"colStart":3,"colEnd":20}}}
+],
+"functions":[
+]
+}

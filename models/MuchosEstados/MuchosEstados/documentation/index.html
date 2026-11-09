@@ -1,0 +1,17 @@
+
+<h1>MuchosEstados</h1>
+<p> <i>Chain of 8 first-order filters — verifies ODE buffer scaling for large state vectors</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>MuchosEstados — 8 Cascaded First-Order Filters</h3>
+      <p>Eight first-order filters in series, each with time constant τ=1.0 s.
+         The cascade has 8 continuous states and is the primary test for
+         ODE buffer size scaling in the codegen tool.</p>
+      <h4>Buffer size requirement</h4>
+      <p>The codegen must allocate state vectors of at least size 8 for both
+         Euler and RK4 buffers. If EULER_BUF_SIZE or RK4_BUF_SIZE is hardcoded
+         below 8, this model produces incorrect results or a crash.</p>
+      <h4>Step response</h4>
+      <p>With u=1.0 step, y8 reaches its peak near t=8·τ=8 s at approximately
+         y8_peak ≈ 0.200 (8th-order cascade step response peak).</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

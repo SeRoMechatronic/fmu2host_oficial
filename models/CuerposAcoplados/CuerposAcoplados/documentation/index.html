@@ -1,0 +1,18 @@
+
+<h1>CuerposAcoplados</h1>
+<p> <i>Two coupled masses on springs — 4 states, energy transfer between bodies</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>CuerposAcoplados — Two Coupled Masses</h3>
+      <p>Two masses connected by wall springs and a coupling spring. With
+         non-zero initial conditions and no external force, the system
+         exhibits energy exchange between bodies (beating).</p>
+      <h4>Key properties</h4>
+      <ul>
+        <li><b>4 continuous states</b> — verifies codegen buffer size scaling</li>
+        <li><b>Energy conservation</b> — total energy ≈ 3.625 J (when F=0)</li>
+        <li><b>Boolean output</b> — en_fase transitions as bodies go in/out of phase</li>
+      </ul>
+      <p>With Euler (h=0.05) and fuerza_externa=0: energia_total drifts upward.
+         With RK4 (h=0.05): energia_total stays within 0.01 J of 3.625 J.</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

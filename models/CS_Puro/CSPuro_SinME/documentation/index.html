@@ -1,0 +1,23 @@
+
+<h1>CSPuro_SinME</h1>
+<p> <i>Purely algebraic Co-Simulation FMU — no continuous states, no Model Exchange</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>CSPuro_SinME — Purely Algebraic Co-Simulation FMU</h3>
+      <p>This model contains <b>no continuous states</b> and <b>no differential equations</b>.
+         It is designed to exercise the <b>Co-Simulation code path</b> (doStep loop) of a
+         code generation tool, which is structurally different from the Model Exchange path.</p>
+      <p>When there is nothing to integrate, the codegen must still produce a coherent
+         <code>doStep()</code> body that simply evaluates algebraic expressions and updates outputs.</p>
+      <h4>Interface</h4>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Variable</th><th>Type</th><th>Direction</th><th>Description</th></tr>
+        <tr><td>u1</td><td>Real</td><td>Input</td><td>First operand</td></tr>
+        <tr><td>u2</td><td>Real</td><td>Input</td><td>Second operand</td></tr>
+        <tr><td>y_sum</td><td>Real</td><td>Output</td><td>u1 + u2</td></tr>
+        <tr><td>y_prod</td><td>Real</td><td>Output</td><td>u1 * u2</td></tr>
+        <tr><td>active</td><td>Boolean</td><td>Output</td><td>u1 &gt; u2</td></tr>
+      </table>
+      <h4>Export</h4>
+      <p>Export as <b>Co-Simulation</b> (not Model Exchange) from the FMU dialog.</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

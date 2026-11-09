@@ -1,0 +1,154 @@
+================================================================================
+  TEST BATTERY — StringsParametros
+  String Parameter Edge Cases — Buffer Overflow, Empty, Special Characters
+================================================================================
+
+OVERVIEW
+--------
+StringsParametros contains six String parameters that cover every edge case
+a codegen tool must handle when reading FMI String values at initialization.
+The model also contains a simple numeric computation (y = u * 34) that must
+work correctly regardless of the String parameter values.
+
+WHY THIS MODEL EXISTS
+---------------------
+FMI 2.0 String parameters are read by the generated code via fmi2GetString()
+at initialization. Common failure modes include:
+  1. Fixed-size char buffers too small → buffer overflow on long strings
+  2. NULL pointer dereference when the empty string "" is returned
+  3. Incorrect parsing of strings containing delimiter characters (= ; / :)
+  4. Missing null terminator when copying strings
+
+These failures are initialization-time errors that may not manifest until
+specific String values are encountered.
+
+FMU INTERFACE
+-------------
+  String Parameters (read once at fmi2EnterInitializationMode):
+    nombre      = "Sensor de Presión #1 (Alta Temp.)"   — 34 chars, spaces+special
+    ruta        = "/datos/planta/linea_A/modulo_02"     — 31 chars, slashes
+    especial    = "val=3.14;tag=alpha_beta;unit=m2/s"   — 34 chars, delimiters
+    vacio       = ""                                     — 0 chars, EMPTY
+    unicode_str = "Angstrom [A] delta+-epsilon"          — 27 chars, symbols
+    largo       = "aaa..." (98 a's)                     — 98 chars, long
+
+  Integer Parameter:
+    len_nombre  = 34
+
+  Input:
+    u (Real) — any value
+
+  Output:
+    y (Real) = u * len_nombre = u * 34
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(StringsParametros)
+  2. buildModelFMU(StringsParametros, version="2.0", fmuType="me")
+  3. Verify modelDescription.xml contains all 6 String parameters with
+     their correct default values
+  4. Verify vacio appears as start="" (empty string, not omitted)
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-SP-001 — Numeric output: basic computation
+-------------------------------------------------
+  Input:  u = 1.0
+  Expected: y = 34.0   (1.0 * 34)
+  Rationale: Numeric path must work despite String parameter complexity.
+
+TEST-SP-002 — Numeric output: negative input
+---------------------------------------------
+  Input:  u = -2.5
+  Expected: y = -85.0   (-2.5 * 34)
+  Rationale: Sign handling in numeric output.
+
+TEST-SP-003 — Numeric output: zero
+------------------------------------
+  Input:  u = 0.0
+  Expected: y = 0.0
+  Rationale: Zero input.
+
+TEST-SP-004 — String parameter: nombre length
+----------------------------------------------
+  At initialization, verify that the String parameter 'nombre' is read correctly:
+    nombre = "Sensor de Presión #1 (Alta Temp.)"
+  Expected: String is accessible without truncation or garbling
+  Check: len(nombre) = 34 characters (including the accented 'ó')
+  Rationale: String with spaces, accent (ó), hash (#), and parentheses.
+
+TEST-SP-005 — String parameter: ruta with slashes
+---------------------------------------------------
+  At initialization, verify:
+    ruta = "/datos/planta/linea_A/modulo_02"
+  Expected: Forward slashes are preserved; string is not split on '/'
+  Expected: len(ruta) = 31
+  Rationale: Forward slashes might be misinterpreted as path separators
+             in the codegen's String reading logic.
+
+TEST-SP-006 — String parameter: especial with delimiters
+---------------------------------------------------------
+  At initialization, verify:
+    especial = "val=3.14;tag=alpha_beta;unit=m2/s"
+  Expected: Entire string is preserved including = ; and /
+  Expected: len(especial) = 34
+  Rationale: Embedded = could be misread as assignment; ; as terminator;
+             / as path separator. All must be treated as literal characters.
+
+TEST-SP-007 — String parameter: empty string
+----------------------------------------------
+  At initialization, verify:
+    vacio = ""
+  Expected: Empty string is returned — NOT null, NOT a space, NOT garbage
+  Expected: len(vacio) = 0
+  Rationale: CRITICAL — empty string must not cause null pointer dereference.
+             This is the most common String-related crash in codegen tools.
+
+TEST-SP-008 — String parameter: unicode approximations
+-------------------------------------------------------
+  At initialization, verify:
+    unicode_str = "Angstrom [A] delta+-epsilon"
+  Expected: All 27 characters returned correctly (pure ASCII, no multi-byte)
+  Rationale: Since Modelica String uses a limited character set, these are
+             ASCII approximations. Tests that codegen reads all 27 chars.
+
+TEST-SP-009 — String parameter: long string (98 chars)
+-------------------------------------------------------
+  At initialization, verify:
+    largo = "aaa..." (exactly 98 'a' characters)
+  Expected: All 98 characters returned without truncation
+  Expected: Character at position 98 is 'a', not '\0' or garbage
+  Rationale: Buffer overflow stress test. If codegen allocates char[32] or
+             char[64], this string overflows and corrupts memory.
+
+TEST-SP-010 — Codegen String initialization check
+---------------------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] fmi2GetString called 6 times at initialization (once per parameter)
+    [ ] Allocated buffers for String storage are ≥ 100 bytes (covers largo)
+    [ ] Empty string "" is handled without strcmp/strlen on a NULL pointer
+    [ ] String values are not used in any arithmetic expressions
+    [ ] No hard-coded buffer size smaller than 99 bytes for String storage
+    [ ] Strings containing = ; / are not split during parsing
+  Rationale: Static code analysis to catch buffer overflow before runtime.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  Numeric output y: absolute tolerance = 1e-9
+  String comparisons: exact byte-for-byte match, case-sensitive
+  String lengths: exact character count required
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Numeric tests (SP-001, SP-002, SP-003) run as simulation tests
+  - String tests (SP-004 to SP-009) run at initialization time only
+    (no simulation step needed — just fmi2EnterInitializationMode + fmi2GetString)
+  - TEST-SP-007 (empty string) is the highest priority: run first as a smoke test
+  - TEST-SP-009 (long string) should be checked with AddressSanitizer enabled
+    (-fsanitize=address) to detect silent buffer overflow
+  - TEST-SP-010 is a static analysis step — run before any runtime tests
+================================================================================

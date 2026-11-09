@@ -1,0 +1,190 @@
+================================================================================
+  TEST BATTERY — MuchosEstados
+  8-State Cascaded Filter Chain — ODE Buffer Size Scaling
+================================================================================
+
+OVERVIEW
+--------
+MuchosEstados implements a chain of 8 identical first-order low-pass filters
+in series. Each filter feeds into the next, creating an 8th-order system with
+8 continuous states. The input u propagates through all 8 stages with increasing
+delay and smoothing.
+
+This model's primary purpose is to verify that the codegen tool correctly
+allocates ODE state vector buffers for N=8 states. It is the most direct test
+of buffer size scaling.
+
+WHY THIS MODEL EXISTS
+---------------------
+Many codegen tools allocate fixed-size arrays for the ODE state vector and its
+derivatives. Common hardcoded values are 2, 3, or 4. This model requires at
+least 8. If the buffer is insufficient:
+  - Euler: state vector written beyond allocated memory → undefined behavior
+  - RK4:   4 k-vectors of size 8 needed → 32 floats total; if sized for 2 or 4,
+           only partial k-vectors are computed → wrong results
+
+The boolean output todos_activos provides a clear pass/fail indicator: it
+becomes TRUE only when the step input has propagated through all 8 stages,
+which requires all 8 state buffers to be correctly written and read.
+
+PHYSICS
+-------
+Cascade of 8 first-order systems:
+  τ·dx1/dt = u  - x1
+  τ·dx2/dt = x1 - x2
+  ...
+  τ·dx8/dt = x7 - x8
+
+All initial conditions: xi(0) = 0
+Parameter: τ = 1.0 s
+Input: u = 1.0 step (unit step at t=0)
+
+Step response properties:
+  y1(t) = 1 - e^(-t/τ)                               (1st order)
+  y2(t) = 1 - e^(-t/τ)·(1 + t/τ)                    (2nd order)
+  y8(t) = follows Erlang distribution shape           (8th order)
+
+Key values for unit step (u=1, τ=1):
+  y1 at t=1 s  ≈ 0.632   (= 1 - e⁻¹)
+  y2 at t=2 s  ≈ 0.594   (approximate)
+  y8 at t=8 s  ≈ 0.407   (approximate, Erlang CDF at mode)
+  y8 at t=20 s ≈ 0.999   (essentially converged to 1.0)
+
+todos_activos becomes TRUE approximately at t ≈ 8 s (after the step has
+propagated through all stages beyond 0.01).
+
+FMU INTERFACE
+-------------
+  Inputs:
+    u (Real) — input signal, use u=1.0 for step response tests
+
+  Outputs:
+    y1..y8       (Real)    — output of each filter stage
+    todos_activos (Boolean) — TRUE when all xi > 0.01
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(MuchosEstados) — expect 8 states, 1 input, 9 outputs
+  2. buildModelFMU(MuchosEstados, version="2.0", fmuType="me")
+  3. Verify modelDescription.xml has numberOfContinuousStates="8"
+  4. Run codegen — inspect generated code for buffer sizes
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-ME-001 — Initial conditions (t = 0, before u step)
+---------------------------------------------------------
+  Input:   u = 0.0 (or u=1.0, system starts at zero)
+  Expected at t = 0:
+    y1 = y2 = y3 = y4 = y5 = y6 = y7 = y8 = 0.0
+    todos_activos = FALSE
+  Rationale: All states initialized to zero.
+
+TEST-ME-002 — Step propagation order
+--------------------------------------
+  Input:   u = 1.0 (constant step)
+  Simulate: t_end = 10.0 s, h = 0.01 s, using RK4
+  Expected at t=0.1 s:
+    y1 > 0.0   (stage 1 responds immediately to input)
+    y8 ≈ 0.0   (stage 8 has not yet received signal)
+  Expected at t=5.0 s:
+    y1 ≈ 0.993  (nearly settled at 1.0)
+    y8 > 0.0    (stage 8 has some signal)
+  Rationale: Signal propagates from stage 1 to stage 8, not all at once.
+
+TEST-ME-003 — todos_activos becomes TRUE
+-----------------------------------------
+  Input:   u = 1.0 (constant step)
+  Simulate: t_end = 20.0 s, h = 0.01 s, using RK4
+  Expected: todos_activos transitions FALSE → TRUE at approximately t ≈ 8.0 s
+  Tolerance: transition occurs between t=6 and t=12 s
+  Rationale: Boolean output covers all 8 states — confirms none are missing.
+
+TEST-ME-004 — Stage 1 analytical check
+----------------------------------------
+  Input:   u = 1.0,  τ = 1.0
+  At t = 1.0 s: y1 = 1 - e⁻¹ ≈ 0.632  (tolerance ±0.01)
+  At t = 2.0 s: y1 ≈ 0.865              (tolerance ±0.01)
+  At t = 3.0 s: y1 ≈ 0.950              (tolerance ±0.01)
+  Rationale: Stage 1 has exact analytical solution. Tests first state slot.
+
+TEST-ME-005 — Long-term convergence (all stages → 1.0)
+-------------------------------------------------------
+  Input:   u = 1.0 (constant step)
+  Simulate: t_end = 30.0 s, h = 0.01 s, using RK4
+  Expected at t = 30.0 s:
+    y1 > 0.999,  y2 > 0.999,  y3 > 0.999,  y4 > 0.999
+    y5 > 0.999,  y6 > 0.999,  y7 > 0.999,  y8 > 0.999
+    todos_activos = TRUE
+  Rationale: All stages must converge to the input value u=1.0.
+
+TEST-ME-006 — Stage ordering (y1 > y2 > ... > y8 during transient)
+--------------------------------------------------------------------
+  Input:   u = 1.0 (constant step)
+  At t = 2.0 s (during transient, before any stage settles):
+  Expected: y1 > y2 > y3 > y4 > y5 > y6 > y7 > y8
+  Rationale: Each stage lags behind the previous one.
+             Ordering violation means a state slot is reading the wrong value.
+
+TEST-ME-007 — Zero input: all stages stay at zero
+--------------------------------------------------
+  Input:   u = 0.0 (constant zero)
+  Simulate: t_end = 10.0 s, h = 0.01 s
+  Expected: y1 = y2 = ... = y8 = 0.0 at all times (tolerance ±1e-10)
+  todos_activos = FALSE at all times
+  Rationale: Zero input, zero initial state → zero output everywhere.
+
+TEST-ME-008 — Step removal (u: 1.0 → 0.0 at t=20 s)
+------------------------------------------------------
+  Time sequence (h=0.01, RK4):
+    t=0 to 20: u=1.0  → all stages converge to 1.0
+    t=20+    : u=0.0  → all stages decay back to 0.0
+  Expected at t=25 (5 s after step removal):
+    y1 ≈ 1.0·e⁻⁵ ≈ 0.007  (tolerance ±0.01)
+    y8 > y1  (stage 8 decays more slowly due to higher-order nature)
+  Expected: todos_activos transitions TRUE → FALSE during decay
+  Rationale: fmi2SetReal step change; decay from settled state.
+
+TEST-ME-009 — Buffer size structural check (CRITICAL)
+------------------------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] State array size ≥ 8  (not 2, 3, or 4)
+    [ ] For RK4: k1, k2, k3, k4 arrays each of size ≥ 8
+        (total RK4 scratch space ≥ 32 elements)
+    [ ] For Euler: single derivative array of size ≥ 8
+    [ ] Loop or unrolled code that evaluates ALL 8 derivatives
+    [ ] No out-of-bounds array access (use -fsanitize=address if available)
+  Rationale: THIS IS THE PRIMARY TEST. Buffer undersize causes silent wrong
+             results or crashes. Must be verified at the source level.
+
+TEST-ME-010 — Codegen full structural check
+--------------------------------------------
+  After codegen, verify:
+    [ ] numberOfContinuousStates = 8 read from modelDescription.xml
+    [ ] fmi2SetReal called once (u) before each step
+    [ ] fmi2GetReal called 8 times (y1..y8)
+    [ ] fmi2GetBoolean called once (todos_activos)
+    [ ] All 8 ODEs appear in the derivative function
+    [ ] No state slot reuse (x3 output must not overwrite x2 buffer)
+  Rationale: Full audit for 8-state, 1-input, 9-output FMU.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  Stage 1 analytical values:    absolute tolerance = ±0.01
+  Long-term convergence (t=30): all stages within 0.001 of 1.0
+  todos_activos timing:         transition at t ∈ [6 s, 12 s]
+  Zero-input outputs:           absolute tolerance = 1e-10
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Primary regression test: TEST-ME-005 (all 8 stages converge to 1.0 at t=30)
+  - Critical structural test: TEST-ME-009 (buffer size ≥ 8 in source code)
+  - Use -fsanitize=address,undefined in the codegen build to catch buffer
+    overflows that produce wrong results without crashing
+  - TEST-ME-006 (stage ordering) is a cheap runtime check that confirms
+    all 8 state slots are being read/written independently
+  - Standard simulation: t_end=30 s, h=0.01 s, u=1.0 (constant step)
+================================================================================

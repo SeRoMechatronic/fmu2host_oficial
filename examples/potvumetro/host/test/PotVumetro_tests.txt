@@ -1,0 +1,143 @@
+================================================================================
+  PotVumetro — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+PotVumetro is a purely algebraic Modelica model that simulates a 5-LED bar-graph
+VU meter driven by a normalized potentiometer signal.
+
+The model has zero continuous states and responds instantaneously to input
+changes. It is fully compliant with FMI 2.0 Model Exchange and the
+fmi-c-embedded toolchain (C99, MSVC and GCC compatible).
+
+INPUTS
+------
+  pot   Real [0.0, 1.0]   Normalized potentiometer reading.
+                           0.0 = fully counter-clockwise (minimum)
+                           1.0 = fully clockwise (maximum / full scale)
+
+OUTPUTS
+-------
+  led1  Boolean   ON when pot >= 0.20
+  led2  Boolean   ON when pot >= 0.40
+  led3  Boolean   ON when pot >= 0.60
+  led4  Boolean   ON when pot >= 0.80
+  led5  Boolean   ON when pot >= 1.00
+
+INTERNAL LOGIC
+--------------
+Each LED equation is a direct Boolean comparison:
+
+  led1 = pot >= 0.2
+  led2 = pot >= 0.4
+  led3 = pot >= 0.6
+  led4 = pot >= 0.8
+  led5 = pot >= 1.0
+
+No integrators, no memory, no file I/O. All outputs are combinational
+functions of the single input.
+
+PARAMETERS
+----------
+  None. All thresholds are hardcoded in the equations.
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+Each test case below specifies:
+  - Test ID
+  - Input value(s)
+  - Expected output values
+  - Purpose / what is being verified
+
+--------------------------------------------------------------------------------
+TC-PV-001   All LEDs OFF — below first threshold
+--------------------------------------------------------------------------------
+  Input:    pot = 0.0
+  Expected: led1=false, led2=false, led3=false, led4=false, led5=false
+  Purpose:  Verify that at minimum pot value no LED activates.
+
+--------------------------------------------------------------------------------
+TC-PV-002   Exactly at threshold of LED 1
+--------------------------------------------------------------------------------
+  Input:    pot = 0.20
+  Expected: led1=true, led2=false, led3=false, led4=false, led5=false
+  Purpose:  Verify boundary condition — LED 1 turns ON at exactly 0.20.
+
+--------------------------------------------------------------------------------
+TC-PV-003   Just below threshold of LED 1
+--------------------------------------------------------------------------------
+  Input:    pot = 0.199
+  Expected: led1=false, led2=false, led3=false, led4=false, led5=false
+  Purpose:  Verify that a value infinitesimally below 0.20 keeps LED 1 OFF.
+
+--------------------------------------------------------------------------------
+TC-PV-004   Between LED 1 and LED 2 thresholds
+--------------------------------------------------------------------------------
+  Input:    pot = 0.30
+  Expected: led1=true, led2=false, led3=false, led4=false, led5=false
+  Purpose:  Verify intermediate state with only first LED active.
+
+--------------------------------------------------------------------------------
+TC-PV-005   Exactly at threshold of LED 2
+--------------------------------------------------------------------------------
+  Input:    pot = 0.40
+  Expected: led1=true, led2=true, led3=false, led4=false, led5=false
+  Purpose:  Verify LED 2 boundary condition.
+
+--------------------------------------------------------------------------------
+TC-PV-006   Exactly at threshold of LED 3
+--------------------------------------------------------------------------------
+  Input:    pot = 0.60
+  Expected: led1=true, led2=true, led3=true, led4=false, led5=false
+  Purpose:  Verify LED 3 boundary condition.
+
+--------------------------------------------------------------------------------
+TC-PV-007   Exactly at threshold of LED 4
+--------------------------------------------------------------------------------
+  Input:    pot = 0.80
+  Expected: led1=true, led2=true, led3=true, led4=true, led5=false
+  Purpose:  Verify LED 4 boundary condition.
+
+--------------------------------------------------------------------------------
+TC-PV-008   Just below full scale
+--------------------------------------------------------------------------------
+  Input:    pot = 0.999
+  Expected: led1=true, led2=true, led3=true, led4=true, led5=false
+  Purpose:  Verify that LED 5 (red/peak) does NOT activate below 1.0.
+
+--------------------------------------------------------------------------------
+TC-PV-009   Exactly at full scale — all LEDs ON
+--------------------------------------------------------------------------------
+  Input:    pot = 1.0
+  Expected: led1=true, led2=true, led3=true, led4=true, led5=true
+  Purpose:  Verify all LEDs active at maximum potentiometer position.
+
+--------------------------------------------------------------------------------
+TC-PV-010   Midpoint value
+--------------------------------------------------------------------------------
+  Input:    pot = 0.50
+  Expected: led1=true, led2=true, led3=false, led4=false, led5=false
+  Purpose:  Verify correct behavior at the midpoint of the range.
+
+--------------------------------------------------------------------------------
+TC-PV-011   Out-of-range low (robustness)
+--------------------------------------------------------------------------------
+  Input:    pot = -0.1
+  Expected: led1=false, led2=false, led3=false, led4=false, led5=false
+  Purpose:  Robustness check — negative input should produce no LED activation.
+            (Input is declared with min=0.0 but toolchain must clamp gracefully.)
+
+--------------------------------------------------------------------------------
+TC-PV-012   Out-of-range high (robustness)
+--------------------------------------------------------------------------------
+  Input:    pot = 1.5
+  Expected: led1=true, led2=true, led3=true, led4=true, led5=true
+  Purpose:  Robustness check — value above 1.0 should activate all LEDs since
+            all thresholds (including 1.0) are met.
+
+================================================================================
+  END OF TEST BATTERY
+================================================================================

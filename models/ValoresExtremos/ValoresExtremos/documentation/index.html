@@ -1,0 +1,19 @@
+
+<h1>ValoresExtremos</h1>
+<p> <i>Extreme and edge-case real values — Inf, near-zero, saturation, log/sqrt protection</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>ValoresExtremos — Extreme Floating-Point Values</h3>
+      <p>This model exercises five floating-point operations that can produce
+         NaN, Inf, or undefined results when their inputs are at boundary values.
+         Each operation is protected by an if/else guard.</p>
+      <h4>Operations</h4>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Output</th><th>Operation</th><th>Guard condition</th><th>Fallback</th></tr>
+        <tr><td>y_inv</td><td>1/u</td><td>|u| &gt; 1e-10</td><td>1e30</td></tr>
+        <tr><td>y_sqrt</td><td>√u</td><td>u ≥ 0</td><td>0.0</td></tr>
+        <tr><td>y_log</td><td>ln(u)</td><td>u &gt; 1e-10</td><td>-1e30</td></tr>
+        <tr><td>y_sat</td><td>clamp(u,-1,1)</td><td>always safe</td><td>—</td></tr>
+        <tr><td>es_finito</td><td>|u|&lt;1e29</td><td>—</td><td>FALSE</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

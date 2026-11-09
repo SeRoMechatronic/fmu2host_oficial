@@ -1,0 +1,23 @@
+
+<h1>ArraysVectores</h1>
+<p> <i>Fixed-size arrays of Real, Integer and Boolean — vector I/O stress test</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>ArraysVectores — Fixed-Size Arrays of All Types</h3>
+      <p>This model declares input and output arrays of size N=4 for Real,
+         Integer, and Boolean types. In FMI 2.0, arrays are represented as
+         N individual scalar variables in the modelDescription.xml.</p>
+      <p>The codegen must unroll each array into N separate fmi2Set*/fmi2Get*
+         calls using the correct index notation (v_real[1] .. v_real[4]).</p>
+      <h4>Interface</h4>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Variable</th><th>Type</th><th>Size</th><th>Direction</th></tr>
+        <tr><td>v_real</td><td>Real</td><td>N=4</td><td>Input</td></tr>
+        <tr><td>v_int</td><td>Integer</td><td>N=4</td><td>Input</td></tr>
+        <tr><td>v_bool</td><td>Boolean</td><td>N=4</td><td>Input</td></tr>
+        <tr><td>suma_real</td><td>Real</td><td>scalar</td><td>Output</td></tr>
+        <tr><td>suma_int</td><td>Integer</td><td>scalar</td><td>Output</td></tr>
+        <tr><td>alguno_true</td><td>Boolean</td><td>scalar</td><td>Output</td></tr>
+        <tr><td>v_doble</td><td>Real</td><td>N=4</td><td>Output</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

@@ -1,0 +1,19 @@
+
+<h1>testROMAN</h1>
+<p> <i>Vumetro de 5 LEDs controlado por potenciometro (0..1). FMI 2.0 ME compatible.</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>PotVumetro</h3>
+      <p>Modelo Modelica de un vumetro de 5 LEDs controlado por potenciómetro.</p>
+      <p><b>Entrada:</b> <code>pot</code> — Real en rango [0.0, 1.0]</p>
+      <p><b>Salidas:</b> <code>led1..led5</code> — Boolean</p>
+      <table border='1'>
+        <tr><th>LED</th><th>Color</th><th>Umbral</th></tr>
+        <tr><td>led1</td><td>Verde</td><td>pot &ge; 0.2</td></tr>
+        <tr><td>led2</td><td>Verde</td><td>pot &ge; 0.4</td></tr>
+        <tr><td>led3</td><td>Amarillo</td><td>pot &ge; 0.6</td></tr>
+        <tr><td>led4</td><td>Naranja</td><td>pot &ge; 0.8</td></tr>
+        <tr><td>led5</td><td>Rojo</td><td>pot &ge; 0.95</td></tr>
+      </table>
+      <p>Compatible con FMI 2.0 Model Exchange y fmi-c-embedded.</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

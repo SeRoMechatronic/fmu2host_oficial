@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  MatrizEstado_fmiGetTypesPlatform @1
+  MatrizEstado_fmiGetVersion @2
+  MatrizEstado_fmiSetDebugLogging @3
+  MatrizEstado_fmiInstantiate @4
+  MatrizEstado_fmiFreeInstance @5
+  MatrizEstado_fmiSetupExperiment @6
+  MatrizEstado_fmiEnterInitializationMode @7
+  MatrizEstado_fmiExitInitializationMode @8
+  MatrizEstado_fmiTerminate @9
+  MatrizEstado_fmiReset @10
+  MatrizEstado_fmiGetReal @11
+  MatrizEstado_fmiGetInteger @12
+  MatrizEstado_fmiGetBoolean @13
+  MatrizEstado_fmiGetString @14
+  MatrizEstado_fmiSetReal @15
+  MatrizEstado_fmiSetInteger @16
+  MatrizEstado_fmiSetBoolean @17
+  MatrizEstado_fmiSetString @18
+  MatrizEstado_fmiGetFMUstate @19
+  MatrizEstado_fmiSetFMUstate @20
+  MatrizEstado_fmiFreeFMUstate @21
+  MatrizEstado_fmiSerializedFMUstateSize @22
+  MatrizEstado_fmiSerializeFMUstate @23
+  MatrizEstado_fmiDeSerializeFMUstate @24
+  MatrizEstado_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  MatrizEstado_fmiEnterEventMode @26
+  MatrizEstado_fmiNewDiscreteStates @27
+  MatrizEstado_fmiEnterContinuousTimeMode @28
+  MatrizEstado_fmiCompletedIntegratorStep @29
+  MatrizEstado_fmiSetTime @30
+  MatrizEstado_fmiSetContinuousStates @31
+  MatrizEstado_fmiGetDerivatives @32
+  MatrizEstado_fmiGetEventIndicators @33
+  MatrizEstado_fmiGetContinuousStates @34
+  MatrizEstado_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  MatrizEstado_fmiSetRealInputDerivatives @36
+  MatrizEstado_fmiGetRealOutputDerivatives @37
+  MatrizEstado_fmiDoStep @38
+  MatrizEstado_fmiCancelStep @39
+  MatrizEstado_fmiGetStatus @40
+  MatrizEstado_fmiGetRealStatus @41
+  MatrizEstado_fmiGetIntegerStatus @42
+  MatrizEstado_fmiGetBooleanStatus @43
+  MatrizEstado_fmiGetStringStatus @44

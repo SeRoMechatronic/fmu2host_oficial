@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  OsciladorArmonico_fmiGetTypesPlatform @1
+  OsciladorArmonico_fmiGetVersion @2
+  OsciladorArmonico_fmiSetDebugLogging @3
+  OsciladorArmonico_fmiInstantiate @4
+  OsciladorArmonico_fmiFreeInstance @5
+  OsciladorArmonico_fmiSetupExperiment @6
+  OsciladorArmonico_fmiEnterInitializationMode @7
+  OsciladorArmonico_fmiExitInitializationMode @8
+  OsciladorArmonico_fmiTerminate @9
+  OsciladorArmonico_fmiReset @10
+  OsciladorArmonico_fmiGetReal @11
+  OsciladorArmonico_fmiGetInteger @12
+  OsciladorArmonico_fmiGetBoolean @13
+  OsciladorArmonico_fmiGetString @14
+  OsciladorArmonico_fmiSetReal @15
+  OsciladorArmonico_fmiSetInteger @16
+  OsciladorArmonico_fmiSetBoolean @17
+  OsciladorArmonico_fmiSetString @18
+  OsciladorArmonico_fmiGetFMUstate @19
+  OsciladorArmonico_fmiSetFMUstate @20
+  OsciladorArmonico_fmiFreeFMUstate @21
+  OsciladorArmonico_fmiSerializedFMUstateSize @22
+  OsciladorArmonico_fmiSerializeFMUstate @23
+  OsciladorArmonico_fmiDeSerializeFMUstate @24
+  OsciladorArmonico_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  OsciladorArmonico_fmiEnterEventMode @26
+  OsciladorArmonico_fmiNewDiscreteStates @27
+  OsciladorArmonico_fmiEnterContinuousTimeMode @28
+  OsciladorArmonico_fmiCompletedIntegratorStep @29
+  OsciladorArmonico_fmiSetTime @30
+  OsciladorArmonico_fmiSetContinuousStates @31
+  OsciladorArmonico_fmiGetDerivatives @32
+  OsciladorArmonico_fmiGetEventIndicators @33
+  OsciladorArmonico_fmiGetContinuousStates @34
+  OsciladorArmonico_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  OsciladorArmonico_fmiSetRealInputDerivatives @36
+  OsciladorArmonico_fmiGetRealOutputDerivatives @37
+  OsciladorArmonico_fmiDoStep @38
+  OsciladorArmonico_fmiCancelStep @39
+  OsciladorArmonico_fmiGetStatus @40
+  OsciladorArmonico_fmiGetRealStatus @41
+  OsciladorArmonico_fmiGetIntegerStatus @42
+  OsciladorArmonico_fmiGetBooleanStatus @43
+  OsciladorArmonico_fmiGetStringStatus @44

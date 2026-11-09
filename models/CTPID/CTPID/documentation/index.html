@@ -1,0 +1,22 @@
+
+<h1>CTPID</h1>
+<p> <i>Temperature PID controller — fan output + 3 status LEDs — FMI 2.0 ME</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>CTPID — Temperature PID Controller</h3>
+      <p>Continuous PID controller that regulates temperature using a fan.
+         Both the sensor and setpoint are normalized inputs [0,1] that are
+         mapped to a physical range [T_min, T_max].</p>
+      <h4>Inputs</h4>
+      <ul>
+        <li><b>temperatura</b>: normalized sensor reading [0,1]</li>
+        <li><b>consigna</b>: normalized setpoint from potentiometer [0,1]</li>
+      </ul>
+      <h4>Outputs</h4>
+      <ul>
+        <li><b>ventilador</b>: fan drive [0,1]</li>
+        <li><b>ledPorEncima</b>: setpoint above temperature (heating needed)</li>
+        <li><b>ledPorDebajo</b>: setpoint below temperature (cooling needed)</li>
+        <li><b>ledAlcanzado</b>: within epsilon dead-band</li>
+      </ul>
+    </html>
+<h4> <u> Revisions </u> </h4>

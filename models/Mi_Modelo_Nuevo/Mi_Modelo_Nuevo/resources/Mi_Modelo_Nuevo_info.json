@@ -1,0 +1,26 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"Mi_Modelo_Nuevo","description":"Name-with-hyphens stress test for CMake prefix and FMI function naming"},
+"variables":{
+"x":{"comment":"Filter state \uffffffe2\uffffff80\uffffff94 internal filtered value","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":63,"lineEnd":63,"colStart":3,"colEnd":79}}},
+"der(x)":{"comment":"der(Filter state \uffffffe2\uffffff80\uffffff94 internal filtered value)","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":63,"lineEnd":63,"colStart":3,"colEnd":79}}},
+"entrada_principal":{"comment":"Input signal to be filtered \uffffffe2\uffffff80\uffffff94 any real value","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":45,"lineEnd":47,"colStart":3,"colEnd":77}}},
+"salida_filtrada":{"comment":"Filtered output x(t) \uffffffe2\uffffff80\uffffff94 exponentially approaches entrada_principal when flag_activo=TRUE","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":54,"lineEnd":56,"colStart":3,"colEnd":75}}},
+"flag_activo":{"comment":"When TRUE: filter tracks input. When FALSE: filter decays to zero","kind":"variable","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":49,"lineEnd":51,"colStart":3,"colEnd":79}}},
+"flag_salida":{"comment":"TRUE when salida_filtrada > 0.5","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":58,"lineEnd":60,"colStart":3,"colEnd":77}}},
+"entrada_principal":{"comment":"Input signal to be filtered \uffffffe2\uffffff80\uffffff94 any real value","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":45,"lineEnd":47,"colStart":3,"colEnd":77}}},
+"flag_activo":{"comment":"When TRUE: filter tracks input. When FALSE: filter decays to zero","kind":"variable","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":49,"lineEnd":51,"colStart":3,"colEnd":79}}},
+"$outputAlias_flag_salida":{"comment":"TRUE when salida_filtrada > 0.5","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":58,"lineEnd":60,"colStart":3,"colEnd":77}}},
+"tau":{"comment":"Filter time constant [s] \uffffffe2\uffffff80\uffffff94 larger \uffffffcf\uffffff84 = slower response","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":39,"lineEnd":40,"colStart":3,"colEnd":63}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"section":"initial","tag":"assign","defines":["x"],"uses":["$START.x"],"equation":["$START.x"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":2,"tag":"alias","equation":[7],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[6],"section":"initial"},
+{"eqIndex":4,"tag":"alias","equation":[5],"section":"initial"},
+{"eqIndex":5,"section":"regular","tag":"assign","defines":["flag_salida"],"uses":["x"],"equation":["x > 0.5"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":74,"lineEnd":74,"colStart":3,"colEnd":28}}},
+{"eqIndex":6,"section":"regular","tag":"assign","defines":["der(x)"],"uses":["tau","x","entrada_principal","flag_activo"],"equation":["if flag_activo then (entrada_principal - x) / tau else (-x) / tau"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.mo","lineStart":69,"lineEnd":70,"colStart":3,"colEnd":48}}},
+{"eqIndex":7,"section":"regular","tag":"assign","defines":["salida_filtrada"],"uses":["x"],"equation":["x"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}}
+],
+"functions":[
+]
+}

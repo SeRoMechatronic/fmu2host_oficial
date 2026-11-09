@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  SelectorModo_fmiGetTypesPlatform @1
+  SelectorModo_fmiGetVersion @2
+  SelectorModo_fmiSetDebugLogging @3
+  SelectorModo_fmiInstantiate @4
+  SelectorModo_fmiFreeInstance @5
+  SelectorModo_fmiSetupExperiment @6
+  SelectorModo_fmiEnterInitializationMode @7
+  SelectorModo_fmiExitInitializationMode @8
+  SelectorModo_fmiTerminate @9
+  SelectorModo_fmiReset @10
+  SelectorModo_fmiGetReal @11
+  SelectorModo_fmiGetInteger @12
+  SelectorModo_fmiGetBoolean @13
+  SelectorModo_fmiGetString @14
+  SelectorModo_fmiSetReal @15
+  SelectorModo_fmiSetInteger @16
+  SelectorModo_fmiSetBoolean @17
+  SelectorModo_fmiSetString @18
+  SelectorModo_fmiGetFMUstate @19
+  SelectorModo_fmiSetFMUstate @20
+  SelectorModo_fmiFreeFMUstate @21
+  SelectorModo_fmiSerializedFMUstateSize @22
+  SelectorModo_fmiSerializeFMUstate @23
+  SelectorModo_fmiDeSerializeFMUstate @24
+  SelectorModo_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  SelectorModo_fmiEnterEventMode @26
+  SelectorModo_fmiNewDiscreteStates @27
+  SelectorModo_fmiEnterContinuousTimeMode @28
+  SelectorModo_fmiCompletedIntegratorStep @29
+  SelectorModo_fmiSetTime @30
+  SelectorModo_fmiSetContinuousStates @31
+  SelectorModo_fmiGetDerivatives @32
+  SelectorModo_fmiGetEventIndicators @33
+  SelectorModo_fmiGetContinuousStates @34
+  SelectorModo_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  SelectorModo_fmiSetRealInputDerivatives @36
+  SelectorModo_fmiGetRealOutputDerivatives @37
+  SelectorModo_fmiDoStep @38
+  SelectorModo_fmiCancelStep @39
+  SelectorModo_fmiGetStatus @40
+  SelectorModo_fmiGetRealStatus @41
+  SelectorModo_fmiGetIntegerStatus @42
+  SelectorModo_fmiGetBooleanStatus @43
+  SelectorModo_fmiGetStringStatus @44

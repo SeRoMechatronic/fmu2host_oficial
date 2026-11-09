@@ -1,0 +1,1057 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-09T16:19:24.513960+00:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "generator_sha256": "e49768ffd2cd9f979fd4e3f12e878f5867a989f4181b834a02854f9e6b27a064",
+  "build_configuration": "Release executables from an external CMake build tree",
+  "models": 30,
+  "behaviorally_evaluated_models": 28,
+  "me_executables": 30,
+  "cs_executables": 30,
+  "generation_seconds": {
+    "min": 2.130948400008492,
+    "q1": 2.196187574969372,
+    "median": 2.2106673499802127,
+    "q3": 2.2374039250425994,
+    "max": 2.3556301000062376
+  },
+  "executable_bytes": {
+    "min": 177152,
+    "q1": 182016.0,
+    "median": 185344.0,
+    "q3": 190592.0,
+    "max": 201728
+  },
+  "records": [
+    {
+      "model": "ArranqueSuaveMotor",
+      "fmu": "models/ArranqueSuaveMotor/ArranqueSuaveMotor.fmu",
+      "sha256": "6950666805cae3883f197d15c6224f09b1a24c67b9c98e6f391a23dfd0fc5398",
+      "fmu_bytes": 1484290,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 3,
+      "event_indicators": 4,
+      "variables": 22,
+      "types": {
+        "Real": 15,
+        "Boolean": 7
+      },
+      "causalities": {
+        "local": 12,
+        "input": 2,
+        "output": 4,
+        "parameter": 4
+      },
+      "variabilities": {
+        "continuous": 11,
+        "fixed": 4,
+        "discrete": 7
+      },
+      "source_files": 237,
+      "source_bytes": 3268868,
+      "generation_seconds": 2.3556301000062376,
+      "generated_files": 8,
+      "generated_bytes": 49601,
+      "me_executable_bytes": 194560,
+      "cs_executable_bytes": 189952,
+      "behavioral_suite": true
+    },
+    {
+      "model": "ArraysVectores",
+      "fmu": "models/ArraysVectores/ArraysVectores.fmu",
+      "sha256": "937bb338a47903a7b12af1c2c472b31c54174e211497a7c9cba7605707ccdd37",
+      "fmu_bytes": 1478900,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 0,
+      "variables": 27,
+      "types": {
+        "Real": 14,
+        "Integer": 7,
+        "Boolean": 6
+      },
+      "causalities": {
+        "output": 7,
+        "local": 18,
+        "calculatedParameter": 2
+      },
+      "variabilities": {
+        "continuous": 14,
+        "discrete": 10,
+        "fixed": 3
+      },
+      "source_files": 237,
+      "source_bytes": 3274037,
+      "generation_seconds": 2.3554326000157744,
+      "generated_files": 8,
+      "generated_bytes": 42663,
+      "me_executable_bytes": 186368,
+      "cs_executable_bytes": 184832,
+      "behavioral_suite": true
+    },
+    {
+      "model": "BooleanLogica",
+      "fmu": "models/BooleanLogica/BooleanLogica.fmu",
+      "sha256": "d827667a4ad8d2e0903bb48794590c676f1d588f0956f9e29aece82815149a04",
+      "fmu_bytes": 1477349,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 2,
+      "variables": 19,
+      "types": {
+        "Real": 1,
+        "Integer": 3,
+        "Boolean": 15
+      },
+      "causalities": {
+        "input": 4,
+        "output": 6,
+        "local": 9
+      },
+      "variabilities": {
+        "continuous": 1,
+        "discrete": 18
+      },
+      "source_files": 237,
+      "source_bytes": 3260600,
+      "generation_seconds": 2.2010215000482276,
+      "generated_files": 8,
+      "generated_bytes": 51067,
+      "me_executable_bytes": 186368,
+      "cs_executable_bytes": 184832,
+      "behavioral_suite": true
+    },
+    {
+      "model": "CodigoErrorDiagnostico",
+      "fmu": "models/CodigoErrorDiagnostico/CodigoErrorDiagnostico.fmu",
+      "sha256": "2973fcd307ba37102875f3545bb1faeb50e66aae529c9bfb105ee2ba5086bbf9",
+      "fmu_bytes": 1475867,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 3,
+      "variables": 14,
+      "types": {
+        "Real": 8,
+        "Integer": 4,
+        "Boolean": 2
+      },
+      "causalities": {
+        "output": 4,
+        "input": 3,
+        "parameter": 3,
+        "local": 4
+      },
+      "variabilities": {
+        "continuous": 5,
+        "fixed": 3,
+        "discrete": 6
+      },
+      "source_files": 237,
+      "source_bytes": 3251801,
+      "generation_seconds": 2.2640253000427037,
+      "generated_files": 8,
+      "generated_bytes": 50835,
+      "me_executable_bytes": 183296,
+      "cs_executable_bytes": 182272,
+      "behavioral_suite": true
+    },
+    {
+      "model": "ContadorEventos",
+      "fmu": "models/ContadorEventos/ContadorEventos.fmu",
+      "sha256": "69eb9aebd5844e0a2c4cdd08917bc30b789449b20bd92e3594f5f2a540cf4d37",
+      "fmu_bytes": 1471430,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 2,
+      "variables": 13,
+      "types": {
+        "Integer": 7,
+        "Boolean": 6
+      },
+      "causalities": {
+        "local": 7,
+        "output": 4,
+        "input": 2
+      },
+      "variabilities": {
+        "discrete": 13
+      },
+      "source_files": 237,
+      "source_bytes": 3245015,
+      "generation_seconds": 2.2335650000022724,
+      "generated_files": 8,
+      "generated_bytes": 43453,
+      "me_executable_bytes": 179200,
+      "cs_executable_bytes": 177152,
+      "behavioral_suite": true
+    },
+    {
+      "model": "CrecimientoPoblacional",
+      "fmu": "models/CrecimientoPoblacional/CrecimientoPoblacional.fmu",
+      "sha256": "0fba40a713a28b92adfb06d1e911851018eedf934edaaae2b01071435f8d9c45",
+      "fmu_bytes": 1477155,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 1,
+      "event_indicators": 1,
+      "variables": 13,
+      "types": {
+        "Real": 11,
+        "Boolean": 2
+      },
+      "causalities": {
+        "local": 6,
+        "output": 4,
+        "input": 1,
+        "parameter": 2
+      },
+      "variabilities": {
+        "continuous": 9,
+        "fixed": 2,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3252678,
+      "generation_seconds": 2.235148800071329,
+      "generated_files": 8,
+      "generated_bytes": 46325,
+      "me_executable_bytes": 188416,
+      "cs_executable_bytes": 183296,
+      "behavioral_suite": true
+    },
+    {
+      "model": "CSPuro_SinME",
+      "fmu": "models/CS_Puro/CSPuro_SinME.fmu",
+      "sha256": "6d15958ffc536593ce6b1d0881bc02c320a29fe75de3b76f67f36edc1796784e",
+      "fmu_bytes": 1470679,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 1,
+      "variables": 8,
+      "types": {
+        "Real": 6,
+        "Boolean": 2
+      },
+      "causalities": {
+        "input": 2,
+        "output": 3,
+        "local": 3
+      },
+      "variabilities": {
+        "continuous": 6,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3239111,
+      "generation_seconds": 2.25555440003518,
+      "generated_files": 8,
+      "generated_bytes": 40661,
+      "me_executable_bytes": 178688,
+      "cs_executable_bytes": 177152,
+      "behavioral_suite": true
+    },
+    {
+      "model": "CTPID",
+      "fmu": "models/CTPID/CTPID.fmu",
+      "sha256": "a70bdd91322ebad01b20d84aafbc3f6acdf360541c079ddb683775a17834a895",
+      "fmu_bytes": 1486290,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 1,
+      "event_indicators": 3,
+      "variables": 28,
+      "types": {
+        "Real": 22,
+        "Boolean": 6
+      },
+      "causalities": {
+        "local": 16,
+        "input": 2,
+        "output": 4,
+        "parameter": 6
+      },
+      "variabilities": {
+        "continuous": 16,
+        "fixed": 6,
+        "discrete": 6
+      },
+      "source_files": 237,
+      "source_bytes": 3274257,
+      "generation_seconds": 2.206942700082436,
+      "generated_files": 8,
+      "generated_bytes": 45821,
+      "me_executable_bytes": 197632,
+      "cs_executable_bytes": 192512,
+      "behavioral_suite": true
+    },
+    {
+      "model": "CuerposAcoplados",
+      "fmu": "models/CuerposAcoplados/CuerposAcoplados.fmu",
+      "sha256": "4cc2c6ff88a3e06398ae8803cfe285eb283db50a7845f63300f9e8d655ab821e",
+      "fmu_bytes": 1485572,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 4,
+      "event_indicators": 1,
+      "variables": 26,
+      "types": {
+        "Real": 24,
+        "Boolean": 2
+      },
+      "causalities": {
+        "local": 14,
+        "output": 6,
+        "input": 1,
+        "parameter": 5
+      },
+      "variabilities": {
+        "continuous": 19,
+        "fixed": 5,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3276816,
+      "generation_seconds": 2.19624809990637,
+      "generated_files": 8,
+      "generated_bytes": 47072,
+      "me_executable_bytes": 195072,
+      "cs_executable_bytes": 190976,
+      "behavioral_suite": true
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "fmu": "models/EtapaSecuenciador/EtapaSecuenciador.fmu",
+      "sha256": "3b46496238102068dfa63e2205196b055fffddaab080fa530ce648c30ea24823",
+      "fmu_bytes": 1479047,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 0,
+      "variables": 23,
+      "types": {
+        "Real": 8,
+        "Integer": 7,
+        "Boolean": 8
+      },
+      "causalities": {
+        "output": 4,
+        "input": 3,
+        "local": 13,
+        "parameter": 3
+      },
+      "variabilities": {
+        "continuous": 3,
+        "discrete": 17,
+        "fixed": 3
+      },
+      "source_files": 237,
+      "source_bytes": 3270462,
+      "generation_seconds": 2.2367521000560373,
+      "generated_files": 8,
+      "generated_bytes": 50871,
+      "me_executable_bytes": 187392,
+      "cs_executable_bytes": 186368,
+      "behavioral_suite": true
+    },
+    {
+      "model": "FrenadoABS",
+      "fmu": "models/FrenadoABS/FrenadoABS.fmu",
+      "sha256": "ff62735f9cb08004da9ba3fb28b79c4f2fcf24ef48c7fd8d50acf531d574f578",
+      "fmu_bytes": 1488946,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 5,
+      "event_indicators": 4,
+      "variables": 27,
+      "types": {
+        "Real": 21,
+        "Boolean": 6
+      },
+      "causalities": {
+        "local": 16,
+        "output": 4,
+        "input": 2,
+        "parameter": 5
+      },
+      "variabilities": {
+        "continuous": 16,
+        "fixed": 5,
+        "discrete": 6
+      },
+      "source_files": 237,
+      "source_bytes": 3278801,
+      "generation_seconds": 2.20995699998457,
+      "generated_files": 8,
+      "generated_bytes": 47887,
+      "me_executable_bytes": 199168,
+      "cs_executable_bytes": 195072,
+      "behavioral_suite": true
+    },
+    {
+      "model": "MatrizEstado",
+      "fmu": "models/MatrizEstado/MatrizEstado.fmu",
+      "sha256": "b7b9a6c248415354f22230985cdf2a203c7965ae0ba23b8f7a224f894569359b",
+      "fmu_bytes": 1479029,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 3,
+      "event_indicators": 0,
+      "variables": 29,
+      "types": {
+        "Real": 29
+      },
+      "causalities": {
+        "local": 12,
+        "output": 5,
+        "parameter": 12
+      },
+      "variabilities": {
+        "continuous": 17,
+        "fixed": 12
+      },
+      "source_files": 237,
+      "source_bytes": 3281379,
+      "generation_seconds": 2.207308299955912,
+      "generated_files": 8,
+      "generated_bytes": 38394,
+      "me_executable_bytes": 190976,
+      "cs_executable_bytes": 186368,
+      "behavioral_suite": true
+    },
+    {
+      "model": "Mi_Modelo_Nuevo",
+      "fmu": "models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.fmu",
+      "sha256": "5dd277fe957de51f232d803dbe768679b40d9be3f959325fd6fb440fa9cf777b",
+      "fmu_bytes": 1477783,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 1,
+      "event_indicators": 1,
+      "variables": 10,
+      "types": {
+        "Real": 6,
+        "Boolean": 3,
+        "String": 1
+      },
+      "causalities": {
+        "local": 4,
+        "input": 2,
+        "output": 2,
+        "parameter": 2
+      },
+      "variabilities": {
+        "continuous": 5,
+        "fixed": 2,
+        "discrete": 3
+      },
+      "source_files": 237,
+      "source_bytes": 3247104,
+      "generation_seconds": 2.273485300014727,
+      "generated_files": 8,
+      "generated_bytes": 47963,
+      "me_executable_bytes": 189952,
+      "cs_executable_bytes": 184832,
+      "behavioral_suite": true
+    },
+    {
+      "model": "MuchosEstados",
+      "fmu": "models/MuchosEstados/MuchosEstados.fmu",
+      "sha256": "04e5ceff4d1817a90b56bcddccaeed8b3fe81bd3aceb40bffac78dc7a79e29fa",
+      "fmu_bytes": 1492246,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 8,
+      "event_indicators": 1,
+      "variables": 36,
+      "types": {
+        "Real": 34,
+        "Boolean": 2
+      },
+      "causalities": {
+        "local": 25,
+        "input": 1,
+        "output": 9,
+        "parameter": 1
+      },
+      "variabilities": {
+        "continuous": 33,
+        "fixed": 1,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3298463,
+      "generation_seconds": 2.26520179992076,
+      "generated_files": 8,
+      "generated_bytes": 47942,
+      "me_executable_bytes": 201728,
+      "cs_executable_bytes": 198144,
+      "behavioral_suite": true
+    },
+    {
+      "model": "MultiplexorCanales",
+      "fmu": "models/MultiplexorCanales/MultiplexorCanales.fmu",
+      "sha256": "0e3c836717abacd344388bc07ac6c85c5d4de382c59273d91cd25545a0020ee3",
+      "fmu_bytes": 1473781,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 7,
+      "variables": 11,
+      "types": {
+        "Real": 6,
+        "Integer": 3,
+        "Boolean": 2
+      },
+      "causalities": {
+        "input": 5,
+        "output": 3,
+        "local": 3
+      },
+      "variabilities": {
+        "continuous": 6,
+        "discrete": 5
+      },
+      "source_files": 237,
+      "source_bytes": 3249622,
+      "generation_seconds": 2.1937485000817105,
+      "generated_files": 8,
+      "generated_bytes": 53413,
+      "me_executable_bytes": 184320,
+      "cs_executable_bytes": 182784,
+      "behavioral_suite": true
+    },
+    {
+      "model": "NivelDeposito",
+      "fmu": "models/NivelDeposito/NivelDeposito.fmu",
+      "sha256": "1f2cf20c36331e3685db86a21ba11e4d234debffeab5388f55a1997e4050bddc",
+      "fmu_bytes": 1483137,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 1,
+      "event_indicators": 3,
+      "variables": 20,
+      "types": {
+        "Real": 13,
+        "Boolean": 7
+      },
+      "causalities": {
+        "local": 9,
+        "output": 4,
+        "input": 2,
+        "parameter": 5
+      },
+      "variabilities": {
+        "continuous": 8,
+        "fixed": 5,
+        "discrete": 7
+      },
+      "source_files": 237,
+      "source_bytes": 3262504,
+      "generation_seconds": 2.233858700026758,
+      "generated_files": 8,
+      "generated_bytes": 47875,
+      "me_executable_bytes": 194560,
+      "cs_executable_bytes": 189440,
+      "behavioral_suite": true
+    },
+    {
+      "model": "OsciladorArmonico",
+      "fmu": "models/OsciladorArmonico/OsciladorArmonico.fmu",
+      "sha256": "5dfb16eef8e765249728da58360c3a0a979f236e18d639ffcf226b0b6b4332a7",
+      "fmu_bytes": 1473272,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 2,
+      "event_indicators": 0,
+      "variables": 11,
+      "types": {
+        "Real": 11
+      },
+      "causalities": {
+        "local": 7,
+        "output": 3,
+        "parameter": 1
+      },
+      "variabilities": {
+        "continuous": 10,
+        "fixed": 1
+      },
+      "source_files": 237,
+      "source_bytes": 3249177,
+      "generation_seconds": 2.23102549999021,
+      "generated_files": 8,
+      "generated_bytes": 36611,
+      "me_executable_bytes": 182272,
+      "cs_executable_bytes": 177152,
+      "behavioral_suite": true
+    },
+    {
+      "model": "PenduloNoLineal",
+      "fmu": "models/PenduloNoLineal/PenduloNoLineal.fmu",
+      "sha256": "59ae3fe851768c0bb01612fcce38e465fdb982145ffe4720fe84d49b7a1686f7",
+      "fmu_bytes": 1480530,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 2,
+      "event_indicators": 1,
+      "variables": 16,
+      "types": {
+        "Real": 14,
+        "Boolean": 2
+      },
+      "causalities": {
+        "local": 10,
+        "output": 4,
+        "parameter": 2
+      },
+      "variabilities": {
+        "continuous": 12,
+        "fixed": 2,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3259322,
+      "generation_seconds": 2.1961673999903724,
+      "generated_files": 8,
+      "generated_bytes": 40358,
+      "me_executable_bytes": 189440,
+      "cs_executable_bytes": 184832,
+      "behavioral_suite": true
+    },
+    {
+      "model": "PotVumetro",
+      "fmu": "models/PotVumetro/PotVumetro.fmu",
+      "sha256": "5b6313f20419edcbc322ceda9e776d241c93d28e332ce6b6eb53b298e51c4472",
+      "fmu_bytes": 1470100,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 5,
+      "variables": 11,
+      "types": {
+        "Real": 1,
+        "Boolean": 10
+      },
+      "causalities": {
+        "input": 1,
+        "output": 5,
+        "local": 5
+      },
+      "variabilities": {
+        "continuous": 1,
+        "discrete": 10
+      },
+      "source_files": 237,
+      "source_bytes": 3238419,
+      "generation_seconds": 2.23762120003812,
+      "generated_files": 8,
+      "generated_bytes": 39618,
+      "me_executable_bytes": 179200,
+      "cs_executable_bytes": 178176,
+      "behavioral_suite": true
+    },
+    {
+      "model": "ReguladorBateria",
+      "fmu": "models/ReguladorBateria/ReguladorBateria.fmu",
+      "sha256": "de1589880a555baa22cf7ae59cb18c0628ee13444b8be3ac6c8b213dac1aef41",
+      "fmu_bytes": 1486372,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 2,
+      "event_indicators": 3,
+      "variables": 26,
+      "types": {
+        "Real": 19,
+        "Boolean": 7
+      },
+      "causalities": {
+        "local": 13,
+        "output": 4,
+        "input": 2,
+        "parameter": 7
+      },
+      "variabilities": {
+        "continuous": 12,
+        "fixed": 7,
+        "discrete": 7
+      },
+      "source_files": 237,
+      "source_bytes": 3276007,
+      "generation_seconds": 2.1713066999800503,
+      "generated_files": 8,
+      "generated_bytes": 49815,
+      "me_executable_bytes": 196608,
+      "cs_executable_bytes": 191488,
+      "behavioral_suite": true
+    },
+    {
+      "model": "SelectorModo",
+      "fmu": "models/SelectorModo/SelectorModo.fmu",
+      "sha256": "d0734072d68ccc829215eaca4f8fac9b5e8c7dcc578b575c2d67b5c9be67efe7",
+      "fmu_bytes": 1473146,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 4,
+      "variables": 11,
+      "types": {
+        "Real": 3,
+        "Integer": 6,
+        "Boolean": 2
+      },
+      "causalities": {
+        "input": 2,
+        "output": 3,
+        "local": 3,
+        "parameter": 3
+      },
+      "variabilities": {
+        "continuous": 3,
+        "discrete": 5,
+        "fixed": 3
+      },
+      "source_files": 237,
+      "source_bytes": 3245795,
+      "generation_seconds": 2.2570358000230044,
+      "generated_files": 8,
+      "generated_bytes": 45111,
+      "me_executable_bytes": 182272,
+      "cs_executable_bytes": 180224,
+      "behavioral_suite": true
+    },
+    {
+      "model": "SinInputs",
+      "fmu": "models/SinInputs/SinInputs.fmu",
+      "sha256": "12098c2f2b002e0d12d97880f2618ba68c3df1b91564c0ed25d5c1575b212337",
+      "fmu_bytes": 1474364,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 2,
+      "event_indicators": 0,
+      "variables": 15,
+      "types": {
+        "Real": 15
+      },
+      "causalities": {
+        "local": 7,
+        "output": 3,
+        "parameter": 5
+      },
+      "variabilities": {
+        "continuous": 10,
+        "fixed": 5
+      },
+      "source_files": 237,
+      "source_bytes": 3252450,
+      "generation_seconds": 2.201185300014913,
+      "generated_files": 8,
+      "generated_bytes": 35156,
+      "me_executable_bytes": 185856,
+      "cs_executable_bytes": 179712,
+      "behavioral_suite": true
+    },
+    {
+      "model": "SistemaLorenz",
+      "fmu": "models/SistemaLorenz/SistemaLorenz.fmu",
+      "sha256": "157e6400b4e93c7c0850c1c7807074741550c1ea9e9db9feb8019cc3a907dcf5",
+      "fmu_bytes": 1479179,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 3,
+      "event_indicators": 1,
+      "variables": 17,
+      "types": {
+        "Real": 15,
+        "Boolean": 2
+      },
+      "causalities": {
+        "local": 10,
+        "output": 4,
+        "parameter": 3
+      },
+      "variabilities": {
+        "continuous": 12,
+        "fixed": 3,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3263559,
+      "generation_seconds": 2.217024599900469,
+      "generated_files": 8,
+      "generated_bytes": 39583,
+      "me_executable_bytes": 190464,
+      "cs_executable_bytes": 185856,
+      "behavioral_suite": true
+    },
+    {
+      "model": "StringInputOutput",
+      "fmu": "models/StringInputOutput/StringInputOutput.fmu",
+      "sha256": "494529e61ddee29fc2584d587f1ff677662e8a73e090b0b99afcc97e50a573eb",
+      "fmu_bytes": 1477904,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 2,
+      "variables": 11,
+      "types": {
+        "Real": 3,
+        "Boolean": 2,
+        "String": 6
+      },
+      "causalities": {
+        "output": 4,
+        "input": 3,
+        "local": 4
+      },
+      "variabilities": {
+        "continuous": 9,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3250904,
+      "generation_seconds": 2.130948400008492,
+      "generated_files": 8,
+      "generated_bytes": 45002,
+      "me_executable_bytes": 184832,
+      "cs_executable_bytes": 183808,
+      "behavioral_suite": true
+    },
+    {
+      "model": "StringsParametros",
+      "fmu": "models/StringsParametros/StringsParametros.fmu",
+      "sha256": "33785d68d40951bb33f99a70ad3066ecfae6053f621db310e9509b5901c47c7e",
+      "fmu_bytes": 1474695,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 0,
+      "variables": 10,
+      "types": {
+        "Real": 3,
+        "Integer": 1,
+        "String": 6
+      },
+      "causalities": {
+        "input": 1,
+        "output": 1,
+        "local": 1,
+        "parameter": 7
+      },
+      "variabilities": {
+        "continuous": 3,
+        "fixed": 7
+      },
+      "source_files": 237,
+      "source_bytes": 3247613,
+      "generation_seconds": 2.1626058000838384,
+      "generated_files": 8,
+      "generated_bytes": 40499,
+      "me_executable_bytes": 181248,
+      "cs_executable_bytes": 179200,
+      "behavioral_suite": true
+    },
+    {
+      "model": "SuspensionActiva",
+      "fmu": "models/SuspensionActiva/SuspensionActiva.fmu",
+      "sha256": "c18273750b130b8a77e436dc0e703052244637a6dac3096b6decb13f785588e9",
+      "fmu_bytes": 1486018,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 2,
+      "event_indicators": 3,
+      "variables": 21,
+      "types": {
+        "Real": 15,
+        "Boolean": 6
+      },
+      "causalities": {
+        "local": 10,
+        "output": 4,
+        "input": 2,
+        "parameter": 5
+      },
+      "variabilities": {
+        "continuous": 10,
+        "fixed": 5,
+        "discrete": 6
+      },
+      "source_files": 237,
+      "source_bytes": 3269560,
+      "generation_seconds": 2.2113776999758556,
+      "generated_files": 8,
+      "generated_bytes": 49080,
+      "me_executable_bytes": 195584,
+      "cs_executable_bytes": 190976,
+      "behavioral_suite": true
+    },
+    {
+      "model": "testROMAN",
+      "fmu": "models/testROMAN/testROMAN.fmu",
+      "sha256": "2198c6d69fa4fa0c19be67145578f168c66a31305234c6cb86f9349cbd6acd61",
+      "fmu_bytes": 1470606,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 5,
+      "variables": 11,
+      "types": {
+        "Real": 1,
+        "Boolean": 10
+      },
+      "causalities": {
+        "input": 1,
+        "output": 5,
+        "local": 5
+      },
+      "variabilities": {
+        "continuous": 1,
+        "discrete": 10
+      },
+      "source_files": 237,
+      "source_bytes": 3239701,
+      "generation_seconds": 2.197831999976188,
+      "generated_files": 8,
+      "generated_bytes": 39389,
+      "me_executable_bytes": 180224,
+      "cs_executable_bytes": 178688,
+      "behavioral_suite": false
+    },
+    {
+      "model": "testUPM",
+      "fmu": "models/testUPM/testUPM.fmu",
+      "sha256": "67986255c9e749e0c949b4a4465a4b68ca3aa10dbf1e29ab549c136beda1ac4d",
+      "fmu_bytes": 1470003,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 5,
+      "variables": 11,
+      "types": {
+        "Real": 1,
+        "Boolean": 10
+      },
+      "causalities": {
+        "input": 1,
+        "output": 5,
+        "local": 5
+      },
+      "variabilities": {
+        "continuous": 1,
+        "discrete": 10
+      },
+      "source_files": 237,
+      "source_bytes": 3238005,
+      "generation_seconds": 2.1895770999835804,
+      "generated_files": 8,
+      "generated_bytes": 38931,
+      "me_executable_bytes": 179712,
+      "cs_executable_bytes": 178176,
+      "behavioral_suite": false
+    },
+    {
+      "model": "TiposMixtos",
+      "fmu": "models/TiposMixtos/TiposMixtos.fmu",
+      "sha256": "a5693c74b87315262cd2be25e9470f214c6a63db6f45ef9cb607e95eb516b8fb",
+      "fmu_bytes": 1475151,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 1,
+      "variables": 13,
+      "types": {
+        "Real": 5,
+        "Integer": 3,
+        "Boolean": 3,
+        "String": 2
+      },
+      "causalities": {
+        "output": 4,
+        "input": 3,
+        "local": 4,
+        "parameter": 2
+      },
+      "variabilities": {
+        "continuous": 5,
+        "discrete": 6,
+        "fixed": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3248796,
+      "generation_seconds": 2.1940651000477374,
+      "generated_files": 8,
+      "generated_bytes": 48067,
+      "me_executable_bytes": 184832,
+      "cs_executable_bytes": 183296,
+      "behavioral_suite": true
+    },
+    {
+      "model": "ValoresExtremos",
+      "fmu": "models/ValoresExtremos/ValoresExtremos.fmu",
+      "sha256": "7552a2c408bb1f00633719a9bebbaf701ad74de84f5c245819c9859b4b93c7a0",
+      "fmu_bytes": 1478093,
+      "generation_tool": "OpenModelica Compiler OpenModelica v1.25.7 (64-bit)",
+      "has_me": true,
+      "has_cs": true,
+      "states": 0,
+      "event_indicators": 4,
+      "variables": 12,
+      "types": {
+        "Real": 10,
+        "Boolean": 2
+      },
+      "causalities": {
+        "local": 6,
+        "input": 1,
+        "output": 5
+      },
+      "variabilities": {
+        "continuous": 10,
+        "discrete": 2
+      },
+      "source_files": 237,
+      "source_bytes": 3257662,
+      "generation_seconds": 2.1853877999819815,
+      "generated_files": 8,
+      "generated_bytes": 40922,
+      "me_executable_bytes": 186368,
+      "cs_executable_bytes": 185856,
+      "behavioral_suite": true
+    }
+  ]
+}

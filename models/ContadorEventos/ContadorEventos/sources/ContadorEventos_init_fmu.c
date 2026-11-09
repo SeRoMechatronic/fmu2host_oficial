@@ -1,0 +1,126 @@
+#include "simulation_data.h"
+
+OMC_DISABLE_OPT
+
+void ContadorEventos_read_simulation_info(SIMULATION_INFO* simulationInfo)
+{
+  simulationInfo->startTime = 0.0;
+  simulationInfo->stopTime = 1.0;
+  simulationInfo->stepSize = 0.002;
+  simulationInfo->tolerance = 1e-6;
+  simulationInfo->solverMethod = "dassl";
+  simulationInfo->outputFormat = "mat";
+  simulationInfo->variableFilter = ".*";
+  simulationInfo->OPENMODELICAHOME = "C:/Program Files/OpenModelica1.25.7-64bit";
+}
+
+void ContadorEventos_read_input_fmu(MODEL_DATA* modelData)
+{
+  modelData->integerVarsData[0].info.id = 1000;
+  modelData->integerVarsData[0].info.name = "contador";
+  modelData->integerVarsData[0].info.comment = "";
+  modelData->integerVarsData[0].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->integerVarsData[0].info.info.lineStart = 18;
+  modelData->integerVarsData[0].info.info.colStart = 3;
+  modelData->integerVarsData[0].info.info.lineEnd = 18;
+  modelData->integerVarsData[0].info.info.colEnd = 53;
+  modelData->integerVarsData[0].info.info.readonly = 0;
+  modelData->integerVarsData[0].attribute.min = -LONG_MAX;
+  modelData->integerVarsData[0].attribute.max = LONG_MAX;
+  modelData->integerVarsData[0].attribute.fixed = 1;
+  modelData->integerVarsData[0].attribute.start = 0;
+  modelData->integerVarsData[1].info.id = 1001;
+  modelData->integerVarsData[1].info.name = "cuenta";
+  modelData->integerVarsData[1].info.comment = "Current counter value [0, 99]";
+  modelData->integerVarsData[1].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->integerVarsData[1].info.info.lineStart = 9;
+  modelData->integerVarsData[1].info.info.colStart = 3;
+  modelData->integerVarsData[1].info.info.lineEnd = 10;
+  modelData->integerVarsData[1].info.info.colEnd = 136;
+  modelData->integerVarsData[1].info.info.readonly = 0;
+  modelData->integerVarsData[1].attribute.min = -LONG_MAX;
+  modelData->integerVarsData[1].attribute.max = LONG_MAX;
+  modelData->integerVarsData[1].attribute.fixed = 0;
+  modelData->integerVarsData[1].attribute.start = 0;
+  modelData->integerVarsData[2].info.id = 1002;
+  modelData->integerVarsData[2].info.name = "decenas";
+  modelData->integerVarsData[2].info.comment = "Tens digit of counter value [0, 9]. For 7-segment display digit 1";
+  modelData->integerVarsData[2].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->integerVarsData[2].info.info.lineStart = 11;
+  modelData->integerVarsData[2].info.info.colStart = 3;
+  modelData->integerVarsData[2].info.info.lineEnd = 12;
+  modelData->integerVarsData[2].info.info.colEnd = 135;
+  modelData->integerVarsData[2].info.info.readonly = 0;
+  modelData->integerVarsData[2].attribute.min = -LONG_MAX;
+  modelData->integerVarsData[2].attribute.max = LONG_MAX;
+  modelData->integerVarsData[2].attribute.fixed = 0;
+  modelData->integerVarsData[2].attribute.start = 0;
+  modelData->integerVarsData[3].info.id = 1003;
+  modelData->integerVarsData[3].info.name = "unidades";
+  modelData->integerVarsData[3].info.comment = "Units digit of counter value [0, 9]. For 7-segment display digit 0";
+  modelData->integerVarsData[3].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->integerVarsData[3].info.info.lineStart = 13;
+  modelData->integerVarsData[3].info.info.colStart = 3;
+  modelData->integerVarsData[3].info.info.lineEnd = 14;
+  modelData->integerVarsData[3].info.info.colEnd = 139;
+  modelData->integerVarsData[3].info.info.readonly = 0;
+  modelData->integerVarsData[3].attribute.min = -LONG_MAX;
+  modelData->integerVarsData[3].attribute.max = LONG_MAX;
+  modelData->integerVarsData[3].attribute.fixed = 0;
+  modelData->integerVarsData[3].attribute.start = 0;
+  modelData->booleanVarsData[0].info.id = 1004;
+  modelData->booleanVarsData[0].info.name = "$whenCondition1";
+  modelData->booleanVarsData[0].info.comment = "evento and not pre(evento)";
+  modelData->booleanVarsData[0].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->booleanVarsData[0].info.info.lineStart = 26;
+  modelData->booleanVarsData[0].info.info.colStart = 3;
+  modelData->booleanVarsData[0].info.info.lineEnd = 28;
+  modelData->booleanVarsData[0].info.info.colEnd = 36;
+  modelData->booleanVarsData[0].info.info.readonly = 0;
+  modelData->booleanVarsData[0].attribute.fixed = 1;
+  modelData->booleanVarsData[0].attribute.start = 0;
+  modelData->booleanVarsData[1].info.id = 1005;
+  modelData->booleanVarsData[1].info.name = "$whenCondition2";
+  modelData->booleanVarsData[1].info.comment = "reset";
+  modelData->booleanVarsData[1].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->booleanVarsData[1].info.info.lineStart = 26;
+  modelData->booleanVarsData[1].info.info.colStart = 3;
+  modelData->booleanVarsData[1].info.info.lineEnd = 28;
+  modelData->booleanVarsData[1].info.info.colEnd = 36;
+  modelData->booleanVarsData[1].info.info.readonly = 0;
+  modelData->booleanVarsData[1].attribute.fixed = 1;
+  modelData->booleanVarsData[1].attribute.start = 0;
+  modelData->booleanVarsData[2].info.id = 1006;
+  modelData->booleanVarsData[2].info.name = "desbordamiento";
+  modelData->booleanVarsData[2].info.comment = "ON when counter has reached its maximum value of 99";
+  modelData->booleanVarsData[2].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->booleanVarsData[2].info.info.lineStart = 15;
+  modelData->booleanVarsData[2].info.info.colStart = 3;
+  modelData->booleanVarsData[2].info.info.lineEnd = 16;
+  modelData->booleanVarsData[2].info.info.colEnd = 66;
+  modelData->booleanVarsData[2].info.info.readonly = 0;
+  modelData->booleanVarsData[2].attribute.fixed = 0;
+  modelData->booleanVarsData[2].attribute.start = 0;
+  modelData->booleanVarsData[3].info.id = 1007;
+  modelData->booleanVarsData[3].info.name = "evento";
+  modelData->booleanVarsData[3].info.comment = "Event signal. Counter increments on each rising edge (false→true)";
+  modelData->booleanVarsData[3].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->booleanVarsData[3].info.info.lineStart = 4;
+  modelData->booleanVarsData[3].info.info.colStart = 3;
+  modelData->booleanVarsData[3].info.info.lineEnd = 5;
+  modelData->booleanVarsData[3].info.info.colEnd = 140;
+  modelData->booleanVarsData[3].info.info.readonly = 0;
+  modelData->booleanVarsData[3].attribute.fixed = 1;
+  modelData->booleanVarsData[3].attribute.start = 0;
+  modelData->booleanVarsData[4].info.id = 1008;
+  modelData->booleanVarsData[4].info.name = "reset";
+  modelData->booleanVarsData[4].info.comment = "Reset signal. Rising edge clears the counter to 0. Overrides evento";
+  modelData->booleanVarsData[4].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/ContadorEventos/ContadorEventos.mo";
+  modelData->booleanVarsData[4].info.info.lineStart = 6;
+  modelData->booleanVarsData[4].info.info.colStart = 3;
+  modelData->booleanVarsData[4].info.info.lineEnd = 7;
+  modelData->booleanVarsData[4].info.info.colEnd = 143;
+  modelData->booleanVarsData[4].info.info.readonly = 0;
+  modelData->booleanVarsData[4].attribute.fixed = 1;
+  modelData->booleanVarsData[4].attribute.start = 0;
+}

@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  SinInputs_fmiGetTypesPlatform @1
+  SinInputs_fmiGetVersion @2
+  SinInputs_fmiSetDebugLogging @3
+  SinInputs_fmiInstantiate @4
+  SinInputs_fmiFreeInstance @5
+  SinInputs_fmiSetupExperiment @6
+  SinInputs_fmiEnterInitializationMode @7
+  SinInputs_fmiExitInitializationMode @8
+  SinInputs_fmiTerminate @9
+  SinInputs_fmiReset @10
+  SinInputs_fmiGetReal @11
+  SinInputs_fmiGetInteger @12
+  SinInputs_fmiGetBoolean @13
+  SinInputs_fmiGetString @14
+  SinInputs_fmiSetReal @15
+  SinInputs_fmiSetInteger @16
+  SinInputs_fmiSetBoolean @17
+  SinInputs_fmiSetString @18
+  SinInputs_fmiGetFMUstate @19
+  SinInputs_fmiSetFMUstate @20
+  SinInputs_fmiFreeFMUstate @21
+  SinInputs_fmiSerializedFMUstateSize @22
+  SinInputs_fmiSerializeFMUstate @23
+  SinInputs_fmiDeSerializeFMUstate @24
+  SinInputs_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  SinInputs_fmiEnterEventMode @26
+  SinInputs_fmiNewDiscreteStates @27
+  SinInputs_fmiEnterContinuousTimeMode @28
+  SinInputs_fmiCompletedIntegratorStep @29
+  SinInputs_fmiSetTime @30
+  SinInputs_fmiSetContinuousStates @31
+  SinInputs_fmiGetDerivatives @32
+  SinInputs_fmiGetEventIndicators @33
+  SinInputs_fmiGetContinuousStates @34
+  SinInputs_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  SinInputs_fmiSetRealInputDerivatives @36
+  SinInputs_fmiGetRealOutputDerivatives @37
+  SinInputs_fmiDoStep @38
+  SinInputs_fmiCancelStep @39
+  SinInputs_fmiGetStatus @40
+  SinInputs_fmiGetRealStatus @41
+  SinInputs_fmiGetIntegerStatus @42
+  SinInputs_fmiGetBooleanStatus @43
+  SinInputs_fmiGetStringStatus @44

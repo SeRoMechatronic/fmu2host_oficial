@@ -1,0 +1,7 @@
+# The generator and evidence collectors use only the Python 3.10+ standard
+# library. Install these packages only for plots and the optional independent
+# importer experiments described in the manuscript.
+matplotlib>=3.8,<4
+numpy>=1.26,<3
+fmpy==0.3.29
+scipy>=1.11,<2

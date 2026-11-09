@@ -1,0 +1,89 @@
+=====
+  EtapaSecuenciador — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+Discrete-continuous hybrid. 1 continuous state (temporizador) and 2 discrete
+integer states (etapa, etapa_ant). Default parameters: N_ETAPAS=5, duracion=10s.
+
+INPUTS
+------
+  arrancar            Boolean   Rising edge starts sequence (only from idle).
+  parar               Boolean   Rising edge stops immediately.
+  sensor_confirmacion Real      > 0.5 required to advance stages.
+
+OUTPUTS
+-------
+  etapa_actual     Integer   Current stage [0, N_ETAPAS]. 0 = idle.
+  etapa_previa     Integer   Previous stage.
+  progreso_etapa   Real      [0,1] fraction of dwell time completed.
+  secuencia_completa Boolean  Pulse when last stage completes.
+
+TIMING (default parameters)
+----------------------------
+  Each stage requires 10.0 s + sensor_confirmacion > 0.5.
+  Full sequence: 5 stages × 10 s = 50 s minimum.
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+TC-ES-001   Initial idle state
+  State:    etapa=0, etapa_ant=0, temporizador=0
+  Expected: etapa_actual=0, progreso_etapa=0.0, secuencia_completa=false
+
+TC-ES-002   Start command — sequence enters stage 1
+  Scenario: rising edge on arrancar, sensor_confirmacion=0.8
+  Expected at t=0+: etapa_actual=1, progreso_etapa=0.0
+
+TC-ES-003   Progress within stage 1 at t=5s
+  Scenario: arrancar fired at t=0, sensor=0.8, running for 5 s
+  Expected: etapa_actual=1, progreso_etapa=0.50, secuencia_completa=false
+
+TC-ES-004   Stage advance at dwell time with sensor confirmed
+  Scenario: t=10s elapsed in stage 1, sensor_confirmacion=0.8
+  Expected: etapa_actual=2, temporizador reset to 0.0
+
+TC-ES-005   Stage does NOT advance without sensor confirmation
+  Scenario: t=10s elapsed in stage 1, sensor_confirmacion=0.4
+  Expected: etapa_actual=1  (stays — sensor below 0.5 threshold)
+            progreso_etapa = 1.0  (clamped)
+
+TC-ES-006   Sensor confirmation exactly at threshold — no advance
+  Scenario: temporizador >= 10.0, sensor_confirmacion=0.5
+  Expected: no advance  (> is strict: 0.5 NOT > 0.5)
+
+TC-ES-007   Stop during stage 3 — immediate reset
+  Scenario: sequence running in stage 3, rising edge on parar
+  Expected: etapa_actual=0, temporizador=0.0 immediately
+
+TC-ES-008   Start ignored when already running
+  Scenario: sequence in stage 2, rising edge on arrancar
+  Expected: etapa_actual=2  (unchanged — start only works from stage 0)
+
+TC-ES-009   Full sequence completion — secuencia_completa pulse
+  Scenario: all 5 stages complete with sensor=0.8 and 10s each
+  At completion moment:
+    Expected: etapa_actual=0, etapa_previa=5, secuencia_completa=true
+  One step later:
+    Expected: secuencia_completa=false  (pulse width = 1 step)
+
+TC-ES-010   Restart after completion
+  Scenario: sequence completes (etapa=0), then rising edge on arrancar
+  Expected: etapa_actual=1  (sequence restarts from stage 1)
+
+TC-ES-011   Progress clamped at 1.0 when sensor delays advance
+  Scenario: stage 1, temporizador=15s (> duracion_etapa), sensor=0.4
+  Expected: progreso_etapa=1.0  (min(1.0, 15/10) = 1.0)
+
+TC-ES-012   Stop and restart cycle
+  Scenario:
+    t=0:   arrancar → stage 1
+    t=5:   parar → idle
+    t=6:   arrancar → stage 1 (fresh start)
+  Expected at t=6+: etapa_actual=1, temporizador ≈ 0.0
+
+================================================================================
+  END OF ETAPASECUENCIADOR TESTS
+================================================================================

@@ -1,0 +1,23 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"CSPuro_SinME","description":"Purely algebraic Co-Simulation FMU \uffffffe2\uffffff80\uffffff94 no continuous states, no Model Exchange"},
+"variables":{
+"u1":{"comment":"First operand \uffffffe2\uffffff80\uffffff94 any real value","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":31,"lineEnd":33,"colStart":3,"colEnd":77}}},
+"u2":{"comment":"Second operand \uffffffe2\uffffff80\uffffff94 any real value","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":35,"lineEnd":37,"colStart":3,"colEnd":79}}},
+"y_prod":{"comment":"Product of both inputs: u1 * u2","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":44,"lineEnd":46,"colStart":3,"colEnd":76}}},
+"y_sum":{"comment":"Sum of both inputs: u1 + u2","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":40,"lineEnd":42,"colStart":3,"colEnd":75}}},
+"active":{"comment":"TRUE when u1 is strictly greater than u2","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":48,"lineEnd":50,"colStart":3,"colEnd":77}}},
+"u1":{"comment":"First operand \uffffffe2\uffffff80\uffffff94 any real value","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":31,"lineEnd":33,"colStart":3,"colEnd":77}}},
+"u2":{"comment":"Second operand \uffffffe2\uffffff80\uffffff94 any real value","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":35,"lineEnd":37,"colStart":3,"colEnd":79}}},
+"$outputAlias_active":{"comment":"TRUE when u1 is strictly greater than u2","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":48,"lineEnd":50,"colStart":3,"colEnd":77}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"tag":"alias","equation":[4],"section":"initial"},
+{"eqIndex":2,"tag":"alias","equation":[5],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[6],"section":"initial"},
+{"eqIndex":4,"section":"regular","tag":"assign","defines":["active"],"uses":["u1","u2"],"equation":["u1 > u2"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":57,"lineEnd":57,"colStart":3,"colEnd":19}}},
+{"eqIndex":5,"section":"regular","tag":"assign","defines":["y_prod"],"uses":["u1","u2"],"equation":["u1 * u2"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":56,"lineEnd":56,"colStart":3,"colEnd":19}}},
+{"eqIndex":6,"section":"regular","tag":"assign","defines":["y_sum"],"uses":["u1","u2"],"equation":["u1 + u2"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CS_Puro/CSPuro_SinME.mo","lineStart":55,"lineEnd":55,"colStart":3,"colEnd":19}}}
+],
+"functions":[
+]
+}

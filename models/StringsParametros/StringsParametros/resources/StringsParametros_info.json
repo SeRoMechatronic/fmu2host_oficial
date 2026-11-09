@@ -1,0 +1,15 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"StringsParametros","description":"String parameter stress test \uffffffe2\uffffff80\uffffff94 long strings, empty, unicode, special characters"},
+"variables":{
+"u":{"comment":"Numeric input \uffffffe2\uffffff80\uffffff94 output y will be u multiplied by len_nombre (=34)","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo","lineStart":52,"lineEnd":54,"colStart":3,"colEnd":78}}},
+"y":{"comment":"Numeric output: u * len_nombre \uffffffe2\uffffff80\uffffff94 verifies numeric path unaffected by String params","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo","lineStart":57,"lineEnd":59,"colStart":3,"colEnd":76}}},
+"u":{"comment":"Numeric input \uffffffe2\uffffff80\uffffff94 output y will be u multiplied by len_nombre (=34)","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo","lineStart":52,"lineEnd":54,"colStart":3,"colEnd":78}}},
+"len_nombre":{"comment":"Pre-computed character count of 'nombre' \uffffffe2\uffffff80\uffffff94 used to scale the numeric output","kind":"parameter","type":"Integer","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo","lineStart":48,"lineEnd":49,"colStart":3,"colEnd":84}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"tag":"alias","equation":[2],"section":"initial"},
+{"eqIndex":2,"section":"regular","tag":"assign","defines":["y"],"uses":["len_nombre","u"],"equation":["u * /*Real*/(len_nombre)"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo","lineStart":62,"lineEnd":62,"colStart":3,"colEnd":21}}}
+],
+"functions":[
+]
+}

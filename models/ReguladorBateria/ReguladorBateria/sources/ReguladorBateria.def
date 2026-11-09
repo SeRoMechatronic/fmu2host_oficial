@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  ReguladorBateria_fmiGetTypesPlatform @1
+  ReguladorBateria_fmiGetVersion @2
+  ReguladorBateria_fmiSetDebugLogging @3
+  ReguladorBateria_fmiInstantiate @4
+  ReguladorBateria_fmiFreeInstance @5
+  ReguladorBateria_fmiSetupExperiment @6
+  ReguladorBateria_fmiEnterInitializationMode @7
+  ReguladorBateria_fmiExitInitializationMode @8
+  ReguladorBateria_fmiTerminate @9
+  ReguladorBateria_fmiReset @10
+  ReguladorBateria_fmiGetReal @11
+  ReguladorBateria_fmiGetInteger @12
+  ReguladorBateria_fmiGetBoolean @13
+  ReguladorBateria_fmiGetString @14
+  ReguladorBateria_fmiSetReal @15
+  ReguladorBateria_fmiSetInteger @16
+  ReguladorBateria_fmiSetBoolean @17
+  ReguladorBateria_fmiSetString @18
+  ReguladorBateria_fmiGetFMUstate @19
+  ReguladorBateria_fmiSetFMUstate @20
+  ReguladorBateria_fmiFreeFMUstate @21
+  ReguladorBateria_fmiSerializedFMUstateSize @22
+  ReguladorBateria_fmiSerializeFMUstate @23
+  ReguladorBateria_fmiDeSerializeFMUstate @24
+  ReguladorBateria_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  ReguladorBateria_fmiEnterEventMode @26
+  ReguladorBateria_fmiNewDiscreteStates @27
+  ReguladorBateria_fmiEnterContinuousTimeMode @28
+  ReguladorBateria_fmiCompletedIntegratorStep @29
+  ReguladorBateria_fmiSetTime @30
+  ReguladorBateria_fmiSetContinuousStates @31
+  ReguladorBateria_fmiGetDerivatives @32
+  ReguladorBateria_fmiGetEventIndicators @33
+  ReguladorBateria_fmiGetContinuousStates @34
+  ReguladorBateria_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  ReguladorBateria_fmiSetRealInputDerivatives @36
+  ReguladorBateria_fmiGetRealOutputDerivatives @37
+  ReguladorBateria_fmiDoStep @38
+  ReguladorBateria_fmiCancelStep @39
+  ReguladorBateria_fmiGetStatus @40
+  ReguladorBateria_fmiGetRealStatus @41
+  ReguladorBateria_fmiGetIntegerStatus @42
+  ReguladorBateria_fmiGetBooleanStatus @43
+  ReguladorBateria_fmiGetStringStatus @44

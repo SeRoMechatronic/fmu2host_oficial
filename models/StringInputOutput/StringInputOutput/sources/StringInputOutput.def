@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  StringInputOutput_fmiGetTypesPlatform @1
+  StringInputOutput_fmiGetVersion @2
+  StringInputOutput_fmiSetDebugLogging @3
+  StringInputOutput_fmiInstantiate @4
+  StringInputOutput_fmiFreeInstance @5
+  StringInputOutput_fmiSetupExperiment @6
+  StringInputOutput_fmiEnterInitializationMode @7
+  StringInputOutput_fmiExitInitializationMode @8
+  StringInputOutput_fmiTerminate @9
+  StringInputOutput_fmiReset @10
+  StringInputOutput_fmiGetReal @11
+  StringInputOutput_fmiGetInteger @12
+  StringInputOutput_fmiGetBoolean @13
+  StringInputOutput_fmiGetString @14
+  StringInputOutput_fmiSetReal @15
+  StringInputOutput_fmiSetInteger @16
+  StringInputOutput_fmiSetBoolean @17
+  StringInputOutput_fmiSetString @18
+  StringInputOutput_fmiGetFMUstate @19
+  StringInputOutput_fmiSetFMUstate @20
+  StringInputOutput_fmiFreeFMUstate @21
+  StringInputOutput_fmiSerializedFMUstateSize @22
+  StringInputOutput_fmiSerializeFMUstate @23
+  StringInputOutput_fmiDeSerializeFMUstate @24
+  StringInputOutput_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  StringInputOutput_fmiEnterEventMode @26
+  StringInputOutput_fmiNewDiscreteStates @27
+  StringInputOutput_fmiEnterContinuousTimeMode @28
+  StringInputOutput_fmiCompletedIntegratorStep @29
+  StringInputOutput_fmiSetTime @30
+  StringInputOutput_fmiSetContinuousStates @31
+  StringInputOutput_fmiGetDerivatives @32
+  StringInputOutput_fmiGetEventIndicators @33
+  StringInputOutput_fmiGetContinuousStates @34
+  StringInputOutput_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  StringInputOutput_fmiSetRealInputDerivatives @36
+  StringInputOutput_fmiGetRealOutputDerivatives @37
+  StringInputOutput_fmiDoStep @38
+  StringInputOutput_fmiCancelStep @39
+  StringInputOutput_fmiGetStatus @40
+  StringInputOutput_fmiGetRealStatus @41
+  StringInputOutput_fmiGetIntegerStatus @42
+  StringInputOutput_fmiGetBooleanStatus @43
+  StringInputOutput_fmiGetStringStatus @44

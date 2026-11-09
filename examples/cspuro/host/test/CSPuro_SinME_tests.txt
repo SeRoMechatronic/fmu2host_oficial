@@ -1,0 +1,159 @@
+================================================================================
+  TEST BATTERY — CSPuro_SinME
+  Purely Algebraic Co-Simulation FMU (no continuous states)
+================================================================================
+
+OVERVIEW
+--------
+CSPuro_SinME is a zero-state, purely algebraic FMU intended for Co-Simulation
+export only. It takes two real inputs (u1, u2) and computes their sum, product,
+and a boolean comparison at every communication step.
+
+There are NO differential equations, NO continuous states, NO discrete states,
+and NO event indicators. The FMU simply evaluates three algebraic expressions
+inside doStep() and returns immediately.
+
+WHY THIS MODEL EXISTS
+---------------------
+A codegen tool that generates C code from FMUs must handle the Co-Simulation
+code path separately from Model Exchange. When there are no states to integrate,
+the generated doStep() loop must still:
+  - Accept the communication step (h)
+  - Call fmi2SetReal() for inputs
+  - Compute algebraic outputs
+  - Call fmi2GetReal() / fmi2GetBoolean() for outputs
+  - Return fmi2OK
+
+This model verifies that the codegen does not crash, emit empty loops, or skip
+output evaluation when the state vector has size 0.
+
+FMU INTERFACE
+-------------
+  Inputs:
+    u1     (Real)    — first operand, any real value
+    u2     (Real)    — second operand, any real value
+
+  Outputs:
+    y_sum  (Real)    — u1 + u2
+    y_prod (Real)    — u1 * u2
+    active (Boolean) — TRUE if u1 > u2, FALSE otherwise
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. Open CSPuro_SinME.mo in OpenModelica
+  2. Run: checkModel(CSPuro_SinME)  — must report 0 errors
+  3. Export: buildModelFMU(CSPuro_SinME, version="2.0", fmuType="cs")
+  4. Verify the .fmu archive contains modelDescription.xml with
+     fmiVersion="2.0" and fmuKind="CoSimulation"
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-CS-001 — Basic positive values
+--------------------------------------
+  Input:   u1 = 3.0,   u2 = 2.0
+  Expected:
+    y_sum  = 5.0
+    y_prod = 6.0
+    active = TRUE
+  Rationale: Nominal case, u1 > u2.
+
+TEST-CS-002 — Equal values
+-------------------------------
+  Input:   u1 = 5.0,   u2 = 5.0
+  Expected:
+    y_sum  = 10.0
+    y_prod = 25.0
+    active = FALSE
+  Rationale: Boundary condition — u1 == u2, active must be FALSE (strict >).
+
+TEST-CS-003 — u1 < u2
+-----------------------
+  Input:   u1 = 1.0,   u2 = 4.0
+  Expected:
+    y_sum  = 5.0
+    y_prod = 4.0
+    active = FALSE
+  Rationale: Verifies active=FALSE when u2 dominates.
+
+TEST-CS-004 — Negative inputs
+-------------------------------
+  Input:   u1 = -3.0,  u2 = -1.0
+  Expected:
+    y_sum  = -4.0
+    y_prod = 3.0
+    active = FALSE   (−3 < −1)
+  Rationale: Sign handling — product of two negatives is positive.
+
+TEST-CS-005 — Zero inputs
+--------------------------
+  Input:   u1 = 0.0,   u2 = 0.0
+  Expected:
+    y_sum  = 0.0
+    y_prod = 0.0
+    active = FALSE
+  Rationale: All-zero inputs, verifies no division-by-zero or NaN.
+
+TEST-CS-006 — Large values
+---------------------------
+  Input:   u1 = 1.0e6,  u2 = 1.0e6
+  Expected:
+    y_sum  = 2.0e6
+    y_prod = 1.0e12
+    active = FALSE
+  Rationale: Overflow / precision stress with large magnitudes.
+
+TEST-CS-007 — Mixed sign, u1 negative
+---------------------------------------
+  Input:   u1 = -2.0,  u2 = 3.0
+  Expected:
+    y_sum  = 1.0
+    y_prod = -6.0
+    active = FALSE
+  Rationale: Product of opposite signs must be negative.
+
+TEST-CS-008 — Step change mid-simulation
+-----------------------------------------
+  Time sequence:
+    t=0.0 : u1=1.0, u2=2.0  → y_sum=3.0, y_prod=2.0, active=FALSE
+    t=0.5 : u1=5.0, u2=2.0  → y_sum=7.0, y_prod=10.0, active=TRUE
+    t=1.0 : u1=2.0, u2=2.0  → y_sum=4.0, y_prod=4.0,  active=FALSE
+  Rationale: Verifies that doStep() correctly re-evaluates outputs at each
+             communication point after an input change.
+
+TEST-CS-009 — Very small values (near machine epsilon)
+-------------------------------------------------------
+  Input:   u1 = 1.0e-15,  u2 = 1.0e-15
+  Expected:
+    y_sum  ≈ 2.0e-15
+    y_prod ≈ 1.0e-30
+    active = FALSE
+  Rationale: Tests floating-point handling near zero.
+
+TEST-CS-010 — Codegen structural check
+----------------------------------------
+  This is not a numerical test but a code inspection check.
+  After codegen, verify the generated main.c or equivalent contains:
+    [ ] A doStep() function (not fmi2DoStep directly)
+    [ ] fmi2SetReal called before output evaluation
+    [ ] fmi2GetReal and fmi2GetBoolean called for outputs
+    [ ] No getContinuousStates() or setContinuousStates() calls
+    [ ] No ODE solver loop (Euler, RK4, etc.)
+  Rationale: Confirms that the CS-only path was taken by the codegen.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  All Real comparisons: absolute tolerance = 1e-9
+  Boolean comparisons: exact match required
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Simulate for t_end = 1.0 s, step h = 0.1 s (step size is irrelevant
+    for algebraic models but must be accepted without error)
+  - Each test case can be run as an independent fmi2DoStep call
+  - The FMU must return fmi2OK on every doStep regardless of input values
+  - No event handling is expected (no zero-crossings)
+================================================================================

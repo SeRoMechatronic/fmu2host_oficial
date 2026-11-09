@@ -1,0 +1,19 @@
+
+<h1>PotVumetro</h1>
+<p> <i>5-LED VU meter driven by a potentiometer — FMI 2.0 ME compatible</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>PotVumetro</h3>
+      <p>5-LED VU meter model driven by a single normalized potentiometer input.</p>
+      <p>Each LED activates when the input crosses its fixed threshold.
+         The model is purely algebraic (zero continuous states) and is fully
+         compliant with FMI 2.0 Model Exchange and fmi-c-embedded.</p>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Output</th><th>Color</th><th>Threshold</th></tr>
+        <tr><td>led1</td><td>Green</td><td>pot &ge; 0.20</td></tr>
+        <tr><td>led2</td><td>Green</td><td>pot &ge; 0.40</td></tr>
+        <tr><td>led3</td><td>Yellow</td><td>pot &ge; 0.60</td></tr>
+        <tr><td>led4</td><td>Orange</td><td>pot &ge; 0.80</td></tr>
+        <tr><td>led5</td><td>Red</td><td>pot &ge; 1.00</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

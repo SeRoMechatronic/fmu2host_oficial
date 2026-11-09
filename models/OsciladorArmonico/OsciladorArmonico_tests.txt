@@ -1,0 +1,179 @@
+================================================================================
+  TEST BATTERY — OsciladorArmonico
+  Undamped Harmonic Oscillator — Integration Quality / Energy Conservation
+================================================================================
+
+OVERVIEW
+--------
+OsciladorArmonico is a purely undamped harmonic oscillator. It has no friction,
+no energy dissipation, and no external forcing. In the exact (analytical)
+solution, the total mechanical energy is perfectly constant for all time.
+
+This property makes it an ideal benchmark for the NUMERICAL INTEGRATOR used
+by the codegen tool. Any integrator that is not symplectic (energy-preserving)
+will either gain or lose energy over time — and this drift is directly
+observable in the 'energia' output.
+
+WHY THIS MODEL EXISTS
+---------------------
+The codegen tool generates a main.c that includes a numerical ODE solver.
+This model verifies:
+  1. Whether the solver conserves energy (RK4 does well; Euler does not)
+  2. Whether the solver can run for many oscillation cycles without diverging
+  3. Whether the 'posicion' output matches the known analytical solution
+
+PHYSICS
+-------
+ODE: x'' + ω²·x = 0
+Split: dx/dt = v,   dv/dt = -ω²·x
+Initial conditions: x(0) = 1.0 m,  v(0) = 0.0 m/s
+Parameter: omega = 2π rad/s (one cycle per second)
+
+Exact solution:
+  x(t)   = cos(ω·t)
+  v(t)   = -ω·sin(ω·t)
+  E(t)   = 0.5·v² + 0.5·ω²·x² = 0.5·ω² ≈ 19.739 J  (constant)
+
+Key quantities:
+  Period: T = 2π/ω = 1.0 s
+  Initial energy: E₀ = 0.5·(2π)² ≈ 19.739 J
+
+FMU INTERFACE
+-------------
+  Inputs:   NONE
+
+  Outputs:
+    posicion  (Real) — displacement x(t) [m],  exact: cos(2π·t)
+    velocidad (Real) — velocity v(t) [m/s],    exact: -2π·sin(2π·t)
+    energia   (Real) — total energy [J],       exact: 19.739 (constant)
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(OsciladorArmonico) — expect 2 states, 0 inputs
+  2. buildModelFMU(OsciladorArmonico, version="2.0", fmuType="me")
+  3. Run codegen on the FMU — generate main.c with both Euler and RK4
+  4. Simulate both and compare energia drift over 50 seconds
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-OA-001 — Initial conditions check (t = 0)
+------------------------------------------------
+  Expected:
+    posicion  = 1.0          (= x0 = cos(0))
+    velocidad = 0.0          (= v0 = -2π·sin(0))
+    energia   ≈ 19.739       (= 0.5·(2π)²)
+  Tolerance: ±1e-6
+  Rationale: Verifies initialization is correct before any integration step.
+
+TEST-OA-002 — Analytical match at t = 0.25 s (quarter period)
+---------------------------------------------------------------
+  At t = 0.25 s = T/4:
+    x(0.25)  = cos(2π·0.25) = cos(π/2) = 0.0
+    v(0.25)  = -2π·sin(π/2) = -2π ≈ -6.283
+    E(0.25)  ≈ 19.739 (unchanged)
+  Expected:
+    posicion  ≈  0.0    (tolerance ±0.01)
+    velocidad ≈ -6.283  (tolerance ±0.05)
+    energia   ≈ 19.739  (tolerance ±0.1)
+  Rationale: Cross-check against analytical solution at a known point.
+
+TEST-OA-003 — Analytical match at t = 0.5 s (half period)
+-----------------------------------------------------------
+  At t = 0.5 s = T/2:
+    x(0.5)  = cos(π) = -1.0
+    v(0.5)  = -2π·sin(π) = 0.0
+    E(0.5)  ≈ 19.739
+  Expected:
+    posicion  ≈ -1.0   (tolerance ±0.01)
+    velocidad ≈  0.0   (tolerance ±0.05)
+    energia   ≈ 19.739 (tolerance ±0.1)
+  Rationale: Position returns to -amplitude at half period.
+
+TEST-OA-004 — Analytical match at t = 1.0 s (full period)
+-----------------------------------------------------------
+  At t = 1.0 s = T:
+    x(1.0) = cos(2π) = 1.0
+    v(1.0) = -2π·sin(2π) = 0.0
+  Expected:
+    posicion  ≈ 1.0    (tolerance ±0.02)
+    velocidad ≈ 0.0    (tolerance ±0.1)
+    energia   ≈ 19.739 (tolerance ±0.2)
+  Rationale: System must return to initial state after exactly one period.
+
+TEST-OA-005 — Energy conservation over 20 cycles
+--------------------------------------------------
+  Simulate: t_end = 20.0 s, h = 0.01 s (step = T/100)
+  At every output point, compute energy drift: ΔE = energia - 19.739
+  Expected with RK4:
+    max |ΔE| < 0.05 J  (< 0.25% relative error)
+  Expected with Euler:
+    energia at t=20 > 20.5 J  (Euler adds energy — drift > 3%)
+  Rationale: PRIMARY TEST. This is the observable difference between
+             integrators. RK4 passes; Euler fails.
+
+TEST-OA-006 — Energy drift over 100 cycles
+--------------------------------------------
+  Simulate: t_end = 100.0 s, h = 0.01 s
+  Expected with RK4:
+    max |ΔE| < 0.5 J   (< 2.5% relative error over 100 cycles)
+  Expected with Euler:
+    energia at t=100 >> 30 J  (catastrophic drift)
+  Rationale: Long-term stability check. RK4 degrades slowly; Euler diverges.
+
+TEST-OA-007 — Position stays bounded
+--------------------------------------
+  Simulate: t_end = 50.0 s, h = 0.01 s
+  Expected with RK4:
+    |posicion| ≤ 1.5 at all times  (slight growth due to RK4 error is OK)
+  Expected with Euler:
+    |posicion| > 3.0 at some point before t=50 (unbounded amplitude growth)
+  Rationale: Amplitude growth directly visible in the position output.
+
+TEST-OA-008 — Velocity extrema match theory
+---------------------------------------------
+  At every zero-crossing of posicion, |velocidad| should be ≈ ω = 2π ≈ 6.283
+  Check: for all t where |posicion| < 0.05, verify |velocidad| ≈ 6.283 ± 0.3
+  Rationale: Kinetic energy is maximum at x=0 — energy is fully kinetic.
+
+TEST-OA-009 — Small step size comparison
+------------------------------------------
+  Run two simulations with RK4:
+    Sim A: h = 0.01 s
+    Sim B: h = 0.001 s
+  At t = 10.0 s, compare energia:
+    |energia_A - energia_B| < 0.001 J
+  Rationale: Verifies RK4 convergence — smaller step produces better result.
+
+TEST-OA-010 — Codegen structural check
+----------------------------------------
+  After codegen with RK4, inspect generated C source for:
+    [ ] 4 derivative evaluations per step (k1, k2, k3, k4 in RK4)
+    [ ] State vector of size 2 (x and v)
+    [ ] No fmi2Set* calls in step loop (zero inputs)
+    [ ] fmi2GetReal called 3 times after each step
+    [ ] RK4_BUF_SIZE or equivalent constant ≥ 2
+  Rationale: Structural audit that RK4 was correctly generated for this FMU.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  Initial conditions:       absolute tolerance = 1e-6
+  Analytical cross-checks:  position tolerance = ±0.02 m
+                            velocity tolerance = ±0.1 m/s
+                            energy tolerance   = ±0.2 J
+  Energy conservation (RK4): max drift < 0.05 J over 20 cycles
+  Energy drift (Euler):       must drift > 0.8 J over 20 cycles (to confirm
+                              that the test correctly distinguishes integrators)
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - This test MUST be run with BOTH Euler and RK4 to be meaningful
+  - Record energia at every output step; compute drift = max(energia) - min(energia)
+  - RK4 pass criteria:   drift < 0.05 J over 20 s
+  - Euler fail criteria: drift > 0.8 J over 20 s (confirms test is discriminating)
+  - If both Euler and RK4 give drift < 0.05 J, the step size is too small
+    (both look good) — increase h to 0.05 s and re-run
+================================================================================

@@ -1,0 +1,183 @@
+================================================================================
+  ArranqueSuaveMotor — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+ArranqueSuaveMotor is a soft-start motor controller with 3 continuous states:
+  - rampa            (voltage ramp, tau = 3.0 s)
+  - tension_filtrada (PT1 filter, tau = 0.5 s)
+  - tiempo_sobrecarga (overload integrator with exponential decay tau = 0.5 s)
+
+All states start at 0.0.
+
+INPUTS
+------
+  orden_arranque  Boolean           Start (true) / Stop (false) command.
+  carga_motor     Real [0.0, 1.0]   Normalized motor load.
+
+OUTPUTS
+-------
+  tension_aplicada  Real [0.0, 1.0]   Applied voltage after ramp + PT1.
+  motor_en_marcha   Boolean           orden_arranque AND tension_filtrada > 0.90
+  fallo_sobrecarga  Boolean           tiempo_sobrecarga > 2.0
+  en_rampa          Boolean           orden_arranque AND tension < 0.90 AND no fault
+
+INTERNAL DYNAMICS
+-----------------
+  referencia_rampa  = 1.0 if orden_arranque else 0.0
+  der(rampa)        = (referencia_rampa - rampa) / 3.0
+  der(tension_filt) = (rampa - tension_filtrada) / 0.5
+  tension_aplicada  = clamp(tension_filtrada, 0.0, 1.0)
+
+  Overload integrator:
+    der(tiempo_sob)   = 1.0   if carga_motor > 0.9
+                      = -tiempo_sobrecarga / 0.5  otherwise
+
+TIMING REFERENCE (no overload, step start at t=0)
+--------------------------------------------------
+  At t ≈ 3.0 s:  rampa ≈ 0.63,  tension_filtrada ≈ 0.62  → en_rampa=true
+  At t ≈ 9.0 s:  rampa ≈ 0.95,  tension_filtrada ≈ 0.95  → motor_en_marcha=true
+  At t ≈ 12.0 s: rampa ≈ 0.98,  tension_filtrada ≈ 0.98
+
+PARAMETERS
+----------
+  tau_rampa        = 3.0   Ramp time constant (s)
+  tau_pt1          = 0.5   PT1 filter time constant (s)
+  umbral_sobrecarga= 0.9   Overload threshold
+  t_retardo        = 2.0   Overload fault delay (s)
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+--------------------------------------------------------------------------------
+TC-ASM-001   No start command — all outputs inactive at t=0
+--------------------------------------------------------------------------------
+  Initial states: rampa=0, tension_filtrada=0, tiempo_sobrecarga=0
+  Inputs:         orden_arranque=false, carga_motor=0.0
+  Simulation:     t=0
+  Expected:
+    tension_aplicada = 0.0
+    motor_en_marcha  = false
+    fallo_sobrecarga = false
+    en_rampa         = false
+  Purpose: Verify idle state — nothing active before start command.
+
+--------------------------------------------------------------------------------
+TC-ASM-002   Start command given — en_rampa activates immediately
+--------------------------------------------------------------------------------
+  Initial states: all = 0.0
+  Inputs:         orden_arranque=true, carga_motor=0.0
+  Simulation:     run for 0.1 s, sample at t=0.1
+  Expected:
+    tension_aplicada > 0.0   (ramp has started)
+    en_rampa         = true
+    motor_en_marcha  = false  (< 90% yet)
+    fallo_sobrecarga = false
+  Purpose: Verify that en_rampa activates at the beginning of start sequence.
+
+--------------------------------------------------------------------------------
+TC-ASM-003   Motor fully started — 95% threshold crossed
+--------------------------------------------------------------------------------
+  Initial states: all = 0.0
+  Inputs:         orden_arranque=true, carga_motor=0.0
+  Simulation:     run for 12.0 s, sample at t=12.0
+  Expected:
+    tension_aplicada > 0.90
+    motor_en_marcha  = true
+    en_rampa         = false
+    fallo_sobrecarga = false
+  Purpose: Verify motor_en_marcha activates after ramp completes (~9-10 s).
+
+--------------------------------------------------------------------------------
+TC-ASM-004   Stop command — tension ramps back down
+--------------------------------------------------------------------------------
+  Scenario:
+    t=0..10: orden_arranque=true  (motor started)
+    t=10+:   orden_arranque=false (stop)
+  Sample at t=13 (3 s after stop, 1 ramp time constant):
+    Expected: tension_aplicada < 0.38  (decaying: 1 - e^-1 ≈ 0.63 drop)
+    motor_en_marcha = false  (orden_arranque is false)
+    en_rampa        = false  (orden_arranque is false)
+  Purpose: Verify soft-stop ramp behavior.
+
+--------------------------------------------------------------------------------
+TC-ASM-005   Brief overload spike — fault does NOT fire
+--------------------------------------------------------------------------------
+  Initial states: all = 0.0
+  Scenario:
+    t=0..10:    orden_arranque=true, carga_motor=0.0   (normal start)
+    t=10..11:   carga_motor=0.95   (1 second overload)
+    t=11+:      carga_motor=0.0   (back to normal)
+  Sample at t=12:
+    Expected:
+      tiempo_sobrecarga ≈ 0  (has decayed after load removed)
+      fallo_sobrecarga = false  (overload lasted < t_retardo=2.0 s)
+  Purpose: Verify that a 1-second overload does NOT trip the fault.
+
+--------------------------------------------------------------------------------
+TC-ASM-006   Sustained overload — fault fires after t_retardo
+--------------------------------------------------------------------------------
+  Initial states: all = 0.0
+  Scenario:
+    t=0..10:   orden_arranque=true, carga_motor=0.0
+    t=10+:     carga_motor=0.95  (sustained)
+  Sample at t=12 (2 seconds of overload):
+    Expected:
+      tiempo_sobrecarga ≈ 2.0
+      fallo_sobrecarga = true
+      en_rampa         = false  (fault suppresses en_rampa)
+  Purpose: Verify that a 2-second sustained overload trips the fault.
+
+--------------------------------------------------------------------------------
+TC-ASM-007   Overload exactly at threshold — no fault
+--------------------------------------------------------------------------------
+  Initial states: tiempo_sobrecarga = 0.0
+  Inputs:         orden_arranque=true, carga_motor=0.90  (exactly at threshold)
+  Simulation:     t=0
+  Expected:
+    der(tiempo_sobrecarga) = 0.0  (condition is >, not >=)
+    fallo_sobrecarga = false
+  Purpose: Verify boundary condition — threshold is strict greater-than.
+
+--------------------------------------------------------------------------------
+TC-ASM-008   Overload just above threshold — accumulator rising
+--------------------------------------------------------------------------------
+  Initial states: tiempo_sobrecarga = 0.0
+  Inputs:         orden_arranque=true, carga_motor=0.91
+  Simulation:     t=0
+  Expected:
+    der(tiempo_sobrecarga) = 1.0  (accumulating)
+    fallo_sobrecarga = false  (not yet exceeded t_retardo)
+  Purpose: Verify accumulator starts rising just above threshold.
+
+--------------------------------------------------------------------------------
+TC-ASM-009   Ramp timing verification at 1 time constant
+--------------------------------------------------------------------------------
+  Initial states: rampa=0, tension_filtrada=0
+  Inputs:         orden_arranque=true, carga_motor=0.0
+  Simulation:     run for 3.0 s (= 1 * tau_rampa), sample at t=3.0
+  Expected:
+    rampa            ≈ 0.632  (1 - e^-1)
+    tension_filtrada ≈ 0.632  (PT1 closely tracks ramp since tau_pt1 << tau_rampa)
+    en_rampa         = true
+    motor_en_marcha  = false
+  Purpose: Verify ramp dynamics match theoretical first-order response.
+
+--------------------------------------------------------------------------------
+TC-ASM-010   Stop during ramp — en_rampa deactivates immediately
+--------------------------------------------------------------------------------
+  Scenario:
+    t=0..2:  orden_arranque=true   (ramping up)
+    t=2+:    orden_arranque=false  (stop mid-ramp)
+  Sample at t=2+ (just after stop):
+    Expected:
+      en_rampa        = false  (orden_arranque=false disables it)
+      motor_en_marcha = false
+      tension_aplicada > 0.0  (still decaying — filter has memory)
+  Purpose: Verify en_rampa deactivates immediately when stop is commanded.
+
+================================================================================
+  END OF TEST BATTERY
+================================================================================

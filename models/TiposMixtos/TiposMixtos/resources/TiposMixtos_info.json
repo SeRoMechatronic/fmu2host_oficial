@@ -1,0 +1,29 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"TiposMixtos","description":"Mixed-type FMU \uffffffe2\uffffff80\uffffff94 Real, Integer, Boolean inputs and outputs with String parameters"},
+"variables":{
+"r_abs":{"comment":"Absolute value of r_in \uffffffe2\uffffff80\uffffff94 always >= 0","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":59,"lineEnd":61,"colStart":3,"colEnd":77}}},
+"r_in":{"comment":"Real input \uffffffe2\uffffff80\uffffff94 any value; output will be r_in * 2.0","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":34,"lineEnd":36,"colStart":3,"colEnd":77}}},
+"r_out":{"comment":"r_in multiplied by 2.0","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":47,"lineEnd":49,"colStart":3,"colEnd":75}}},
+"i_in":{"comment":"Integer input \uffffffe2\uffffff80\uffffff94 output will be i_in + 1","kind":"variable","type":"Integer","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":38,"lineEnd":40,"colStart":3,"colEnd":78}}},
+"i_out":{"comment":"i_in incremented by 1","kind":"discrete","type":"Integer","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":51,"lineEnd":53,"colStart":3,"colEnd":75}}},
+"b_in":{"comment":"Boolean input \uffffffe2\uffffff80\uffffff94 output will be NOT b_in","kind":"variable","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":42,"lineEnd":44,"colStart":3,"colEnd":79}}},
+"b_out":{"comment":"Logical negation of b_in","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":55,"lineEnd":57,"colStart":3,"colEnd":77}}},
+"b_in":{"comment":"Boolean input \uffffffe2\uffffff80\uffffff94 output will be NOT b_in","kind":"variable","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":42,"lineEnd":44,"colStart":3,"colEnd":79}}},
+"i_in":{"comment":"Integer input \uffffffe2\uffffff80\uffffff94 output will be i_in + 1","kind":"variable","type":"Integer","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":38,"lineEnd":40,"colStart":3,"colEnd":78}}},
+"r_in":{"comment":"Real input \uffffffe2\uffffff80\uffffff94 any value; output will be r_in * 2.0","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":34,"lineEnd":36,"colStart":3,"colEnd":77}}},
+"$outputAlias_i_out":{"comment":"i_in incremented by 1","kind":"discrete","type":"Integer","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":51,"lineEnd":53,"colStart":3,"colEnd":75}}},
+"$outputAlias_b_out":{"comment":"Logical negation of b_in","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":55,"lineEnd":57,"colStart":3,"colEnd":77}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"tag":"alias","equation":[8],"section":"initial"},
+{"eqIndex":2,"tag":"alias","equation":[7],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[6],"section":"initial"},
+{"eqIndex":4,"tag":"alias","equation":[5],"section":"initial"},
+{"eqIndex":5,"section":"regular","tag":"assign","defines":["r_out"],"uses":["r_in"],"equation":["2.0 * r_in"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":65,"lineEnd":65,"colStart":3,"colEnd":21}}},
+{"eqIndex":6,"section":"regular","tag":"assign","defines":["i_out"],"uses":["i_in"],"equation":["1 + i_in"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":66,"lineEnd":66,"colStart":3,"colEnd":19}}},
+{"eqIndex":7,"section":"regular","tag":"assign","defines":["b_out"],"uses":["b_in"],"equation":["not b_in"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":8,"section":"regular","tag":"assign","defines":["r_abs"],"uses":["r_in"],"equation":["abs(r_in)"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/TiposMixtos/TiposMixtos.mo","lineStart":68,"lineEnd":68,"colStart":3,"colEnd":20}}}
+],
+"functions":[
+]
+}

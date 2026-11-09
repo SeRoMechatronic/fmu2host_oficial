@@ -1,0 +1,172 @@
+================================================================================
+  TEST BATTERY — TiposMixtos
+  All Four FMI 2.0 Base Types: Real, Integer, Boolean, String
+================================================================================
+
+OVERVIEW
+--------
+TiposMixtos is a purely algebraic FMU that uses all four variable types defined
+in FMI 2.0: Real, Integer, Boolean, and String. There are no continuous states,
+no differential equations, and no events. Every output is a direct function of
+the inputs and can be verified by hand arithmetic.
+
+WHY THIS MODEL EXISTS
+---------------------
+A codegen tool must generate fmi2Set*/fmi2Get* call sites for each type
+separately. The four types require different C handling:
+  - Real    → double / fmi2Real
+  - Integer → int    / fmi2Integer
+  - Boolean → int    / fmi2Boolean  (0 or 1 in FMI 2.0)
+  - String  → char*  / fmi2String   (read once at init for parameters)
+
+This model confirms all four paths are present and correct in the generated
+main.c, and that Integer and Boolean outputs are not accidentally treated as
+Real (type confusion is a common codegen bug).
+
+FMU INTERFACE
+-------------
+  String Parameters (read at initialization, not in step loop):
+    etiqueta = "sensor_principal"
+    unidad   = "m/s"
+
+  Inputs:
+    r_in (Real)    — any real number
+    i_in (Integer) — any integer
+    b_in (Boolean) — TRUE or FALSE
+
+  Outputs:
+    r_out (Real)    — r_in * 2.0
+    i_out (Integer) — i_in + 1
+    b_out (Boolean) — NOT b_in
+    r_abs (Real)    — abs(r_in), always ≥ 0
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(TiposMixtos) — expect 0 states, 3 inputs, 4 outputs
+  2. buildModelFMU(TiposMixtos, version="2.0", fmuType="me")
+  3. Verify modelDescription.xml contains:
+       - 2 String parameters (etiqueta, unidad)
+       - 1 Real input, 1 Integer input, 1 Boolean input
+       - 2 Real outputs, 1 Integer output, 1 Boolean output
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-TM-001 — Nominal positive values
+---------------------------------------
+  Input:  r_in=3.0,  i_in=5,   b_in=TRUE
+  Expected:
+    r_out = 6.0
+    i_out = 6
+    b_out = FALSE
+    r_abs = 3.0
+  Rationale: Basic nominal case with all types active.
+
+TEST-TM-002 — Negative real, zero integer, false boolean
+----------------------------------------------------------
+  Input:  r_in=-4.5,  i_in=0,  b_in=FALSE
+  Expected:
+    r_out = -9.0
+    i_out = 1
+    b_out = TRUE
+    r_abs = 4.5
+  Rationale: Negative real (r_abs must be positive), zero integer,
+             boolean negation from FALSE to TRUE.
+
+TEST-TM-003 — Zero real input
+--------------------------------
+  Input:  r_in=0.0,  i_in=10,  b_in=TRUE
+  Expected:
+    r_out = 0.0
+    i_out = 11
+    b_out = FALSE
+    r_abs = 0.0
+  Rationale: Zero is its own absolute value; r_out must also be 0.
+
+TEST-TM-004 — Negative integer
+--------------------------------
+  Input:  r_in=1.0,  i_in=-7,  b_in=FALSE
+  Expected:
+    r_out = 2.0
+    i_out = -6
+    b_out = TRUE
+    r_abs = 1.0
+  Rationale: Integer increment works correctly for negative values.
+
+TEST-TM-005 — Large real value
+--------------------------------
+  Input:  r_in=1.0e8,  i_in=999,  b_in=TRUE
+  Expected:
+    r_out = 2.0e8
+    i_out = 1000
+    b_out = FALSE
+    r_abs = 1.0e8
+  Rationale: Large magnitudes — no overflow in double arithmetic.
+
+TEST-TM-006 — Very small real (near machine epsilon)
+------------------------------------------------------
+  Input:  r_in=1.0e-15,  i_in=0,  b_in=FALSE
+  Expected:
+    r_out ≈ 2.0e-15
+    i_out = 1
+    b_out = TRUE
+    r_abs ≈ 1.0e-15
+  Rationale: Near-zero Real values must not be flushed to zero.
+
+TEST-TM-007 — Integer at typical boundary
+-------------------------------------------
+  Input:  r_in=0.0,  i_in=2147483646,  b_in=FALSE
+  Expected:
+    i_out = 2147483647  (INT32_MAX)
+  Note: Do NOT test i_in = INT32_MAX (overflow undefined in C)
+  Rationale: Near-maximum integer value.
+
+TEST-TM-008 — Boolean double-negation
+---------------------------------------
+  Step 1: b_in=TRUE  → b_out=FALSE
+  Step 2: b_in=FALSE → b_out=TRUE
+  Step 3: b_in=TRUE  → b_out=FALSE
+  Rationale: Three-step toggle sequence confirms boolean is not latched.
+
+TEST-TM-009 — Step changes across all types simultaneously
+------------------------------------------------------------
+  Time sequence:
+    t=0: r_in=1.0,  i_in=0,  b_in=TRUE  → r_out=2.0, i_out=1, b_out=FALSE, r_abs=1.0
+    t=1: r_in=-2.0, i_in=5,  b_in=FALSE → r_out=-4.0,i_out=6, b_out=TRUE,  r_abs=2.0
+    t=2: r_in=0.0,  i_in=-1, b_in=TRUE  → r_out=0.0, i_out=0, b_out=FALSE, r_abs=0.0
+  Rationale: All three inputs change at the same step — verifies that
+             fmi2SetReal, fmi2SetInteger, fmi2SetBoolean are all called
+             before a single doStep/output evaluation.
+
+TEST-TM-010 — Codegen structural check
+----------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] fmi2SetReal called for r_in
+    [ ] fmi2SetInteger called for i_in
+    [ ] fmi2SetBoolean called for b_in
+    [ ] fmi2GetReal called for r_out and r_abs (2 calls)
+    [ ] fmi2GetInteger called for i_out
+    [ ] fmi2GetBoolean called for b_out
+    [ ] fmi2GetString or equivalent for etiqueta and unidad at init
+    [ ] Integer output NOT stored in a double variable
+    [ ] Boolean output NOT stored in a double variable
+  Rationale: Type confusion (int cast to double or vice versa) is a common
+             silent bug. This structural check catches it at the source level.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  Real comparisons:    absolute tolerance = 1e-9
+  Integer comparisons: exact match required (integers are exact)
+  Boolean comparisons: exact match required
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - This is a stateless model — each test case can run independently
+    as a single fmi2DoStep call with no prior simulation history
+  - No solver or integration is required — doStep just evaluates equations
+  - String parameters only need to be checked at initialization, not per step
+  - Run TEST-TM-010 as a static code analysis step (grep / AST check)
+================================================================================

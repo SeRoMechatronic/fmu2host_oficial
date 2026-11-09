@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="CodigoErrorDiagnostico"
+  guid="{5d9a5441-4697-4945-99cb-289a15bd1126}"
+  description="Priority-coded diagnostics for 3 analog channels — FMI 2.0 ME"
+  version=""
+  generationTool="OpenModelica Compiler OpenModelica v1.25.7 (64-bit)"
+  generationDateAndTime="2026-05-19T17:16:38Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="3">
+  <ModelExchange
+    modelIdentifier="CodigoErrorDiagnostico"
+    needsExecutionTool="false"
+    completedIntegratorStepNotNeeded="false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="CodigoErrorDiagnostico.c" />
+      <File name="CodigoErrorDiagnostico_functions.c" />
+      <File name="CodigoErrorDiagnostico_records.c" />
+      <File name="CodigoErrorDiagnostico_01exo.c" />
+      <File name="CodigoErrorDiagnostico_02nls.c" />
+      <File name="CodigoErrorDiagnostico_03lsy.c" />
+      <File name="CodigoErrorDiagnostico_04set.c" />
+      <File name="CodigoErrorDiagnostico_05evt.c" />
+      <File name="CodigoErrorDiagnostico_06inz.c" />
+      <File name="CodigoErrorDiagnostico_07dly.c" />
+      <File name="CodigoErrorDiagnostico_08bnd.c" />
+      <File name="CodigoErrorDiagnostico_09alg.c" />
+      <File name="CodigoErrorDiagnostico_10asr.c" />
+      <File name="CodigoErrorDiagnostico_11mix.c" />
+      <File name="CodigoErrorDiagnostico_12jac.c" />
+      <File name="CodigoErrorDiagnostico_13opt.c" />
+      <File name="CodigoErrorDiagnostico_14lnz.c" />
+      <File name="CodigoErrorDiagnostico_15syn.c" />
+      <File name="CodigoErrorDiagnostico_16dae.c" />
+      <File name="CodigoErrorDiagnostico_17inl.c" />
+      <File name="CodigoErrorDiagnostico_18spd.c" />
+      <File name="CodigoErrorDiagnostico_init_fmu.c" />
+      <File name="CodigoErrorDiagnostico_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </ModelExchange>
+  <CoSimulation
+    modelIdentifier="CodigoErrorDiagnostico"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="true"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="CodigoErrorDiagnostico.c" />
+      <File name="CodigoErrorDiagnostico_functions.c" />
+      <File name="CodigoErrorDiagnostico_records.c" />
+      <File name="CodigoErrorDiagnostico_01exo.c" />
+      <File name="CodigoErrorDiagnostico_02nls.c" />
+      <File name="CodigoErrorDiagnostico_03lsy.c" />
+      <File name="CodigoErrorDiagnostico_04set.c" />
+      <File name="CodigoErrorDiagnostico_05evt.c" />
+      <File name="CodigoErrorDiagnostico_06inz.c" />
+      <File name="CodigoErrorDiagnostico_07dly.c" />
+      <File name="CodigoErrorDiagnostico_08bnd.c" />
+      <File name="CodigoErrorDiagnostico_09alg.c" />
+      <File name="CodigoErrorDiagnostico_10asr.c" />
+      <File name="CodigoErrorDiagnostico_11mix.c" />
+      <File name="CodigoErrorDiagnostico_12jac.c" />
+      <File name="CodigoErrorDiagnostico_13opt.c" />
+      <File name="CodigoErrorDiagnostico_14lnz.c" />
+      <File name="CodigoErrorDiagnostico_15syn.c" />
+      <File name="CodigoErrorDiagnostico_16dae.c" />
+      <File name="CodigoErrorDiagnostico_17inl.c" />
+      <File name="CodigoErrorDiagnostico_18spd.c" />
+      <File name="CodigoErrorDiagnostico_init_fmu.c" />
+      <File name="CodigoErrorDiagnostico_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </CoSimulation>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="1.0" tolerance="1e-6" stepSize="0.002"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="factor_reduccion"
+    valueReference="0"
+    description="Power derating factor: 1.0=full, 0.75=25% cut, 0.5=50% cut, 0.0=stop"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="temperatura"
+    valueReference="1"
+    description="Normalized temperature [0,1]"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="tension"
+    valueReference="2"
+    description="Normalized supply voltage [0,1]"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="vibracion"
+    valueReference="3"
+    description="Normalized vibration level [0,1]"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="umbral_temperatura"
+    valueReference="4"
+    description="Over-temperature threshold (normalized). Above this → error code 101"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.85"/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="umbral_tension"
+    valueReference="5"
+    description="Under-voltage threshold (normalized). Below this → error code 202"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="umbral_vibracion"
+    valueReference="6"
+    description="Over-vibration threshold (normalized). Above this → error code 303"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.75"/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="_D_outputAlias_factor_reduccion"
+    valueReference="0"
+    description="Power derating factor: 1.0=full, 0.75=25% cut, 0.5=50% cut, 0.0=stop"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="codigo_error"
+    valueReference="0"
+    description="Error code: 0=OK, 101=Over-temp, 202=Under-volt, 303=Over-vibration"
+    variability="discrete"
+    causality="output"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="nivel_prioridad"
+    valueReference="1"
+    description="Priority level: 0=None, 1=Low, 2=Medium, 3=High"
+    variability="discrete"
+    causality="output"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="_D_outputAlias_codigo_error"
+    valueReference="0"
+    description="Error code: 0=OK, 101=Over-temp, 202=Under-volt, 303=Over-vibration"
+    variability="discrete"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="_D_outputAlias_nivel_prioridad"
+    valueReference="1"
+    description="Priority level: 0=None, 1=Low, 2=Medium, 3=High"
+    variability="discrete"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="parada_emergencia"
+    valueReference="0"
+    description="ON when nivel_prioridad &gt;= 3 — immediate shutdown required"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="_D_outputAlias_parada_emergencia"
+    valueReference="0"
+    description="ON when nivel_prioridad &gt;= 3 — immediate shutdown required"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="1" dependencies="2 3 4" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="9" dependencies="2 3 4" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="10" dependencies="2 3 4" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="13" dependencies="2 3 4" dependenciesKind="dependent dependent dependent" />
+    </Outputs>
+    <InitialUnknowns>
+      <Unknown index="1" dependencies="2 3 4 5 6 7" dependenciesKind="dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="9" dependencies="2 3 4 5 6 7" dependenciesKind="dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="10" dependencies="2 3 4 5 6 7" dependenciesKind="dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="13" dependencies="2 3 4 5 6 7" dependenciesKind="dependent dependent dependent dependent dependent dependent" />
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

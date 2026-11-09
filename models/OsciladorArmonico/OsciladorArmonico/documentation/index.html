@@ -1,0 +1,16 @@
+
+<h1>OsciladorArmonico</h1>
+<p> <i>Undamped harmonic oscillator — energy conservation reveals integrator quality</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>OsciladorArmonico — Undamped Harmonic Oscillator</h3>
+      <p>Classic undamped oscillator. The total mechanical energy <b>must be
+         conserved</b> for all time (no damping).</p>
+      <p>This model is an integration quality benchmark: Euler adds energy
+         artificially (amplitude grows), while RK4 conserves it accurately.</p>
+      <h4>Exact solution</h4>
+      <p>x(t) = cos(ω·t),  E(t) = 0.5·ω² ≈ 19.739 J (constant)</p>
+      <h4>Key observable</h4>
+      <p>Plot <code>energia</code> over 50+ seconds. With Euler (h=0.01):
+         energy drifts upward. With RK4 (h=0.01): energy stays flat.</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

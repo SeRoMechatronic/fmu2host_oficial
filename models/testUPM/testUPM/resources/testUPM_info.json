@@ -1,0 +1,31 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"testUPM","description":"Vumetro de 5 LEDs controlado por potenciometro (0..1). FMI 2.0 ME compatible."},
+"variables":{
+"pot":{"comment":"Se\uffffffc3\uffffffb1al del potenci\uffffffc3\uffffffb3metro, rango normalizado 0.0 a 1.0","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":4,"lineEnd":5,"colStart":3,"colEnd":67}}},
+"led1":{"comment":"LED 1 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.2","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":7,"lineEnd":8,"colStart":3,"colEnd":64}}},
+"led2":{"comment":"LED 2 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.4","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":9,"lineEnd":10,"colStart":3,"colEnd":64}}},
+"led3":{"comment":"LED 3 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.6","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":11,"lineEnd":12,"colStart":3,"colEnd":63}}},
+"led4":{"comment":"LED 4 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.8","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":13,"lineEnd":14,"colStart":3,"colEnd":66}}},
+"led5":{"comment":"LED 5 \uffffffe2\uffffff80\uffffff94 encendido solo si pot = 1.0 (al tope)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":15,"lineEnd":16,"colStart":3,"colEnd":66}}},
+"pot":{"comment":"Se\uffffffc3\uffffffb1al del potenci\uffffffc3\uffffffb3metro, rango normalizado 0.0 a 1.0","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":4,"lineEnd":5,"colStart":3,"colEnd":67}}},
+"$outputAlias_led1":{"comment":"LED 1 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.2","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":7,"lineEnd":8,"colStart":3,"colEnd":64}}},
+"$outputAlias_led2":{"comment":"LED 2 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.4","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":9,"lineEnd":10,"colStart":3,"colEnd":64}}},
+"$outputAlias_led3":{"comment":"LED 3 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.6","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":11,"lineEnd":12,"colStart":3,"colEnd":63}}},
+"$outputAlias_led4":{"comment":"LED 4 \uffffffe2\uffffff80\uffffff94 encendido si pot >= 0.8","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":13,"lineEnd":14,"colStart":3,"colEnd":66}}},
+"$outputAlias_led5":{"comment":"LED 5 \uffffffe2\uffffff80\uffffff94 encendido solo si pot = 1.0 (al tope)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"testUPM","lineStart":15,"lineEnd":16,"colStart":3,"colEnd":66}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"tag":"alias","equation":[6],"section":"initial"},
+{"eqIndex":2,"tag":"alias","equation":[7],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[8],"section":"initial"},
+{"eqIndex":4,"tag":"alias","equation":[9],"section":"initial"},
+{"eqIndex":5,"tag":"alias","equation":[10],"section":"initial"},
+{"eqIndex":6,"section":"regular","tag":"assign","defines":["led5"],"uses":["pot"],"equation":["pot >= 1.0"],"source":{"info":{"file":"testUPM","lineStart":25,"lineEnd":25,"colStart":3,"colEnd":20}}},
+{"eqIndex":7,"section":"regular","tag":"assign","defines":["led4"],"uses":["pot"],"equation":["pot >= 0.8"],"source":{"info":{"file":"testUPM","lineStart":24,"lineEnd":24,"colStart":3,"colEnd":20}}},
+{"eqIndex":8,"section":"regular","tag":"assign","defines":["led3"],"uses":["pot"],"equation":["pot >= 0.6"],"source":{"info":{"file":"testUPM","lineStart":23,"lineEnd":23,"colStart":3,"colEnd":20}}},
+{"eqIndex":9,"section":"regular","tag":"assign","defines":["led2"],"uses":["pot"],"equation":["pot >= 0.4"],"source":{"info":{"file":"testUPM","lineStart":22,"lineEnd":22,"colStart":3,"colEnd":20}}},
+{"eqIndex":10,"section":"regular","tag":"assign","defines":["led1"],"uses":["pot"],"equation":["pot >= 0.2"],"source":{"info":{"file":"testUPM","lineStart":21,"lineEnd":21,"colStart":3,"colEnd":20}}}
+],
+"functions":[
+]
+}

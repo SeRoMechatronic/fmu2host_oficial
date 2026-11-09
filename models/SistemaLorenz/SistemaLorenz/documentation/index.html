@@ -1,0 +1,19 @@
+
+<h1>SistemaLorenz</h1>
+<p> <i>Lorenz chaotic attractor — 3 states, extreme sensitivity to integration method</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>SistemaLorenz — Lorenz Chaotic Attractor</h3>
+      <p>The Lorenz system is the canonical test for numerical integration quality.
+         With the classical parameters (σ=10, ρ=28, β=8/3), the trajectory orbits
+         the butterfly attractor indefinitely.</p>
+      <h4>Integration sensitivity</h4>
+      <ul>
+        <li><b>Euler (h=0.01)</b>: trajectory escapes attractor before t=5 s.
+            on_attractor becomes FALSE.</li>
+        <li><b>RK4 (h=0.01)</b>: trajectory stays bounded for 50+ seconds.
+            on_attractor stays TRUE.</li>
+      </ul>
+      <h4>Attractor bounds</h4>
+      <p>x ∈ [-25,25],  y ∈ [-30,30],  z ∈ [0,50] (approximate)</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

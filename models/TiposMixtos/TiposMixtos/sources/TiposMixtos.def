@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  TiposMixtos_fmiGetTypesPlatform @1
+  TiposMixtos_fmiGetVersion @2
+  TiposMixtos_fmiSetDebugLogging @3
+  TiposMixtos_fmiInstantiate @4
+  TiposMixtos_fmiFreeInstance @5
+  TiposMixtos_fmiSetupExperiment @6
+  TiposMixtos_fmiEnterInitializationMode @7
+  TiposMixtos_fmiExitInitializationMode @8
+  TiposMixtos_fmiTerminate @9
+  TiposMixtos_fmiReset @10
+  TiposMixtos_fmiGetReal @11
+  TiposMixtos_fmiGetInteger @12
+  TiposMixtos_fmiGetBoolean @13
+  TiposMixtos_fmiGetString @14
+  TiposMixtos_fmiSetReal @15
+  TiposMixtos_fmiSetInteger @16
+  TiposMixtos_fmiSetBoolean @17
+  TiposMixtos_fmiSetString @18
+  TiposMixtos_fmiGetFMUstate @19
+  TiposMixtos_fmiSetFMUstate @20
+  TiposMixtos_fmiFreeFMUstate @21
+  TiposMixtos_fmiSerializedFMUstateSize @22
+  TiposMixtos_fmiSerializeFMUstate @23
+  TiposMixtos_fmiDeSerializeFMUstate @24
+  TiposMixtos_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  TiposMixtos_fmiEnterEventMode @26
+  TiposMixtos_fmiNewDiscreteStates @27
+  TiposMixtos_fmiEnterContinuousTimeMode @28
+  TiposMixtos_fmiCompletedIntegratorStep @29
+  TiposMixtos_fmiSetTime @30
+  TiposMixtos_fmiSetContinuousStates @31
+  TiposMixtos_fmiGetDerivatives @32
+  TiposMixtos_fmiGetEventIndicators @33
+  TiposMixtos_fmiGetContinuousStates @34
+  TiposMixtos_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  TiposMixtos_fmiSetRealInputDerivatives @36
+  TiposMixtos_fmiGetRealOutputDerivatives @37
+  TiposMixtos_fmiDoStep @38
+  TiposMixtos_fmiCancelStep @39
+  TiposMixtos_fmiGetStatus @40
+  TiposMixtos_fmiGetRealStatus @41
+  TiposMixtos_fmiGetIntegerStatus @42
+  TiposMixtos_fmiGetBooleanStatus @43
+  TiposMixtos_fmiGetStringStatus @44

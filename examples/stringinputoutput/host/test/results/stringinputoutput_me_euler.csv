@@ -1,0 +1,6 @@
+t,value,mode_operation,tag_sensor,scaled_value,alarm,alert_msg,status
+0,1,,,1.5,1,ALERT: value below lower limit (10.0),LOW
+1,1,,,1.5,1,ALERT: value below lower limit (10.0),LOW
+2,1,,,1.5,1,ALERT: value below lower limit (10.0),LOW
+3,1,,,1.5,1,ALERT: value below lower limit (10.0),LOW
+4,1,,,1.5,1,ALERT: value below lower limit (10.0),LOW

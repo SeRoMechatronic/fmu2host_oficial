@@ -1,0 +1,23 @@
+
+<h1>SinInputs</h1>
+<p> <i>Autonomous mass-spring-damper — zero inputs, exercises codegen with no fmi2SetReal calls</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>SinInputs — Autonomous Mass-Spring-Damper</h3>
+      <p>This model has <b>zero input variables</b>. It is designed to verify that
+         a codegen tool generates coherent <code>main.c</code> code when there is
+         nothing to set via <code>fmi2SetReal</code> in the step loop.</p>
+      <h4>Physics</h4>
+      <p>m·x'' + c·x' + k·x = 0 with x(0)=1.0, x'(0)=0.0</p>
+      <p>Default parameters: m=1.5 kg, c=0.3 N·s/m, k=10.0 N/m</p>
+      <p>Natural frequency: ω₀ = √(k/m) ≈ 2.58 rad/s ≈ 0.41 Hz</p>
+      <p>The <b>energia</b> output decays monotonically due to damping and can be
+         used to verify correct integration.</p>
+      <h4>Interface</h4>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Variable</th><th>Type</th><th>Direction</th><th>Description</th></tr>
+        <tr><td>posicion</td><td>Real</td><td>Output</td><td>Displacement x(t)</td></tr>
+        <tr><td>velocidad</td><td>Real</td><td>Output</td><td>Velocity x'(t)</td></tr>
+        <tr><td>energia</td><td>Real</td><td>Output</td><td>Mechanical energy (decreasing)</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

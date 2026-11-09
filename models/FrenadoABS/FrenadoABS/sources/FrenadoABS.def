@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  FrenadoABS_fmiGetTypesPlatform @1
+  FrenadoABS_fmiGetVersion @2
+  FrenadoABS_fmiSetDebugLogging @3
+  FrenadoABS_fmiInstantiate @4
+  FrenadoABS_fmiFreeInstance @5
+  FrenadoABS_fmiSetupExperiment @6
+  FrenadoABS_fmiEnterInitializationMode @7
+  FrenadoABS_fmiExitInitializationMode @8
+  FrenadoABS_fmiTerminate @9
+  FrenadoABS_fmiReset @10
+  FrenadoABS_fmiGetReal @11
+  FrenadoABS_fmiGetInteger @12
+  FrenadoABS_fmiGetBoolean @13
+  FrenadoABS_fmiGetString @14
+  FrenadoABS_fmiSetReal @15
+  FrenadoABS_fmiSetInteger @16
+  FrenadoABS_fmiSetBoolean @17
+  FrenadoABS_fmiSetString @18
+  FrenadoABS_fmiGetFMUstate @19
+  FrenadoABS_fmiSetFMUstate @20
+  FrenadoABS_fmiFreeFMUstate @21
+  FrenadoABS_fmiSerializedFMUstateSize @22
+  FrenadoABS_fmiSerializeFMUstate @23
+  FrenadoABS_fmiDeSerializeFMUstate @24
+  FrenadoABS_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  FrenadoABS_fmiEnterEventMode @26
+  FrenadoABS_fmiNewDiscreteStates @27
+  FrenadoABS_fmiEnterContinuousTimeMode @28
+  FrenadoABS_fmiCompletedIntegratorStep @29
+  FrenadoABS_fmiSetTime @30
+  FrenadoABS_fmiSetContinuousStates @31
+  FrenadoABS_fmiGetDerivatives @32
+  FrenadoABS_fmiGetEventIndicators @33
+  FrenadoABS_fmiGetContinuousStates @34
+  FrenadoABS_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  FrenadoABS_fmiSetRealInputDerivatives @36
+  FrenadoABS_fmiGetRealOutputDerivatives @37
+  FrenadoABS_fmiDoStep @38
+  FrenadoABS_fmiCancelStep @39
+  FrenadoABS_fmiGetStatus @40
+  FrenadoABS_fmiGetRealStatus @41
+  FrenadoABS_fmiGetIntegerStatus @42
+  FrenadoABS_fmiGetBooleanStatus @43
+  FrenadoABS_fmiGetStringStatus @44

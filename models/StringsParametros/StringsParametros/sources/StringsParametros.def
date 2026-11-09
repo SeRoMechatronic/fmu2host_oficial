@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  StringsParametros_fmiGetTypesPlatform @1
+  StringsParametros_fmiGetVersion @2
+  StringsParametros_fmiSetDebugLogging @3
+  StringsParametros_fmiInstantiate @4
+  StringsParametros_fmiFreeInstance @5
+  StringsParametros_fmiSetupExperiment @6
+  StringsParametros_fmiEnterInitializationMode @7
+  StringsParametros_fmiExitInitializationMode @8
+  StringsParametros_fmiTerminate @9
+  StringsParametros_fmiReset @10
+  StringsParametros_fmiGetReal @11
+  StringsParametros_fmiGetInteger @12
+  StringsParametros_fmiGetBoolean @13
+  StringsParametros_fmiGetString @14
+  StringsParametros_fmiSetReal @15
+  StringsParametros_fmiSetInteger @16
+  StringsParametros_fmiSetBoolean @17
+  StringsParametros_fmiSetString @18
+  StringsParametros_fmiGetFMUstate @19
+  StringsParametros_fmiSetFMUstate @20
+  StringsParametros_fmiFreeFMUstate @21
+  StringsParametros_fmiSerializedFMUstateSize @22
+  StringsParametros_fmiSerializeFMUstate @23
+  StringsParametros_fmiDeSerializeFMUstate @24
+  StringsParametros_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  StringsParametros_fmiEnterEventMode @26
+  StringsParametros_fmiNewDiscreteStates @27
+  StringsParametros_fmiEnterContinuousTimeMode @28
+  StringsParametros_fmiCompletedIntegratorStep @29
+  StringsParametros_fmiSetTime @30
+  StringsParametros_fmiSetContinuousStates @31
+  StringsParametros_fmiGetDerivatives @32
+  StringsParametros_fmiGetEventIndicators @33
+  StringsParametros_fmiGetContinuousStates @34
+  StringsParametros_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  StringsParametros_fmiSetRealInputDerivatives @36
+  StringsParametros_fmiGetRealOutputDerivatives @37
+  StringsParametros_fmiDoStep @38
+  StringsParametros_fmiCancelStep @39
+  StringsParametros_fmiGetStatus @40
+  StringsParametros_fmiGetRealStatus @41
+  StringsParametros_fmiGetIntegerStatus @42
+  StringsParametros_fmiGetBooleanStatus @43
+  StringsParametros_fmiGetStringStatus @44

@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  testROMAN_fmiGetTypesPlatform @1
+  testROMAN_fmiGetVersion @2
+  testROMAN_fmiSetDebugLogging @3
+  testROMAN_fmiInstantiate @4
+  testROMAN_fmiFreeInstance @5
+  testROMAN_fmiSetupExperiment @6
+  testROMAN_fmiEnterInitializationMode @7
+  testROMAN_fmiExitInitializationMode @8
+  testROMAN_fmiTerminate @9
+  testROMAN_fmiReset @10
+  testROMAN_fmiGetReal @11
+  testROMAN_fmiGetInteger @12
+  testROMAN_fmiGetBoolean @13
+  testROMAN_fmiGetString @14
+  testROMAN_fmiSetReal @15
+  testROMAN_fmiSetInteger @16
+  testROMAN_fmiSetBoolean @17
+  testROMAN_fmiSetString @18
+  testROMAN_fmiGetFMUstate @19
+  testROMAN_fmiSetFMUstate @20
+  testROMAN_fmiFreeFMUstate @21
+  testROMAN_fmiSerializedFMUstateSize @22
+  testROMAN_fmiSerializeFMUstate @23
+  testROMAN_fmiDeSerializeFMUstate @24
+  testROMAN_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  testROMAN_fmiEnterEventMode @26
+  testROMAN_fmiNewDiscreteStates @27
+  testROMAN_fmiEnterContinuousTimeMode @28
+  testROMAN_fmiCompletedIntegratorStep @29
+  testROMAN_fmiSetTime @30
+  testROMAN_fmiSetContinuousStates @31
+  testROMAN_fmiGetDerivatives @32
+  testROMAN_fmiGetEventIndicators @33
+  testROMAN_fmiGetContinuousStates @34
+  testROMAN_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  testROMAN_fmiSetRealInputDerivatives @36
+  testROMAN_fmiGetRealOutputDerivatives @37
+  testROMAN_fmiDoStep @38
+  testROMAN_fmiCancelStep @39
+  testROMAN_fmiGetStatus @40
+  testROMAN_fmiGetRealStatus @41
+  testROMAN_fmiGetIntegerStatus @42
+  testROMAN_fmiGetBooleanStatus @43
+  testROMAN_fmiGetStringStatus @44

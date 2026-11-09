@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  SistemaLorenz_fmiGetTypesPlatform @1
+  SistemaLorenz_fmiGetVersion @2
+  SistemaLorenz_fmiSetDebugLogging @3
+  SistemaLorenz_fmiInstantiate @4
+  SistemaLorenz_fmiFreeInstance @5
+  SistemaLorenz_fmiSetupExperiment @6
+  SistemaLorenz_fmiEnterInitializationMode @7
+  SistemaLorenz_fmiExitInitializationMode @8
+  SistemaLorenz_fmiTerminate @9
+  SistemaLorenz_fmiReset @10
+  SistemaLorenz_fmiGetReal @11
+  SistemaLorenz_fmiGetInteger @12
+  SistemaLorenz_fmiGetBoolean @13
+  SistemaLorenz_fmiGetString @14
+  SistemaLorenz_fmiSetReal @15
+  SistemaLorenz_fmiSetInteger @16
+  SistemaLorenz_fmiSetBoolean @17
+  SistemaLorenz_fmiSetString @18
+  SistemaLorenz_fmiGetFMUstate @19
+  SistemaLorenz_fmiSetFMUstate @20
+  SistemaLorenz_fmiFreeFMUstate @21
+  SistemaLorenz_fmiSerializedFMUstateSize @22
+  SistemaLorenz_fmiSerializeFMUstate @23
+  SistemaLorenz_fmiDeSerializeFMUstate @24
+  SistemaLorenz_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  SistemaLorenz_fmiEnterEventMode @26
+  SistemaLorenz_fmiNewDiscreteStates @27
+  SistemaLorenz_fmiEnterContinuousTimeMode @28
+  SistemaLorenz_fmiCompletedIntegratorStep @29
+  SistemaLorenz_fmiSetTime @30
+  SistemaLorenz_fmiSetContinuousStates @31
+  SistemaLorenz_fmiGetDerivatives @32
+  SistemaLorenz_fmiGetEventIndicators @33
+  SistemaLorenz_fmiGetContinuousStates @34
+  SistemaLorenz_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  SistemaLorenz_fmiSetRealInputDerivatives @36
+  SistemaLorenz_fmiGetRealOutputDerivatives @37
+  SistemaLorenz_fmiDoStep @38
+  SistemaLorenz_fmiCancelStep @39
+  SistemaLorenz_fmiGetStatus @40
+  SistemaLorenz_fmiGetRealStatus @41
+  SistemaLorenz_fmiGetIntegerStatus @42
+  SistemaLorenz_fmiGetBooleanStatus @43
+  SistemaLorenz_fmiGetStringStatus @44

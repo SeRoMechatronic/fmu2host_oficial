@@ -1,0 +1,175 @@
+================================================================================
+  TEST BATTERY — SistemaLorenz
+  Lorenz Chaotic Attractor — Integration Method Discriminator
+================================================================================
+
+OVERVIEW
+--------
+SistemaLorenz implements the classical Lorenz system of three coupled nonlinear
+ODEs. With the standard parameters (σ=10, ρ=28, β=8/3), the system produces
+chaotic trajectories that orbit the famous butterfly-shaped attractor.
+
+This model is the MOST SENSITIVE test in the suite for integration quality.
+Due to the positive Lyapunov exponent (λ₁ ≈ 0.906), any numerical error is
+amplified exponentially. The difference between Euler and RK4 is not subtle —
+it is dramatic and visible within seconds of simulation time.
+
+WHY THIS MODEL EXISTS
+---------------------
+The Lorenz system provides the clearest possible binary test:
+  - RK4 (h=0.01):  trajectory stays on the attractor → on_attractor = TRUE
+  - Euler (h=0.01): trajectory escapes the attractor before t=5 s → FALSE
+
+There is no ambiguity in the result. The test either passes or it does not,
+and the generated main.c is directly responsible for the outcome through its
+choice of integrator and step size.
+
+PHYSICS
+-------
+dx/dt = σ·(y - x)         [σ = 10.0]
+dy/dt = x·(ρ - z) - y     [ρ = 28.0]
+dz/dt = x·y - β·z         [β = 8/3 ≈ 2.667]
+
+Initial conditions: x(0)=1.0, y(0)=1.0, z(0)=1.5
+
+Fixed points (non-trivial):
+  C± = (±√(β(ρ-1)), ±√(β(ρ-1)), ρ-1)
+     = (±8.485, ±8.485, 27.0)
+
+Attractor bounds (approximate):
+  x ∈ [-25, 25],   y ∈ [-30, 30],   z ∈ [0, 50]
+
+Maximal Lyapunov exponent: λ₁ ≈ 0.906  (chaos threshold > 0)
+
+FMU INTERFACE
+-------------
+  Inputs:   NONE
+
+  Outputs:
+    x_out        (Real)    — x-coordinate, range [-25, 25]
+    y_out        (Real)    — y-coordinate, range [-30, 30]
+    z_out        (Real)    — z-coordinate, range [0, 50]
+    on_attractor (Boolean) — TRUE when z ∈ [0,60] and |x|<30 and |y|<35
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(SistemaLorenz) — expect 3 states, 0 inputs, 4 outputs
+  2. buildModelFMU(SistemaLorenz, version="2.0", fmuType="me")
+  3. Generate main.c with the codegen tool
+  4. Compile and run twice: once with Euler, once with RK4
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-LZ-001 — Initial conditions check (t = 0)
+------------------------------------------------
+  Expected:
+    x_out        = 1.0
+    y_out        = 1.0
+    z_out        = 1.5
+    on_attractor = TRUE  (1.5 ∈ [0,60], |1.0|<30, |1.0|<35)
+  Rationale: Verifies initialization before any integration.
+
+TEST-LZ-002 — z stays positive (physical constraint)
+------------------------------------------------------
+  Simulate: t_end = 50.0 s, h = 0.01 s, using RK4
+  Expected: z_out > 0 at all times
+  Rationale: The Lorenz attractor is entirely in the z > 0 half-space for
+             these parameters. If z goes negative, integration has failed.
+
+TEST-LZ-003 — on_attractor stays TRUE with RK4
+------------------------------------------------
+  Simulate: t_end = 30.0 s, h = 0.01 s, using RK4
+  Expected: on_attractor = TRUE at every output point
+  Rationale: PRIMARY PASS CRITERION. RK4 must keep the trajectory bounded.
+
+TEST-LZ-004 — on_attractor becomes FALSE with Euler
+-----------------------------------------------------
+  Simulate: t_end = 10.0 s, h = 0.01 s, using Euler
+  Expected: on_attractor = FALSE at some point before t = 10 s
+  Hint: Typically occurs between t = 4 s and t = 8 s with h = 0.01
+  Rationale: PRIMARY FAIL CRITERION for Euler. If Euler also passes,
+             either h is too small or the test bounds are too loose.
+             Try h = 0.05 if Euler passes with h = 0.01.
+
+TEST-LZ-005 — x oscillates between positive and negative
+----------------------------------------------------------
+  Simulate: t_end = 20.0 s, h = 0.01 s, using RK4
+  Expected: x_out changes sign at least 10 times (visits both lobes)
+  Rationale: The two-lobe structure of the attractor requires x to switch
+             sign regularly. If x stays positive, the orbit is wrong.
+
+TEST-LZ-006 — z stays below 60 with RK4
+-----------------------------------------
+  Simulate: t_end = 30.0 s, h = 0.01 s, using RK4
+  Expected: max(z_out) < 55 at all times
+  Rationale: z occasionally peaks near 48 but should not exceed 55.
+             Values above 55 indicate trajectory has left the attractor.
+
+TEST-LZ-007 — Magnitude bounds check for x and y
+--------------------------------------------------
+  Simulate: t_end = 30.0 s, h = 0.01 s, using RK4
+  Expected:
+    max |x_out| < 25 at all times
+    max |y_out| < 32 at all times
+  Rationale: Known numerical bounds of the attractor. Violations mean
+             trajectory escape.
+
+TEST-LZ-008 — Short-term analytical check (t = 0.1 s)
+------------------------------------------------------
+  At t = 0.1 s, starting from (1,1,1.5), the exact trajectory can be
+  estimated using a very fine-step numerical solution (ground truth):
+    x(0.1) ≈  0.965
+    y(0.1) ≈  1.252
+    z(0.1) ≈  1.454
+  Expected (RK4, h=0.01):
+    x_out ≈  0.965  (tolerance ±0.05)
+    y_out ≈  1.252  (tolerance ±0.05)
+    z_out ≈  1.454  (tolerance ±0.05)
+  Note: These values are for reference only. Due to chaos, small differences
+        in t=0.1 values do not matter — what matters is TEST-LZ-003 (bounded).
+
+TEST-LZ-009 — Divergence timing with large step
+-------------------------------------------------
+  Simulate: t_end = 5.0 s, h = 0.05 s, using Euler
+  Expected: on_attractor = FALSE before t = 3.0 s
+  Rationale: Larger Euler step causes faster divergence — confirms
+             that the on_attractor check is working correctly.
+
+TEST-LZ-010 — Codegen structural check
+----------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] State vector size = 3 (x, y, z)
+    [ ] 4 RK4 stages per step (k1/k2/k3/k4 for each of the 3 states)
+    [ ] No fmi2Set* calls in step loop (zero inputs)
+    [ ] fmi2GetReal called for x_out, y_out, z_out
+    [ ] fmi2GetBoolean called for on_attractor
+    [ ] RK4_BUF_SIZE or equivalent ≥ 3
+  Rationale: Structural audit for correct RK4 generation with 3 states.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  on_attractor check:  exact Boolean match required
+  Analytical estimate: ±0.05 per state variable (at t=0.1 only)
+  Bound checks:        strict inequality (z < 55, |x| < 25, |y| < 32)
+
+================================================================================
+  DISCRIMINATING THRESHOLDS (Euler vs RK4 with h=0.01)
+================================================================================
+  If on_attractor stays TRUE for BOTH integrators → h is too small; use h=0.05
+  If on_attractor is FALSE for BOTH integrators → FMU export or init is broken
+  Correct result:
+    Euler: on_attractor = FALSE before t=10 s
+    RK4:   on_attractor = TRUE  for entire t ∈ [0, 30] s
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Simulate t_end=30 s (RK4) and t_end=10 s (Euler) with h=0.01 s
+  - Record on_attractor at every step
+  - RK4 pass: on_attractor never FALSE
+  - Euler discrimination: on_attractor becomes FALSE (confirms test works)
+  - z_out must always be > 0 for valid RK4 run (use as sanity check)
+================================================================================

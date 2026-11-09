@@ -1,0 +1,23 @@
+
+<h1>BooleanLogica</h1>
+<p> <i>Combinational and sequential Boolean logic — latch, edge counter, XOR, threshold</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>BooleanLogica — Combinational and Sequential Logic</h3>
+      <p>This model mixes purely combinational Boolean logic (AND, OR, XOR)
+         with sequential logic (D-latch triggered by rising edge of clk)
+         and a mixed Real→Boolean conversion (above_threshold).</p>
+      <h4>Interface</h4>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Variable</th><th>Type</th><th>Description</th></tr>
+        <tr><td>a, b</td><td>Boolean Input</td><td>Logic inputs</td></tr>
+        <tr><td>clk</td><td>Boolean Input</td><td>Clock (rising edge)</td></tr>
+        <tr><td>umbral</td><td>Real Input</td><td>Threshold value</td></tr>
+        <tr><td>y_and</td><td>Boolean Output</td><td>a AND b</td></tr>
+        <tr><td>y_or</td><td>Boolean Output</td><td>a OR b</td></tr>
+        <tr><td>y_xor</td><td>Boolean Output</td><td>a XOR b</td></tr>
+        <tr><td>y_latch</td><td>Boolean Output</td><td>D-latch (a at last clk↑)</td></tr>
+        <tr><td>cuenta_flancos</td><td>Integer Output</td><td>Rising edge count</td></tr>
+        <tr><td>above_threshold</td><td>Boolean Output</td><td>umbral &gt; 0.5</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

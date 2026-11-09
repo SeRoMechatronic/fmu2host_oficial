@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="MuchosEstados"
+  guid="{c3a45dfb-0863-485d-8cc5-47ecfd93da7d}"
+  description="Chain of 8 first-order filters — verifies ODE buffer scaling for large state vectors"
+  version=""
+  generationTool="OpenModelica Compiler OpenModelica v1.25.7 (64-bit)"
+  generationDateAndTime="2026-05-20T13:17:25Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="1">
+  <ModelExchange
+    modelIdentifier="MuchosEstados"
+    needsExecutionTool="false"
+    completedIntegratorStepNotNeeded="false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="MuchosEstados.c" />
+      <File name="MuchosEstados_functions.c" />
+      <File name="MuchosEstados_records.c" />
+      <File name="MuchosEstados_01exo.c" />
+      <File name="MuchosEstados_02nls.c" />
+      <File name="MuchosEstados_03lsy.c" />
+      <File name="MuchosEstados_04set.c" />
+      <File name="MuchosEstados_05evt.c" />
+      <File name="MuchosEstados_06inz.c" />
+      <File name="MuchosEstados_07dly.c" />
+      <File name="MuchosEstados_08bnd.c" />
+      <File name="MuchosEstados_09alg.c" />
+      <File name="MuchosEstados_10asr.c" />
+      <File name="MuchosEstados_11mix.c" />
+      <File name="MuchosEstados_12jac.c" />
+      <File name="MuchosEstados_13opt.c" />
+      <File name="MuchosEstados_14lnz.c" />
+      <File name="MuchosEstados_15syn.c" />
+      <File name="MuchosEstados_16dae.c" />
+      <File name="MuchosEstados_17inl.c" />
+      <File name="MuchosEstados_18spd.c" />
+      <File name="MuchosEstados_init_fmu.c" />
+      <File name="MuchosEstados_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </ModelExchange>
+  <CoSimulation
+    modelIdentifier="MuchosEstados"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="true"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="MuchosEstados.c" />
+      <File name="MuchosEstados_functions.c" />
+      <File name="MuchosEstados_records.c" />
+      <File name="MuchosEstados_01exo.c" />
+      <File name="MuchosEstados_02nls.c" />
+      <File name="MuchosEstados_03lsy.c" />
+      <File name="MuchosEstados_04set.c" />
+      <File name="MuchosEstados_05evt.c" />
+      <File name="MuchosEstados_06inz.c" />
+      <File name="MuchosEstados_07dly.c" />
+      <File name="MuchosEstados_08bnd.c" />
+      <File name="MuchosEstados_09alg.c" />
+      <File name="MuchosEstados_10asr.c" />
+      <File name="MuchosEstados_11mix.c" />
+      <File name="MuchosEstados_12jac.c" />
+      <File name="MuchosEstados_13opt.c" />
+      <File name="MuchosEstados_14lnz.c" />
+      <File name="MuchosEstados_15syn.c" />
+      <File name="MuchosEstados_16dae.c" />
+      <File name="MuchosEstados_17inl.c" />
+      <File name="MuchosEstados_18spd.c" />
+      <File name="MuchosEstados_init_fmu.c" />
+      <File name="MuchosEstados_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </CoSimulation>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="1.0" tolerance="1e-6" stepSize="0.002"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="x1"
+    valueReference="0"
+    description="Filter stage 1 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="x2"
+    valueReference="1"
+    description="Filter stage 2 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="x3"
+    valueReference="2"
+    description="Filter stage 3 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="x4"
+    valueReference="3"
+    description="Filter stage 4 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="x5"
+    valueReference="4"
+    description="Filter stage 5 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="x6"
+    valueReference="5"
+    description="Filter stage 6 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="x7"
+    valueReference="6"
+    description="Filter stage 7 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="x8"
+    valueReference="7"
+    description="Filter stage 8 state"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="der(x1)"
+    valueReference="8"
+    description="der(Filter stage 1 state)"
+    >
+    <Real derivative="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="der(x2)"
+    valueReference="9"
+    description="der(Filter stage 2 state)"
+    >
+    <Real derivative="2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="der(x3)"
+    valueReference="10"
+    description="der(Filter stage 3 state)"
+    >
+    <Real derivative="3"/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="der(x4)"
+    valueReference="11"
+    description="der(Filter stage 4 state)"
+    >
+    <Real derivative="4"/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="der(x5)"
+    valueReference="12"
+    description="der(Filter stage 5 state)"
+    >
+    <Real derivative="5"/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="der(x6)"
+    valueReference="13"
+    description="der(Filter stage 6 state)"
+    >
+    <Real derivative="6"/>
+  </ScalarVariable>
+  <!-- Index of variable = "15" -->
+  <ScalarVariable
+    name="der(x7)"
+    valueReference="14"
+    description="der(Filter stage 7 state)"
+    >
+    <Real derivative="7"/>
+  </ScalarVariable>
+  <!-- Index of variable = "16" -->
+  <ScalarVariable
+    name="der(x8)"
+    valueReference="15"
+    description="der(Filter stage 8 state)"
+    >
+    <Real derivative="8"/>
+  </ScalarVariable>
+  <!-- Index of variable = "17" -->
+  <ScalarVariable
+    name="u"
+    valueReference="16"
+    description="Input signal — use u=1.0 step for canonical step response test"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "18" -->
+  <ScalarVariable
+    name="y1"
+    valueReference="17"
+    description="Output of filter stage 1 — τ·dy1/dt = u  - y1"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "19" -->
+  <ScalarVariable
+    name="y2"
+    valueReference="18"
+    description="Output of filter stage 2 — τ·dy2/dt = y1 - y2"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "20" -->
+  <ScalarVariable
+    name="y3"
+    valueReference="19"
+    description="Output of filter stage 3 — τ·dy3/dt = y2 - y3"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "21" -->
+  <ScalarVariable
+    name="y4"
+    valueReference="20"
+    description="Output of filter stage 4 — τ·dy4/dt = y3 - y4"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "22" -->
+  <ScalarVariable
+    name="y5"
+    valueReference="21"
+    description="Output of filter stage 5 — τ·dy5/dt = y4 - y5"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "23" -->
+  <ScalarVariable
+    name="y6"
+    valueReference="22"
+    description="Output of filter stage 6 — τ·dy6/dt = y5 - y6"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "24" -->
+  <ScalarVariable
+    name="y7"
+    valueReference="23"
+    description="Output of filter stage 7 — τ·dy7/dt = y6 - y7"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "25" -->
+  <ScalarVariable
+    name="y8"
+    valueReference="24"
+    description="Output of filter stage 8 — τ·dy8/dt = y7 - y8 — final output"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "26" -->
+  <ScalarVariable
+    name="tau"
+    valueReference="25"
+    description="Time constant for each filter stage [s]"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "27" -->
+  <ScalarVariable
+    name="_D_outputAlias_y1"
+    valueReference="0"
+    description="Output of filter stage 1 — τ·dy1/dt = u  - y1"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "28" -->
+  <ScalarVariable
+    name="_D_outputAlias_y2"
+    valueReference="1"
+    description="Output of filter stage 2 — τ·dy2/dt = y1 - y2"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "29" -->
+  <ScalarVariable
+    name="_D_outputAlias_y3"
+    valueReference="2"
+    description="Output of filter stage 3 — τ·dy3/dt = y2 - y3"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "30" -->
+  <ScalarVariable
+    name="_D_outputAlias_y4"
+    valueReference="3"
+    description="Output of filter stage 4 — τ·dy4/dt = y3 - y4"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "31" -->
+  <ScalarVariable
+    name="_D_outputAlias_y5"
+    valueReference="4"
+    description="Output of filter stage 5 — τ·dy5/dt = y4 - y5"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "32" -->
+  <ScalarVariable
+    name="_D_outputAlias_y6"
+    valueReference="5"
+    description="Output of filter stage 6 — τ·dy6/dt = y5 - y6"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "33" -->
+  <ScalarVariable
+    name="_D_outputAlias_y7"
+    valueReference="6"
+    description="Output of filter stage 7 — τ·dy7/dt = y6 - y7"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "34" -->
+  <ScalarVariable
+    name="_D_outputAlias_y8"
+    valueReference="7"
+    description="Output of filter stage 8 — τ·dy8/dt = y7 - y8 — final output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "35" -->
+  <ScalarVariable
+    name="todos_activos"
+    valueReference="0"
+    description="TRUE when all 8 filter outputs exceed 0.01 (step has propagated through)"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "36" -->
+  <ScalarVariable
+    name="_D_outputAlias_todos_activos"
+    valueReference="0"
+    description="TRUE when all 8 filter outputs exceed 0.01 (step has propagated through)"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="18" dependencies="1" dependenciesKind="dependent" />
+      <Unknown index="19" dependencies="2" dependenciesKind="dependent" />
+      <Unknown index="20" dependencies="3" dependenciesKind="dependent" />
+      <Unknown index="21" dependencies="4" dependenciesKind="dependent" />
+      <Unknown index="22" dependencies="5" dependenciesKind="dependent" />
+      <Unknown index="23" dependencies="6" dependenciesKind="dependent" />
+      <Unknown index="24" dependencies="7" dependenciesKind="dependent" />
+      <Unknown index="25" dependencies="8" dependenciesKind="dependent" />
+      <Unknown index="35" dependencies="1 2 3 4 5 6 7 8" dependenciesKind="dependent dependent dependent dependent dependent dependent dependent dependent" />
+    </Outputs>
+    <Derivatives>
+      <Unknown index="9" dependencies="1 17" dependenciesKind="dependent dependent" />
+      <Unknown index="10" dependencies="1 2" dependenciesKind="dependent dependent" />
+      <Unknown index="11" dependencies="2 3" dependenciesKind="dependent dependent" />
+      <Unknown index="12" dependencies="3 4" dependenciesKind="dependent dependent" />
+      <Unknown index="13" dependencies="4 5" dependenciesKind="dependent dependent" />
+      <Unknown index="14" dependencies="5 6" dependenciesKind="dependent dependent" />
+      <Unknown index="15" dependencies="6 7" dependenciesKind="dependent dependent" />
+      <Unknown index="16" dependencies="7 8" dependenciesKind="dependent dependent" />
+    </Derivatives>
+    <InitialUnknowns>
+      <Unknown index="9" dependencies="1 17 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="10" dependencies="1 2 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="11" dependencies="2 3 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="12" dependencies="3 4 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="13" dependencies="4 5 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="14" dependencies="5 6 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="15" dependencies="6 7 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="16" dependencies="7 8 26" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="18" dependencies="1" dependenciesKind="dependent" />
+      <Unknown index="19" dependencies="2" dependenciesKind="dependent" />
+      <Unknown index="20" dependencies="3" dependenciesKind="dependent" />
+      <Unknown index="21" dependencies="4" dependenciesKind="dependent" />
+      <Unknown index="22" dependencies="5" dependenciesKind="dependent" />
+      <Unknown index="23" dependencies="6" dependenciesKind="dependent" />
+      <Unknown index="24" dependencies="7" dependenciesKind="dependent" />
+      <Unknown index="25" dependencies="8" dependenciesKind="dependent" />
+      <Unknown index="35" dependencies="1 2 3 4 5 6 7 8" dependenciesKind="dependent dependent dependent dependent dependent dependent dependent dependent" />
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

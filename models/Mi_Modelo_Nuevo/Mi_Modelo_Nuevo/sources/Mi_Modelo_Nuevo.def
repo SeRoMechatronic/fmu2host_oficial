@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  Mi_Modelo_Nuevo_fmiGetTypesPlatform @1
+  Mi_Modelo_Nuevo_fmiGetVersion @2
+  Mi_Modelo_Nuevo_fmiSetDebugLogging @3
+  Mi_Modelo_Nuevo_fmiInstantiate @4
+  Mi_Modelo_Nuevo_fmiFreeInstance @5
+  Mi_Modelo_Nuevo_fmiSetupExperiment @6
+  Mi_Modelo_Nuevo_fmiEnterInitializationMode @7
+  Mi_Modelo_Nuevo_fmiExitInitializationMode @8
+  Mi_Modelo_Nuevo_fmiTerminate @9
+  Mi_Modelo_Nuevo_fmiReset @10
+  Mi_Modelo_Nuevo_fmiGetReal @11
+  Mi_Modelo_Nuevo_fmiGetInteger @12
+  Mi_Modelo_Nuevo_fmiGetBoolean @13
+  Mi_Modelo_Nuevo_fmiGetString @14
+  Mi_Modelo_Nuevo_fmiSetReal @15
+  Mi_Modelo_Nuevo_fmiSetInteger @16
+  Mi_Modelo_Nuevo_fmiSetBoolean @17
+  Mi_Modelo_Nuevo_fmiSetString @18
+  Mi_Modelo_Nuevo_fmiGetFMUstate @19
+  Mi_Modelo_Nuevo_fmiSetFMUstate @20
+  Mi_Modelo_Nuevo_fmiFreeFMUstate @21
+  Mi_Modelo_Nuevo_fmiSerializedFMUstateSize @22
+  Mi_Modelo_Nuevo_fmiSerializeFMUstate @23
+  Mi_Modelo_Nuevo_fmiDeSerializeFMUstate @24
+  Mi_Modelo_Nuevo_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  Mi_Modelo_Nuevo_fmiEnterEventMode @26
+  Mi_Modelo_Nuevo_fmiNewDiscreteStates @27
+  Mi_Modelo_Nuevo_fmiEnterContinuousTimeMode @28
+  Mi_Modelo_Nuevo_fmiCompletedIntegratorStep @29
+  Mi_Modelo_Nuevo_fmiSetTime @30
+  Mi_Modelo_Nuevo_fmiSetContinuousStates @31
+  Mi_Modelo_Nuevo_fmiGetDerivatives @32
+  Mi_Modelo_Nuevo_fmiGetEventIndicators @33
+  Mi_Modelo_Nuevo_fmiGetContinuousStates @34
+  Mi_Modelo_Nuevo_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  Mi_Modelo_Nuevo_fmiSetRealInputDerivatives @36
+  Mi_Modelo_Nuevo_fmiGetRealOutputDerivatives @37
+  Mi_Modelo_Nuevo_fmiDoStep @38
+  Mi_Modelo_Nuevo_fmiCancelStep @39
+  Mi_Modelo_Nuevo_fmiGetStatus @40
+  Mi_Modelo_Nuevo_fmiGetRealStatus @41
+  Mi_Modelo_Nuevo_fmiGetIntegerStatus @42
+  Mi_Modelo_Nuevo_fmiGetBooleanStatus @43
+  Mi_Modelo_Nuevo_fmiGetStringStatus @44

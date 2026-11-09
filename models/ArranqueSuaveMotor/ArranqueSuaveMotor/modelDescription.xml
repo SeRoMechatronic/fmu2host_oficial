@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="ArranqueSuaveMotor"
+  guid="{9b76140e-9465-4bfc-ae96-7c5a06fa5352}"
+  description="Soft-start motor controller with overload detection — FMI 2.0 ME"
+  version=""
+  generationTool="OpenModelica Compiler OpenModelica v1.25.7 (64-bit)"
+  generationDateAndTime="2026-05-19T17:02:01Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="4">
+  <ModelExchange
+    modelIdentifier="ArranqueSuaveMotor"
+    needsExecutionTool="false"
+    completedIntegratorStepNotNeeded="false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="ArranqueSuaveMotor.c" />
+      <File name="ArranqueSuaveMotor_functions.c" />
+      <File name="ArranqueSuaveMotor_records.c" />
+      <File name="ArranqueSuaveMotor_01exo.c" />
+      <File name="ArranqueSuaveMotor_02nls.c" />
+      <File name="ArranqueSuaveMotor_03lsy.c" />
+      <File name="ArranqueSuaveMotor_04set.c" />
+      <File name="ArranqueSuaveMotor_05evt.c" />
+      <File name="ArranqueSuaveMotor_06inz.c" />
+      <File name="ArranqueSuaveMotor_07dly.c" />
+      <File name="ArranqueSuaveMotor_08bnd.c" />
+      <File name="ArranqueSuaveMotor_09alg.c" />
+      <File name="ArranqueSuaveMotor_10asr.c" />
+      <File name="ArranqueSuaveMotor_11mix.c" />
+      <File name="ArranqueSuaveMotor_12jac.c" />
+      <File name="ArranqueSuaveMotor_13opt.c" />
+      <File name="ArranqueSuaveMotor_14lnz.c" />
+      <File name="ArranqueSuaveMotor_15syn.c" />
+      <File name="ArranqueSuaveMotor_16dae.c" />
+      <File name="ArranqueSuaveMotor_17inl.c" />
+      <File name="ArranqueSuaveMotor_18spd.c" />
+      <File name="ArranqueSuaveMotor_init_fmu.c" />
+      <File name="ArranqueSuaveMotor_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </ModelExchange>
+  <CoSimulation
+    modelIdentifier="ArranqueSuaveMotor"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="true"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="ArranqueSuaveMotor.c" />
+      <File name="ArranqueSuaveMotor_functions.c" />
+      <File name="ArranqueSuaveMotor_records.c" />
+      <File name="ArranqueSuaveMotor_01exo.c" />
+      <File name="ArranqueSuaveMotor_02nls.c" />
+      <File name="ArranqueSuaveMotor_03lsy.c" />
+      <File name="ArranqueSuaveMotor_04set.c" />
+      <File name="ArranqueSuaveMotor_05evt.c" />
+      <File name="ArranqueSuaveMotor_06inz.c" />
+      <File name="ArranqueSuaveMotor_07dly.c" />
+      <File name="ArranqueSuaveMotor_08bnd.c" />
+      <File name="ArranqueSuaveMotor_09alg.c" />
+      <File name="ArranqueSuaveMotor_10asr.c" />
+      <File name="ArranqueSuaveMotor_11mix.c" />
+      <File name="ArranqueSuaveMotor_12jac.c" />
+      <File name="ArranqueSuaveMotor_13opt.c" />
+      <File name="ArranqueSuaveMotor_14lnz.c" />
+      <File name="ArranqueSuaveMotor_15syn.c" />
+      <File name="ArranqueSuaveMotor_16dae.c" />
+      <File name="ArranqueSuaveMotor_17inl.c" />
+      <File name="ArranqueSuaveMotor_18spd.c" />
+      <File name="ArranqueSuaveMotor_init_fmu.c" />
+      <File name="ArranqueSuaveMotor_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </CoSimulation>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="1.0" tolerance="1e-6" stepSize="0.002"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="rampa"
+    valueReference="0"
+    description="First-order ramp state. Tracks the step reference with time constant tau_rampa"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="tension_filtrada"
+    valueReference="1"
+    description="PT1 filtered voltage. Emulates motor electromagnetic inertia"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="tiempo_sobrecarga"
+    valueReference="2"
+    description="Overload accumulator. Counts up during overload, decays when normal"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="der(rampa)"
+    valueReference="3"
+    description="der(First-order ramp state. Tracks the step reference with time constant tau_rampa)"
+    >
+    <Real derivative="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="der(tension_filtrada)"
+    valueReference="4"
+    description="der(PT1 filtered voltage. Emulates motor electromagnetic inertia)"
+    >
+    <Real derivative="2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="der(tiempo_sobrecarga)"
+    valueReference="5"
+    description="der(Overload accumulator. Counts up during overload, decays when normal)"
+    >
+    <Real derivative="3"/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="_D_cse1"
+    valueReference="6"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="carga_motor"
+    valueReference="7"
+    description="Normalized motor load [0,1]. 1.0 = maximum rated load"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="referencia_rampa"
+    valueReference="8"
+    description="Step reference: 1.0 when start commanded, 0.0 when stop commanded"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="tension_aplicada"
+    valueReference="9"
+    description="Applied voltage after ramp and PT1 filter [0,1]"
+    causality="output"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="t_retardo"
+    valueReference="10"
+    description="Time (s) the overload must persist before fallo_sobrecarga fires"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="tau_pt1"
+    valueReference="11"
+    description="Time constant of the PT1 electromagnetic filter (s)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.5"/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="tau_rampa"
+    valueReference="12"
+    description="Time constant of the voltage ramp (s). Larger = slower start"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="umbral_sobrecarga"
+    valueReference="13"
+    description="Overload threshold. Load above this level triggers the overload timer"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.9"/>
+  </ScalarVariable>
+  <!-- Index of variable = "15" -->
+  <ScalarVariable
+    name="_D_outputAlias_tension_aplicada"
+    valueReference="9"
+    description="Applied voltage after ramp and PT1 filter [0,1]"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "16" -->
+  <ScalarVariable
+    name="en_rampa"
+    valueReference="0"
+    description="ON during start-up: command active but tension not yet at 90%"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "17" -->
+  <ScalarVariable
+    name="fallo_sobrecarga"
+    valueReference="1"
+    description="ON when overload timer exceeds t_retardo — sustained overload detected"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "18" -->
+  <ScalarVariable
+    name="motor_en_marcha"
+    valueReference="2"
+    description="ON when start command is active AND tension_aplicada &gt; 0.90"
+    variability="discrete"
+    causality="output"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "19" -->
+  <ScalarVariable
+    name="orden_arranque"
+    valueReference="3"
+    description="Start command. true=start, false=stop. Ramp rises on true, falls on false"
+    variability="discrete"
+    causality="input"
+    >
+    <Boolean start="false"/>
+  </ScalarVariable>
+  <!-- Index of variable = "20" -->
+  <ScalarVariable
+    name="_D_outputAlias_en_rampa"
+    valueReference="0"
+    description="ON during start-up: command active but tension not yet at 90%"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "21" -->
+  <ScalarVariable
+    name="_D_outputAlias_fallo_sobrecarga"
+    valueReference="1"
+    description="ON when overload timer exceeds t_retardo — sustained overload detected"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "22" -->
+  <ScalarVariable
+    name="_D_outputAlias_motor_en_marcha"
+    valueReference="2"
+    description="ON when start command is active AND tension_aplicada &gt; 0.90"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="10" dependencies="2" dependenciesKind="dependent" />
+      <Unknown index="16" dependencies="2 3 19" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="17" dependencies="3" dependenciesKind="dependent" />
+      <Unknown index="18" dependencies="2 19" dependenciesKind="dependent dependent" />
+    </Outputs>
+    <Derivatives>
+      <Unknown index="4" dependencies="1 19" dependenciesKind="dependent dependent" />
+      <Unknown index="5" dependencies="1 2" dependenciesKind="dependent dependent" />
+      <Unknown index="6" dependencies="3 8" dependenciesKind="dependent dependent" />
+    </Derivatives>
+    <InitialUnknowns>
+      <Unknown index="4" dependencies="1 13 19" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="5" dependencies="1 2 12" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="6" dependencies="3 8 14" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="10" dependencies="2" dependenciesKind="dependent" />
+      <Unknown index="16" dependencies="2 3 11 19" dependenciesKind="dependent dependent dependent dependent" />
+      <Unknown index="17" dependencies="3 11" dependenciesKind="dependent dependent" />
+      <Unknown index="18" dependencies="2 19" dependenciesKind="dependent dependent" />
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

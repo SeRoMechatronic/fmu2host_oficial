@@ -1,0 +1,14 @@
+
+<h1>MatrizEstado</h1>
+<p> <i>Linear state-space system with 3x3 matrix — vector/matrix ODE stress test</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>MatrizEstado — LTI State-Space System with 3×3 Matrix</h3>
+      <p>Implements dx/dt = A·x + B·u with A = diag(1,2,3) and B=[1;1;1].</p>
+      <p>This model tests matrix parameter unrolling (9+3=12 scalar FMI parameters),
+         vector state outputs (3 scalars), and matrix-vector multiply in the ODE.</p>
+      <h4>Key property</h4>
+      <p>With all eigenvalues positive, the system is unstable and states grow
+         exponentially. Analytical solution with u=1: xᵢ(t) = (eˡⁱᵗ - 1)/λᵢ</p>
+      <p><b>traza</b> = A[1,1]+A[2,2]+A[3,3] = 1+2+3 = 6.0 (constant at all times)</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

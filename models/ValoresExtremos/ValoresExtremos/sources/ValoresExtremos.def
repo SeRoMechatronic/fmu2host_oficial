@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  ValoresExtremos_fmiGetTypesPlatform @1
+  ValoresExtremos_fmiGetVersion @2
+  ValoresExtremos_fmiSetDebugLogging @3
+  ValoresExtremos_fmiInstantiate @4
+  ValoresExtremos_fmiFreeInstance @5
+  ValoresExtremos_fmiSetupExperiment @6
+  ValoresExtremos_fmiEnterInitializationMode @7
+  ValoresExtremos_fmiExitInitializationMode @8
+  ValoresExtremos_fmiTerminate @9
+  ValoresExtremos_fmiReset @10
+  ValoresExtremos_fmiGetReal @11
+  ValoresExtremos_fmiGetInteger @12
+  ValoresExtremos_fmiGetBoolean @13
+  ValoresExtremos_fmiGetString @14
+  ValoresExtremos_fmiSetReal @15
+  ValoresExtremos_fmiSetInteger @16
+  ValoresExtremos_fmiSetBoolean @17
+  ValoresExtremos_fmiSetString @18
+  ValoresExtremos_fmiGetFMUstate @19
+  ValoresExtremos_fmiSetFMUstate @20
+  ValoresExtremos_fmiFreeFMUstate @21
+  ValoresExtremos_fmiSerializedFMUstateSize @22
+  ValoresExtremos_fmiSerializeFMUstate @23
+  ValoresExtremos_fmiDeSerializeFMUstate @24
+  ValoresExtremos_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  ValoresExtremos_fmiEnterEventMode @26
+  ValoresExtremos_fmiNewDiscreteStates @27
+  ValoresExtremos_fmiEnterContinuousTimeMode @28
+  ValoresExtremos_fmiCompletedIntegratorStep @29
+  ValoresExtremos_fmiSetTime @30
+  ValoresExtremos_fmiSetContinuousStates @31
+  ValoresExtremos_fmiGetDerivatives @32
+  ValoresExtremos_fmiGetEventIndicators @33
+  ValoresExtremos_fmiGetContinuousStates @34
+  ValoresExtremos_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  ValoresExtremos_fmiSetRealInputDerivatives @36
+  ValoresExtremos_fmiGetRealOutputDerivatives @37
+  ValoresExtremos_fmiDoStep @38
+  ValoresExtremos_fmiCancelStep @39
+  ValoresExtremos_fmiGetStatus @40
+  ValoresExtremos_fmiGetRealStatus @41
+  ValoresExtremos_fmiGetIntegerStatus @42
+  ValoresExtremos_fmiGetBooleanStatus @43
+  ValoresExtremos_fmiGetStringStatus @44

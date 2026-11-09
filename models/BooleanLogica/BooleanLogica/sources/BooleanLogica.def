@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  BooleanLogica_fmiGetTypesPlatform @1
+  BooleanLogica_fmiGetVersion @2
+  BooleanLogica_fmiSetDebugLogging @3
+  BooleanLogica_fmiInstantiate @4
+  BooleanLogica_fmiFreeInstance @5
+  BooleanLogica_fmiSetupExperiment @6
+  BooleanLogica_fmiEnterInitializationMode @7
+  BooleanLogica_fmiExitInitializationMode @8
+  BooleanLogica_fmiTerminate @9
+  BooleanLogica_fmiReset @10
+  BooleanLogica_fmiGetReal @11
+  BooleanLogica_fmiGetInteger @12
+  BooleanLogica_fmiGetBoolean @13
+  BooleanLogica_fmiGetString @14
+  BooleanLogica_fmiSetReal @15
+  BooleanLogica_fmiSetInteger @16
+  BooleanLogica_fmiSetBoolean @17
+  BooleanLogica_fmiSetString @18
+  BooleanLogica_fmiGetFMUstate @19
+  BooleanLogica_fmiSetFMUstate @20
+  BooleanLogica_fmiFreeFMUstate @21
+  BooleanLogica_fmiSerializedFMUstateSize @22
+  BooleanLogica_fmiSerializeFMUstate @23
+  BooleanLogica_fmiDeSerializeFMUstate @24
+  BooleanLogica_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  BooleanLogica_fmiEnterEventMode @26
+  BooleanLogica_fmiNewDiscreteStates @27
+  BooleanLogica_fmiEnterContinuousTimeMode @28
+  BooleanLogica_fmiCompletedIntegratorStep @29
+  BooleanLogica_fmiSetTime @30
+  BooleanLogica_fmiSetContinuousStates @31
+  BooleanLogica_fmiGetDerivatives @32
+  BooleanLogica_fmiGetEventIndicators @33
+  BooleanLogica_fmiGetContinuousStates @34
+  BooleanLogica_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  BooleanLogica_fmiSetRealInputDerivatives @36
+  BooleanLogica_fmiGetRealOutputDerivatives @37
+  BooleanLogica_fmiDoStep @38
+  BooleanLogica_fmiCancelStep @39
+  BooleanLogica_fmiGetStatus @40
+  BooleanLogica_fmiGetRealStatus @41
+  BooleanLogica_fmiGetIntegerStatus @42
+  BooleanLogica_fmiGetBooleanStatus @43
+  BooleanLogica_fmiGetStringStatus @44

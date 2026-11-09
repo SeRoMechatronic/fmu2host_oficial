@@ -1,0 +1,126 @@
+#include "simulation_data.h"
+
+OMC_DISABLE_OPT
+
+void StringsParametros_read_simulation_info(SIMULATION_INFO* simulationInfo)
+{
+  simulationInfo->startTime = 0.0;
+  simulationInfo->stopTime = 1.0;
+  simulationInfo->stepSize = 0.002;
+  simulationInfo->tolerance = 1e-6;
+  simulationInfo->solverMethod = "dassl";
+  simulationInfo->outputFormat = "mat";
+  simulationInfo->variableFilter = ".*";
+  simulationInfo->OPENMODELICAHOME = "C:/Program Files/OpenModelica1.25.7-64bit";
+}
+
+void StringsParametros_read_input_fmu(MODEL_DATA* modelData)
+{
+  modelData->realVarsData[0].info.id = 1000;
+  modelData->realVarsData[0].info.name = "u";
+  modelData->realVarsData[0].info.comment = "Numeric input — output y will be u multiplied by len_nombre (=34)";
+  modelData->realVarsData[0].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->realVarsData[0].info.info.lineStart = 52;
+  modelData->realVarsData[0].info.info.colStart = 3;
+  modelData->realVarsData[0].info.info.lineEnd = 54;
+  modelData->realVarsData[0].info.info.colEnd = 78;
+  modelData->realVarsData[0].info.info.readonly = 0;
+  modelData->realVarsData[0].attribute.unit = "";
+  modelData->realVarsData[0].attribute.displayUnit = "";
+  modelData->realVarsData[0].attribute.min = -DBL_MAX;
+  modelData->realVarsData[0].attribute.max = DBL_MAX;
+  modelData->realVarsData[0].attribute.fixed = 1;
+  modelData->realVarsData[0].attribute.useNominal = 0;
+  modelData->realVarsData[0].attribute.nominal = 1.0;
+  modelData->realVarsData[0].attribute.start = 0.0;
+  modelData->realVarsData[1].info.id = 1001;
+  modelData->realVarsData[1].info.name = "y";
+  modelData->realVarsData[1].info.comment = "Numeric output: u * len_nombre — verifies numeric path unaffected by String params";
+  modelData->realVarsData[1].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->realVarsData[1].info.info.lineStart = 57;
+  modelData->realVarsData[1].info.info.colStart = 3;
+  modelData->realVarsData[1].info.info.lineEnd = 59;
+  modelData->realVarsData[1].info.info.colEnd = 76;
+  modelData->realVarsData[1].info.info.readonly = 0;
+  modelData->realVarsData[1].attribute.unit = "";
+  modelData->realVarsData[1].attribute.displayUnit = "";
+  modelData->realVarsData[1].attribute.min = -DBL_MAX;
+  modelData->realVarsData[1].attribute.max = DBL_MAX;
+  modelData->realVarsData[1].attribute.fixed = 0;
+  modelData->realVarsData[1].attribute.useNominal = 0;
+  modelData->realVarsData[1].attribute.nominal = 1.0;
+  modelData->realVarsData[1].attribute.start = 0.0;
+  modelData->integerParameterData[0].info.id = 1002;
+  modelData->integerParameterData[0].info.name = "len_nombre";
+  modelData->integerParameterData[0].info.comment = "Pre-computed character count of 'nombre' — used to scale the numeric output";
+  modelData->integerParameterData[0].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->integerParameterData[0].info.info.lineStart = 48;
+  modelData->integerParameterData[0].info.info.colStart = 3;
+  modelData->integerParameterData[0].info.info.lineEnd = 49;
+  modelData->integerParameterData[0].info.info.colEnd = 84;
+  modelData->integerParameterData[0].info.info.readonly = 0;
+  modelData->integerParameterData[0].attribute.min = -LONG_MAX;
+  modelData->integerParameterData[0].attribute.max = LONG_MAX;
+  modelData->integerParameterData[0].attribute.fixed = 1;
+  modelData->integerParameterData[0].attribute.start = 34;
+  modelData->stringParameterData[0].info.id = 1003;
+  modelData->stringParameterData[0].info.name = "especial";
+  modelData->stringParameterData[0].info.comment = "Embedded delimiters: equals, semicolons, and unit notation";
+  modelData->stringParameterData[0].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->stringParameterData[0].info.info.lineStart = 35;
+  modelData->stringParameterData[0].info.info.colStart = 3;
+  modelData->stringParameterData[0].info.info.lineEnd = 36;
+  modelData->stringParameterData[0].info.info.colEnd = 65;
+  modelData->stringParameterData[0].info.info.readonly = 0;
+  modelData->stringParameterData[0].attribute.start = mmc_mk_scon("val=3.14;tag=alpha_beta;unit=m2/s");
+  modelData->stringParameterData[1].info.id = 1004;
+  modelData->stringParameterData[1].info.name = "largo";
+  modelData->stringParameterData[1].info.comment = "98-character string — stresses String buffer allocation (must not overflow)";
+  modelData->stringParameterData[1].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->stringParameterData[1].info.info.lineStart = 44;
+  modelData->stringParameterData[1].info.info.colStart = 3;
+  modelData->stringParameterData[1].info.info.lineEnd = 45;
+  modelData->stringParameterData[1].info.info.colEnd = 84;
+  modelData->stringParameterData[1].info.info.readonly = 0;
+  modelData->stringParameterData[1].attribute.start = mmc_mk_scon("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  modelData->stringParameterData[2].info.id = 1005;
+  modelData->stringParameterData[2].info.name = "nombre";
+  modelData->stringParameterData[2].info.comment = "Typical sensor label with spaces, accented chars, hash and parentheses";
+  modelData->stringParameterData[2].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->stringParameterData[2].info.info.lineStart = 29;
+  modelData->stringParameterData[2].info.info.colStart = 3;
+  modelData->stringParameterData[2].info.info.lineEnd = 30;
+  modelData->stringParameterData[2].info.info.colEnd = 77;
+  modelData->stringParameterData[2].info.info.readonly = 0;
+  modelData->stringParameterData[2].attribute.start = mmc_mk_scon("Sensor de Presión #1 (Alta Temp.)");
+  modelData->stringParameterData[3].info.id = 1006;
+  modelData->stringParameterData[3].info.name = "ruta";
+  modelData->stringParameterData[3].info.comment = "Filesystem path — contains forward slashes and underscores";
+  modelData->stringParameterData[3].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->stringParameterData[3].info.info.lineStart = 32;
+  modelData->stringParameterData[3].info.info.colStart = 3;
+  modelData->stringParameterData[3].info.info.lineEnd = 33;
+  modelData->stringParameterData[3].info.info.colEnd = 67;
+  modelData->stringParameterData[3].info.info.readonly = 0;
+  modelData->stringParameterData[3].attribute.start = mmc_mk_scon("/datos/planta/linea_A/modulo_02");
+  modelData->stringParameterData[4].info.id = 1007;
+  modelData->stringParameterData[4].info.name = "unicode_str";
+  modelData->stringParameterData[4].info.comment = "String with ASCII approximations of Unicode symbols (Å → A, δ→delta, ε→epsilon)";
+  modelData->stringParameterData[4].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->stringParameterData[4].info.info.lineStart = 41;
+  modelData->stringParameterData[4].info.info.colStart = 3;
+  modelData->stringParameterData[4].info.info.lineEnd = 42;
+  modelData->stringParameterData[4].info.info.colEnd = 95;
+  modelData->stringParameterData[4].info.info.readonly = 0;
+  modelData->stringParameterData[4].attribute.start = mmc_mk_scon("Angstrom [A] delta+-epsilon");
+  modelData->stringParameterData[5].info.id = 1008;
+  modelData->stringParameterData[5].info.name = "vacio";
+  modelData->stringParameterData[5].info.comment = "Empty string — codegen must handle zero-length String without null pointer";
+  modelData->stringParameterData[5].info.info.filename = "C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/StringsParametros/StringsParametros.mo";
+  modelData->stringParameterData[5].info.info.lineStart = 38;
+  modelData->stringParameterData[5].info.info.colStart = 3;
+  modelData->stringParameterData[5].info.info.lineEnd = 39;
+  modelData->stringParameterData[5].info.info.colEnd = 83;
+  modelData->stringParameterData[5].info.info.readonly = 0;
+  modelData->stringParameterData[5].attribute.start = mmc_mk_scon("");
+}

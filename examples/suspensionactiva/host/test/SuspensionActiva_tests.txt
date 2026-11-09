@@ -1,0 +1,165 @@
+================================================================================
+  SuspensionActiva — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+SuspensionActiva is an active suspension PD controller with 2 continuous states:
+  - posicion_filtrada  (wheel position filter, tau = 0.1 s)
+  - velocidad_filtrada (velocity filter on der(posicion_filtrada), tau = 0.1 s)
+
+Both states start at 0.0.
+
+INPUTS
+------
+  perfil_bache       Real (unbounded)   Wheel vertical displacement.
+                                         Positive = bump, negative = pothole.
+  velocidad_vehiculo Real [0.0, 1.0]    Normalized vehicle speed.
+
+OUTPUTS
+-------
+  fuerza_actuador   Real [-1.0, 1.0]   Clamped PD output force.
+  bache_detectado   Boolean             |posicion_filtrada| > 0.30
+  actuador_saturado Boolean             |fuerza_raw| >= 1.0
+  modo_confort      Boolean             velocidad < 0.3 AND NOT bache_detectado
+
+INTERNAL LOGIC
+--------------
+  der(posicion_filtrada)  = (perfil_bache - posicion_filtrada) / 0.1
+  der(velocidad_filtrada) = (der(posicion_filtrada) - velocidad_filtrada) / 0.1
+  fuerza_raw              = -(3.0 * posicion_filtrada + 0.8 * velocidad_filtrada)
+  fuerza_actuador         = clamp(fuerza_raw, -1.0, 1.0)
+
+PARAMETERS
+----------
+  tau_filtro   = 0.1   Filter time constant (s)
+  Kp_susp      = 3.0   Proportional gain
+  Kd_susp      = 0.8   Derivative gain
+  umbral_bache = 0.3   Bump threshold
+  sat_actuador = 1.0   Force limit
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+--------------------------------------------------------------------------------
+TC-SA-001   No road input — all outputs zero at t=0
+--------------------------------------------------------------------------------
+  Initial states: posicion_filtrada=0, velocidad_filtrada=0
+  Inputs:         perfil_bache=0.0, velocidad_vehiculo=0.5
+  Simulation:     t=0
+  Expected:
+    fuerza_actuador  = 0.0
+    bache_detectado  = false
+    actuador_saturado= false
+    modo_confort     = false  (speed 0.5 >= 0.3)
+  Purpose: Verify idle state on flat road at highway speed.
+
+--------------------------------------------------------------------------------
+TC-SA-002   Flat road at low speed — comfort mode active
+--------------------------------------------------------------------------------
+  Inputs:   perfil_bache=0.0, velocidad_vehiculo=0.2
+  Initial:  posicion_filtrada=0, velocidad_filtrada=0
+  Expected:
+    fuerza_actuador  = 0.0
+    bache_detectado  = false
+    modo_confort     = true  (0.2 < 0.3 AND no bump)
+  Purpose: Verify comfort mode activates at low speed with no road disturbance.
+
+--------------------------------------------------------------------------------
+TC-SA-003   Small bump — below detection threshold
+--------------------------------------------------------------------------------
+  Initial states: posicion_filtrada=0.25, velocidad_filtrada=0
+  Inputs:         perfil_bache=0.25, velocidad_vehiculo=0.5
+  Simulation:     t=0 (algebraic with pre-set state)
+  Expected:
+    fuerza_raw       = -(3.0*0.25 + 0) = -0.75
+    fuerza_actuador  = -0.75  (within limits)
+    bache_detectado  = false  (0.25 < 0.30)
+    actuador_saturado= false
+  Purpose: Verify small bump generates force without triggering detection.
+
+--------------------------------------------------------------------------------
+TC-SA-004   Bump exactly at detection threshold
+--------------------------------------------------------------------------------
+  Initial states: posicion_filtrada=0.30, velocidad_filtrada=0
+  Inputs:         perfil_bache=0.30, velocidad_vehiculo=0.5
+  Expected:
+    bache_detectado = false  (> operator: 0.30 is NOT > 0.30)
+    fuerza_actuador = -(3.0*0.30) = -0.90
+    actuador_saturado = false
+  Purpose: Verify strict boundary — threshold uses strict > operator.
+
+--------------------------------------------------------------------------------
+TC-SA-005   Bump just above detection threshold
+--------------------------------------------------------------------------------
+  Initial states: posicion_filtrada=0.31, velocidad_filtrada=0
+  Inputs:         perfil_bache=0.31, velocidad_vehiculo=0.2
+  Expected:
+    bache_detectado = true
+    modo_confort    = false  (bump overrides comfort mode even at low speed)
+    fuerza_actuador = -(3.0*0.31) = -0.93
+  Purpose: Verify bump detection and comfort mode suppression.
+
+--------------------------------------------------------------------------------
+TC-SA-006   Large bump — actuator saturated
+--------------------------------------------------------------------------------
+  Initial states: posicion_filtrada=0.50, velocidad_filtrada=0
+  Inputs:         perfil_bache=0.50, velocidad_vehiculo=0.5
+  Expected:
+    fuerza_raw       = -(3.0*0.50) = -1.50
+    fuerza_actuador  = -1.0  (clamped)
+    actuador_saturado= true
+    bache_detectado  = true
+  Purpose: Verify actuator saturates and flag activates on large displacement.
+
+--------------------------------------------------------------------------------
+TC-SA-007   Pothole (negative displacement)
+--------------------------------------------------------------------------------
+  Initial states: posicion_filtrada=-0.40, velocidad_filtrada=0
+  Inputs:         perfil_bache=-0.40, velocidad_vehiculo=0.5
+  Expected:
+    fuerza_raw       = -(3.0*(-0.40)) = +1.20
+    fuerza_actuador  = +1.0  (clamped upward)
+    actuador_saturado= true
+    bache_detectado  = true  (abs(-0.40)=0.40 > 0.30)
+  Purpose: Verify negative displacement generates positive (upward) force.
+
+--------------------------------------------------------------------------------
+TC-SA-008   Step bump — filter transient at t=0.1 s (1 time constant)
+--------------------------------------------------------------------------------
+  Scenario:
+    Initial: posicion_filtrada=0.0
+    t=0+:    perfil_bache = 0.5 (step input)
+  Sample at t=0.1 (= 1 * tau_filtro):
+    Expected:
+      posicion_filtrada ≈ 0.5 * (1-e^-1) ≈ 0.316
+      bache_detectado = true  (0.316 > 0.30)
+  Purpose: Verify filter dynamics after a step bump input.
+
+--------------------------------------------------------------------------------
+TC-SA-009   Speed threshold boundary for comfort mode
+--------------------------------------------------------------------------------
+  Initial states: both = 0
+  Inputs:         perfil_bache=0.0, velocidad_vehiculo=0.30
+  Expected:
+    modo_confort = false  (0.30 is NOT < 0.30)
+  Inputs:         velocidad_vehiculo=0.29
+  Expected:
+    modo_confort = true
+  Purpose: Verify strict < boundary on comfort mode speed threshold.
+
+--------------------------------------------------------------------------------
+TC-SA-010   Both velocity and position — PD interaction
+--------------------------------------------------------------------------------
+  Initial states: posicion_filtrada=0.20, velocidad_filtrada=0.50
+  Inputs:         perfil_bache=0.20, velocidad_vehiculo=0.5
+  Expected:
+    fuerza_raw = -(3.0*0.20 + 0.8*0.50) = -(0.60 + 0.40) = -1.00
+    fuerza_actuador  = -1.0  (exactly at saturation boundary)
+    actuador_saturado= true  (abs(-1.0) >= 1.0)
+  Purpose: Verify combined P and D terms interact correctly.
+
+================================================================================
+  END OF TEST BATTERY
+================================================================================

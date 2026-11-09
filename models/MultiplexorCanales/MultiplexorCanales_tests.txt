@@ -1,0 +1,69 @@
+=====
+  MultiplexorCanales — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+Purely algebraic. Zero states. 4-to-1 multiplexer driven by Integer selector.
+Output defaults to 0.0 for invalid selection.
+
+INPUTS
+------
+  canal_seleccion  Integer   Channel select. Valid: 0, 1, 2, 3.
+  canal_0..3       Real      Four analog input channels.
+
+OUTPUTS
+-------
+  salida        Real      Selected channel value. 0.0 if invalid.
+  canal_activo  Integer   Active channel [0,3]. -1 if invalid.
+  canal_valido  Boolean   true if canal_seleccion in [0,3].
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+TC-MC-001   Select channel 0
+  Inputs:   canal_seleccion=0, canal_0=0.25, canal_1=0.5, canal_2=0.75, canal_3=1.0
+  Expected: salida=0.25, canal_activo=0, canal_valido=true
+
+TC-MC-002   Select channel 1
+  Inputs:   same channels, canal_seleccion=1
+  Expected: salida=0.50, canal_activo=1, canal_valido=true
+
+TC-MC-003   Select channel 2
+  Inputs:   same channels, canal_seleccion=2
+  Expected: salida=0.75, canal_activo=2, canal_valido=true
+
+TC-MC-004   Select channel 3
+  Inputs:   same channels, canal_seleccion=3
+  Expected: salida=1.00, canal_activo=3, canal_valido=true
+
+TC-MC-005   Invalid selector — too low
+  Inputs:   canal_seleccion=-1, canal_0=0.25
+  Expected: salida=0.0, canal_activo=-1, canal_valido=false
+
+TC-MC-006   Invalid selector — too high
+  Inputs:   canal_seleccion=4, canal_0=0.25
+  Expected: salida=0.0, canal_activo=-1, canal_valido=false
+
+TC-MC-007   Channel 0 with zero value
+  Inputs:   canal_seleccion=0, canal_0=0.0
+  Expected: salida=0.0, canal_activo=0, canal_valido=true
+
+TC-MC-008   Channel 3 at full scale
+  Inputs:   canal_seleccion=3, canal_3=1.0
+  Expected: salida=1.0, canal_activo=3, canal_valido=true
+
+TC-MC-009   Switching from channel 0 to channel 2 — output changes instantly
+  Step 1:   canal_seleccion=0, canal_0=0.3 → salida=0.3
+  Step 2:   canal_seleccion=2, canal_2=0.8 → salida=0.8
+  Purpose:  Verify instantaneous switching (algebraic model)
+
+TC-MC-010   Boundary value: selector exactly 0 and 3
+  Inputs:   canal_seleccion=0 → canal_valido=true
+  Inputs:   canal_seleccion=3 → canal_valido=true
+  Purpose:  Verify both boundary values are valid.
+
+================================================================================
+  END OF MULTIPLEXORCANALES TESTS
+================================================================================

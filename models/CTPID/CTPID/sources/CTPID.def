@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  CTPID_fmiGetTypesPlatform @1
+  CTPID_fmiGetVersion @2
+  CTPID_fmiSetDebugLogging @3
+  CTPID_fmiInstantiate @4
+  CTPID_fmiFreeInstance @5
+  CTPID_fmiSetupExperiment @6
+  CTPID_fmiEnterInitializationMode @7
+  CTPID_fmiExitInitializationMode @8
+  CTPID_fmiTerminate @9
+  CTPID_fmiReset @10
+  CTPID_fmiGetReal @11
+  CTPID_fmiGetInteger @12
+  CTPID_fmiGetBoolean @13
+  CTPID_fmiGetString @14
+  CTPID_fmiSetReal @15
+  CTPID_fmiSetInteger @16
+  CTPID_fmiSetBoolean @17
+  CTPID_fmiSetString @18
+  CTPID_fmiGetFMUstate @19
+  CTPID_fmiSetFMUstate @20
+  CTPID_fmiFreeFMUstate @21
+  CTPID_fmiSerializedFMUstateSize @22
+  CTPID_fmiSerializeFMUstate @23
+  CTPID_fmiDeSerializeFMUstate @24
+  CTPID_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  CTPID_fmiEnterEventMode @26
+  CTPID_fmiNewDiscreteStates @27
+  CTPID_fmiEnterContinuousTimeMode @28
+  CTPID_fmiCompletedIntegratorStep @29
+  CTPID_fmiSetTime @30
+  CTPID_fmiSetContinuousStates @31
+  CTPID_fmiGetDerivatives @32
+  CTPID_fmiGetEventIndicators @33
+  CTPID_fmiGetContinuousStates @34
+  CTPID_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  CTPID_fmiSetRealInputDerivatives @36
+  CTPID_fmiGetRealOutputDerivatives @37
+  CTPID_fmiDoStep @38
+  CTPID_fmiCancelStep @39
+  CTPID_fmiGetStatus @40
+  CTPID_fmiGetRealStatus @41
+  CTPID_fmiGetIntegerStatus @42
+  CTPID_fmiGetBooleanStatus @43
+  CTPID_fmiGetStringStatus @44

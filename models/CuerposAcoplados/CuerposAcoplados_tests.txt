@@ -1,0 +1,179 @@
+================================================================================
+  TEST BATTERY — CuerposAcoplados
+  Two Coupled Masses — 4 States, Energy Transfer, Buffer Size Scaling
+================================================================================
+
+OVERVIEW
+--------
+CuerposAcoplados models two masses connected by springs. With four continuous
+states (x1, x2, v1, v2), this model is the most complex in the suite in terms
+of state vector size. It primarily tests:
+  1. Codegen buffer size scaling (EULER_BUF_SIZE / RK4_BUF_SIZE must be ≥ 4)
+  2. Energy conservation with 4 states under different integrators
+  3. Boolean output (en_fase) from a condition involving two state variables
+  4. Real input (fuerza_externa) that modifies the ODE at runtime
+
+WHY THIS MODEL EXISTS
+---------------------
+The harmonic oscillator and pendulum use 2 states. The Lorenz system uses 3.
+This model uses 4. Codegen tools often allocate fixed-size buffers for ODE
+state vectors. If EULER_BUF_SIZE or RK4_BUF_SIZE is hardcoded to 2 or 3,
+this model will produce a buffer overflow or incorrect integration.
+
+The en_fase Boolean output depends on BOTH x1 and x2 simultaneously, which
+means the codegen must correctly read two state values to compute one Boolean
+output — a multi-variable output condition not present in simpler models.
+
+PHYSICS
+-------
+Equations of motion:
+  m1·x1'' = -(k1+kc)·x1 + kc·x2 + F
+  m2·x2'' = kc·x1 - (k2+kc)·x2
+
+Parameters:
+  m1=1.0 kg,  m2=2.0 kg
+  k1=4.0 N/m, k2=2.0 N/m, kc=1.0 N/m
+
+Initial conditions:
+  x1(0)=1.0 m,  x2(0)=-0.5 m,  v1(0)=0.0 m/s,  v2(0)=0.5 m/s
+
+Initial energy:
+  E₀ = 0.5·1·0² + 0.5·2·0.5² + 0.5·4·1² + 0.5·2·0.25 + 0.5·1·(1+0.5)²
+     = 0 + 0.25 + 2.0 + 0.25 + 1.125
+     = 3.625 J
+
+Normal mode frequencies (approximate):
+  ω₁ = √((k1+kc)/m1) = √5 ≈ 2.236 rad/s  (in-phase-like)
+  ω₂ = √((k2+kc)/m2) = √1.5 ≈ 1.225 rad/s (out-of-phase-like)
+
+FMU INTERFACE
+-------------
+  Inputs:
+    fuerza_externa (Real) — external force on mass 1 [N], set to 0 for free osc.
+
+  Outputs:
+    pos1          (Real)    — x1(t) [m]
+    pos2          (Real)    — x2(t) [m]
+    vel1          (Real)    — v1(t) [m/s]
+    vel2          (Real)    — v2(t) [m/s]
+    energia_total (Real)    — total energy [J], must stay ≈ 3.625 when F=0
+    en_fase       (Boolean) — TRUE when sign(x1) == sign(x2)
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(CuerposAcoplados) — expect 4 states, 1 input, 6 outputs
+  2. buildModelFMU(CuerposAcoplados, version="2.0", fmuType="me")
+  3. Verify modelDescription.xml has numberOfContinuousStates="4"
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-CA-001 — Initial conditions (t = 0)
+------------------------------------------
+  Input:   fuerza_externa = 0.0
+  Expected at t = 0:
+    pos1          =  1.0
+    pos2          = -0.5
+    vel1          =  0.0
+    vel2          =  0.5
+    energia_total ≈  3.625
+    en_fase       = FALSE  (x1=1 > 0, x2=-0.5 < 0 → opposite signs)
+  Tolerance: energia ±0.01 J
+  Rationale: Verifies all initial states and energy formula.
+
+TEST-CA-002 — Energy conservation over 20 s (RK4, h=0.05, F=0)
+-----------------------------------------------------------------
+  Input:   fuerza_externa = 0.0
+  Simulate: t_end = 20.0 s, h = 0.05 s, using RK4
+  Expected: |energia_total - 3.625| < 0.05 J at all times
+  Rationale: PRIMARY ENERGY TEST. 4-state system with RK4.
+
+TEST-CA-003 — Energy drift with Euler (h=0.05, F=0)
+-----------------------------------------------------
+  Input:   fuerza_externa = 0.0
+  Simulate: t_end = 20.0 s, h = 0.05 s, using Euler
+  Expected: |energia_total - 3.625| > 0.2 J at some point before t=20 s
+  Rationale: Energy drift discriminator — Euler must perform worse than RK4.
+
+TEST-CA-004 — en_fase transitions (phase beating)
+--------------------------------------------------
+  Input:   fuerza_externa = 0.0
+  Simulate: t_end = 30.0 s, h = 0.01 s, using RK4
+  Expected: en_fase changes value at least 8 times (4 phase reversals)
+  Rationale: The two modes at different frequencies cause beating and
+             repeated in-phase/out-of-phase transitions.
+
+TEST-CA-005 — Momentum not conserved (wall springs present)
+------------------------------------------------------------
+  Input:   fuerza_externa = 0.0
+  Simulate: t_end = 10.0 s, h = 0.01 s, using RK4
+  Expected: pos1 and pos2 each change sign at least 3 times
+  Rationale: Wall springs prevent any fixed offset — both masses oscillate
+             around zero. If either mass drifts, integration is wrong.
+
+TEST-CA-006 — External force increases energy
+----------------------------------------------
+  Input:   fuerza_externa = 5.0 (constant)
+  Simulate: t_end = 5.0 s, h = 0.01 s, using RK4
+  Expected: energia_total at t=5.0 > 3.625 J  (energy input from F·v1)
+  Expected: avg(pos1) > 0  (force on m1 shifts equilibrium toward +x)
+  Rationale: Verifies that fmi2SetReal input correctly modifies the ODE.
+
+TEST-CA-007 — Zero force returns to free oscillation energy
+------------------------------------------------------------
+  Time sequence (h=0.01, RK4):
+    t=0 to 2: fuerza_externa=5.0
+    t=2+    : fuerza_externa=0.0
+  At t=2 record E₂ = energia_total
+  At t=10 verify energia_total ≈ E₂ (energy conserved after F→0)
+  Rationale: Energy must be conserved once input returns to zero.
+
+TEST-CA-008 — Buffer size verification (state vector = 4)
+----------------------------------------------------------
+  This is a CODEGEN STRUCTURAL TEST.
+  After generating code with the codegen tool, inspect for:
+    [ ] State vector allocation of size 4 (not 2 or 3)
+    [ ] RK4 k-vector allocation of size 4 (k1[4], k2[4], k3[4], k4[4])
+    [ ] OR equivalent dynamic allocation that covers ≥4 elements
+  Rationale: If buffer is hardcoded to size 2 or 3, this model overflows.
+             This is the critical regression test for buffer size scaling.
+
+TEST-CA-009 — Analytical normal modes check
+---------------------------------------------
+  For the in-phase normal mode, both masses should oscillate at the same freq.
+  This is a complex test — use it as a sanity check, not a hard CI gate:
+  Simulate: t_end=50 s, h=0.01 s, RK4, F=0
+  Expected: pos1 and pos2 both bounded within ±3.0 m at all times
+  Expected: no exponential growth in amplitude
+  Rationale: Confirms the system is stable (all eigenvalues negative real part).
+
+TEST-CA-010 — Codegen full structural check
+---------------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] 4 state variables declared (x1, x2, v1, v2 or equivalent)
+    [ ] fmi2SetReal called once (fuerza_externa) before each step
+    [ ] fmi2GetReal called 5 times (pos1, pos2, vel1, vel2, energia_total)
+    [ ] fmi2GetBoolean called once (en_fase)
+    [ ] ODE derivative function evaluates all 4 state derivatives
+    [ ] RK4/Euler buffer size handles 4 states without overflow
+  Rationale: Full structural audit for a 4-state, 1-input, 6-output FMU.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  Initial conditions:         absolute tolerance = 1e-6
+  Energy conservation (RK4):  |drift| < 0.05 J over 20 s
+  Energy drift (Euler):       |drift| > 0.2 J at some point in 20 s
+  Position bounds:            |pos1|, |pos2| < 3.0 m
+  Boolean transitions:        at least 8 sign changes in 30 s
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Standard run: t_end=20 s, h=0.05 s, fuerza_externa=0.0
+  - TEST-CA-002 is the primary energy regression guard
+  - TEST-CA-008 is the critical buffer size structural check
+  - Run TEST-CA-003 (Euler) to confirm the test is discriminating
+  - Monitor en_fase transitions as a proxy for correct 4-state dynamics
+================================================================================

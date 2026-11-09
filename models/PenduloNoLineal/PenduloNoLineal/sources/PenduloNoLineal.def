@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  PenduloNoLineal_fmiGetTypesPlatform @1
+  PenduloNoLineal_fmiGetVersion @2
+  PenduloNoLineal_fmiSetDebugLogging @3
+  PenduloNoLineal_fmiInstantiate @4
+  PenduloNoLineal_fmiFreeInstance @5
+  PenduloNoLineal_fmiSetupExperiment @6
+  PenduloNoLineal_fmiEnterInitializationMode @7
+  PenduloNoLineal_fmiExitInitializationMode @8
+  PenduloNoLineal_fmiTerminate @9
+  PenduloNoLineal_fmiReset @10
+  PenduloNoLineal_fmiGetReal @11
+  PenduloNoLineal_fmiGetInteger @12
+  PenduloNoLineal_fmiGetBoolean @13
+  PenduloNoLineal_fmiGetString @14
+  PenduloNoLineal_fmiSetReal @15
+  PenduloNoLineal_fmiSetInteger @16
+  PenduloNoLineal_fmiSetBoolean @17
+  PenduloNoLineal_fmiSetString @18
+  PenduloNoLineal_fmiGetFMUstate @19
+  PenduloNoLineal_fmiSetFMUstate @20
+  PenduloNoLineal_fmiFreeFMUstate @21
+  PenduloNoLineal_fmiSerializedFMUstateSize @22
+  PenduloNoLineal_fmiSerializeFMUstate @23
+  PenduloNoLineal_fmiDeSerializeFMUstate @24
+  PenduloNoLineal_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  PenduloNoLineal_fmiEnterEventMode @26
+  PenduloNoLineal_fmiNewDiscreteStates @27
+  PenduloNoLineal_fmiEnterContinuousTimeMode @28
+  PenduloNoLineal_fmiCompletedIntegratorStep @29
+  PenduloNoLineal_fmiSetTime @30
+  PenduloNoLineal_fmiSetContinuousStates @31
+  PenduloNoLineal_fmiGetDerivatives @32
+  PenduloNoLineal_fmiGetEventIndicators @33
+  PenduloNoLineal_fmiGetContinuousStates @34
+  PenduloNoLineal_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  PenduloNoLineal_fmiSetRealInputDerivatives @36
+  PenduloNoLineal_fmiGetRealOutputDerivatives @37
+  PenduloNoLineal_fmiDoStep @38
+  PenduloNoLineal_fmiCancelStep @39
+  PenduloNoLineal_fmiGetStatus @40
+  PenduloNoLineal_fmiGetRealStatus @41
+  PenduloNoLineal_fmiGetIntegerStatus @42
+  PenduloNoLineal_fmiGetBooleanStatus @43
+  PenduloNoLineal_fmiGetStringStatus @44

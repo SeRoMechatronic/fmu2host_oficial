@@ -1,0 +1,19 @@
+
+<h1>NivelDeposito</h1>
+<p> <i>Tank level controller — pump + 3 alarm outputs — FMI 2.0 ME</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>NivelDeposito — Tank Level Controller</h3>
+      <p>Proportional level controller for a liquid storage tank.
+         A first-order filter (tau=2s) conditions the sensor.
+         Feedforward compensates manual valve disturbances.</p>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Signal</th><th>Type</th><th>Description</th></tr>
+        <tr><td>sensor_nivel</td><td>RealInput</td><td>Normalized level [0,1]</td></tr>
+        <tr><td>valvula_manual</td><td>BooleanInput</td><td>Outlet valve open/closed</td></tr>
+        <tr><td>bomba</td><td>RealOutput</td><td>Pump drive [0,1]</td></tr>
+        <tr><td>alarma_minimo</td><td>BooleanOutput</td><td>Level &lt; 20%</td></tr>
+        <tr><td>alarma_maximo</td><td>BooleanOutput</td><td>Level &gt; 80%</td></tr>
+        <tr><td>bomba_activa</td><td>BooleanOutput</td><td>Pump running</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

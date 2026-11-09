@@ -1,0 +1,179 @@
+================================================================================
+  TEST BATTERY — MatrizEstado
+  LTI State-Space System with 3×3 Matrix — Vector/Matrix FMI Handling
+================================================================================
+
+OVERVIEW
+--------
+MatrizEstado implements a 3-state linear time-invariant system defined by a
+3×3 system matrix A and a 3×1 input matrix B. With diagonal A=diag(1,2,3),
+all three eigenvalues are positive, making the system unstable (states grow
+exponentially). This is intentional: the growth is analytically predictable and
+makes integration errors clearly observable.
+
+WHY THIS MODEL EXISTS
+---------------------
+Matrix and vector parameters in FMI 2.0 are represented as individual scalar
+variables. A 3×3 matrix A becomes 9 separate FMI parameters (A[1,1] through
+A[3,3]) in the modelDescription.xml. The codegen must:
+  1. Correctly read all 9 matrix elements at initialization
+  2. Use correct row-major or column-major indexing (Modelica uses column-major)
+  3. Generate correct matrix-vector multiply: A*x = [Σ A[i,j]*x[j]] for each i
+  4. Output 3 scalar Real values for x[1], x[2], x[3] separately
+
+A transposition error in the matrix indexing produces wrong eigenvalue
+behaviour and is detectable via the analytical solution.
+
+PHYSICS
+-------
+System: dx/dt = A·x + B·u
+
+A = [1 0 0]    B = [1]    x(0) = [0]
+    [0 2 0]        [1]            [0]
+    [0 0 3]        [1]            [0]
+
+Since A is diagonal, the three states are decoupled:
+  dx1/dt = 1·x1 + 1·u   →  x1(t) = u·(eᵗ - 1)      for constant u
+  dx2/dt = 2·x2 + 1·u   →  x2(t) = u·(e²ᵗ - 1)/2   for constant u
+  dx3/dt = 3·x3 + 1·u   →  x3(t) = u·(e³ᵗ - 1)/3   for constant u
+
+At any time: x3(t) grows fastest, x1 slowest.
+Ordering for u=1, t>0: x1 < x2 < x3 always.
+
+traza = A[1,1] + A[2,2] + A[3,3] = 1 + 2 + 3 = 6.0  (constant, independent of time)
+
+FMU INTERFACE
+-------------
+  Parameters (12 scalar FMI parameters from 2 matrices):
+    A[1,1]=1, A[1,2]=0, A[1,3]=0
+    A[2,1]=0, A[2,2]=2, A[2,3]=0
+    A[3,1]=0, A[3,2]=0, A[3,3]=3
+    B[1,1]=1, B[2,1]=1, B[3,1]=1
+
+  Inputs:
+    u[1] (Real) — scalar input wrapped as 1-element vector
+
+  Outputs:
+    x[1], x[2], x[3] (Real) — 3 individual state outputs
+    y_norma (Real)           — ‖x‖ = √(x1²+x2²+x3²)
+    traza   (Real)           — constant 6.0
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(MatrizEstado) — expect 3 states, 1 input, 5 outputs
+  2. buildModelFMU(MatrizEstado, version="2.0", fmuType="me")
+  3. Verify modelDescription.xml has 12 Real parameters for A and B
+  4. Verify output variables are named x[1], x[2], x[3] (1-based indexing)
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-MZ-001 — Initial conditions (t = 0, u = 1)
+-------------------------------------------------
+  Input:  u = {1.0}
+  Expected at t = 0:
+    x[1] = 0.0,  x[2] = 0.0,  x[3] = 0.0
+    y_norma = 0.0
+    traza   = 6.0     (constant, verify at t=0)
+  Rationale: All states initialized to zero.
+
+TEST-MZ-002 — Trace is constant at all times
+----------------------------------------------
+  Simulate: t_end = 5.0 s, h = 0.01 s, u = {1.0}
+  Expected: traza = 6.0 at every output step (tolerance ±1e-10)
+  Rationale: traza depends only on A parameters, not on x(t).
+             If traza changes, the matrix is being read incorrectly.
+
+TEST-MZ-003 — State ordering: x3 > x2 > x1 for u > 0
+------------------------------------------------------
+  Input:  u = {1.0}
+  Simulate: t_end = 2.0 s, h = 0.01 s
+  Expected at all t > 0.01 s:
+    x[3] > x[2] > x[1] > 0
+  Rationale: Higher eigenvalue → faster growth. If ordering is wrong,
+             the matrix diagonal is being read with incorrect indices.
+
+TEST-MZ-004 — Analytical check at t = 1.0 s (u = 1)
+-----------------------------------------------------
+  Exact solution: xi(t) = (eˡⁱᵗ - 1)/λᵢ
+  At t = 1.0, u = 1:
+    x1(1) = (e¹ - 1)/1 ≈ 1.718
+    x2(1) = (e² - 1)/2 ≈ 3.195
+    x3(1) = (e³ - 1)/3 ≈ 6.029
+  Expected (RK4, h=0.01):
+    x[1] ≈ 1.718  (tolerance ±0.05)
+    x[2] ≈ 3.195  (tolerance ±0.05)
+    x[3] ≈ 6.029  (tolerance ±0.05)
+  Rationale: Direct analytical cross-check — detects wrong eigenvalues.
+
+TEST-MZ-005 — Norm increases monotonically (u > 0)
+----------------------------------------------------
+  Input:  u = {1.0}
+  Simulate: t_end = 3.0 s, h = 0.01 s
+  Expected: y_norma is strictly increasing at all times
+  Rationale: For u=1, all states grow from 0 — norm must increase.
+
+TEST-MZ-006 — Zero input: all states stay at zero
+--------------------------------------------------
+  Input:  u = {0.0}
+  Simulate: t_end = 5.0 s, h = 0.01 s
+  Expected: x[1]=x[2]=x[3]=0.0 at all times (tolerance ±1e-12)
+  Expected: y_norma = 0.0, traza = 6.0
+  Rationale: Homogeneous system with zero initial conditions stays at zero.
+
+TEST-MZ-007 — Negative input reverses growth direction
+-------------------------------------------------------
+  Input:  u = {-1.0}
+  Simulate: t_end = 1.0 s, h = 0.01 s
+  Expected at all t > 0: x[1] < 0, x[2] < 0, x[3] < 0
+  Expected: x[3] < x[2] < x[1] < 0  (largest negative value in x[3])
+  Rationale: Negative input drives all states negative with same ordering.
+
+TEST-MZ-008 — Step change in u mid-simulation
+----------------------------------------------
+  Time sequence (h=0.01, RK4):
+    t=0 to 1: u={1.0}  → states grow
+    t=1+    : u={0.0}  → states continue growing (unstable system, u=0 doesn't stop growth)
+  Expected at t=2: x[1], x[2], x[3] all larger than at t=1
+  Rationale: Unstable system (positive eigenvalues) keeps growing even with u=0.
+
+TEST-MZ-009 — Matrix parameter unrolling check
+------------------------------------------------
+  Verify that modelDescription.xml contains all 9 A-matrix elements:
+    A[1,1]=1, A[2,2]=2, A[3,3]=3 (diagonal)
+    A[1,2]=A[1,3]=A[2,1]=A[2,3]=A[3,1]=A[3,2]=0 (off-diagonal)
+  Verify all are labeled with correct 1-based Modelica indexing.
+  Rationale: If A[2,1] and A[1,2] are swapped (transpose error), TEST-MZ-003
+             and TEST-MZ-004 will fail because eigenvalues are still correct
+             for diagonal A, but a non-diagonal test would catch it.
+
+TEST-MZ-010 — Codegen structural check
+----------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] 9 parameter reads for A[i,j] at initialization
+    [ ] 3 parameter reads for B[i,1] at initialization
+    [ ] Matrix-vector multiply implemented correctly (3 dot products)
+    [ ] 3 state variables (x1_state, x2_state, x3_state or x_state[3])
+    [ ] fmi2GetReal called 5 times: x[1], x[2], x[3], y_norma, traza
+    [ ] sqrt() call for y_norma with argument x1²+x2²+x3²
+  Rationale: Structural audit for matrix handling in generated code.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  Analytical solution (RK4, h=0.01): tolerance = ±0.05 per state
+  traza:                             absolute tolerance = 1e-10 (must be exactly 6)
+  Zero-input states:                 absolute tolerance = 1e-12
+  State ordering:                    strict inequality (no tolerance)
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Primary test: TEST-MZ-004 (analytical solution at t=1 s)
+  - traza=6.0 check at every step (TEST-MZ-002) is a cheap constant-output guard
+  - State ordering check (TEST-MZ-003) detects matrix index transposition
+  - Simulate only to t=3 s maximum — states grow exponentially and may overflow
+    float range beyond t=4-5 s depending on precision
+  - Standard run: t_end=2.0 s, h=0.01 s, u={1.0}
+================================================================================

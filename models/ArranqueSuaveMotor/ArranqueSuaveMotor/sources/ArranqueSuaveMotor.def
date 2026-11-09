@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  ArranqueSuaveMotor_fmiGetTypesPlatform @1
+  ArranqueSuaveMotor_fmiGetVersion @2
+  ArranqueSuaveMotor_fmiSetDebugLogging @3
+  ArranqueSuaveMotor_fmiInstantiate @4
+  ArranqueSuaveMotor_fmiFreeInstance @5
+  ArranqueSuaveMotor_fmiSetupExperiment @6
+  ArranqueSuaveMotor_fmiEnterInitializationMode @7
+  ArranqueSuaveMotor_fmiExitInitializationMode @8
+  ArranqueSuaveMotor_fmiTerminate @9
+  ArranqueSuaveMotor_fmiReset @10
+  ArranqueSuaveMotor_fmiGetReal @11
+  ArranqueSuaveMotor_fmiGetInteger @12
+  ArranqueSuaveMotor_fmiGetBoolean @13
+  ArranqueSuaveMotor_fmiGetString @14
+  ArranqueSuaveMotor_fmiSetReal @15
+  ArranqueSuaveMotor_fmiSetInteger @16
+  ArranqueSuaveMotor_fmiSetBoolean @17
+  ArranqueSuaveMotor_fmiSetString @18
+  ArranqueSuaveMotor_fmiGetFMUstate @19
+  ArranqueSuaveMotor_fmiSetFMUstate @20
+  ArranqueSuaveMotor_fmiFreeFMUstate @21
+  ArranqueSuaveMotor_fmiSerializedFMUstateSize @22
+  ArranqueSuaveMotor_fmiSerializeFMUstate @23
+  ArranqueSuaveMotor_fmiDeSerializeFMUstate @24
+  ArranqueSuaveMotor_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  ArranqueSuaveMotor_fmiEnterEventMode @26
+  ArranqueSuaveMotor_fmiNewDiscreteStates @27
+  ArranqueSuaveMotor_fmiEnterContinuousTimeMode @28
+  ArranqueSuaveMotor_fmiCompletedIntegratorStep @29
+  ArranqueSuaveMotor_fmiSetTime @30
+  ArranqueSuaveMotor_fmiSetContinuousStates @31
+  ArranqueSuaveMotor_fmiGetDerivatives @32
+  ArranqueSuaveMotor_fmiGetEventIndicators @33
+  ArranqueSuaveMotor_fmiGetContinuousStates @34
+  ArranqueSuaveMotor_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  ArranqueSuaveMotor_fmiSetRealInputDerivatives @36
+  ArranqueSuaveMotor_fmiGetRealOutputDerivatives @37
+  ArranqueSuaveMotor_fmiDoStep @38
+  ArranqueSuaveMotor_fmiCancelStep @39
+  ArranqueSuaveMotor_fmiGetStatus @40
+  ArranqueSuaveMotor_fmiGetRealStatus @41
+  ArranqueSuaveMotor_fmiGetIntegerStatus @42
+  ArranqueSuaveMotor_fmiGetBooleanStatus @43
+  ArranqueSuaveMotor_fmiGetStringStatus @44

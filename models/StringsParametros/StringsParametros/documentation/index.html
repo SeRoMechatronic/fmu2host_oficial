@@ -1,0 +1,20 @@
+
+<h1>StringsParametros</h1>
+<p> <i>String parameter stress test — long strings, empty, unicode, special characters</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>StringsParametros — String Parameter Edge Cases</h3>
+      <p>Six String parameters covering every edge case a codegen tool must handle
+         when reading FMI String values at initialization:</p>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Parameter</th><th>Edge case</th><th>Length</th></tr>
+        <tr><td>nombre</td><td>Spaces, accented chars, #, ()</td><td>34</td></tr>
+        <tr><td>ruta</td><td>Slashes, underscores</td><td>31</td></tr>
+        <tr><td>especial</td><td>= ; / in value</td><td>34</td></tr>
+        <tr><td>vacio</td><td>Empty string</td><td>0</td></tr>
+        <tr><td>unicode_str</td><td>ASCII substitutes for non-ASCII</td><td>27</td></tr>
+        <tr><td>largo</td><td>98 characters (buffer stress)</td><td>98</td></tr>
+      </table>
+      <p>The numeric computation y=u×34 is independent of the String values
+         and verifies the model remains numerically functional despite String stress.</p>
+    </html>
+<h4> <u> Revisions </u> </h4>

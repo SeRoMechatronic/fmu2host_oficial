@@ -1,0 +1,177 @@
+================================================================================
+  FrenadoABS — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+FrenadoABS is an ABS braking model with 5 continuous states:
+  - v_filtrada      (wheel speed filter, tau = 0.05 s)
+  - p_filtrada      (pedal pressure filter, tau = 0.08 s)
+  - dv_filtrada     (deceleration filter, tau = 0.05 s)
+  - oscilador       (sine component, start = 0.0)
+  - d_oscilador     (cosine component, start = 1.0)
+
+INPUTS
+------
+  velocidad_rueda  Real [0.0, 1.0]   Normalized wheel speed.
+  presion_pedal    Real [0.0, 1.0]   Normalized pedal pressure.
+
+OUTPUTS
+-------
+  presion_modulada  Real [0.0, 1.0]   Effective brake pressure.
+  abs_activo        Boolean            lambda > 0.15
+  rueda_bloqueada   Boolean            lambda > 0.90
+  frenado_normal    Boolean            lambda <= 0.15 AND presion_pedal > 0.05
+
+SLIP INDEX
+----------
+  lambda = clamp(-dv_filtrada / (v_filtrada * 20.0), 0, 1)
+           if v_filtrada > 0.01, else 0
+
+  lambda = 0   → free rolling (no slip)
+  lambda = 0.15 → ABS threshold
+  lambda = 1.0  → fully locked wheel
+
+OSCILLATOR NOTE
+---------------
+  The harmonic oscillator (oscilador, d_oscilador) runs continuously from t=0.
+  With start values oscilador=0, d_oscilador=1, at t=0:
+    oscilador   = sin(2π*10*t) ≈ 0 at t=0
+    d_oscilador = cos(2π*10*t) ≈ 1 at t=0
+  The modulation factor (0.5 + 0.5*oscilador) oscillates between 0.0 and 1.0.
+
+PARAMETERS
+----------
+  lambda_umbral  = 0.15   ABS activation slip threshold
+  tau_filtro_v   = 0.05   Speed filter (s)
+  tau_filtro_p   = 0.08   Pressure filter (s)
+  f_modulacion   = 10.0   Modulation frequency (Hz)
+  P_max          = 1.0    Max pressure
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+--------------------------------------------------------------------------------
+TC-ABS-001   No braking — all outputs nominal
+--------------------------------------------------------------------------------
+  Initial states: v_filtrada=0.8, p_filtrada=0, dv_filtrada=0
+  Inputs:         velocidad_rueda=0.80, presion_pedal=0.0
+  Expected:
+    lambda           = 0.0   (no deceleration)
+    presion_modulada = 0.0
+    abs_activo       = false
+    rueda_bloqueada  = false
+    frenado_normal   = false  (pedal < 0.05)
+  Purpose: Verify idle state — driving without braking.
+
+--------------------------------------------------------------------------------
+TC-ABS-002   Light braking — ABS not triggered
+--------------------------------------------------------------------------------
+  Initial states: v_filtrada=0.6, dv_filtrada=-0.5, p_filtrada=0.3
+  Inputs:         velocidad_rueda=0.60, presion_pedal=0.30
+  Simulation:     t=0 (algebraic with preset states)
+  Compute: lambda = clamp(-(-0.5) / (0.6*20), 0, 1)
+                  = clamp(0.5/12, 0, 1) = clamp(0.042, 0, 1) = 0.042
+  Expected:
+    abs_activo       = false  (0.042 < 0.15)
+    frenado_normal   = true   (lambda<=0.15, pedal>0.05)
+    presion_modulada = p_filtrada = 0.30  (no modulation)
+    rueda_bloqueada  = false
+  Purpose: Verify normal braking without ABS intervention.
+
+--------------------------------------------------------------------------------
+TC-ABS-003   Hard braking — ABS threshold crossed
+--------------------------------------------------------------------------------
+  Initial states: v_filtrada=0.5, dv_filtrada=-2.0, p_filtrada=0.8
+  Compute: lambda = clamp(-(-2.0) / (0.5*20), 0, 1)
+                  = clamp(2.0/10, 0, 1) = 0.20
+  Expected:
+    abs_activo       = true   (0.20 > 0.15)
+    rueda_bloqueada  = false  (0.20 < 0.90)
+    frenado_normal   = false
+    presion_modulada = p_filtrada * (0.5 + 0.5 * oscilador) — modulated
+  Purpose: Verify ABS activates when slip exceeds threshold.
+
+--------------------------------------------------------------------------------
+TC-ABS-004   Wheel locked — rueda_bloqueada fires
+--------------------------------------------------------------------------------
+  Initial states: v_filtrada=0.4, dv_filtrada=-8.0, p_filtrada=1.0
+  Compute: lambda = clamp(-(-8.0) / (0.4*20), 0, 1)
+                  = clamp(8.0/8, 0, 1) = 1.0
+  Expected:
+    abs_activo      = true
+    rueda_bloqueada = true   (1.0 > 0.90)
+    frenado_normal  = false
+  Purpose: Verify wheel-lock detection at maximum slip.
+
+--------------------------------------------------------------------------------
+TC-ABS-005   Vehicle stopped — lambda protection
+--------------------------------------------------------------------------------
+  Initial states: v_filtrada=0.005 (below 0.01 guard), dv_filtrada=-1.0
+  Inputs:         velocidad_rueda=0.0, presion_pedal=1.0
+  Expected:
+    lambda           = 0.0   (guard condition: v < 0.01)
+    abs_activo       = false
+    rueda_bloqueada  = false
+  Purpose: Verify division-by-zero protection when vehicle is stopped.
+
+--------------------------------------------------------------------------------
+TC-ABS-006   Slip exactly at ABS threshold — no activation
+--------------------------------------------------------------------------------
+  Initial states: v_filtrada=0.5, dv_filtrada=-1.5, p_filtrada=0.5
+  Compute: lambda = clamp(1.5/10, 0, 1) = 0.15
+  Expected:
+    abs_activo = false  (> is strict: 0.15 is NOT > 0.15)
+    frenado_normal = true
+  Purpose: Verify strict > boundary on ABS threshold.
+
+--------------------------------------------------------------------------------
+TC-ABS-007   Oscillator continuity — modulation at t=0.05 s
+--------------------------------------------------------------------------------
+  Initial states: oscilador=0, d_oscilador=1
+  After t=0.05 s (half period of 10 Hz):
+    oscilador   ≈ sin(2π*10*0.05) = sin(π) = 0
+    d_oscilador ≈ cos(π) = -1
+  Expected modulation factor = 0.5 + 0.5*0 = 0.5
+  Purpose: Verify oscillator completes half-cycle correctly.
+
+--------------------------------------------------------------------------------
+TC-ABS-008   ABS pressure range — modulated output bounded
+--------------------------------------------------------------------------------
+  State: v_filtrada=0.4, dv_filtrada=-4.0, p_filtrada=1.0
+         oscilador=-1.0 (minimum sine value)
+  Compute: lambda = clamp(4.0/8, 0, 1) = 0.50 → ABS active
+  Modulation = 1.0 * (0.5 + 0.5*(-1.0)) = 0.0
+  Expected:
+    presion_modulada = 0.0   (minimum of modulation cycle)
+  State: oscilador=+1.0 (maximum sine value):
+  Modulation = 1.0 * (0.5 + 0.5*(+1.0)) = 1.0
+  Expected:
+    presion_modulada = 1.0   (maximum of modulation cycle)
+  Purpose: Verify modulated pressure swings between 0 and full pedal pressure.
+
+--------------------------------------------------------------------------------
+TC-ABS-009   Normal braking threshold — pedal below 5%
+--------------------------------------------------------------------------------
+  Initial: v_filtrada=0.5, dv_filtrada=0, p_filtrada=0.03
+  Inputs:  presion_pedal=0.03
+  Expected:
+    lambda         = 0.0
+    frenado_normal = false  (pedal 0.03 <= 0.05 — below active threshold)
+    abs_activo     = false
+  Purpose: Verify frenado_normal requires pedal > 0.05.
+
+--------------------------------------------------------------------------------
+TC-ABS-010   Speed filter transient after speed step
+--------------------------------------------------------------------------------
+  Initial: v_filtrada=0.8
+  t=0+: velocidad_rueda steps to 0.0 (emergency lock simulation)
+  Sample at t=0.05 s (= 1 * tau_filtro_v):
+    Expected: v_filtrada ≈ 0.8 * e^-1 ≈ 0.29
+              dv_filtrada should be strongly negative → lambda > 0
+  Purpose: Verify filter dynamics during sudden wheel deceleration.
+
+================================================================================
+  END OF TEST BATTERY
+================================================================================

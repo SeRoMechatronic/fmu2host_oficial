@@ -1,0 +1,205 @@
+================================================================================
+  TEST BATTERY — Mi_Modelo_Nuevo
+  Name-Hyphen Stress Test + First-Order Low-Pass Filter
+================================================================================
+
+OVERVIEW
+--------
+Mi_Modelo_Nuevo serves a dual purpose:
+
+1. NAME STRESS TEST: The model is saved as "Mi_Modelo_Nuevo.mo" and the
+   String parameter nombre_fmu is set to "Mi-Modelo-Nuevo" (with real hyphens).
+   The test verifies that the codegen handles this without generating
+   invalid C identifiers, broken CMake targets, or malformed FMI function names.
+
+2. FILTER DYNAMICS: The model implements a first-order low-pass filter with
+   an enable/disable Boolean input. It exercises the fmi2SetBoolean path
+   combined with fmi2SetReal in the same step loop.
+
+WHY THIS MODEL EXISTS
+---------------------
+FMI 2.0 specifies that all exported functions must use the ModelIdentifier as
+a prefix. For example: Mi_Modelo_Nuevo_fmi2GetReal(...).
+
+If the ModelIdentifier contains hyphens (Mi-Modelo-Nuevo), the generated C
+code would contain: Mi-Modelo-Nuevo_fmi2GetReal(...) which is not a valid
+C function name (the compiler treats "-" as minus).
+
+Additionally, CMake targets cannot contain hyphens in certain contexts.
+This test verifies that:
+  - The codegen sanitizes or rejects hyphenated names
+  - OR generates a valid mapping between the Modelica name and the C identifier
+  - The generated executable compiles and links without errors
+
+TEST VARIANT A — UNDERSCORE VERSION (Mi_Modelo_Nuevo.mo)
+---------------------------------------------------------
+Expected behavior: Full success. Underscores are valid in C identifiers.
+All generated functions follow the pattern Mi_Modelo_Nuevo_fmi2GetReal().
+
+TEST VARIANT B — HYPHEN VERSION (rename to Mi-Modelo-Nuevo.mo)
+---------------------------------------------------------------
+Expected behavior: Either:
+  (a) Codegen rejects the model with a clear error message explaining
+      that hyphens are invalid in C identifiers, OR
+  (b) Codegen automatically converts hyphens to underscores in the
+      ModelIdentifier and documents the mapping, OR
+  (c) Codegen silently produces broken C code that fails to compile →
+      THIS IS THE BUG to detect.
+
+PHYSICS
+-------
+ODE: τ·dx/dt = u - x  (when flag_activo = TRUE)
+     τ·dx/dt = -x      (when flag_activo = FALSE, decays to zero)
+
+Solution when u = constant U and active:
+  x(t) = U·(1 - e^(-t/τ)) + x₀·e^(-t/τ)
+  With x₀=0: x(t) = U·(1 - e^(-t/τ))
+
+Key time constants (τ=1.0 s):
+  x(1·τ) = 0.632·U  (63.2% of input)
+  x(2·τ) = 0.865·U  (86.5%)
+  x(3·τ) = 0.950·U  (95.0%)
+  x(5·τ) = 0.993·U  (99.3%)
+
+FMU INTERFACE
+-------------
+  Parameters:
+    tau        (Real)   = 1.0    — filter time constant [s]
+    nombre_fmu (String) = "Mi-Modelo-Nuevo" — display name with hyphens
+
+  Inputs:
+    entrada_principal (Real)    — input signal to filter
+    flag_activo       (Boolean) — TRUE=track input, FALSE=decay to zero
+
+  Outputs:
+    salida_filtrada (Real)    — filtered output x(t)
+    flag_salida     (Boolean) — TRUE when salida_filtrada > 0.5
+
+EXPORT INSTRUCTIONS
+-------------------
+  VARIANT A:
+    1. Save as Mi_Modelo_Nuevo.mo (underscores)
+    2. checkModel(Mi_Modelo_Nuevo)
+    3. buildModelFMU(Mi_Modelo_Nuevo, version="2.0", fmuType="me")
+    4. Verify modelDescription.xml has modelName="Mi_Modelo_Nuevo"
+    5. Run codegen — generated C must compile without errors
+
+  VARIANT B:
+    1. Rename file to Mi-Modelo-Nuevo.mo (hyphens)
+    2. Rename model declaration to: model Mi-Modelo-Nuevo
+    3. Follow same export steps
+    4. Document whether codegen produces (a), (b), or (c) behavior above
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-MN-001 — Initial conditions (t = 0)
+------------------------------------------
+  Input:   entrada_principal = 1.0,  flag_activo = TRUE
+  Expected at t = 0:
+    salida_filtrada = 0.0   (starts from rest)
+    flag_salida     = FALSE  (0.0 < 0.5)
+  Rationale: Initial state x(0) = 0 regardless of input.
+
+TEST-MN-002 — Step response: 63% at t = τ = 1.0 s
+----------------------------------------------------
+  Input:   entrada_principal = 1.0 (constant),  flag_activo = TRUE
+  Simulate: t_end = 1.0 s, h = 0.01 s, using RK4
+  Expected at t = 1.0 s:
+    salida_filtrada ≈ 0.632   (= 1 - e⁻¹)  tolerance ±0.02
+    flag_salida     = TRUE    (0.632 > 0.5)
+  Rationale: Standard first-order step response 63% rule.
+
+TEST-MN-003 — Step response: 99% at t = 5·τ = 5.0 s
+------------------------------------------------------
+  Input:   entrada_principal = 1.0 (constant),  flag_activo = TRUE
+  Simulate: t_end = 5.0 s, h = 0.01 s, using RK4
+  Expected at t = 5.0 s:
+    salida_filtrada ≈ 0.993   tolerance ±0.01
+    flag_salida     = TRUE
+  Rationale: Steady-state convergence to input value.
+
+TEST-MN-004 — flag_salida threshold crossing
+----------------------------------------------
+  Input:   entrada_principal = 1.0,  flag_activo = TRUE
+  Simulate: t_end = 3.0 s, h = 0.001 s
+  Expected: flag_salida transitions FALSE → TRUE at approximately t ≈ 0.693 s
+  (x = 0.5 → 0.5 = 1-e^(-t) → t = ln(2) ≈ 0.693 s)
+  Tolerance: ±0.05 s
+  Rationale: Tests the Boolean output threshold crossing timing.
+
+TEST-MN-005 — Deactivation (flag_activo = FALSE mid-run)
+---------------------------------------------------------
+  Time sequence (h=0.01, RK4):
+    t=0 to 3.0: entrada_principal=1.0,  flag_activo=TRUE
+    t=3.0+    : entrada_principal=1.0,  flag_activo=FALSE
+  Expected at t=3.0: salida_filtrada ≈ 0.950
+  Expected at t=4.0: salida_filtrada ≈ 0.950·e⁻¹ ≈ 0.350  (tolerance ±0.02)
+  Expected at t=5.0: salida_filtrada ≈ 0.950·e⁻² ≈ 0.128
+  Expected: flag_salida transitions TRUE → FALSE when salida_filtrada falls below 0.5
+  Rationale: Tests fmi2SetBoolean affecting ODE dynamics mid-simulation.
+
+TEST-MN-006 — Input step from 1.0 to 2.0 mid-run
+--------------------------------------------------
+  Time sequence (h=0.01, RK4):
+    t=0 to 5: entrada_principal=1.0, flag_activo=TRUE → x → 0.993
+    t=5+    : entrada_principal=2.0, flag_activo=TRUE
+  Expected at t=6.0: salida_filtrada ≈ 1.0 + (2.0-1.0)·(1-e⁻¹) ≈ 1.632
+  Rationale: Verifies fmi2SetReal step change is correctly applied in loop.
+
+TEST-MN-007 — Large input value
+---------------------------------
+  Input:   entrada_principal = 100.0 (constant),  flag_activo = TRUE
+  Simulate: t_end = 5.0 s, h = 0.01 s
+  Expected at t=5.0: salida_filtrada ≈ 99.3  (tolerance ±1.0)
+  Expected: flag_salida = TRUE throughout (since 100·(1-e^-t) > 0.5 quickly)
+  Rationale: Large magnitude input — verifies no saturation or overflow.
+
+TEST-MN-008 — Negative input
+------------------------------
+  Input:   entrada_principal = -1.0,  flag_activo = TRUE
+  Simulate: t_end = 5.0 s, h = 0.01 s
+  Expected at t=5.0: salida_filtrada ≈ -0.993   tolerance ±0.01
+  Expected: flag_salida = FALSE throughout (output is negative, < 0.5)
+  Rationale: Negative input test — filter must track negative values.
+
+TEST-MN-009 — CMake / C identifier naming test (VARIANT A)
+------------------------------------------------------------
+  After codegen from Mi_Modelo_Nuevo.mo, check generated build artifacts:
+    [ ] CMakeLists.txt target name = "Mi_Modelo_Nuevo" (no hyphens)
+    [ ] All generated C functions start with "Mi_Modelo_Nuevo_fmi2"
+    [ ] Executable produced is named "Mi_Modelo_Nuevo" or "Mi_Modelo_Nuevo.exe"
+    [ ] No compiler warnings about invalid identifiers
+    [ ] Build completes without errors
+  Rationale: Core naming correctness test for underscore version.
+
+TEST-MN-010 — CMake / C identifier naming test (VARIANT B — hyphenated)
+------------------------------------------------------------------------
+  After renaming to Mi-Modelo-Nuevo.mo and re-exporting:
+  Expected outcome — one of:
+    (a) Codegen rejects with error: "ModelIdentifier 'Mi-Modelo-Nuevo' contains
+        invalid characters for C identifiers. Use underscores instead of hyphens."
+    (b) Codegen auto-converts: all functions named "Mi_Modelo_Nuevo_fmi2..."
+        and a mapping comment appears in generated code
+    (c) [BUG] Codegen emits "Mi-Modelo-Nuevo_fmi2GetReal" → compile fails
+  Document which outcome occurs.
+  Rationale: This is the bug-discovery test. Document the codegen behavior.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  Step response values:         absolute tolerance = 0.02
+  Boolean threshold crossing:   timing tolerance = ±0.05 s
+  Large input convergence:      absolute tolerance = 1.0
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Standard dynamics test: t_end=5 s, h=0.01 s, entrada=1.0, flag=TRUE
+  - TEST-MN-009 and TEST-MN-010 are BUILD-LEVEL tests, not simulation tests
+    → Add to CI as a compilation step, not a simulation step
+  - Run VARIANT B in a separate CI job clearly labeled "name-hyphen-stress"
+  - Document the codegen behavior in the test results regardless of pass/fail
+  - The naming test is more important than the dynamics test for this model
+================================================================================

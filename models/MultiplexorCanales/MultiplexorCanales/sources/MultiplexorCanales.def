@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  MultiplexorCanales_fmiGetTypesPlatform @1
+  MultiplexorCanales_fmiGetVersion @2
+  MultiplexorCanales_fmiSetDebugLogging @3
+  MultiplexorCanales_fmiInstantiate @4
+  MultiplexorCanales_fmiFreeInstance @5
+  MultiplexorCanales_fmiSetupExperiment @6
+  MultiplexorCanales_fmiEnterInitializationMode @7
+  MultiplexorCanales_fmiExitInitializationMode @8
+  MultiplexorCanales_fmiTerminate @9
+  MultiplexorCanales_fmiReset @10
+  MultiplexorCanales_fmiGetReal @11
+  MultiplexorCanales_fmiGetInteger @12
+  MultiplexorCanales_fmiGetBoolean @13
+  MultiplexorCanales_fmiGetString @14
+  MultiplexorCanales_fmiSetReal @15
+  MultiplexorCanales_fmiSetInteger @16
+  MultiplexorCanales_fmiSetBoolean @17
+  MultiplexorCanales_fmiSetString @18
+  MultiplexorCanales_fmiGetFMUstate @19
+  MultiplexorCanales_fmiSetFMUstate @20
+  MultiplexorCanales_fmiFreeFMUstate @21
+  MultiplexorCanales_fmiSerializedFMUstateSize @22
+  MultiplexorCanales_fmiSerializeFMUstate @23
+  MultiplexorCanales_fmiDeSerializeFMUstate @24
+  MultiplexorCanales_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  MultiplexorCanales_fmiEnterEventMode @26
+  MultiplexorCanales_fmiNewDiscreteStates @27
+  MultiplexorCanales_fmiEnterContinuousTimeMode @28
+  MultiplexorCanales_fmiCompletedIntegratorStep @29
+  MultiplexorCanales_fmiSetTime @30
+  MultiplexorCanales_fmiSetContinuousStates @31
+  MultiplexorCanales_fmiGetDerivatives @32
+  MultiplexorCanales_fmiGetEventIndicators @33
+  MultiplexorCanales_fmiGetContinuousStates @34
+  MultiplexorCanales_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  MultiplexorCanales_fmiSetRealInputDerivatives @36
+  MultiplexorCanales_fmiGetRealOutputDerivatives @37
+  MultiplexorCanales_fmiDoStep @38
+  MultiplexorCanales_fmiCancelStep @39
+  MultiplexorCanales_fmiGetStatus @40
+  MultiplexorCanales_fmiGetRealStatus @41
+  MultiplexorCanales_fmiGetIntegerStatus @42
+  MultiplexorCanales_fmiGetBooleanStatus @43
+  MultiplexorCanales_fmiGetStringStatus @44

@@ -1,0 +1,185 @@
+================================================================================
+  TEST BATTERY — StringInputOutput
+  String variables as FMI 2.0 runtime inputs and outputs
+================================================================================
+
+OVERVIEW
+--------
+StringInputOutput is an FMU that classifies a real sensor value and produces
+both numeric and String outputs. Its primary purpose is to exercise the
+fmi2SetString / fmi2GetString code paths inside a code generation tool.
+
+Most FMU models only use String as parameters (read once at fmi2EnterInitialization
+Mode). This model uses String as genuine runtime variables, meaning the codegen
+must generate set/get call sites in the doStep loop body, not just in the
+initialization block.
+
+WHY THIS MODEL EXISTS
+---------------------
+When a codegen tool processes an FMU, it typically generates different handling
+code for each variable type:
+  - Real    → fmi2SetReal  / fmi2GetReal
+  - Integer → fmi2SetInteger / fmi2GetInteger
+  - Boolean → fmi2SetBoolean / fmi2GetBoolean
+  - String  → fmi2SetString / fmi2GetString
+
+String is the least tested path. This model ensures:
+  1. The codegen recognizes String inputs (not just parameters)
+  2. fmi2SetString is called before doStep with the runtime String value
+  3. String outputs are read via fmi2GetString after doStep
+  4. The codegen handles empty string output ("") without buffer overflow
+  5. The codegen handles String comparison or pass-through if needed
+
+FMU INTERFACE
+-------------
+  Inputs:
+    value          (Real)    — sensor reading, range [0.0, 200.0]
+    mode_operation (String)  — operating mode (e.g. "AUTO", "MANUAL", "TEST")
+    tag_sensor     (String)  — sensor identifier (e.g. "SEN_001")
+
+  Outputs:
+    scaled_value   (Real)    — value * 1.5
+    alarm          (Boolean) — TRUE when value < 10.0 or value > 100.0
+    status         (String)  — "HIGH" if value > 100.0,
+                               "LOW"  if value < 10.0,
+                               "NORMAL" otherwise
+    alert_msg      (String)  — "ALERT: value above upper limit (100.0)" if HIGH
+                               "ALERT: value below lower limit (10.0)"  if LOW
+                               ""  (empty string) if NORMAL
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. Open StringInputOutput.mo in OpenModelica
+  2. Run: checkModel(StringInputOutput)
+  3. Export: buildModelFMU(StringInputOutput, version="2.0", fmuType="me")
+  4. Verify modelDescription.xml lists mode_operation and tag_sensor with
+     causality="input" and variableNamingConvention appropriate for Strings
+  5. Verify alert_msg output can return an empty string ""
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-STR-001 — Normal range, nominal strings
+----------------------------------------------
+  Input:   value = 55.0, mode_operation = "AUTO", tag_sensor = "SEN_001"
+  Expected:
+    scaled_value = 82.5
+    alarm        = FALSE
+    status       = "NORMAL"
+    alert_msg    = ""
+  Rationale: Nominal case inside [10, 100]. Empty alert_msg must not be null.
+
+TEST-STR-002 — Value above upper limit
+----------------------------------------
+  Input:   value = 150.0, mode_operation = "AUTO", tag_sensor = "SEN_002"
+  Expected:
+    scaled_value = 225.0
+    alarm        = TRUE
+    status       = "HIGH"
+    alert_msg    = "ALERT: value above upper limit (100.0)"
+  Rationale: Tests HIGH branch and non-empty alert string output.
+
+TEST-STR-003 — Value below lower limit
+----------------------------------------
+  Input:   value = 3.0, mode_operation = "MANUAL", tag_sensor = "SEN_003"
+  Expected:
+    scaled_value = 4.5
+    alarm        = TRUE
+    status       = "LOW"
+    alert_msg    = "ALERT: value below lower limit (10.0)"
+  Rationale: Tests LOW branch. mode_operation is set to non-default value.
+
+TEST-STR-004 — Exact upper boundary
+--------------------------------------
+  Input:   value = 100.0, mode_operation = "AUTO", tag_sensor = "SEN_001"
+  Expected:
+    scaled_value = 150.0
+    alarm        = FALSE
+    status       = "NORMAL"
+    alert_msg    = ""
+  Rationale: Boundary at 100.0 is NORMAL (strict >). Edge case for codegen
+             if/else chain generation.
+
+TEST-STR-005 — Exact lower boundary
+--------------------------------------
+  Input:   value = 10.0, mode_operation = "AUTO", tag_sensor = "SEN_001"
+  Expected:
+    scaled_value = 15.0
+    alarm        = FALSE
+    status       = "NORMAL"
+    alert_msg    = ""
+  Rationale: Boundary at 10.0 is NORMAL (strict <). Symmetric edge case.
+
+TEST-STR-006 — Empty string inputs
+-------------------------------------
+  Input:   value = 50.0, mode_operation = "", tag_sensor = ""
+  Expected:
+    scaled_value = 75.0
+    alarm        = FALSE
+    status       = "NORMAL"
+    alert_msg    = ""
+  Rationale: Empty string inputs — codegen must not crash on zero-length
+             fmi2SetString call.
+
+TEST-STR-007 — String with special characters
+-----------------------------------------------
+  Input:   value = 110.0,
+           mode_operation = "TEST/Ångström±",
+           tag_sensor     = "SEN_αβγ_#42"
+  Expected:
+    scaled_value = 165.0
+    alarm        = TRUE
+    status       = "HIGH"
+    alert_msg    = "ALERT: value above upper limit (100.0)"
+  Rationale: Unicode and special chars in String inputs. Codegen buffer must
+             handle multi-byte characters without overflow.
+
+TEST-STR-008 — String with 100+ characters
+--------------------------------------------
+  Input:   value = 5.0,
+           mode_operation = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+           tag_sensor = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+  Expected:
+    scaled_value = 7.5
+    alarm        = TRUE
+    status       = "LOW"
+    alert_msg    = "ALERT: value below lower limit (10.0)"
+  Rationale: Long strings stress the String buffer allocation in generated code.
+
+TEST-STR-009 — Step change in value crossing boundaries
+---------------------------------------------------------
+  Time sequence:
+    t=0.0 : value=50.0  → status="NORMAL", alarm=FALSE, alert_msg=""
+    t=1.0 : value=120.0 → status="HIGH",   alarm=TRUE,  alert_msg="ALERT:..."
+    t=2.0 : value=5.0   → status="LOW",    alarm=TRUE,  alert_msg="ALERT:..."
+    t=3.0 : value=50.0  → status="NORMAL", alarm=FALSE, alert_msg=""
+  Rationale: Verifies that String output transitions correctly across all three
+             branches at runtime, not just at initialization.
+
+TEST-STR-010 — Codegen structural check
+-----------------------------------------
+  After codegen, inspect the generated C source for:
+    [ ] fmi2SetString called for mode_operation and tag_sensor inputs
+    [ ] fmi2GetString called for status and alert_msg outputs
+    [ ] Buffer size for String outputs is at least 256 bytes
+    [ ] Empty string "" is handled as a valid output (not NULL)
+    [ ] No segfault-prone strcpy without length check
+  Rationale: Structural audit of the codegen String handling paths.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  Real comparisons   : absolute tolerance = 1e-9
+  Boolean comparisons: exact match required
+  String comparisons : exact byte-for-byte match, case-sensitive
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Simulate for t_end = 4.0 s, step h = 1.0 s
+  - At each step, set all String inputs before calling doStep
+  - After each doStep, read all String outputs and compare to expected
+  - Null pointer for String output must be treated as a test failure
+  - Empty string "" is a valid and expected output — do not treat as NULL
+================================================================================

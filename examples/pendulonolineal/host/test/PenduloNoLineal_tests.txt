@@ -1,0 +1,167 @@
+================================================================================
+  TEST BATTERY — PenduloNoLineal
+  Large-Angle Nonlinear Pendulum — Energy Conservation with sin(θ)
+================================================================================
+
+OVERVIEW
+--------
+PenduloNoLineal is an undamped pendulum released from 150 degrees (2.618 rad).
+At this large angle, the linearized approximation sin(θ) ≈ θ is completely
+invalid. The full nonlinear ODE must be integrated accurately.
+
+Like the harmonic oscillator, the system conserves total mechanical energy.
+Unlike the harmonic oscillator, the nonlinear sin(θ) term makes it harder to
+integrate, so energy drift appears sooner and is more pronounced.
+
+WHY THIS MODEL EXISTS
+---------------------
+The pendulum complements the harmonic oscillator test by introducing:
+  1. A nonlinear forcing term sin(θ) that varies in magnitude as θ changes
+  2. A starting condition near the "top" of the swing (150° is close to 180°,
+     which is the unstable equilibrium), creating stronger nonlinear effects
+  3. A Boolean output (en_reposo) that fires at turning points, testing
+     event detection in the codegen
+
+PHYSICS
+-------
+ODE: θ'' + (g/L)·sin(θ) = 0
+Split: dθ/dt = ω,   dω/dt = -(g/L)·sin(θ)
+
+Initial conditions: θ(0) = 2.618 rad (150°),  ω(0) = 0 rad/s
+Parameters: L = 1.0 m,  g = 9.81 m/s²
+
+Energy (conserved):
+  E = 0.5·L²·ω² - g·L·cos(θ)
+  E₀ = 0.5·1²·0² - 9.81·1·cos(2.618)
+     = -9.81·(-0.866)
+     ≈ 8.496 J
+
+Period (large angle, NOT 2π√(L/g)):
+  For θ₀=150°, the period is much longer than the linear approximation.
+  Approximate period: T ≈ 7.0 s  (computed numerically, not analytically)
+  Linear period: T_lin = 2π√(L/g) ≈ 2.006 s  (wrong at 150°)
+
+FMU INTERFACE
+-------------
+  Inputs:   NONE
+
+  Outputs:
+    angulo           (Real)    — θ(t) [rad], starts at 2.618, swings to -2.618
+    velocidad_angular (Real)   — θ'(t) [rad/s], max speed ≈ ±13.0 rad/s
+    energia_total    (Real)    — must remain ≈ 8.496 J
+    en_reposo        (Boolean) — TRUE when |ω| < 0.01 (near turning points)
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(PenduloNoLineal) — expect 2 states, 4 outputs
+  2. buildModelFMU(PenduloNoLineal, version="2.0", fmuType="me")
+  3. Generate main.c with Euler and RK4 variants
+  4. Use step h = 0.05 s for a clear difference between integrators
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-PN-001 — Initial conditions (t = 0)
+------------------------------------------
+  Expected:
+    angulo           = 2.618   (= 150° in radians)
+    velocidad_angular = 0.0    (released from rest)
+    energia_total    ≈ 8.496   (= -9.81·cos(2.618))
+    en_reposo        = TRUE    (ω = 0 at start)
+  Tolerance: energia ±0.01 J
+  Rationale: Verifies initial state and energy calculation.
+
+TEST-PN-002 — Maximum speed at bottom (θ ≈ 0)
+-----------------------------------------------
+  As the pendulum swings to the bottom (θ ≈ 0), all energy is kinetic:
+  E = 0.5·ω² → ω_max = √(2·E) = √(2·8.496) ≈ 4.121 rad/s
+  Wait: E₀ = -g·L·cos(2.618) ≈ 8.496 J, bottom E = -g·L·cos(0) = -9.81 J
+  Kinetic at bottom: KE = E₀ - PE_bottom = 8.496 - (-9.81) = 18.306 J
+  ω_max = √(2·18.306) ≈ 6.047 rad/s
+  Expected: max |velocidad_angular| ≈ 6.047 rad/s (tolerance ±0.3)
+  Rationale: Energy fully converts to kinetic at θ = 0.
+
+TEST-PN-003 — Symmetric swing (θ returns to -2.618 rad)
+---------------------------------------------------------
+  After one half-swing, pendulum reaches -150° = -2.618 rad.
+  Expected: min(angulo) ≈ -2.618 (tolerance ±0.1)
+  Expected: velocidad_angular ≈ 0.0 at the same time (tolerance ±0.1)
+  Rationale: Without damping, the swing is symmetric.
+
+TEST-PN-004 — Energy conservation over 10 s (RK4, h=0.05)
+------------------------------------------------------------
+  Simulate: t_end = 10.0 s, h = 0.05 s, using RK4
+  Expected: |energia_total - 8.496| < 0.1 J at all times
+  Expected max drift < 1.2%
+  Rationale: Energy conservation check for RK4 with moderate step size.
+
+TEST-PN-005 — Energy drift with Euler (h=0.05)
+------------------------------------------------
+  Simulate: t_end = 10.0 s, h = 0.05 s, using Euler
+  Expected: |energia_total - 8.496| > 0.5 J before t = 10 s
+  Rationale: Euler should show visible energy error (>6%) at this step size.
+             If Euler also gives < 0.1 J drift, use h = 0.1 s.
+
+TEST-PN-006 — en_reposo fires at turning points
+-------------------------------------------------
+  Simulate: t_end = 15.0 s, h = 0.01 s, using RK4
+  Expected: en_reposo = TRUE at least 4 times (2 turning points per cycle,
+            ~2 cycles in 15 s with T ≈ 7 s)
+  Expected: en_reposo transitions from FALSE → TRUE → FALSE at each event
+  Rationale: Tests Boolean output generation and event-like behavior.
+
+TEST-PN-007 — Angle bounded within [-π, π] initially
+------------------------------------------------------
+  Simulate: t_end = 30.0 s, h = 0.01 s, using RK4
+  Expected: angulo stays within [-3.2, 3.2] rad at all times
+  Note: For this energy level, the pendulum CANNOT reach the top (θ = ±π
+        would require E ≥ 2·g·L = 19.62 J, but E₀ ≈ 8.496 J < 19.62 J)
+  Rationale: The pendulum oscillates — it does not rotate continuously.
+             If θ exits [-π, π], integration has failed catastrophically.
+
+TEST-PN-008 — Period estimate (large angle)
+--------------------------------------------
+  Simulate: t_end = 30.0 s, h = 0.01 s, using RK4
+  Find times t1 and t2 where angulo returns to 2.618 rad (two consecutive peaks)
+  Expected: t2 - t1 ≈ 7.0 s  (tolerance ±1.0 s)
+  Note: The linear period would be 2.006 s — the large angle slows it down
+        significantly (T_large / T_linear ≈ 3.5x).
+  Rationale: Confirms the nonlinear period is correctly captured.
+
+TEST-PN-009 — Energy comparison: RK4 vs Euler at t = 5 s
+----------------------------------------------------------
+  Both integrators: h = 0.05 s
+  At t = 5.0 s:
+    RK4   energia_total : deviation from 8.496 < 0.1 J
+    Euler energia_total : deviation from 8.496 > 0.3 J
+  Rationale: Direct side-by-side comparison at a specific time point.
+
+TEST-PN-010 — Codegen structural check
+----------------------------------------
+  After codegen (both Euler and RK4 variants), verify:
+    [ ] State vector size = 2 (theta, omega_p)
+    [ ] sin() called correctly in derivative evaluation
+    [ ] fmi2GetBoolean called for en_reposo output
+    [ ] fmi2GetReal called 3 times (angulo, velocidad_angular, energia_total)
+    [ ] No fmi2Set* calls in step loop (zero inputs)
+  Rationale: Structural audit — nonlinear term sin() must appear in codegen.
+
+================================================================================
+  TOLERANCE SUMMARY
+================================================================================
+  Energy conservation (RK4, h=0.05): deviation < 0.1 J  (< 1.2%)
+  Energy drift (Euler, h=0.05):       deviation > 0.5 J  (> 6%)
+  Angle:                              ±0.1 rad
+  Angular velocity:                   ±0.3 rad/s
+  Period estimate:                    ±1.0 s
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Primary test: TEST-PN-004 (RK4 energy conservation, h=0.05, 10 s)
+  - Discriminator: TEST-PN-005 (Euler must drift more than RK4)
+  - Use h=0.05 s as the standard step — large enough to show integrator
+    difference, small enough that RK4 still conserves energy well
+  - If both pass with h=0.05, try h=0.1 s (larger step amplifies error)
+================================================================================

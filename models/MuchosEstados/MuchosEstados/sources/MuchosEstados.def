@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  MuchosEstados_fmiGetTypesPlatform @1
+  MuchosEstados_fmiGetVersion @2
+  MuchosEstados_fmiSetDebugLogging @3
+  MuchosEstados_fmiInstantiate @4
+  MuchosEstados_fmiFreeInstance @5
+  MuchosEstados_fmiSetupExperiment @6
+  MuchosEstados_fmiEnterInitializationMode @7
+  MuchosEstados_fmiExitInitializationMode @8
+  MuchosEstados_fmiTerminate @9
+  MuchosEstados_fmiReset @10
+  MuchosEstados_fmiGetReal @11
+  MuchosEstados_fmiGetInteger @12
+  MuchosEstados_fmiGetBoolean @13
+  MuchosEstados_fmiGetString @14
+  MuchosEstados_fmiSetReal @15
+  MuchosEstados_fmiSetInteger @16
+  MuchosEstados_fmiSetBoolean @17
+  MuchosEstados_fmiSetString @18
+  MuchosEstados_fmiGetFMUstate @19
+  MuchosEstados_fmiSetFMUstate @20
+  MuchosEstados_fmiFreeFMUstate @21
+  MuchosEstados_fmiSerializedFMUstateSize @22
+  MuchosEstados_fmiSerializeFMUstate @23
+  MuchosEstados_fmiDeSerializeFMUstate @24
+  MuchosEstados_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  MuchosEstados_fmiEnterEventMode @26
+  MuchosEstados_fmiNewDiscreteStates @27
+  MuchosEstados_fmiEnterContinuousTimeMode @28
+  MuchosEstados_fmiCompletedIntegratorStep @29
+  MuchosEstados_fmiSetTime @30
+  MuchosEstados_fmiSetContinuousStates @31
+  MuchosEstados_fmiGetDerivatives @32
+  MuchosEstados_fmiGetEventIndicators @33
+  MuchosEstados_fmiGetContinuousStates @34
+  MuchosEstados_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  MuchosEstados_fmiSetRealInputDerivatives @36
+  MuchosEstados_fmiGetRealOutputDerivatives @37
+  MuchosEstados_fmiDoStep @38
+  MuchosEstados_fmiCancelStep @39
+  MuchosEstados_fmiGetStatus @40
+  MuchosEstados_fmiGetRealStatus @41
+  MuchosEstados_fmiGetIntegerStatus @42
+  MuchosEstados_fmiGetBooleanStatus @43
+  MuchosEstados_fmiGetStringStatus @44

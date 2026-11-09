@@ -1,0 +1,172 @@
+================================================================================
+  TEST BATTERY — SinInputs
+  Autonomous Mass-Spring-Damper — zero inputs
+================================================================================
+
+OVERVIEW
+--------
+SinInputs is a second-order mass-spring-damper oscillator with NO input
+variables of any kind. The system evolves purely from its initial conditions
+and parameters. No fmi2SetReal, fmi2SetBoolean, or fmi2SetString calls are
+needed in the main simulation loop.
+
+WHY THIS MODEL EXISTS
+---------------------
+A codegen tool that generates a main.c driver for an FMU typically builds a
+loop that:
+  1. Sets inputs via fmi2Set*
+  2. Calls doStep (or advances the ODE solver)
+  3. Reads outputs via fmi2Get*
+
+When there are no inputs, step 1 is empty. A naive codegen might:
+  - Crash because it tries to iterate over an empty input list
+  - Generate invalid C syntax (e.g., an empty for loop body)
+  - Skip output reading entirely (wrong assumption: "no input = no change")
+
+This model verifies that the codegen handles the zero-input case correctly
+and still produces a working executable that reads the three outputs.
+
+PHYSICS
+-------
+The model implements: m·x'' + c·x' + k·x = 0
+
+Split into two first-order ODEs:
+  dx/dt = v
+  dv/dt = -(k/m)·x - (c/m)·v
+
+Default parameters:
+  m = 1.5 kg     (mass)
+  c = 0.3 N·s/m  (damping)
+  k = 10.0 N/m   (spring stiffness)
+  x0 = 1.0 m     (initial displacement)
+  v0 = 0.0 m/s   (initial velocity)
+
+Derived quantities:
+  Natural frequency:   ω₀ = √(k/m) = √(10/1.5) ≈ 2.582 rad/s
+  Damped frequency:    ωd = √(ω₀² - (c/2m)²)  ≈ 2.580 rad/s
+  Damping ratio:       ζ  = c / (2·√(k·m))    ≈ 0.0548  (underdamped)
+  Period:              T  = 2π/ωd              ≈ 2.434 s
+
+FMU INTERFACE
+-------------
+  Parameters (set at init, not changed during simulation):
+    masa          = 1.5   [kg]
+    amortiguacion = 0.3   [N·s/m]
+    rigidez       = 10.0  [N/m]
+
+  Inputs:   NONE
+
+  Outputs:
+    posicion  (Real) — displacement x(t) [m]
+    velocidad (Real) — velocity x'(t) [m/s]
+    energia   (Real) — 0.5·m·v² + 0.5·k·x² [J], decreases over time
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. Open SinInputs.mo in OpenModelica
+  2. Run: checkModel(SinInputs)  — must report 2 equations, 2 states
+  3. Export: buildModelFMU(SinInputs, version="2.0", fmuType="me")
+  4. Verify modelDescription.xml has NO variables with causality="input"
+  5. Verify it has exactly 3 output variables
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-NI-001 — Initial condition check (t = 0)
+----------------------------------------------
+  At t = 0, before any integration:
+  Expected:
+    posicion  = 1.0   (= x0)
+    velocidad = 0.0   (= v0)
+    energia   = 5.0   (= 0.5 * 10.0 * 1.0² + 0.5 * 1.5 * 0.0²)
+  Rationale: Verifies initial state is correctly set from parameters.
+
+TEST-NI-002 — Energy monotonically decreasing
+-----------------------------------------------
+  Simulate for t_end = 20.0 s, step h = 0.01 s.
+  Record energia at t = 0, 5, 10, 15, 20.
+  Expected:
+    energia(0)  ≈ 5.000
+    energia(5)  < energia(0)
+    energia(10) < energia(5)
+    energia(15) < energia(10)
+    energia(20) < energia(15)
+  Rationale: With positive damping, total energy must decrease strictly.
+             Any integration error (energy gain) means the solver is wrong.
+
+TEST-NI-003 — Position returns through zero (oscillation)
+-----------------------------------------------------------
+  Simulate for t_end = 10.0 s, step h = 0.01 s.
+  Expected: posicion changes sign at least 4 times (underdamped, ζ ≈ 0.055)
+  Hint: First zero-crossing of posicion occurs near t ≈ T/2 ≈ 1.217 s
+  Rationale: Confirms the system is oscillating, not over-damped or critically
+             damped by numerical error.
+
+TEST-NI-004 — Velocity is zero at displacement extrema
+-------------------------------------------------------
+  At the first local maximum of posicion (near t ≈ 0 for x0=1, v0=0):
+  Expected: velocidad ≈ 0.0 (within tolerance 0.05 m/s)
+  At the first local minimum of posicion:
+  Expected: velocidad ≈ 0.0 (within tolerance 0.05 m/s)
+  Rationale: Energy exchanges between kinetic and potential at extrema.
+
+TEST-NI-005 — Long-term decay to zero
+---------------------------------------
+  Simulate for t_end = 100.0 s, step h = 0.01 s.
+  Expected at t = 100:
+    |posicion|  < 0.01 m
+    |velocidad| < 0.01 m/s
+    energia     < 0.001 J
+  Rationale: Damped system must converge to rest. Divergence means integration
+             is unstable.
+
+TEST-NI-006 — Analytical cross-check at t = 1.0 s
+----------------------------------------------------
+  For an underdamped system:
+    x(t) ≈ e^(-ζ·ω₀·t) · cos(ωd·t)    (approximate for v0=0)
+  With ζ=0.0548, ω₀=2.582, ωd≈2.580:
+    x(1.0) ≈ e^(-0.0548·2.582·1.0) · cos(2.580·1.0)
+           ≈ e^(-0.1415) · cos(2.580)
+           ≈ 0.868 · (-0.839)
+           ≈ -0.728
+  Expected:
+    posicion at t=1.0 ≈ -0.728  (tolerance ±0.05)
+  Rationale: Numerical cross-check against analytical solution.
+
+TEST-NI-007 — Codegen structural check (no inputs)
+----------------------------------------------------
+  After codegen, inspect the generated C source for:
+    [ ] Zero fmi2SetReal / fmi2SetBoolean / fmi2SetString calls in step loop
+    [ ] fmi2GetReal called 3 times (posicion, velocidad, energia)
+    [ ] ODE solver present (Euler or RK4) with correct state vector size = 2
+    [ ] No attempt to dereference a NULL input array
+    [ ] main() compiles and links without errors or warnings
+  Rationale: Structural audit that the codegen handles zero inputs gracefully.
+
+TEST-NI-008 — Parameter override: critically damped
+-----------------------------------------------------
+  Override parameters: masa=1.0, amortiguacion=6.325, rigidez=10.0
+  (ζ = 6.325 / (2·√10) ≈ 1.0 — critical damping)
+  Simulate for t_end = 10.0 s, step h = 0.01 s.
+  Expected: posicion decreases from 1.0 to 0 WITHOUT crossing zero
+  Expected: posicion at t=5.0 < 0.05
+  Rationale: Verifies the model correctly responds to parameter changes
+             at initialization and that no oscillation occurs when ζ ≥ 1.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  All Real comparisons: absolute tolerance = 1e-3 (physical quantities)
+  Energy decrease:      strictly < previous value (no tolerance, must hold)
+  Analytical check:     tolerance = ±0.05 m
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - Default simulation: t_end = 20.0 s, h = 0.01 s
+  - No input-setting calls should appear in the generated driver
+  - Test NI-002 (energy decrease) is the primary regression guard
+  - Test NI-007 (structural check) should be automated via grep/AST analysis
+    of generated C source
+================================================================================

@@ -1,0 +1,6 @@
+t,value,mode_operation,tag_sensor,scaled_value,alarm,alert_msg,status
+0.0,55.0,,,82.5,0.0,,NORMAL
+1.0,120.0,,,180.0,1.0,ALERT: value above upper limit (100.0),HIGH
+2.0,5.0,,,7.5,1.0,ALERT: value below lower limit (10.0),LOW
+3.0,55.0,,,82.5,0.0,,NORMAL
+4.0,55.0,,,82.5,0.0,,NORMAL

@@ -1,0 +1,31 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"CrecimientoPoblacional","description":"Logistic population growth \uffffffe2\uffffff80\uffffff94 fast dynamics near inflection point"},
+"variables":{
+"N":{"comment":"Population count \uffffffe2\uffffff80\uffffff94 initial: 2 individuals","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":63,"lineEnd":63,"colStart":3,"colEnd":82}}},
+"der(N)":{"comment":"der(Population count \uffffffe2\uffffff80\uffffff94 initial: 2 individuals)","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":63,"lineEnd":63,"colStart":3,"colEnd":82}}},
+"poblacion":{"comment":"Population N(t) \uffffffe2\uffffff80\uffffff94 converges to K=100 when tasa_entrada=0","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":46,"lineEnd":48,"colStart":3,"colEnd":75}}},
+"saturacion":{"comment":"Saturation level N/K \uffffffe2\uffffff88\uffffff88 [0, 1] \uffffffe2\uffffff80\uffffff94 reaches 1.0 at carrying capacity","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":54,"lineEnd":56,"colStart":3,"colEnd":77}}},
+"tasa_crecimiento":{"comment":"Instantaneous growth rate dN/dt [individuals/time]","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":50,"lineEnd":52,"colStart":3,"colEnd":74}}},
+"tasa_entrada":{"comment":"External immigration rate [individuals/time] \uffffffe2\uffffff80\uffffff94 set to 0 for pure logistic growth","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":41,"lineEnd":43,"colStart":3,"colEnd":78}}},
+"superpoblacion":{"comment":"TRUE when N exceeds carrying capacity K=100 (overshoot detection)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":58,"lineEnd":60,"colStart":3,"colEnd":77}}},
+"tasa_entrada":{"comment":"External immigration rate [individuals/time] \uffffffe2\uffffff80\uffffff94 set to 0 for pure logistic growth","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":41,"lineEnd":43,"colStart":3,"colEnd":78}}},
+"$outputAlias_superpoblacion":{"comment":"TRUE when N exceeds carrying capacity K=100 (overshoot detection)","kind":"discrete","type":"Boolean","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":58,"lineEnd":60,"colStart":3,"colEnd":77}}},
+"K":{"comment":"Carrying capacity [individuals]","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":38,"lineEnd":38,"colStart":3,"colEnd":61}}},
+"r":{"comment":"Intrinsic growth rate [1/time]","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":37,"lineEnd":37,"colStart":3,"colEnd":60}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"section":"initial","tag":"assign","defines":["N"],"uses":["$START.N"],"equation":["$START.N"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":2,"tag":"alias","equation":[11],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[8],"section":"initial"},
+{"eqIndex":4,"tag":"alias","equation":[9],"section":"initial"},
+{"eqIndex":5,"tag":"alias","equation":[10],"section":"initial"},
+{"eqIndex":6,"tag":"alias","equation":[7],"section":"initial"},
+{"eqIndex":7,"section":"regular","tag":"assign","defines":["superpoblacion"],"uses":["N","K"],"equation":["N > K"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":73,"lineEnd":73,"colStart":3,"colEnd":28}}},
+{"eqIndex":8,"section":"regular","tag":"assign","defines":["saturacion"],"uses":["N","K"],"equation":["N / K"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":72,"lineEnd":72,"colStart":3,"colEnd":28}}},
+{"eqIndex":9,"section":"regular","tag":"assign","defines":["tasa_crecimiento"],"uses":["saturacion","N","r"],"equation":["r * N * (1.0 - saturacion)"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":71,"lineEnd":71,"colStart":3,"colEnd":44}}},
+{"eqIndex":10,"section":"regular","tag":"assign","defines":["der(N)"],"uses":["tasa_crecimiento","tasa_entrada"],"equation":["tasa_crecimiento + tasa_entrada"],"source":{"info":{"file":"C:/fmu2host/xxxx/OneDrive - UPV EHU/Escritorio/OMEdit_Examples/models/CrecimientoPoblacional/CrecimientoPoblacional.mo","lineStart":67,"lineEnd":67,"colStart":3,"colEnd":48}}},
+{"eqIndex":11,"section":"regular","tag":"assign","defines":["poblacion"],"uses":["N"],"equation":["N"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}}
+],
+"functions":[
+]
+}

@@ -1,0 +1,155 @@
+================================================================================
+  TEST BATTERY — ArraysVectores
+  Fixed-Size Arrays of Real, Integer, Boolean — FMI 2.0 Scalar Unrolling
+================================================================================
+
+OVERVIEW
+--------
+ArraysVectores declares input and output arrays of size N=4 for three types.
+In FMI 2.0, every array element is a separate scalar variable in
+modelDescription.xml. The codegen must generate individual fmi2Set*/fmi2Get*
+calls for each element — not a single call for the whole array.
+
+WHY THIS MODEL EXISTS
+---------------------
+Array handling is a common codegen failure point:
+  1. The codegen may only generate one fmi2SetReal call and miss [2]..[4]
+  2. Index offset: Modelica uses 1-based indexing (v_real[1]..v_real[4]);
+     C uses 0-based — the mapping must be correct
+  3. The v_doble output is an array of 4 Real outputs; each must have its
+     own fmi2GetReal call site
+  4. alguno_true requires reading all 4 Boolean inputs before computing OR
+
+FMU INTERFACE
+-------------
+  Parameter: N = 4 (fixed, not changeable at runtime)
+
+  Inputs (each element is a separate FMI variable):
+    v_real[1], v_real[2], v_real[3], v_real[4]  (Real)
+    v_int[1],  v_int[2],  v_int[3],  v_int[4]   (Integer)
+    v_bool[1], v_bool[2], v_bool[3], v_bool[4]  (Boolean)
+
+  Outputs:
+    suma_real   (Real)    — sum of all v_real elements
+    suma_int    (Integer) — sum of all v_int elements
+    alguno_true (Boolean) — OR of all v_bool elements
+    v_doble[1], v_doble[2], v_doble[3], v_doble[4]  (Real, array)
+
+EXPORT INSTRUCTIONS
+-------------------
+  1. checkModel(ArraysVectores)
+  2. buildModelFMU(ArraysVectores, version="2.0", fmuType="me")
+  3. Verify modelDescription.xml contains exactly:
+       - 12 input variables (4 Real + 4 Integer + 4 Boolean)
+       - 6 output variables (1 Real + 1 Integer + 1 Boolean + 4 Real array)
+  4. Verify variable names use 1-based indexing: "v_real[1]" not "v_real[0]"
+
+================================================================================
+  TEST CASES
+================================================================================
+
+TEST-AV-001 — All zeros
+-------------------------
+  Input:  v_real=[0,0,0,0], v_int=[0,0,0,0], v_bool=[F,F,F,F]
+  Expected:
+    suma_real   = 0.0
+    suma_int    = 0
+    alguno_true = FALSE
+    v_doble     = [0.0, 0.0, 0.0, 0.0]
+  Rationale: Zero baseline — confirms initialization with no side effects.
+
+TEST-AV-002 — All ones
+------------------------
+  Input:  v_real=[1,1,1,1], v_int=[1,1,1,1], v_bool=[T,T,T,T]
+  Expected:
+    suma_real   = 4.0
+    suma_int    = 4
+    alguno_true = TRUE
+    v_doble     = [2.0, 2.0, 2.0, 2.0]
+  Rationale: Uniform non-zero input.
+
+TEST-AV-003 — Distinct real values
+-------------------------------------
+  Input:  v_real=[1.0, 2.0, 3.0, 4.0], v_int=[0,0,0,0], v_bool=[F,F,F,F]
+  Expected:
+    suma_real = 10.0
+    v_doble   = [2.0, 4.0, 6.0, 8.0]
+  Rationale: Verifies each element contributes independently to sum and double.
+             If all doubles are the same, the codegen is reading one element
+             four times (index bug).
+
+TEST-AV-004 — Single true boolean (OR behavior)
+-------------------------------------------------
+  Input:  v_bool=[FALSE, FALSE, TRUE, FALSE]
+  Expected: alguno_true = TRUE
+  Rationale: Only one TRUE element must activate the OR output.
+
+TEST-AV-005 — All false boolean
+---------------------------------
+  Input:  v_bool=[FALSE, FALSE, FALSE, FALSE]
+  Expected: alguno_true = FALSE
+  Rationale: OR of all-false must be FALSE (not TRUE by default).
+
+TEST-AV-006 — Mixed sign reals
+--------------------------------
+  Input:  v_real=[-1.0, 2.0, -3.0, 4.0], v_int=[0,0,0,0], v_bool=[F,F,F,F]
+  Expected:
+    suma_real = 2.0         (-1+2-3+4)
+    v_doble   = [-2.0, 4.0, -6.0, 8.0]
+  Rationale: Sign handling in array sum and element-wise double.
+
+TEST-AV-007 — Mixed sign integers
+------------------------------------
+  Input:  v_int=[-5, 10, -3, 2], v_real=[0,0,0,0], v_bool=[F,F,F,F]
+  Expected:
+    suma_int = 4    (-5+10-3+2)
+  Rationale: Integer sum with mixed signs.
+
+TEST-AV-008 — Large values
+----------------------------
+  Input:  v_real=[1e6, 2e6, 3e6, 4e6], v_int=[1000,2000,3000,4000], v_bool=[T,F,T,F]
+  Expected:
+    suma_real   = 1.0e7
+    suma_int    = 10000
+    alguno_true = TRUE
+    v_doble     = [2e6, 4e6, 6e6, 8e6]
+  Rationale: Large magnitude — no precision loss in sum.
+
+TEST-AV-009 — Step change mid-simulation: single element changes
+-----------------------------------------------------------------
+  Time sequence:
+    t=0: v_real=[1.0, 1.0, 1.0, 1.0] → suma_real=4.0, v_doble=[2,2,2,2]
+    t=1: v_real=[1.0, 1.0, 1.0, 5.0] → suma_real=8.0, v_doble=[2,2,2,10]
+  Rationale: Only element [4] changes. Verifies each element is independently
+             read — if all elements read from [1], v_doble[4] would still be 2.
+
+TEST-AV-010 — Codegen structural check (array unrolling)
+----------------------------------------------------------
+  After codegen, inspect generated C source for:
+    [ ] 4 fmi2SetReal calls for v_real[1]..v_real[4] (not one call)
+    [ ] 4 fmi2SetInteger calls for v_int[1]..v_int[4]
+    [ ] 4 fmi2SetBoolean calls for v_bool[1]..v_bool[4]
+    [ ] 4 fmi2GetReal calls for v_doble[1]..v_doble[4]
+    [ ] Variable names in generated code use 1-based indices
+    [ ] OR operation reads all 4 boolean inputs before computing result
+  Rationale: Array unrolling correctness audit. A codegen that only
+             generates calls for [1] and ignores [2]..[4] will fail TEST-AV-003
+             at runtime but might not crash — the structural check catches it
+             before running any simulation.
+
+================================================================================
+  TOLERANCE
+================================================================================
+  Real comparisons:    absolute tolerance = 1e-9
+  Integer comparisons: exact match required
+  Boolean comparisons: exact match required
+
+================================================================================
+  CI/CD INTEGRATION NOTES
+================================================================================
+  - This is stateless — each test case is a single independent doStep call
+  - TEST-AV-003 is the key runtime discriminator for index bugs
+  - TEST-AV-010 is the key structural check for array unrolling
+  - Count the number of fmi2Set*/fmi2Get* calls in the generated code:
+    must be exactly 12 Set calls and 6 Get calls per step
+================================================================================

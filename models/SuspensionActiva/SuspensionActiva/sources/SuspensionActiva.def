@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  SuspensionActiva_fmiGetTypesPlatform @1
+  SuspensionActiva_fmiGetVersion @2
+  SuspensionActiva_fmiSetDebugLogging @3
+  SuspensionActiva_fmiInstantiate @4
+  SuspensionActiva_fmiFreeInstance @5
+  SuspensionActiva_fmiSetupExperiment @6
+  SuspensionActiva_fmiEnterInitializationMode @7
+  SuspensionActiva_fmiExitInitializationMode @8
+  SuspensionActiva_fmiTerminate @9
+  SuspensionActiva_fmiReset @10
+  SuspensionActiva_fmiGetReal @11
+  SuspensionActiva_fmiGetInteger @12
+  SuspensionActiva_fmiGetBoolean @13
+  SuspensionActiva_fmiGetString @14
+  SuspensionActiva_fmiSetReal @15
+  SuspensionActiva_fmiSetInteger @16
+  SuspensionActiva_fmiSetBoolean @17
+  SuspensionActiva_fmiSetString @18
+  SuspensionActiva_fmiGetFMUstate @19
+  SuspensionActiva_fmiSetFMUstate @20
+  SuspensionActiva_fmiFreeFMUstate @21
+  SuspensionActiva_fmiSerializedFMUstateSize @22
+  SuspensionActiva_fmiSerializeFMUstate @23
+  SuspensionActiva_fmiDeSerializeFMUstate @24
+  SuspensionActiva_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  SuspensionActiva_fmiEnterEventMode @26
+  SuspensionActiva_fmiNewDiscreteStates @27
+  SuspensionActiva_fmiEnterContinuousTimeMode @28
+  SuspensionActiva_fmiCompletedIntegratorStep @29
+  SuspensionActiva_fmiSetTime @30
+  SuspensionActiva_fmiSetContinuousStates @31
+  SuspensionActiva_fmiGetDerivatives @32
+  SuspensionActiva_fmiGetEventIndicators @33
+  SuspensionActiva_fmiGetContinuousStates @34
+  SuspensionActiva_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  SuspensionActiva_fmiSetRealInputDerivatives @36
+  SuspensionActiva_fmiGetRealOutputDerivatives @37
+  SuspensionActiva_fmiDoStep @38
+  SuspensionActiva_fmiCancelStep @39
+  SuspensionActiva_fmiGetStatus @40
+  SuspensionActiva_fmiGetRealStatus @41
+  SuspensionActiva_fmiGetIntegerStatus @42
+  SuspensionActiva_fmiGetBooleanStatus @43
+  SuspensionActiva_fmiGetStringStatus @44

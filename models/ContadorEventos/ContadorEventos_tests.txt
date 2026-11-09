@@ -1,0 +1,69 @@
+=====
+  ContadorEventos — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+Discrete event counter. 1 internal Integer state (contador, start=0).
+Increments on rising edge of evento. Reset overrides event with priority.
+Saturates at 99.
+
+INPUTS
+------
+  evento  Boolean   Rising edge increments counter.
+  reset   Boolean   Rising edge clears counter to 0.
+
+OUTPUTS
+-------
+  cuenta         Integer   Current value [0, 99].
+  decenas        Integer   div(cuenta, 10)  [0, 9].
+  unidades       Integer   mod(cuenta, 10)  [0, 9].
+  desbordamiento Boolean   true when cuenta >= 99.
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+TC-CE-001   Initial state — counter at zero
+  State:    contador=0
+  Expected: cuenta=0, decenas=0, unidades=0, desbordamiento=false
+
+TC-CE-002   Single event — counter increments to 1
+  Scenario: reset pulse then 1 rising edge on evento
+  Expected: cuenta=1, decenas=0, unidades=1, desbordamiento=false
+
+TC-CE-003   Ten events — BCD decomposition check
+  Scenario: 10 rising edges on evento
+  Expected: cuenta=10, decenas=1, unidades=0, desbordamiento=false
+
+TC-CE-004   47 events — arbitrary BCD check
+  Scenario: 47 rising edges
+  Expected: cuenta=47, decenas=4, unidades=7, desbordamiento=false
+
+TC-CE-005   Reset clears counter
+  Scenario: 30 events, then rising edge on reset
+  Expected: cuenta=0, decenas=0, unidades=0, desbordamiento=false
+
+TC-CE-006   Saturation at 99 — 100 events
+  Scenario: 100 rising edges on evento
+  Expected: cuenta=99, desbordamiento=true
+
+TC-CE-007   Counter stays at 99 after saturation
+  Scenario: 150 events
+  Expected: cuenta=99, desbordamiento=true
+
+TC-CE-008   Reset after overflow
+  Scenario: 100 events (saturated), then reset pulse
+  Expected: cuenta=0, desbordamiento=false
+
+TC-CE-009   Reset priority over simultaneous event
+  Note: Modelica when-elsewhen: reset clause evaluated before event clause.
+  Expected: reset wins → cuenta=0 if both occur at same simulation step
+
+TC-CE-010   BCD at boundary value 99
+  State: contador=99
+  Expected: decenas=9, unidades=9, desbordamiento=true
+
+================================================================================
+  END OF CONTADOREVENTOS TESTS
+================================================================================

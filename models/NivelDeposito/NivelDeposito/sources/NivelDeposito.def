@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  NivelDeposito_fmiGetTypesPlatform @1
+  NivelDeposito_fmiGetVersion @2
+  NivelDeposito_fmiSetDebugLogging @3
+  NivelDeposito_fmiInstantiate @4
+  NivelDeposito_fmiFreeInstance @5
+  NivelDeposito_fmiSetupExperiment @6
+  NivelDeposito_fmiEnterInitializationMode @7
+  NivelDeposito_fmiExitInitializationMode @8
+  NivelDeposito_fmiTerminate @9
+  NivelDeposito_fmiReset @10
+  NivelDeposito_fmiGetReal @11
+  NivelDeposito_fmiGetInteger @12
+  NivelDeposito_fmiGetBoolean @13
+  NivelDeposito_fmiGetString @14
+  NivelDeposito_fmiSetReal @15
+  NivelDeposito_fmiSetInteger @16
+  NivelDeposito_fmiSetBoolean @17
+  NivelDeposito_fmiSetString @18
+  NivelDeposito_fmiGetFMUstate @19
+  NivelDeposito_fmiSetFMUstate @20
+  NivelDeposito_fmiFreeFMUstate @21
+  NivelDeposito_fmiSerializedFMUstateSize @22
+  NivelDeposito_fmiSerializeFMUstate @23
+  NivelDeposito_fmiDeSerializeFMUstate @24
+  NivelDeposito_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  NivelDeposito_fmiEnterEventMode @26
+  NivelDeposito_fmiNewDiscreteStates @27
+  NivelDeposito_fmiEnterContinuousTimeMode @28
+  NivelDeposito_fmiCompletedIntegratorStep @29
+  NivelDeposito_fmiSetTime @30
+  NivelDeposito_fmiSetContinuousStates @31
+  NivelDeposito_fmiGetDerivatives @32
+  NivelDeposito_fmiGetEventIndicators @33
+  NivelDeposito_fmiGetContinuousStates @34
+  NivelDeposito_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  NivelDeposito_fmiSetRealInputDerivatives @36
+  NivelDeposito_fmiGetRealOutputDerivatives @37
+  NivelDeposito_fmiDoStep @38
+  NivelDeposito_fmiCancelStep @39
+  NivelDeposito_fmiGetStatus @40
+  NivelDeposito_fmiGetRealStatus @41
+  NivelDeposito_fmiGetIntegerStatus @42
+  NivelDeposito_fmiGetBooleanStatus @43
+  NivelDeposito_fmiGetStringStatus @44

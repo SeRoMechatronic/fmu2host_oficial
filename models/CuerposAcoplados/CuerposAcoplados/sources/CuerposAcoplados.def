@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  CuerposAcoplados_fmiGetTypesPlatform @1
+  CuerposAcoplados_fmiGetVersion @2
+  CuerposAcoplados_fmiSetDebugLogging @3
+  CuerposAcoplados_fmiInstantiate @4
+  CuerposAcoplados_fmiFreeInstance @5
+  CuerposAcoplados_fmiSetupExperiment @6
+  CuerposAcoplados_fmiEnterInitializationMode @7
+  CuerposAcoplados_fmiExitInitializationMode @8
+  CuerposAcoplados_fmiTerminate @9
+  CuerposAcoplados_fmiReset @10
+  CuerposAcoplados_fmiGetReal @11
+  CuerposAcoplados_fmiGetInteger @12
+  CuerposAcoplados_fmiGetBoolean @13
+  CuerposAcoplados_fmiGetString @14
+  CuerposAcoplados_fmiSetReal @15
+  CuerposAcoplados_fmiSetInteger @16
+  CuerposAcoplados_fmiSetBoolean @17
+  CuerposAcoplados_fmiSetString @18
+  CuerposAcoplados_fmiGetFMUstate @19
+  CuerposAcoplados_fmiSetFMUstate @20
+  CuerposAcoplados_fmiFreeFMUstate @21
+  CuerposAcoplados_fmiSerializedFMUstateSize @22
+  CuerposAcoplados_fmiSerializeFMUstate @23
+  CuerposAcoplados_fmiDeSerializeFMUstate @24
+  CuerposAcoplados_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  CuerposAcoplados_fmiEnterEventMode @26
+  CuerposAcoplados_fmiNewDiscreteStates @27
+  CuerposAcoplados_fmiEnterContinuousTimeMode @28
+  CuerposAcoplados_fmiCompletedIntegratorStep @29
+  CuerposAcoplados_fmiSetTime @30
+  CuerposAcoplados_fmiSetContinuousStates @31
+  CuerposAcoplados_fmiGetDerivatives @32
+  CuerposAcoplados_fmiGetEventIndicators @33
+  CuerposAcoplados_fmiGetContinuousStates @34
+  CuerposAcoplados_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  CuerposAcoplados_fmiSetRealInputDerivatives @36
+  CuerposAcoplados_fmiGetRealOutputDerivatives @37
+  CuerposAcoplados_fmiDoStep @38
+  CuerposAcoplados_fmiCancelStep @39
+  CuerposAcoplados_fmiGetStatus @40
+  CuerposAcoplados_fmiGetRealStatus @41
+  CuerposAcoplados_fmiGetIntegerStatus @42
+  CuerposAcoplados_fmiGetBooleanStatus @43
+  CuerposAcoplados_fmiGetStringStatus @44

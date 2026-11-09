@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  EtapaSecuenciador_fmiGetTypesPlatform @1
+  EtapaSecuenciador_fmiGetVersion @2
+  EtapaSecuenciador_fmiSetDebugLogging @3
+  EtapaSecuenciador_fmiInstantiate @4
+  EtapaSecuenciador_fmiFreeInstance @5
+  EtapaSecuenciador_fmiSetupExperiment @6
+  EtapaSecuenciador_fmiEnterInitializationMode @7
+  EtapaSecuenciador_fmiExitInitializationMode @8
+  EtapaSecuenciador_fmiTerminate @9
+  EtapaSecuenciador_fmiReset @10
+  EtapaSecuenciador_fmiGetReal @11
+  EtapaSecuenciador_fmiGetInteger @12
+  EtapaSecuenciador_fmiGetBoolean @13
+  EtapaSecuenciador_fmiGetString @14
+  EtapaSecuenciador_fmiSetReal @15
+  EtapaSecuenciador_fmiSetInteger @16
+  EtapaSecuenciador_fmiSetBoolean @17
+  EtapaSecuenciador_fmiSetString @18
+  EtapaSecuenciador_fmiGetFMUstate @19
+  EtapaSecuenciador_fmiSetFMUstate @20
+  EtapaSecuenciador_fmiFreeFMUstate @21
+  EtapaSecuenciador_fmiSerializedFMUstateSize @22
+  EtapaSecuenciador_fmiSerializeFMUstate @23
+  EtapaSecuenciador_fmiDeSerializeFMUstate @24
+  EtapaSecuenciador_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  EtapaSecuenciador_fmiEnterEventMode @26
+  EtapaSecuenciador_fmiNewDiscreteStates @27
+  EtapaSecuenciador_fmiEnterContinuousTimeMode @28
+  EtapaSecuenciador_fmiCompletedIntegratorStep @29
+  EtapaSecuenciador_fmiSetTime @30
+  EtapaSecuenciador_fmiSetContinuousStates @31
+  EtapaSecuenciador_fmiGetDerivatives @32
+  EtapaSecuenciador_fmiGetEventIndicators @33
+  EtapaSecuenciador_fmiGetContinuousStates @34
+  EtapaSecuenciador_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  EtapaSecuenciador_fmiSetRealInputDerivatives @36
+  EtapaSecuenciador_fmiGetRealOutputDerivatives @37
+  EtapaSecuenciador_fmiDoStep @38
+  EtapaSecuenciador_fmiCancelStep @39
+  EtapaSecuenciador_fmiGetStatus @40
+  EtapaSecuenciador_fmiGetRealStatus @41
+  EtapaSecuenciador_fmiGetIntegerStatus @42
+  EtapaSecuenciador_fmiGetBooleanStatus @43
+  EtapaSecuenciador_fmiGetStringStatus @44

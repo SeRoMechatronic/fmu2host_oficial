@@ -1,0 +1,25 @@
+
+<h1>TiposMixtos</h1>
+<p> <i>Mixed-type FMU — Real, Integer, Boolean inputs and outputs with String parameters</i> </p> 
+<h4> <u> Information </u> </h4><html>
+      <h3>TiposMixtos — All Four FMI 2.0 Base Types</h3>
+      <p>This model exercises every variable type defined in the FMI 2.0 standard
+         in a single FMU: <b>Real</b>, <b>Integer</b>, <b>Boolean</b>, and
+         <b>String</b> (as parameters).</p>
+      <p>The model is purely algebraic (zero states, no integration) so that
+         every output can be verified by hand inspection.</p>
+      <h4>Interface</h4>
+      <table border='1' cellspacing='0' cellpadding='4'>
+        <tr><th>Variable</th><th>Type</th><th>Direction</th><th>Formula</th></tr>
+        <tr><td>r_in</td><td>Real</td><td>Input</td><td>—</td></tr>
+        <tr><td>i_in</td><td>Integer</td><td>Input</td><td>—</td></tr>
+        <tr><td>b_in</td><td>Boolean</td><td>Input</td><td>—</td></tr>
+        <tr><td>etiqueta</td><td>String</td><td>Parameter</td><td>read at init</td></tr>
+        <tr><td>unidad</td><td>String</td><td>Parameter</td><td>read at init</td></tr>
+        <tr><td>r_out</td><td>Real</td><td>Output</td><td>r_in × 2</td></tr>
+        <tr><td>i_out</td><td>Integer</td><td>Output</td><td>i_in + 1</td></tr>
+        <tr><td>b_out</td><td>Boolean</td><td>Output</td><td>NOT b_in</td></tr>
+        <tr><td>r_abs</td><td>Real</td><td>Output</td><td>|r_in|</td></tr>
+      </table>
+    </html>
+<h4> <u> Revisions </u> </h4>

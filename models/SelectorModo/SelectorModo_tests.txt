@@ -1,0 +1,67 @@
+=====
+  SelectorModo — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+Purely algebraic. Zero continuous states. Integer input routes one of three
+operating modes. Output is instantaneous.
+
+INPUTS
+------
+  modo_operacion   Integer   0=Manual, 1=Auto, 2=Emergency. Any other = fault.
+  consigna_manual  Real      Setpoint [0,1]. Used only in Manual mode.
+
+OUTPUTS
+-------
+  salida_actuador  Real      0.0 to 1.0. 0.0 in Emergency or invalid mode.
+  codigo_estado    Integer   1=Manual, 10=Auto, 99=Emergency, -1=Invalid.
+  fallo_modo       Boolean   true if modo_operacion outside [0,2].
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+TC-SM-001   Manual mode — setpoint passed through
+  Inputs:   modo_operacion=0, consigna_manual=0.70
+  Expected: salida_actuador=0.70, codigo_estado=1, fallo_modo=false
+
+TC-SM-002   Manual mode — setpoint at minimum
+  Inputs:   modo_operacion=0, consigna_manual=0.0
+  Expected: salida_actuador=0.0, codigo_estado=1, fallo_modo=false
+
+TC-SM-003   Manual mode — setpoint at maximum
+  Inputs:   modo_operacion=0, consigna_manual=1.0
+  Expected: salida_actuador=1.0, codigo_estado=1, fallo_modo=false
+
+TC-SM-004   Manual mode — setpoint clamped above 1.0
+  Inputs:   modo_operacion=0, consigna_manual=1.5
+  Expected: salida_actuador=1.0  (clamped), fallo_modo=false
+
+TC-SM-005   Manual mode — setpoint clamped below 0.0
+  Inputs:   modo_operacion=0, consigna_manual=-0.3
+  Expected: salida_actuador=0.0  (clamped), fallo_modo=false
+
+TC-SM-006   Auto mode — fixed 50% output regardless of setpoint
+  Inputs:   modo_operacion=1, consigna_manual=0.90
+  Expected: salida_actuador=0.5, codigo_estado=10, fallo_modo=false
+
+TC-SM-007   Emergency mode — output forced to zero
+  Inputs:   modo_operacion=2, consigna_manual=0.90
+  Expected: salida_actuador=0.0, codigo_estado=99, fallo_modo=false
+
+TC-SM-008   Invalid mode below range
+  Inputs:   modo_operacion=-1, consigna_manual=0.5
+  Expected: salida_actuador=0.0, codigo_estado=-1, fallo_modo=true
+
+TC-SM-009   Invalid mode above range
+  Inputs:   modo_operacion=5, consigna_manual=0.5
+  Expected: salida_actuador=0.0, codigo_estado=-1, fallo_modo=true
+
+TC-SM-010   Mode boundary — exactly 2 (Emergency)
+  Inputs:   modo_operacion=2, consigna_manual=0.0
+  Expected: fallo_modo=false, salida_actuador=0.0, codigo_estado=99
+
+================================================================================
+  END OF SELECTORMODO TESTS
+================================================================================

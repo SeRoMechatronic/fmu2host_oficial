@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  ArraysVectores_fmiGetTypesPlatform @1
+  ArraysVectores_fmiGetVersion @2
+  ArraysVectores_fmiSetDebugLogging @3
+  ArraysVectores_fmiInstantiate @4
+  ArraysVectores_fmiFreeInstance @5
+  ArraysVectores_fmiSetupExperiment @6
+  ArraysVectores_fmiEnterInitializationMode @7
+  ArraysVectores_fmiExitInitializationMode @8
+  ArraysVectores_fmiTerminate @9
+  ArraysVectores_fmiReset @10
+  ArraysVectores_fmiGetReal @11
+  ArraysVectores_fmiGetInteger @12
+  ArraysVectores_fmiGetBoolean @13
+  ArraysVectores_fmiGetString @14
+  ArraysVectores_fmiSetReal @15
+  ArraysVectores_fmiSetInteger @16
+  ArraysVectores_fmiSetBoolean @17
+  ArraysVectores_fmiSetString @18
+  ArraysVectores_fmiGetFMUstate @19
+  ArraysVectores_fmiSetFMUstate @20
+  ArraysVectores_fmiFreeFMUstate @21
+  ArraysVectores_fmiSerializedFMUstateSize @22
+  ArraysVectores_fmiSerializeFMUstate @23
+  ArraysVectores_fmiDeSerializeFMUstate @24
+  ArraysVectores_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  ArraysVectores_fmiEnterEventMode @26
+  ArraysVectores_fmiNewDiscreteStates @27
+  ArraysVectores_fmiEnterContinuousTimeMode @28
+  ArraysVectores_fmiCompletedIntegratorStep @29
+  ArraysVectores_fmiSetTime @30
+  ArraysVectores_fmiSetContinuousStates @31
+  ArraysVectores_fmiGetDerivatives @32
+  ArraysVectores_fmiGetEventIndicators @33
+  ArraysVectores_fmiGetContinuousStates @34
+  ArraysVectores_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  ArraysVectores_fmiSetRealInputDerivatives @36
+  ArraysVectores_fmiGetRealOutputDerivatives @37
+  ArraysVectores_fmiDoStep @38
+  ArraysVectores_fmiCancelStep @39
+  ArraysVectores_fmiGetStatus @40
+  ArraysVectores_fmiGetRealStatus @41
+  ArraysVectores_fmiGetIntegerStatus @42
+  ArraysVectores_fmiGetBooleanStatus @43
+  ArraysVectores_fmiGetStringStatus @44

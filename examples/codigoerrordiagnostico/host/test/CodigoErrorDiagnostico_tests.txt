@@ -1,0 +1,80 @@
+=====
+  CodigoErrorDiagnostico — Documentation and CI/CD Test Battery
+================================================================================
+
+MODEL OVERVIEW
+--------------
+Purely algebraic. Zero states. Priority cascade: temperatura > tension > vibracion.
+Only one error code active at a time (highest priority wins).
+
+INPUTS
+------
+  temperatura  Real [0,1]   Temperature channel.
+  tension      Real [0,1]   Supply voltage channel.
+  vibracion    Real [0,1]   Vibration channel.
+
+OUTPUTS
+-------
+  codigo_error      Integer   0, 101, 202, or 303.
+  nivel_prioridad   Integer   0, 1, 2, or 3.
+  parada_emergencia Boolean   nivel_prioridad >= 3.
+  factor_reduccion  Real      1.0, 0.75, 0.5, or 0.0.
+
+THRESHOLDS
+----------
+  temperatura > 0.85 → error 101 (priority 3)
+  tension     < 0.10 → error 202 (priority 2)
+  vibracion   > 0.75 → error 303 (priority 1)
+
+================================================================================
+  CI/CD TEST BATTERY
+================================================================================
+
+TC-CED-001   All channels nominal — no fault
+  Inputs:   temperatura=0.50, tension=0.80, vibracion=0.40
+  Expected: codigo_error=0, nivel_prioridad=0,
+            parada_emergencia=false, factor_reduccion=1.0
+
+TC-CED-002   Over-temperature fault only
+  Inputs:   temperatura=0.90, tension=0.80, vibracion=0.40
+  Expected: codigo_error=101, nivel_prioridad=3,
+            parada_emergencia=true, factor_reduccion=0.0
+
+TC-CED-003   Temperature at threshold — no fault
+  Inputs:   temperatura=0.85, tension=0.80, vibracion=0.40
+  Expected: codigo_error=0  (> is strict: 0.85 NOT > 0.85)
+
+TC-CED-004   Under-voltage fault only
+  Inputs:   temperatura=0.50, tension=0.05, vibracion=0.40
+  Expected: codigo_error=202, nivel_prioridad=2,
+            parada_emergencia=false, factor_reduccion=0.5
+
+TC-CED-005   Voltage at threshold — no fault
+  Inputs:   temperatura=0.50, tension=0.10, vibracion=0.40
+  Expected: codigo_error=0  (< is strict: 0.10 NOT < 0.10)
+
+TC-CED-006   Over-vibration fault only
+  Inputs:   temperatura=0.50, tension=0.80, vibracion=0.80
+  Expected: codigo_error=303, nivel_prioridad=1,
+            parada_emergencia=false, factor_reduccion=0.75
+
+TC-CED-007   Temperature + voltage faults — temperature wins (priority 3 vs 2)
+  Inputs:   temperatura=0.90, tension=0.05, vibracion=0.40
+  Expected: codigo_error=101  (temperature overrides voltage)
+            nivel_prioridad=3, parada_emergencia=true
+
+TC-CED-008   Temperature + vibration — temperature wins
+  Inputs:   temperatura=0.90, tension=0.80, vibracion=0.80
+  Expected: codigo_error=101
+
+TC-CED-009   Voltage + vibration — voltage wins (priority 2 vs 1)
+  Inputs:   temperatura=0.50, tension=0.05, vibracion=0.80
+  Expected: codigo_error=202, nivel_prioridad=2, factor_reduccion=0.5
+
+TC-CED-010   All three faults — temperature wins
+  Inputs:   temperatura=0.90, tension=0.05, vibracion=0.80
+  Expected: codigo_error=101, nivel_prioridad=3, factor_reduccion=0.0
+
+================================================================================
+  END OF CODIGOERRORDIAGNOSTICO TESTS
+================================================================================

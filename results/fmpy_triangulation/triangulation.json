@@ -1,0 +1,4238 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-09T17:01:42.411886+00:00",
+  "fmpy_version": "0.3.29",
+  "scope": [
+    "ArraysVectores",
+    "BooleanLogica",
+    "ContadorEventos",
+    "EtapaSecuenciador",
+    "MatrizEstado",
+    "ValoresExtremos"
+  ],
+  "independence_boundary": "FMPy supplies an independent importer, lifecycle implementation, and simulation driver; the exported FMU implementation is shared.",
+  "importer": [
+    {
+      "model": "ArraysVectores",
+      "status": "rejected",
+      "error_type": "Exception",
+      "error": "Variable \"alguno_true\" (line 507) has an illegal combination of causality=\"output\" and variability=\"fixed\"."
+    },
+    {
+      "model": "BooleanLogica",
+      "status": "accepted"
+    },
+    {
+      "model": "ContadorEventos",
+      "status": "accepted"
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "status": "accepted"
+    },
+    {
+      "model": "MatrizEstado",
+      "status": "accepted"
+    },
+    {
+      "model": "ValoresExtremos",
+      "status": "accepted"
+    }
+  ],
+  "me": {
+    "scenarios_attempted": 52,
+    "execution_ok": 51,
+    "execution_error": 1,
+    "checks_defined": 165,
+    "checks_evaluated": 161,
+    "checks_pass": 101,
+    "checks_fail": 60,
+    "oracle_pass_scenarios": 22
+  },
+  "cs": {
+    "scenarios_attempted": 52,
+    "execution_ok": 39,
+    "execution_error": 13,
+    "checks_defined": 165,
+    "checks_evaluated": 133,
+    "checks_pass": 96,
+    "checks_fail": 37,
+    "oracle_pass_scenarios": 22
+  },
+  "records": [
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-001",
+      "title": "Tabla de verdad AND/OR/XOR — caso a=F b=F",
+      "me": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-002",
+      "title": "XOR: a=TRUE b=TRUE → y_xor=FALSE",
+      "me": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-003",
+      "title": "XOR: a=FALSE b=TRUE → y_xor=TRUE",
+      "me": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-004",
+      "title": "above_threshold: umbral > 0.5 → TRUE, umbral <= 0.5 → FALSE",
+      "me": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 2,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 2,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-005",
+      "title": "D-latch: captura a=TRUE en flanco ascendente de clk",
+      "me": {
+        "execution": "ok",
+        "samples": 4,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 1,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": true,
+            "detail": "`y_latch`@t=0.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": false,
+            "detail": "`y_latch`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 1,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": true,
+            "detail": "`y_latch`@t=0.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": false,
+            "detail": "`y_latch`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-006",
+      "title": "D-latch: captura a=FALSE en flanco — latch no es level-triggered",
+      "me": {
+        "execution": "ok",
+        "samples": 6,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": true,
+            "detail": "`y_latch`@t=1.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": true,
+            "detail": "`y_latch`@t=2.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 4,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": true,
+            "detail": "`y_latch`@t=1.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": true,
+            "detail": "`y_latch`@t=2.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-007",
+      "title": "Contador de flancos — 3 flancos ascendentes",
+      "me": {
+        "execution": "ok",
+        "samples": 12,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=3.5: esperado 2±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 3±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 7,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=3.5: esperado 2±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 3±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-008",
+      "title": "Sin doble conteo — clk=TRUE mantenido no cuenta multiples flancos",
+      "me": {
+        "execution": "ok",
+        "samples": 8,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 0,
+        "checks_fail": 4,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=2.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=3.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 6,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 0,
+        "checks_fail": 4,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=2.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=3.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-009",
+      "title": "Todos los inputs activos simultaneamente — salidas combinadas",
+      "me": {
+        "execution": "ok",
+        "samples": 4,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 6,
+        "checks_evaluated": 6,
+        "checks_pass": 4,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and`@t=1.5: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or`@t=1.5: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor`@t=1.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": false,
+            "detail": "`y_latch`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 5,
+            "type": "at_t",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold`@t=1.5: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 6,
+        "checks_evaluated": 6,
+        "checks_pass": 4,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and`@t=1.5: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or`@t=1.5: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor`@t=1.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "at_t",
+            "column": "y_latch",
+            "passed": false,
+            "detail": "`y_latch`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "at_t",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos`@t=1.5: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 5,
+            "type": "at_t",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold`@t=1.5: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "BooleanLogica",
+      "scenario": "TC-BL-010",
+      "title": "Reset a cero — outputs combinacionales inmediatos, secuenciales retenidos",
+      "me": {
+        "execution": "ok",
+        "samples": 9,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 6,
+        "checks_evaluated": 6,
+        "checks_pass": 4,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "final_value",
+            "column": "y_latch",
+            "passed": false,
+            "detail": "`y_latch` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 5,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 5,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 6,
+        "checks_evaluated": 6,
+        "checks_pass": 4,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_and",
+            "passed": true,
+            "detail": "`y_and` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_or",
+            "passed": true,
+            "detail": "`y_or` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_xor",
+            "passed": true,
+            "detail": "`y_xor` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "above_threshold",
+            "passed": true,
+            "detail": "`above_threshold` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "final_value",
+            "column": "y_latch",
+            "passed": false,
+            "detail": "`y_latch` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 5,
+            "type": "final_value",
+            "column": "cuenta_flancos",
+            "passed": false,
+            "detail": "`cuenta_flancos` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-001",
+      "title": "Estado inicial — contador en cero",
+      "me": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "decenas",
+            "passed": true,
+            "detail": "`decenas`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "unidades",
+            "passed": true,
+            "detail": "`unidades`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "at_t",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 2,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "decenas",
+            "passed": true,
+            "detail": "`decenas`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "unidades",
+            "passed": true,
+            "detail": "`unidades`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "at_t",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-002",
+      "title": "Un solo evento — contador pasa a 1",
+      "me": {
+        "execution": "ok",
+        "samples": 7,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 2,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "decenas",
+            "passed": true,
+            "detail": "`decenas` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "unidades",
+            "passed": false,
+            "detail": "`unidades` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 5,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 2,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "decenas",
+            "passed": true,
+            "detail": "`decenas` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "unidades",
+            "passed": false,
+            "detail": "`unidades` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-003",
+      "title": "Diez eventos — descomposicion BCD: decenas=1, unidades=0",
+      "me": {
+        "execution": "ok",
+        "samples": 43,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 1,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 10±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "decenas",
+            "passed": false,
+            "detail": "`decenas` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "unidades",
+            "passed": true,
+            "detail": "`unidades` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 23,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 1,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 10±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "decenas",
+            "passed": false,
+            "detail": "`decenas` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "unidades",
+            "passed": true,
+            "detail": "`unidades` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-004",
+      "title": "47 eventos — BCD arbitrario: decenas=4, unidades=7",
+      "me": {
+        "execution": "ok",
+        "samples": 195,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 1,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 47±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "decenas",
+            "passed": false,
+            "detail": "`decenas` final: esperado 4±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "unidades",
+            "passed": false,
+            "detail": "`unidades` final: esperado 7±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 1,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 47±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "decenas",
+            "passed": false,
+            "detail": "`decenas` final: esperado 4±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "unidades",
+            "passed": false,
+            "detail": "`unidades` final: esperado 7±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-005",
+      "title": "Reset borra el contador — cuenta vuelve a 0",
+      "me": {
+        "execution": "ok",
+        "samples": 163,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta`@t=5.9: esperado 30±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta`@t=5.9: esperado 30±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-006",
+      "title": "Saturacion en 99 — 100 eventos, cuenta queda en 99",
+      "me": {
+        "execution": "ok",
+        "samples": 411,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 99±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": false,
+            "detail": "`desbordamiento` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 211,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 99±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": false,
+            "detail": "`desbordamiento` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-007",
+      "title": "El contador permanece en 99 tras la saturacion",
+      "me": {
+        "execution": "ok",
+        "samples": 616,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 1,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 99±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` >= 0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 316,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 1,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 99±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` >= 0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-008",
+      "title": "Reset tras desbordamiento — contador vuelve a 0",
+      "me": {
+        "execution": "ok",
+        "samples": 433,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta`@t=21.0: esperado 99±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 231,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta`@t=21.0: esperado 99±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": true,
+            "detail": "`desbordamiento` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-009",
+      "title": "Prioridad de reset sobre evento simultaneo",
+      "me": {
+        "execution": "ok",
+        "samples": 9,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 2,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta`@t=0.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 7,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 2,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta`@t=0.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": true,
+            "detail": "`cuenta` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ContadorEventos",
+      "scenario": "TC-CE-010",
+      "title": "BCD en valor limite 99 — decenas=9, unidades=9",
+      "me": {
+        "execution": "ok",
+        "samples": 408,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 0,
+        "checks_fail": 4,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "cuenta",
+            "passed": false,
+            "detail": "`cuenta` final: esperado 99±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "decenas",
+            "passed": false,
+            "detail": "`decenas` final: esperado 9±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "unidades",
+            "passed": false,
+            "detail": "`unidades` final: esperado 9±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "desbordamiento",
+            "passed": false,
+            "detail": "`desbordamiento` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-001",
+      "title": "Estado idle inicial",
+      "me": {
+        "execution": "ok",
+        "samples": 21,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": true,
+            "detail": "`etapa_actual`@t=0.0: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "progreso_etapa",
+            "passed": true,
+            "detail": "`progreso_etapa`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "always",
+            "column": "secuencia_completa",
+            "passed": true,
+            "detail": "`secuencia_completa` == 0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-002",
+      "title": "Comando de arranque — entra en etapa 1",
+      "me": {
+        "execution": "ok",
+        "samples": 67,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 1,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": true,
+            "detail": "`etapa_actual`@t=0.3: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "eventually",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual` == 1 eventualmente: nunca (max=0, min=0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-003",
+      "title": "Progreso dentro de la etapa 1 en t=5 s",
+      "me": {
+        "execution": "ok",
+        "samples": 199,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 1,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=5.1: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "progreso_etapa",
+            "passed": false,
+            "detail": "`progreso_etapa`@t=5.1: esperado 0.5±0.05, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "secuencia_completa",
+            "passed": true,
+            "detail": "`secuencia_completa`@t=5.1: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-004",
+      "title": "Avance de etapa — etapa 1→2 tras 10 s con sensor confirmado",
+      "me": {
+        "execution": "ok",
+        "samples": 319,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=12.0: esperado 2±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "etapa_previa",
+            "passed": false,
+            "detail": "`etapa_previa`@t=12.0: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-005",
+      "title": "Sin avance sin confirmacion del sensor",
+      "me": {
+        "execution": "ok",
+        "samples": 359,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=12.0: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "progreso_etapa",
+            "passed": false,
+            "detail": "`progreso_etapa`@t=12.0: esperado 1.0±0.01, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-006",
+      "title": "Sensor exactamente en el umbral — sin avance (operador estricto)",
+      "me": {
+        "execution": "ok",
+        "samples": 359,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 1,
+        "checks_pass": 0,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=13.0: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-007",
+      "title": "Parada durante secuencia — vuelta inmediata a idle",
+      "me": {
+        "execution": "ok",
+        "samples": 1073,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 1,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=24.0: esperado 3±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": true,
+            "detail": "`etapa_actual`@t=25.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-008",
+      "title": "Arrancar ignorado si ya en ejecucion",
+      "me": {
+        "execution": "ok",
+        "samples": 673,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=12.5: esperado 2±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=14.0: esperado 2±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-009",
+      "title": "Secuencia completa — secuencia_completa=true al finalizar",
+      "me": {
+        "execution": "ok",
+        "samples": 1485,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 1,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "eventually",
+            "column": "secuencia_completa",
+            "passed": false,
+            "detail": "`secuencia_completa` == 1 eventualmente: nunca (max=0, min=0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "etapa_actual",
+            "passed": true,
+            "detail": "`etapa_actual` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "eventually",
+            "column": "etapa_previa",
+            "passed": false,
+            "detail": "`etapa_previa` == 5 eventualmente: nunca (max=0, min=0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-010",
+      "title": "Reinicio tras completion — nueva secuencia arranca correctamente",
+      "me": {
+        "execution": "ok",
+        "samples": 1495,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "eventually",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual` == 1 eventualmente: nunca (max=0, min=0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual` final: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-011",
+      "title": "Progreso clamped a 1.0 cuando sensor bloquea el avance",
+      "me": {
+        "execution": "ok",
+        "samples": 435,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=15.0: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "progreso_etapa",
+            "passed": false,
+            "detail": "`progreso_etapa`@t=15.0: esperado 1.0±0.01, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "scenario": "TC-ES-012",
+      "title": "Ciclo de parada y reinicio",
+      "me": {
+        "execution": "ok",
+        "samples": 259,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 2,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=3.0: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": true,
+            "detail": "`etapa_actual`@t=5.5: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "etapa_actual",
+            "passed": false,
+            "detail": "`etapa_actual`@t=7.0: esperado 1±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "at_t",
+            "column": "progreso_etapa",
+            "passed": true,
+            "detail": "`progreso_etapa`@t=6.5: esperado 0.0±0.15, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2DoStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2DoStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-001",
+      "title": "Condiciones iniciales — todos los estados en cero",
+      "me": {
+        "execution": "ok",
+        "samples": 11,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 5,
+        "checks_evaluated": 5,
+        "checks_pass": 5,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "x_1_",
+            "passed": true,
+            "detail": "`x_1_`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "x_2_",
+            "passed": true,
+            "detail": "`x_2_`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "x_3_",
+            "passed": true,
+            "detail": "`x_3_`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "at_t",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "at_t",
+            "column": "traza",
+            "passed": true,
+            "detail": "`traza`@t=0.0: esperado 6.0±1e-09, obtenido 6",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 11,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 5,
+        "checks_evaluated": 5,
+        "checks_pass": 5,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "x_1_",
+            "passed": true,
+            "detail": "`x_1_`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "x_2_",
+            "passed": true,
+            "detail": "`x_2_`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "at_t",
+            "column": "x_3_",
+            "passed": true,
+            "detail": "`x_3_`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "at_t",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma`@t=0.0: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "at_t",
+            "column": "traza",
+            "passed": true,
+            "detail": "`traza`@t=0.0: esperado 6.0±1e-09, obtenido 6",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-002",
+      "title": "Traza constante en todo momento",
+      "me": {
+        "execution": "ok",
+        "samples": 501,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 1,
+        "checks_pass": 1,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "traza",
+            "passed": true,
+            "detail": "`traza` == 6.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 501,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 1,
+        "checks_pass": 1,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "traza",
+            "passed": true,
+            "detail": "`traza` == 6.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-003",
+      "title": "Ordenacion de estados: x3 > x2 > x1 para u>0",
+      "me": {
+        "execution": "ok",
+        "samples": 201,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "x_2_",
+            "passed": false,
+            "detail": "`x_2_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "always",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 201,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "x_2_",
+            "passed": false,
+            "detail": "`x_2_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "always",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-004",
+      "title": "Verificacion analitica en t=1.0 s",
+      "me": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_` final: esperado 1.718±0.05, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "x_2_",
+            "passed": false,
+            "detail": "`x_2_` final: esperado 3.195±0.05, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_` final: esperado 6.029±0.05, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_` final: esperado 1.718±0.05, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "x_2_",
+            "passed": false,
+            "detail": "`x_2_` final: esperado 3.195±0.05, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_` final: esperado 6.029±0.05, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-005",
+      "title": "Norma creciente con u>0",
+      "me": {
+        "execution": "ok",
+        "samples": 301,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 1,
+        "checks_pass": 1,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "monotone_inc",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma` monotona creciente: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 301,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 1,
+        "checks_pass": 1,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "monotone_inc",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma` monotona creciente: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-006",
+      "title": "Entrada cero — estados permanecen en cero",
+      "me": {
+        "execution": "ok",
+        "samples": 501,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "x_1_",
+            "passed": true,
+            "detail": "`x_1_` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "x_2_",
+            "passed": true,
+            "detail": "`x_2_` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "always",
+            "column": "x_3_",
+            "passed": true,
+            "detail": "`x_3_` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "always",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 501,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "x_1_",
+            "passed": true,
+            "detail": "`x_1_` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "x_2_",
+            "passed": true,
+            "detail": "`x_2_` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "always",
+            "column": "x_3_",
+            "passed": true,
+            "detail": "`x_3_` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "always",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma` == 0.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-007",
+      "title": "Entrada negativa — estados negativos con mismo ordenamiento",
+      "me": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "x_2_",
+            "passed": false,
+            "detail": "`x_2_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "always",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 0,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "always",
+            "column": "x_2_",
+            "passed": false,
+            "detail": "`x_2_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "always",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-008",
+      "title": "Cambio de entrada en t=1 s — sistema inestable sigue creciendo",
+      "me": {
+        "execution": "ok",
+        "samples": 201,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_`@t=2.0: esperado 2.0±1.0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_`@t=2.0: esperado 30.0±15.0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 201,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 2,
+        "checks_evaluated": 2,
+        "checks_pass": 0,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "at_t",
+            "column": "x_1_",
+            "passed": false,
+            "detail": "`x_1_`@t=2.0: esperado 2.0±1.0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "at_t",
+            "column": "x_3_",
+            "passed": false,
+            "detail": "`x_3_`@t=2.0: esperado 30.0±15.0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-009",
+      "title": "Traza no cambia con entrada",
+      "me": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 1,
+        "checks_pass": 1,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "traza",
+            "passed": true,
+            "detail": "`traza` == 6.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 101,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 1,
+        "checks_evaluated": 1,
+        "checks_pass": 1,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "always",
+            "column": "traza",
+            "passed": true,
+            "detail": "`traza` == 6.0 siempre: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "MatrizEstado",
+      "scenario": "TC-MZ-010",
+      "title": "Sin NaN ni Inf en 2 segundos",
+      "me": {
+        "execution": "ok",
+        "samples": 201,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "no_nan_inf",
+            "column": "x_1_",
+            "passed": true,
+            "detail": "`x_1_` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "no_nan_inf",
+            "column": "x_2_",
+            "passed": true,
+            "detail": "`x_2_` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "no_nan_inf",
+            "column": "x_3_",
+            "passed": true,
+            "detail": "`x_3_` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "no_nan_inf",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 201,
+        "unsupported_inputs": [
+          {
+            "requested": "u_1_",
+            "fmi_name": "u[1]",
+            "causality": "local",
+            "reason": "not FMI-settable input metadata"
+          }
+        ],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "no_nan_inf",
+            "column": "x_1_",
+            "passed": true,
+            "detail": "`x_1_` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "no_nan_inf",
+            "column": "x_2_",
+            "passed": true,
+            "detail": "`x_2_` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "no_nan_inf",
+            "column": "x_3_",
+            "passed": true,
+            "detail": "`x_3_` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "no_nan_inf",
+            "column": "y_norma",
+            "passed": true,
+            "detail": "`y_norma` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-001",
+      "title": "u=0.0 — division por cero y log de cero protegidos",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 6,
+        "checks_evaluated": 6,
+        "checks_pass": 6,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 5,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 6,
+        "checks_evaluated": 6,
+        "checks_pass": 6,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 5,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-002",
+      "title": "u=-5.0 — negativo: sqrt y log protegidos",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 5,
+        "checks_evaluated": 5,
+        "checks_pass": 5,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -0.2±1e-09, obtenido -0.2",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 5,
+        "checks_evaluated": 5,
+        "checks_pass": 5,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -0.2±1e-09, obtenido -0.2",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-003",
+      "title": "u=1.0 — valor nominal: todas las operaciones validas",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 5,
+        "checks_evaluated": 5,
+        "checks_pass": 5,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 5,
+        "checks_evaluated": 5,
+        "checks_pass": 5,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado 0.0±1e-06, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 4,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-004",
+      "title": "u=-1.0 — simetrico al nominal positivo",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-005",
+      "title": "u=2.0 — por encima de saturacion",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 1.4142±0.001, obtenido 1.41421",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado 0.6931±0.001, obtenido 0.693147",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 1.4142±0.001, obtenido 1.41421",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado 0.6931±0.001, obtenido 0.693147",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-006",
+      "title": "u=-10.0 — saturacion profunda negativa",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -0.1±1e-09, obtenido -0.1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 3,
+        "checks_evaluated": 3,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -0.1±1e-09, obtenido -0.1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-007",
+      "title": "u=1e-11 — por debajo del umbral de guarda",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1e-11±1e-20, obtenido 1e-11",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1e-11±1e-20, obtenido 1e-11",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-008",
+      "title": "u=1e30 — cerca de Inf, es_finito=false",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "no_nan_inf",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "es_finito",
+            "passed": true,
+            "detail": "`es_finito` final: esperado 0±0, obtenido 0",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "no_nan_inf",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-009",
+      "title": "u=100 — valor tipico positivo con resultados conocidos",
+      "me": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 0.01±1e-09, obtenido 0.01",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 10.0±1e-06, obtenido 10",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado 4.6052±0.001, obtenido 4.60517",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 3,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` final: esperado 0.01±1e-09, obtenido 0.01",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 10.0±1e-06, obtenido 10",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` final: esperado 4.6052±0.001, obtenido 4.60517",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    },
+    {
+      "model": "ValoresExtremos",
+      "scenario": "TC-VE-010",
+      "title": "Sin NaN ni Inf en todos los casos — barrido completo",
+      "me": {
+        "execution": "error",
+        "error_type": "FMICallException",
+        "error": "fmi2CompletedIntegratorStep failed with status 3 (error).",
+        "traceback_tail": [
+          "    return self._call(",
+          "           ^^^^^^^^^^^",
+          "  File \"<user-home>\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\fmpy\\fmi1.py\", line 369, in _call",
+          "    raise FMICallException(function=fname, status=res)",
+          "fmpy.fmi1.FMICallException: fmi2CompletedIntegratorStep failed with status 3 (error)."
+        ],
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 0,
+        "checks_pass": 0,
+        "checks_fail": 0
+      },
+      "cs": {
+        "execution": "ok",
+        "samples": 11,
+        "unsupported_inputs": [],
+        "unresolved_outputs": [],
+        "checks_defined": 4,
+        "checks_evaluated": 4,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 1,
+            "type": "no_nan_inf",
+            "column": "y_sqrt",
+            "passed": true,
+            "detail": "`y_sqrt` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 2,
+            "type": "no_nan_inf",
+            "column": "y_log",
+            "passed": true,
+            "detail": "`y_log` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          },
+          {
+            "index": 3,
+            "type": "no_nan_inf",
+            "column": "y_sat",
+            "passed": true,
+            "detail": "`y_sat` sin NaN/Inf: OK",
+            "scope_rationale": "model/interface behavioral requirement"
+          }
+        ]
+      }
+    }
+  ]
+}
