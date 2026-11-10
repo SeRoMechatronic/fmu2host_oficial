@@ -168,10 +168,70 @@ def totals(records: list[dict], mode: str) -> dict:
     }
 
 
+def paired_totals(records: list[dict]) -> dict:
+    return {
+        "both_execute": sum(
+            record["me"]["execution"] == "ok"
+            and record["cs"]["execution"] == "ok"
+            for record in records
+        ),
+        "both_oracle_pass": sum(
+            record["me"]["oracle_pass"] and record["cs"]["oracle_pass"]
+            for record in records
+        ),
+        "same_oracle_outcome": sum(
+            record["me"]["oracle_pass"] == record["cs"]["oracle_pass"]
+            for record in records
+        ),
+        "both_mode_independent_oracle_pass": sum(
+            record["me"]["mode_independent_oracle_pass"] is True
+            and record["cs"]["mode_independent_oracle_pass"] is True
+            for record in records
+        ),
+    }
+
+
+def population_totals(records: list[dict]) -> dict:
+    return {
+        "models": len({record["model"] for record in records}),
+        "scenarios": len(records),
+        "me": totals(records, "me"),
+        "cs": totals(records, "cs"),
+        "paired": paired_totals(records),
+    }
+
+
 def write_outputs(records: list[dict], build_dir: Path, out_dir: Path) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
+    preflight_path = ROOT / "results" / "preflight" / "preflight.json"
+    if not preflight_path.is_file():
+        raise RuntimeError(
+            "preflight artifact not found; run tools/preflight_fmi_contracts.py first"
+        )
+    preflight = json.loads(preflight_path.read_text(encoding="utf-8"))
+    rejected_models = {
+        record["model"] for record in preflight["records"]
+        if record["decision"] == "reject"
+    }
+    primary_records = [record for record in records if record["model"] not in rejected_models]
+    diagnostic_records = [record for record in records if record["model"] in rejected_models]
+    populations = {
+        "primary_preflight_valid_behavioral": {
+            "definition": "Behavioral records whose source archive passed the retained FMI standards preflight.",
+            **population_totals(primary_records),
+        },
+        "negative_diagnostic": {
+            "definition": "Behavioral records from preflight-rejected archives, retained only as negative diagnostics.",
+            "models_included": sorted(rejected_models),
+            **population_totals(diagnostic_records),
+        },
+        "full_retained_diagnostic": {
+            "definition": "Primary and negative-diagnostic records combined for audit continuity.",
+            **population_totals(records),
+        },
+    }
     summary = {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "platform": platform.platform(),
         "python": platform.python_version(),
@@ -179,30 +239,14 @@ def write_outputs(records: list[dict], build_dir: Path, out_dir: Path) -> None:
         "interpretation": (
             "The same scenario definitions and retained oracles are applied "
             "to ME and CS. A frozen retrospective scope classification reports "
-            "mode-independent checks separately from solver-specific diagnostics."
+            "mode-independent checks separately from solver-specific diagnostics. "
+            "Primary results exclude source archives rejected by standards preflight; "
+            "the full retained diagnostic remains available for audit continuity."
         ),
+        "populations": populations,
         "me": totals(records, "me"),
         "cs": totals(records, "cs"),
-        "paired": {
-            "both_execute": sum(
-                record["me"]["execution"] == "ok"
-                and record["cs"]["execution"] == "ok"
-                for record in records
-            ),
-            "both_oracle_pass": sum(
-                record["me"]["oracle_pass"] and record["cs"]["oracle_pass"]
-                for record in records
-            ),
-            "same_oracle_outcome": sum(
-                record["me"]["oracle_pass"] == record["cs"]["oracle_pass"]
-                for record in records
-            ),
-            "both_mode_independent_oracle_pass": sum(
-                record["me"]["mode_independent_oracle_pass"] is True
-                and record["cs"]["mode_independent_oracle_pass"] is True
-                for record in records
-            ),
-        },
+        "paired": paired_totals(records),
         "records": records,
     }
     (out_dir / "paired_modes.json").write_text(
@@ -215,6 +259,7 @@ def write_outputs(records: list[dict], build_dir: Path, out_dir: Path) -> None:
             [
                 "model",
                 "scenario",
+                "population",
                 "configured_mode",
                 "solver",
                 "me_execution",
@@ -238,6 +283,11 @@ def write_outputs(records: list[dict], build_dir: Path, out_dir: Path) -> None:
                 [
                     record["model"],
                     record["scenario"],
+                    (
+                        "negative_diagnostic"
+                        if record["model"] in rejected_models
+                        else "primary_preflight_valid_behavioral"
+                    ),
                     record["configured_mode"],
                     record["solver"],
                     record["me"]["execution"],
@@ -257,21 +307,27 @@ def write_outputs(records: list[dict], build_dir: Path, out_dir: Path) -> None:
                 ]
             )
 
-    me = summary["me"]
-    cs = summary["cs"]
-    paired = summary["paired"]
+    primary = populations["primary_preflight_valid_behavioral"]
+    me = primary["me"]
+    cs = primary["cs"]
+    paired = primary["paired"]
+    full = populations["full_retained_diagnostic"]
     error_rows = [
         record
         for record in records
         if record["me"]["execution"] != "ok" or record["cs"]["execution"] != "ok"
     ]
     lines = [
-        "# Paired Model Exchange / Co-Simulation diagnostic",
+        "# Paired Model Exchange / Co-Simulation study",
         "",
-        "> This study applies the same retained scenarios to both modes. A frozen, "
+        "> Primary results include only behavioral models whose source archive passed "
+        "standards preflight. The two rejected archives remain in a separate negative-"
+        "diagnostic population. The same retained scenarios are applied to both modes. A frozen, "
         "outcome-independent rule classifies checks by their documented purpose. "
         "Solver-discrimination checks remain in the full diagnostic but are excluded "
         "from the mode-independent comparison.",
+        "",
+        f"## Primary preflight-valid behavioral population ({primary['models']} models)",
         "",
         "| Mode | Scenarios | Executed | Execution errors | Oracle-pass scenarios | Passed checks | Failed checks |",
         "|---|---:|---:|---:|---:|---:|---:|",
@@ -289,9 +345,18 @@ def write_outputs(records: list[dict], build_dir: Path, out_dir: Path) -> None:
         "scenario that does not execute are reported as not evaluated, not converted into "
         "failed semantic assertions.",
         "",
-        f"Both modes executed successfully for **{paired['both_execute']}/{len(records)}** scenarios. "
-        f"Both satisfied the retained oracle for **{paired['both_oracle_pass']}/{len(records)}** scenarios; "
-        f"their pass/fail classification agreed for **{paired['same_oracle_outcome']}/{len(records)}** scenarios.",
+        f"Both modes executed successfully for **{paired['both_execute']}/{primary['scenarios']}** scenarios. "
+        f"Both satisfied the retained oracle for **{paired['both_oracle_pass']}/{primary['scenarios']}** scenarios; "
+        f"their pass/fail classification agreed for **{paired['same_oracle_outcome']}/{primary['scenarios']}** scenarios.",
+        "",
+        "## Negative diagnostics and full retained suite",
+        "",
+        f"The rejected archives are: **{', '.join(sorted(rejected_models))}**. "
+        f"Together they contribute {populations['negative_diagnostic']['scenarios']} scenarios. "
+        f"The full retained diagnostic contains {full['models']} models and {full['scenarios']} scenarios; "
+        f"ME executes {full['me']['execution_ok']}/{full['scenarios']} and CS executes "
+        f"{full['cs']['execution_ok']}/{full['scenarios']}. These combined values are retained "
+        "for audit continuity, not used as the primary conforming result.",
         "",
         "## Execution errors",
         "",

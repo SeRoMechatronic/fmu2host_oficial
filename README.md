@@ -18,14 +18,17 @@ public repository.
 - Standards preflight accepts 28 archives; `ArraysVectores` and
   `StringInputOutput` are retained only as explicit invalid-input diagnostics.
 - 30 ME and 30 CS Release executables compile on Windows/MSVC.
-- The retained ME regression suite executes 279/279 scenarios; 242 satisfy all
-  of their original oracles (669/762 checks).
-- In the corrected paired-mode diagnostic, CS completes 267/279 scenarios. The
+- The primary preflight-valid behavioral population contains 26 models. ME
+  executes 259/259 scenarios; 230 satisfy all retained oracles (636/696 checks).
+- In the corrected primary paired-mode study, CS completes 247/259 scenarios. The
   remaining 12 execution failures are `fmi2DoStep` failures for the
   periodic-event sequencer.
-- The frozen purpose-based subset contains 749 mode-independent checks. ME
-  passes 656/749; CS passes 607/721 evaluated checks, with 28 not evaluated
+- The primary frozen purpose-based subset contains 683 mode-independent checks.
+  ME passes 623/683; CS passes 578/655 evaluated checks, with 28 not evaluated
   after execution errors.
+- The two rejected behavioral archives contribute 20 scenarios and 66 checks
+  in a separate negative-diagnostic population. Combined 28-model totals remain
+  in the machine-readable artifact for audit continuity.
 - A three-path `ExtremeValues` experiment identifies the former access
   violations as output-before-step ordering and verifies the generated-host
   correction on all ten scenarios.
@@ -146,7 +149,7 @@ that a published release can be tied to the exact evaluated artifacts.
 
 ## Citation and release
 
-The evaluated public snapshot is identified by the Git tag `article-v1.1`.
+The evaluated public snapshot is identified by the Git tag `article-v1.2`.
 The SHA-256 manifest binds that tag to the evaluated FMUs and generator. The
 manuscript is maintained separately and is not part of the tag.
 

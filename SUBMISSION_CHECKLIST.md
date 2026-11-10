@@ -9,7 +9,7 @@ The scientific and software package is prepared for submission, but the items be
 - [ ] Add the final funding statement, grant identifiers, CRediT roles, acknowledgements, and conflict-of-interest declaration.
 - [ ] Review the retained failure interpretation with the domain authors of the five partial-suite models.
 - [ ] Publish the software/data package without the ignored `paper/` directory, build products, or personal paths.
-- [ ] Create an immutable release/tag named `article-v1.1` from the exact public software/data contents.
+- [ ] Create an immutable release/tag named `article-v1.2` from the exact public software/data contents.
 - [ ] Confirm the repository URL in the separately maintained manuscript, then rebuild its PDF.
 - [ ] Re-run `tools/collect_evidence.py` from the tagged checkout and confirm that the recorded generator and FMU hashes match the release.
 - [ ] Confirm that all bundled OpenModelica/exported-source notices permit redistribution in the chosen repository.

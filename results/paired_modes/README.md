@@ -1,22 +1,28 @@
-# Paired Model Exchange / Co-Simulation diagnostic
+# Paired Model Exchange / Co-Simulation study
 
-> This study applies the same retained scenarios to both modes. A frozen, outcome-independent rule classifies checks by their documented purpose. Solver-discrimination checks remain in the full diagnostic but are excluded from the mode-independent comparison.
+> Primary results include only behavioral models whose source archive passed standards preflight. The two rejected archives remain in a separate negative-diagnostic population. The same retained scenarios are applied to both modes. A frozen, outcome-independent rule classifies checks by their documented purpose. Solver-discrimination checks remain in the full diagnostic but are excluded from the mode-independent comparison.
+
+## Primary preflight-valid behavioral population (26 models)
 
 | Mode | Scenarios | Executed | Execution errors | Oracle-pass scenarios | Passed checks | Failed checks |
 |---|---:|---:|---:|---:|---:|---:|
-| ME | 279 | 279 | 0 | 242 | 669 | 93 |
-| CS | 279 | 267 | 12 | 213 | 615 | 147 |
+| ME | 259 | 259 | 0 | 230 | 636 | 60 |
+| CS | 259 | 247 | 12 | 202 | 586 | 110 |
 
 ## Mode-independent semantic checks
 
 | Mode | Defined | Evaluated | Passed | Failed | Not evaluated after execution error | Eligible scenarios | Oracle-pass scenarios |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| ME | 749 | 749 | 656 | 93 | 0 | 268 | 231 |
-| CS | 749 | 721 | 607 | 114 | 28 | 268 | 207 |
+| ME | 683 | 683 | 623 | 60 | 0 | 248 | 219 |
+| CS | 683 | 655 | 578 | 77 | 28 | 248 | 196 |
 
 The denominator is the number of checks defined before execution. Checks in a scenario that does not execute are reported as not evaluated, not converted into failed semantic assertions.
 
-Both modes executed successfully for **267/279** scenarios. Both satisfied the retained oracle for **213/279** scenarios; their pass/fail classification agreed for **250/279** scenarios.
+Both modes executed successfully for **247/259** scenarios. Both satisfied the retained oracle for **202/259** scenarios; their pass/fail classification agreed for **231/259** scenarios.
+
+## Negative diagnostics and full retained suite
+
+The rejected archives are: **ArraysVectores, StringInputOutput**. Together they contribute 20 scenarios. The full retained diagnostic contains 28 models and 279 scenarios; ME executes 279/279 and CS executes 267/279. These combined values are retained for audit continuity, not used as the primary conforming result.
 
 ## Execution errors
 

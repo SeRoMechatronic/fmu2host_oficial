@@ -1,10 +1,145 @@
 {
-  "schema_version": 2,
-  "generated_at_utc": "2026-11-10T09:43:09.615231+00:00",
+  "schema_version": 3,
+  "generated_at_utc": "2026-11-10T10:29:22.532332+00:00",
   "platform": "Windows-10-10.0.26200-SP0",
   "python": "3.11.9",
   "build_configuration": "Release executables from an external CMake build tree",
-  "interpretation": "The same scenario definitions and retained oracles are applied to ME and CS. A frozen retrospective scope classification reports mode-independent checks separately from solver-specific diagnostics.",
+  "interpretation": "The same scenario definitions and retained oracles are applied to ME and CS. A frozen retrospective scope classification reports mode-independent checks separately from solver-specific diagnostics. Primary results exclude source archives rejected by standards preflight; the full retained diagnostic remains available for audit continuity.",
+  "populations": {
+    "primary_preflight_valid_behavioral": {
+      "definition": "Behavioral records whose source archive passed the retained FMI standards preflight.",
+      "models": 26,
+      "scenarios": 259,
+      "me": {
+        "scenarios": 259,
+        "execution_ok": 259,
+        "execution_error": 0,
+        "missing": 0,
+        "oracle_pass": 230,
+        "checks_pass": 636,
+        "checks_fail": 60,
+        "mode_independent_checks_defined": 683,
+        "mode_independent_checks_evaluated": 683,
+        "mode_independent_checks_pass": 623,
+        "mode_independent_checks_fail": 60,
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_eligible": 248,
+        "mode_independent_oracle_pass": 219
+      },
+      "cs": {
+        "scenarios": 259,
+        "execution_ok": 247,
+        "execution_error": 12,
+        "missing": 0,
+        "oracle_pass": 202,
+        "checks_pass": 586,
+        "checks_fail": 110,
+        "mode_independent_checks_defined": 683,
+        "mode_independent_checks_evaluated": 655,
+        "mode_independent_checks_pass": 578,
+        "mode_independent_checks_fail": 77,
+        "mode_independent_checks_not_evaluated": 28,
+        "mode_independent_oracle_eligible": 248,
+        "mode_independent_oracle_pass": 196
+      },
+      "paired": {
+        "both_execute": 247,
+        "both_oracle_pass": 202,
+        "same_oracle_outcome": 231,
+        "both_mode_independent_oracle_pass": 196
+      }
+    },
+    "negative_diagnostic": {
+      "definition": "Behavioral records from preflight-rejected archives, retained only as negative diagnostics.",
+      "models_included": [
+        "ArraysVectores",
+        "StringInputOutput"
+      ],
+      "models": 2,
+      "scenarios": 20,
+      "me": {
+        "scenarios": 20,
+        "execution_ok": 20,
+        "execution_error": 0,
+        "missing": 0,
+        "oracle_pass": 12,
+        "checks_pass": 33,
+        "checks_fail": 33,
+        "mode_independent_checks_defined": 66,
+        "mode_independent_checks_evaluated": 66,
+        "mode_independent_checks_pass": 33,
+        "mode_independent_checks_fail": 33,
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_eligible": 20,
+        "mode_independent_oracle_pass": 12
+      },
+      "cs": {
+        "scenarios": 20,
+        "execution_ok": 20,
+        "execution_error": 0,
+        "missing": 0,
+        "oracle_pass": 11,
+        "checks_pass": 29,
+        "checks_fail": 37,
+        "mode_independent_checks_defined": 66,
+        "mode_independent_checks_evaluated": 66,
+        "mode_independent_checks_pass": 29,
+        "mode_independent_checks_fail": 37,
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_eligible": 20,
+        "mode_independent_oracle_pass": 11
+      },
+      "paired": {
+        "both_execute": 20,
+        "both_oracle_pass": 11,
+        "same_oracle_outcome": 19,
+        "both_mode_independent_oracle_pass": 11
+      }
+    },
+    "full_retained_diagnostic": {
+      "definition": "Primary and negative-diagnostic records combined for audit continuity.",
+      "models": 28,
+      "scenarios": 279,
+      "me": {
+        "scenarios": 279,
+        "execution_ok": 279,
+        "execution_error": 0,
+        "missing": 0,
+        "oracle_pass": 242,
+        "checks_pass": 669,
+        "checks_fail": 93,
+        "mode_independent_checks_defined": 749,
+        "mode_independent_checks_evaluated": 749,
+        "mode_independent_checks_pass": 656,
+        "mode_independent_checks_fail": 93,
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_eligible": 268,
+        "mode_independent_oracle_pass": 231
+      },
+      "cs": {
+        "scenarios": 279,
+        "execution_ok": 267,
+        "execution_error": 12,
+        "missing": 0,
+        "oracle_pass": 213,
+        "checks_pass": 615,
+        "checks_fail": 147,
+        "mode_independent_checks_defined": 749,
+        "mode_independent_checks_evaluated": 721,
+        "mode_independent_checks_pass": 607,
+        "mode_independent_checks_fail": 114,
+        "mode_independent_checks_not_evaluated": 28,
+        "mode_independent_oracle_eligible": 268,
+        "mode_independent_oracle_pass": 207
+      },
+      "paired": {
+        "both_execute": 267,
+        "both_oracle_pass": 213,
+        "same_oracle_outcome": 250,
+        "both_mode_independent_oracle_pass": 207
+      }
+    }
+  },
   "me": {
     "scenarios": 279,
     "execution_ok": 279,

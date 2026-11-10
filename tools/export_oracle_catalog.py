@@ -19,7 +19,7 @@ from run_paired_modes import load_config
 
 
 FIELDS = [
-    "model", "scenario", "title", "check_index", "check_type", "column",
+    "model", "population", "scenario", "title", "check_index", "check_type", "column",
     "configured_mode", "configured_solver", "t_end", "step_size", "inputs_json",
     "schedule_json", "oracle_parameters_json", "scope", "scope_rationale",
     "oracle_basis", "documented_rationale",
@@ -35,6 +35,13 @@ def basis(check: dict, scope: str) -> str:
 
 
 def main() -> int:
+    preflight = json.loads(
+        (ROOT / "results" / "preflight" / "preflight.json").read_text(encoding="utf-8")
+    )
+    rejected_models = {
+        record["model"] for record in preflight["records"]
+        if record["decision"] == "reject"
+    }
     rows = []
     for config_path in discover_configs(ROOT / "examples"):
         config = load_config(config_path)
@@ -46,6 +53,11 @@ def main() -> int:
                 rows.append(
                     {
                         "model": model,
+                        "population": (
+                            "negative_diagnostic"
+                            if model in rejected_models
+                            else "primary_preflight_valid_behavioral"
+                        ),
                         "scenario": test["id"],
                         "title": test["title"],
                         "check_index": index,
@@ -81,7 +93,10 @@ def main() -> int:
     lines = [
         "# Oracle catalog",
         "",
-        f"The retained suite defines **{len(rows)}** checks. The frozen scope rule classifies "
+        f"The retained suite defines **{len(rows)}** checks: **{sum(row['population'] == 'primary_preflight_valid_behavioral' for row in rows)}** "
+        "belong to the primary preflight-valid population and "
+        f"**{sum(row['population'] == 'negative_diagnostic' for row in rows)}** to the negative diagnostics. "
+        "The frozen scope rule classifies "
         f"**{len(rows) - len(excluded)}** as mode-independent and **{len(excluded)}** as "
         "solver-specific diagnostics.",
         "",
