@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,temperatura,tension,vibracion,factor_reduccion,codigo_error,parada_emergencia,nivel_prioridad\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         CodigoErrorDiagnostico_Inputs in = {0};
         get_inputs(t, &in);
         if (has_temperatura) in.temperatura = (double)cli_temperatura;
@@ -116,6 +116,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input vibracion failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         CodigoErrorDiagnostico_Outputs out = {0};
         fmu_real_t got_factor_reduccion = 0.0;
         if (FMU_CALL(m, get_real, &vr_factor_reduccion, 1, &got_factor_reduccion) > FMU_WARNING) {
@@ -143,14 +150,6 @@ int main(int argc, char *argv[])
         out.nivel_prioridad = (int)got_nivel_prioridad;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%.10g,%.10g,%.10g,%d,%d,%d\n", t, in.temperatura, in.tension, in.vibracion, out.factor_reduccion, (int)out.codigo_error, (int)out.parada_emergencia, (int)out.nivel_prioridad);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

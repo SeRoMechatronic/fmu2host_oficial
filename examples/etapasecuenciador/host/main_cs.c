@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,sensor_confirmacion,arrancar,parar,progreso_etapa,etapa_actual,etapa_previa,secuencia_completa\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         EtapaSecuenciador_Inputs in = {0};
         get_inputs(t, &in);
         if (has_sensor_confirmacion) in.sensor_confirmacion = (double)cli_sensor_confirmacion;
@@ -116,6 +116,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input parar failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         EtapaSecuenciador_Outputs out = {0};
         fmu_real_t got_progreso_etapa = 0.0;
         if (FMU_CALL(m, get_real, &vr_progreso_etapa, 1, &got_progreso_etapa) > FMU_WARNING) {
@@ -143,14 +150,6 @@ int main(int argc, char *argv[])
         out.secuencia_completa = (int)got_secuencia_completa;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%d,%d,%.10g,%d,%d,%d\n", t, in.sensor_confirmacion, (int)in.arrancar, (int)in.parar, out.progreso_etapa, (int)out.etapa_actual, (int)out.etapa_previa, (int)out.secuencia_completa);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-11-09T17:13:50.611848+00:00",
+  "generated_at_utc": "2026-11-10T09:43:09.615231+00:00",
   "platform": "Windows-10-10.0.26200-SP0",
   "python": "3.11.9",
   "build_configuration": "Release executables from an external CMake build tree",
@@ -23,25 +23,25 @@
   },
   "cs": {
     "scenarios": 279,
-    "execution_ok": 263,
-    "execution_error": 16,
+    "execution_ok": 267,
+    "execution_error": 12,
     "missing": 0,
-    "oracle_pass": 218,
+    "oracle_pass": 213,
     "checks_pass": 615,
     "checks_fail": 147,
     "mode_independent_checks_defined": 749,
-    "mode_independent_checks_evaluated": 705,
+    "mode_independent_checks_evaluated": 721,
     "mode_independent_checks_pass": 607,
-    "mode_independent_checks_fail": 98,
-    "mode_independent_checks_not_evaluated": 44,
+    "mode_independent_checks_fail": 114,
+    "mode_independent_checks_not_evaluated": 28,
     "mode_independent_oracle_eligible": 268,
-    "mode_independent_oracle_pass": 212
+    "mode_independent_oracle_pass": 207
   },
   "paired": {
-    "both_execute": 263,
-    "both_oracle_pass": 218,
-    "same_oracle_outcome": 255,
-    "both_mode_independent_oracle_pass": 212
+    "both_execute": 267,
+    "both_oracle_pass": 213,
+    "same_oracle_outcome": 250,
+    "both_mode_independent_oracle_pass": 207
   },
   "records": [
     {
@@ -104,7 +104,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 51,
+        "rows": 50,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -215,7 +215,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 51,
+        "rows": 50,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -335,7 +335,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1202,
+        "rows": 1201,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -446,7 +446,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1302,
+        "rows": 1301,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -539,7 +539,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1202,
+        "rows": 1201,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -623,7 +623,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1252,
+        "rows": 1251,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -689,7 +689,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -755,7 +755,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -839,7 +839,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3002,
+        "rows": 3001,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -932,7 +932,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 402,
+        "rows": 401,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -1043,7 +1043,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -1178,7 +1178,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 0,
         "checks_fail": 5,
         "oracle_pass": false,
@@ -1319,7 +1319,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 0,
         "checks_fail": 5,
         "oracle_pass": false,
@@ -1420,7 +1420,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -1479,7 +1479,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -1578,7 +1578,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 0,
         "checks_fail": 5,
         "oracle_pass": false,
@@ -1679,7 +1679,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -1780,7 +1780,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 0,
         "checks_fail": 5,
         "oracle_pass": false,
@@ -1911,7 +1911,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5,
+        "rows": 4,
         "checks_pass": 0,
         "checks_fail": 4,
         "oracle_pass": false,
@@ -2062,18 +2062,18 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 0,
         "checks_fail": 7,
         "oracle_pass": false,
         "failed_check_details": [
-          "`suma_real` == 100.0 siempre: 3/3 violaciones (ej: 0)",
+          "`suma_real` == 100.0 siempre: 2/2 violaciones (ej: 0)",
           "`suma_int` final: esperado 10±0, obtenido 0",
-          "`alguno_true` == 1 siempre: 3/3 violaciones (ej: 0)",
-          "`v_doble_1_` == 20.0 siempre: 3/3 violaciones (ej: 0)",
-          "`v_doble_2_` == 40.0 siempre: 3/3 violaciones (ej: 0)",
-          "`v_doble_3_` == 60.0 siempre: 3/3 violaciones (ej: 0)",
-          "`v_doble_4_` == 80.0 siempre: 3/3 violaciones (ej: 0)"
+          "`alguno_true` == 1 siempre: 2/2 violaciones (ej: 0)",
+          "`v_doble_1_` == 20.0 siempre: 2/2 violaciones (ej: 0)",
+          "`v_doble_2_` == 40.0 siempre: 2/2 violaciones (ej: 0)",
+          "`v_doble_3_` == 60.0 siempre: 2/2 violaciones (ej: 0)",
+          "`v_doble_4_` == 80.0 siempre: 2/2 violaciones (ej: 0)"
         ],
         "mode_independent_checks_defined": 7,
         "mode_independent_checks_evaluated": 7,
@@ -2089,7 +2089,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`suma_real` == 100.0 siempre: 3/3 violaciones (ej: 0)"
+            "detail": "`suma_real` == 100.0 siempre: 2/2 violaciones (ej: 0)"
           },
           {
             "index": 1,
@@ -2107,7 +2107,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`alguno_true` == 1 siempre: 3/3 violaciones (ej: 0)"
+            "detail": "`alguno_true` == 1 siempre: 2/2 violaciones (ej: 0)"
           },
           {
             "index": 3,
@@ -2116,7 +2116,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`v_doble_1_` == 20.0 siempre: 3/3 violaciones (ej: 0)"
+            "detail": "`v_doble_1_` == 20.0 siempre: 2/2 violaciones (ej: 0)"
           },
           {
             "index": 4,
@@ -2125,7 +2125,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`v_doble_2_` == 40.0 siempre: 3/3 violaciones (ej: 0)"
+            "detail": "`v_doble_2_` == 40.0 siempre: 2/2 violaciones (ej: 0)"
           },
           {
             "index": 5,
@@ -2134,7 +2134,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`v_doble_3_` == 60.0 siempre: 3/3 violaciones (ej: 0)"
+            "detail": "`v_doble_3_` == 60.0 siempre: 2/2 violaciones (ej: 0)"
           },
           {
             "index": 6,
@@ -2143,7 +2143,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`v_doble_4_` == 80.0 siempre: 3/3 violaciones (ej: 0)"
+            "detail": "`v_doble_4_` == 80.0 siempre: 2/2 violaciones (ej: 0)"
           }
         ]
       }
@@ -2199,7 +2199,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -2292,7 +2292,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -2394,7 +2394,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -2487,7 +2487,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -2574,7 +2574,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 1,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -2672,7 +2672,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 4,
+        "rows": 3,
         "checks_pass": 2,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -2771,7 +2771,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 7,
+        "rows": 6,
         "checks_pass": 0,
         "checks_fail": 3,
         "oracle_pass": false,
@@ -2882,7 +2882,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 0,
         "checks_fail": 4,
         "oracle_pass": false,
@@ -3019,7 +3019,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -3172,7 +3172,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5,
+        "rows": 4,
         "checks_pass": 4,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -3304,7 +3304,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -3415,7 +3415,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -3508,7 +3508,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -3601,7 +3601,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -3694,7 +3694,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -3787,7 +3787,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -3889,7 +3889,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -3973,7 +3973,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -4057,7 +4057,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -4159,7 +4159,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -4270,7 +4270,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -4384,7 +4384,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5,
+        "rows": 4,
         "checks_pass": 2,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -4492,7 +4492,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 23,
+        "rows": 22,
         "checks_pass": 1,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -4601,7 +4601,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 102,
+        "rows": 101,
         "checks_pass": 1,
         "checks_fail": 3,
         "oracle_pass": false,
@@ -4709,7 +4709,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 102,
+        "rows": 101,
         "checks_pass": 2,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -4798,7 +4798,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 211,
+        "rows": 210,
         "checks_pass": 0,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -4878,7 +4878,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 316,
+        "rows": 315,
         "checks_pass": 1,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -4966,7 +4966,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 231,
+        "rows": 230,
         "checks_pass": 2,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -5052,7 +5052,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 7,
+        "rows": 6,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5150,7 +5150,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 210,
+        "rows": 209,
         "checks_pass": 0,
         "checks_fail": 4,
         "oracle_pass": false,
@@ -5266,7 +5266,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
+        "rows": 10,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5285,7 +5285,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": true,
-            "detail": "`poblacion`@t=0.0: esperado 2.0±0.01, obtenido 2"
+            "detail": "`poblacion`@t=0.0: esperado 2.0±0.01, obtenido 2.00686"
           },
           {
             "index": 1,
@@ -5294,7 +5294,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": true,
-            "detail": "`saturacion`@t=0.0: esperado 0.02±0.001, obtenido 0.02"
+            "detail": "`saturacion`@t=0.0: esperado 0.02±0.001, obtenido 0.0200686"
           },
           {
             "index": 2,
@@ -5312,7 +5312,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": true,
-            "detail": "`tasa_crecimiento`@t=0.0: esperado 6.86±0.1, obtenido 6.86"
+            "detail": "`tasa_crecimiento`@t=0.0: esperado 6.86±0.1, obtenido 6.88305"
           }
         ]
       }
@@ -5359,7 +5359,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 52,
+        "rows": 51,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5425,7 +5425,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 4,
+        "rows": 3,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5482,7 +5482,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5548,7 +5548,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 102,
+        "rows": 101,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5614,7 +5614,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5671,7 +5671,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5728,7 +5728,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5794,7 +5794,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5878,7 +5878,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -5971,7 +5971,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6064,7 +6064,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6157,7 +6157,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6250,7 +6250,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6352,7 +6352,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6445,7 +6445,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6529,7 +6529,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6622,7 +6622,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 12,
+        "rows": 11,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6715,7 +6715,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6808,7 +6808,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
+        "rows": 10,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -6910,7 +6910,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7021,7 +7021,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7132,7 +7132,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7234,7 +7234,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7318,7 +7318,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7402,7 +7402,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7504,7 +7504,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 102,
+        "rows": 101,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7615,17 +7615,19 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 72,
-        "checks_pass": 4,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 71,
+        "checks_pass": 3,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`ventilador`@t=5.1: esperado 0.4±0.05, obtenido 0"
+        ],
         "mode_independent_checks_defined": 4,
         "mode_independent_checks_evaluated": 4,
-        "mode_independent_checks_pass": 4,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 3,
+        "mode_independent_checks_fail": 1,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -7660,8 +7662,8 @@
             "column": "ventilador",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`ventilador`@t=5.1: esperado 0.4±0.05, obtenido 0.4"
+            "passed": false,
+            "detail": "`ventilador`@t=5.1: esperado 0.4±0.05, obtenido 0"
           }
         ]
       }
@@ -7726,7 +7728,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7846,7 +7848,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -7984,17 +7986,21 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
-        "checks_pass": 6,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 10,
+        "checks_pass": 3,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`pos2`@t=0.0: esperado -0.5±1e-06, obtenido -0.4995",
+          "`vel1`@t=0.0: esperado 0.0±1e-06, obtenido -0.0055",
+          "`vel2`@t=0.0: esperado 0.5±1e-06, obtenido 0.50125"
+        ],
         "mode_independent_checks_defined": 6,
         "mode_independent_checks_evaluated": 6,
-        "mode_independent_checks_pass": 6,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 3,
+        "mode_independent_checks_fail": 3,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -8011,8 +8017,8 @@
             "column": "pos2",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`pos2`@t=0.0: esperado -0.5±1e-06, obtenido -0.5"
+            "passed": false,
+            "detail": "`pos2`@t=0.0: esperado -0.5±1e-06, obtenido -0.4995"
           },
           {
             "index": 2,
@@ -8020,8 +8026,8 @@
             "column": "vel1",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`vel1`@t=0.0: esperado 0.0±1e-06, obtenido 0"
+            "passed": false,
+            "detail": "`vel1`@t=0.0: esperado 0.0±1e-06, obtenido -0.0055"
           },
           {
             "index": 3,
@@ -8029,8 +8035,8 @@
             "column": "vel2",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`vel2`@t=0.0: esperado 0.5±1e-06, obtenido 0.5"
+            "passed": false,
+            "detail": "`vel2`@t=0.0: esperado 0.5±1e-06, obtenido 0.50125"
           },
           {
             "index": 4,
@@ -8039,7 +8045,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": true,
-            "detail": "`energia_total`@t=0.0: esperado 3.625±0.01, obtenido 3.625"
+            "detail": "`energia_total`@t=0.0: esperado 3.625±0.01, obtenido 3.62502"
           },
           {
             "index": 5,
@@ -8095,7 +8101,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 401,
+        "rows": 400,
         "checks_pass": 1,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -8172,7 +8178,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 401,
+        "rows": 400,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -8247,7 +8253,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3001,
+        "rows": 3000,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -8340,7 +8346,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -8433,7 +8439,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -8517,7 +8523,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -8628,7 +8634,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 401,
+        "rows": 400,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -8730,7 +8736,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 0,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -8817,7 +8823,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 302,
+        "rows": 301,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -9645,7 +9651,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -9756,7 +9762,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -9849,7 +9855,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -9924,7 +9930,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10008,7 +10014,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 51,
+        "rows": 50,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10092,7 +10098,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10167,7 +10173,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1001,
+        "rows": 1000,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10242,7 +10248,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10344,7 +10350,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 402,
+        "rows": 401,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10446,7 +10452,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 141,
+        "rows": 140,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10548,7 +10554,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
+        "rows": 10,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10641,7 +10647,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10720,14 +10726,14 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 0,
         "checks_fail": 3,
         "oracle_pass": false,
         "failed_check_details": [
-          "`x_1_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
-          "`x_2_` > 0.0 siempre: 201/201 violaciones (ej: 0)",
-          "`x_3_` > 0.0 siempre: 201/201 violaciones (ej: 0)"
+          "`x_1_` > 0.0 siempre: 200/200 violaciones (ej: 0)",
+          "`x_2_` > 0.0 siempre: 200/200 violaciones (ej: 0)",
+          "`x_3_` > 0.0 siempre: 200/200 violaciones (ej: 0)"
         ],
         "mode_independent_checks_defined": 3,
         "mode_independent_checks_evaluated": 3,
@@ -10743,7 +10749,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`x_1_` > 0.0 siempre: 201/201 violaciones (ej: 0)"
+            "detail": "`x_1_` > 0.0 siempre: 200/200 violaciones (ej: 0)"
           },
           {
             "index": 1,
@@ -10752,7 +10758,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`x_2_` > 0.0 siempre: 201/201 violaciones (ej: 0)"
+            "detail": "`x_2_` > 0.0 siempre: 200/200 violaciones (ej: 0)"
           },
           {
             "index": 2,
@@ -10761,7 +10767,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`x_3_` > 0.0 siempre: 201/201 violaciones (ej: 0)"
+            "detail": "`x_3_` > 0.0 siempre: 200/200 violaciones (ej: 0)"
           }
         ]
       }
@@ -10821,7 +10827,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 0,
         "checks_fail": 3,
         "oracle_pass": false,
@@ -10900,7 +10906,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 302,
+        "rows": 301,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -10984,7 +10990,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11090,14 +11096,14 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 0,
         "checks_fail": 3,
         "oracle_pass": false,
         "failed_check_details": [
-          "`x_1_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
-          "`x_2_` < 0.0 siempre: 101/101 violaciones (ej: 0)",
-          "`x_3_` < 0.0 siempre: 101/101 violaciones (ej: 0)"
+          "`x_1_` < 0.0 siempre: 100/100 violaciones (ej: 0)",
+          "`x_2_` < 0.0 siempre: 100/100 violaciones (ej: 0)",
+          "`x_3_` < 0.0 siempre: 100/100 violaciones (ej: 0)"
         ],
         "mode_independent_checks_defined": 3,
         "mode_independent_checks_evaluated": 3,
@@ -11113,7 +11119,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`x_1_` < 0.0 siempre: 101/101 violaciones (ej: 0)"
+            "detail": "`x_1_` < 0.0 siempre: 100/100 violaciones (ej: 0)"
           },
           {
             "index": 1,
@@ -11122,7 +11128,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`x_2_` < 0.0 siempre: 101/101 violaciones (ej: 0)"
+            "detail": "`x_2_` < 0.0 siempre: 100/100 violaciones (ej: 0)"
           },
           {
             "index": 2,
@@ -11131,7 +11137,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`x_3_` < 0.0 siempre: 101/101 violaciones (ej: 0)"
+            "detail": "`x_3_` < 0.0 siempre: 100/100 violaciones (ej: 0)"
           }
         ]
       }
@@ -11181,7 +11187,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 0,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -11250,7 +11256,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11334,7 +11340,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11427,17 +11433,19 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
-        "checks_pass": 2,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 10,
+        "checks_pass": 1,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`salida_filtrada`@t=0.0: esperado 0.0±1e-06, obtenido 0.001"
+        ],
         "mode_independent_checks_defined": 2,
         "mode_independent_checks_evaluated": 2,
-        "mode_independent_checks_pass": 2,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 1,
+        "mode_independent_checks_fail": 1,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -11445,8 +11453,8 @@
             "column": "salida_filtrada",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`salida_filtrada`@t=0.0: esperado 0.0±1e-06, obtenido 0"
+            "passed": false,
+            "detail": "`salida_filtrada`@t=0.0: esperado 0.0±1e-06, obtenido 0.001"
           },
           {
             "index": 1,
@@ -11502,7 +11510,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11577,7 +11585,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11652,7 +11660,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1502,
+        "rows": 1501,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11736,7 +11744,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11820,7 +11828,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 602,
+        "rows": 601,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11895,7 +11903,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -11970,7 +11978,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12045,7 +12053,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12111,7 +12119,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12186,17 +12194,19 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
-        "checks_pass": 3,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 10,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`y1`@t=0.0: esperado 0.0±1e-06, obtenido 0.001"
+        ],
         "mode_independent_checks_defined": 3,
         "mode_independent_checks_evaluated": 3,
-        "mode_independent_checks_pass": 3,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 2,
+        "mode_independent_checks_fail": 1,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -12204,8 +12214,8 @@
             "column": "y1",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`y1`@t=0.0: esperado 0.0±1e-06, obtenido 0"
+            "passed": false,
+            "detail": "`y1`@t=0.0: esperado 0.0±1e-06, obtenido 0.001"
           },
           {
             "index": 1,
@@ -12279,7 +12289,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12354,7 +12364,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12429,7 +12439,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 302,
+        "rows": 301,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12531,7 +12541,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 601,
+        "rows": 600,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12633,7 +12643,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12726,7 +12736,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12810,7 +12820,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 601,
+        "rows": 600,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -12903,7 +12913,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13005,7 +13015,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13098,7 +13108,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13191,7 +13201,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13275,7 +13285,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13350,7 +13360,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13434,7 +13444,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13527,7 +13537,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13620,7 +13630,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13713,7 +13723,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13797,7 +13807,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13863,7 +13873,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -13947,7 +13957,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14040,7 +14050,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 41,
+        "rows": 40,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14115,7 +14125,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 41,
+        "rows": 40,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14190,7 +14200,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 41,
+        "rows": 40,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14265,7 +14275,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 41,
+        "rows": 40,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14331,7 +14341,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14397,7 +14407,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 41,
+        "rows": 40,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14472,7 +14482,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 41,
+        "rows": 40,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14556,7 +14566,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 41,
+        "rows": 40,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14640,7 +14650,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 602,
+        "rows": 601,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -14724,17 +14734,19 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
-        "checks_pass": 3,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 10,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`velocidad`@t=0.0: esperado 0.0±1e-06, obtenido -0.0394784"
+        ],
         "mode_independent_checks_defined": 3,
         "mode_independent_checks_evaluated": 3,
-        "mode_independent_checks_pass": 3,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 2,
+        "mode_independent_checks_fail": 1,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -14751,8 +14763,8 @@
             "column": "velocidad",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`velocidad`@t=0.0: esperado 0.0±1e-06, obtenido 0"
+            "passed": false,
+            "detail": "`velocidad`@t=0.0: esperado 0.0±1e-06, obtenido -0.0394784"
           },
           {
             "index": 2,
@@ -14761,7 +14773,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": true,
-            "detail": "`energia`@t=0.0: esperado 19.739±0.01, obtenido 19.7392"
+            "detail": "`energia`@t=0.0: esperado 19.739±0.01, obtenido 19.74"
           }
         ]
       }
@@ -14817,7 +14829,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 27,
+        "rows": 26,
         "checks_pass": 1,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -14913,7 +14925,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 52,
+        "rows": 51,
         "checks_pass": 1,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -15009,7 +15021,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 102,
+        "rows": 101,
         "checks_pass": 1,
         "checks_fail": 2,
         "oracle_pass": false,
@@ -15087,7 +15099,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -15146,7 +15158,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -15203,7 +15215,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5002,
+        "rows": 5001,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -15271,7 +15283,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5001,
+        "rows": 5000,
         "checks_pass": 1,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -15339,7 +15351,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 10002,
+        "rows": 10001,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -15416,7 +15428,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 10001,
+        "rows": 10000,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -15518,17 +15530,19 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
-        "checks_pass": 4,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 10,
+        "checks_pass": 3,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`velocidad_angular`@t=0.0: esperado 0.0±1e-06, obtenido -0.00490495"
+        ],
         "mode_independent_checks_defined": 4,
         "mode_independent_checks_evaluated": 4,
-        "mode_independent_checks_pass": 4,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 3,
+        "mode_independent_checks_fail": 1,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -15545,8 +15559,8 @@
             "column": "velocidad_angular",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`velocidad_angular`@t=0.0: esperado 0.0±1e-06, obtenido 0"
+            "passed": false,
+            "detail": "`velocidad_angular`@t=0.0: esperado 0.0±1e-06, obtenido -0.00490495"
           },
           {
             "index": 2,
@@ -15555,7 +15569,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": true,
-            "detail": "`energia_total`@t=0.0: esperado 8.496±0.01, obtenido 8.49574"
+            "detail": "`energia_total`@t=0.0: esperado 8.496±0.01, obtenido 8.49575"
           },
           {
             "index": 3,
@@ -15602,7 +15616,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -15659,7 +15673,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -15716,7 +15730,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -15775,7 +15789,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -15832,12 +15846,12 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1502,
+        "rows": 1501,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
         "failed_check_details": [
-          "`en_reposo`==1 al menos 3 veces, encontrado 2: FAIL"
+          "`en_reposo`==1 al menos 3 veces, encontrado 1: FAIL"
         ],
         "mode_independent_checks_defined": 1,
         "mode_independent_checks_evaluated": 1,
@@ -15853,7 +15867,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`en_reposo`==1 al menos 3 veces, encontrado 2: FAIL"
+            "detail": "`en_reposo`==1 al menos 3 veces, encontrado 1: FAIL"
           }
         ]
       }
@@ -15891,7 +15905,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3001,
+        "rows": 3000,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -15950,7 +15964,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -16027,7 +16041,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3001,
+        "rows": 3000,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16102,7 +16116,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 102,
+        "rows": 101,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
@@ -16197,7 +16211,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16326,7 +16340,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16428,7 +16442,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16512,7 +16526,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16605,7 +16619,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16707,7 +16721,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16827,7 +16841,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -16929,7 +16943,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17031,7 +17045,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17142,7 +17156,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17226,7 +17240,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17301,7 +17315,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17394,7 +17408,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17496,7 +17510,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17580,7 +17594,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17655,7 +17669,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17730,7 +17744,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17814,7 +17828,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17898,7 +17912,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 802,
+        "rows": 801,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -17982,7 +17996,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18066,7 +18080,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18141,7 +18155,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18216,7 +18230,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18291,7 +18305,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18375,7 +18389,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18468,7 +18482,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18561,7 +18575,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18654,7 +18668,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18747,7 +18761,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -18840,17 +18854,19 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
-        "checks_pass": 3,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 10,
+        "checks_pass": 2,
+        "checks_fail": 1,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`velocidad`@t=0.0: esperado 0.0±1e-06, obtenido -0.00666667"
+        ],
         "mode_independent_checks_defined": 3,
         "mode_independent_checks_evaluated": 3,
-        "mode_independent_checks_pass": 3,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 2,
+        "mode_independent_checks_fail": 1,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -18867,8 +18883,8 @@
             "column": "velocidad",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`velocidad`@t=0.0: esperado 0.0±1e-06, obtenido 0"
+            "passed": false,
+            "detail": "`velocidad`@t=0.0: esperado 0.0±1e-06, obtenido -0.00666667"
           },
           {
             "index": 2,
@@ -18877,7 +18893,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": true,
-            "detail": "`energia`@t=0.0: esperado 5.0±0.001, obtenido 5"
+            "detail": "`energia`@t=0.0: esperado 5.0±0.001, obtenido 5.00003"
           }
         ]
       }
@@ -18915,12 +18931,12 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 0,
         "checks_fail": 1,
         "oracle_pass": false,
         "failed_check_details": [
-          "`energia` monotona decreciente: 539 incrementos detectados"
+          "`energia` monotona decreciente: 538 incrementos detectados"
         ],
         "mode_independent_checks_defined": 1,
         "mode_independent_checks_evaluated": 1,
@@ -18936,7 +18952,7 @@
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
             "passed": false,
-            "detail": "`energia` monotona decreciente: 539 incrementos detectados"
+            "detail": "`energia` monotona decreciente: 538 incrementos detectados"
           }
         ]
       }
@@ -18974,7 +18990,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 1002,
+        "rows": 1001,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19031,7 +19047,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19106,7 +19122,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2002,
+        "rows": 2001,
         "checks_pass": 0,
         "checks_fail": 3,
         "oracle_pass": false,
@@ -19185,7 +19201,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
+        "rows": 10,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19260,7 +19276,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19335,7 +19351,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 502,
+        "rows": 501,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19419,17 +19435,20 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 11,
-        "checks_pass": 4,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 10,
+        "checks_pass": 2,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`y_out`@t=0.0: esperado 1.0±1e-06, obtenido 1.0255",
+          "`z_out`@t=0.0: esperado 1.5±1e-06, obtenido 1.497"
+        ],
         "mode_independent_checks_defined": 4,
         "mode_independent_checks_evaluated": 4,
-        "mode_independent_checks_pass": 4,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 2,
+        "mode_independent_checks_fail": 2,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -19446,8 +19465,8 @@
             "column": "y_out",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`y_out`@t=0.0: esperado 1.0±1e-06, obtenido 1"
+            "passed": false,
+            "detail": "`y_out`@t=0.0: esperado 1.0±1e-06, obtenido 1.0255"
           },
           {
             "index": 2,
@@ -19455,8 +19474,8 @@
             "column": "z_out",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`z_out`@t=0.0: esperado 1.5±1e-06, obtenido 1.5"
+            "passed": false,
+            "detail": "`z_out`@t=0.0: esperado 1.5±1e-06, obtenido 1.497"
           },
           {
             "index": 3,
@@ -19512,7 +19531,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3001,
+        "rows": 3000,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19578,7 +19597,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3001,
+        "rows": 3000,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19635,7 +19654,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 252,
+        "rows": 251,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19692,7 +19711,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2001,
+        "rows": 2000,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19749,7 +19768,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3001,
+        "rows": 3000,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19815,7 +19834,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3001,
+        "rows": 3000,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -19899,7 +19918,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 12,
+        "rows": 11,
         "checks_pass": 0,
         "checks_fail": 3,
         "oracle_pass": false,
@@ -19978,7 +19997,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 102,
+        "rows": 101,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20053,7 +20072,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5002,
+        "rows": 5001,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20137,7 +20156,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20212,7 +20231,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20287,7 +20306,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20362,7 +20381,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20437,7 +20456,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20512,7 +20531,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20596,7 +20615,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -20716,19 +20735,20 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5,
-        "checks_pass": 3,
-        "checks_fail": 3,
+        "rows": 4,
+        "checks_pass": 2,
+        "checks_fail": 4,
         "oracle_pass": false,
         "failed_check_details": [
-          "`alarm`@t=0.5: esperado 0±0, obtenido 1",
           "`alarm`@t=1.5: esperado 1±0, obtenido 0",
-          "`alarm`@t=3.5: esperado 0±0, obtenido 1"
+          "`alarm`@t=3.5: esperado 0±0, obtenido 1",
+          "`scaled_value`@t=1.5: esperado 180.0±1e-09, obtenido 82.5",
+          "`scaled_value`@t=2.5: esperado 7.5±1e-09, obtenido 180"
         ],
         "mode_independent_checks_defined": 6,
         "mode_independent_checks_evaluated": 6,
-        "mode_independent_checks_pass": 3,
-        "mode_independent_checks_fail": 3,
+        "mode_independent_checks_pass": 2,
+        "mode_independent_checks_fail": 4,
         "mode_independent_checks_not_evaluated": 0,
         "mode_independent_oracle_pass": false,
         "check_outcomes": [
@@ -20738,8 +20758,8 @@
             "column": "alarm",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": false,
-            "detail": "`alarm`@t=0.5: esperado 0±0, obtenido 1"
+            "passed": true,
+            "detail": "`alarm`@t=0.5: esperado 0±0, obtenido 0"
           },
           {
             "index": 1,
@@ -20774,8 +20794,8 @@
             "column": "scaled_value",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`scaled_value`@t=1.5: esperado 180.0±1e-09, obtenido 180"
+            "passed": false,
+            "detail": "`scaled_value`@t=1.5: esperado 180.0±1e-09, obtenido 82.5"
           },
           {
             "index": 5,
@@ -20783,8 +20803,8 @@
             "column": "scaled_value",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`scaled_value`@t=2.5: esperado 7.5±1e-09, obtenido 7.5"
+            "passed": false,
+            "detail": "`scaled_value`@t=2.5: esperado 7.5±1e-09, obtenido 180"
           }
         ]
       }
@@ -20840,19 +20860,17 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 21,
-        "checks_pass": 2,
-        "checks_fail": 1,
-        "oracle_pass": false,
-        "failed_check_details": [
-          "`alarm` == 0 siempre: 1/21 violaciones (ej: 1)"
-        ],
+        "rows": 20,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "failed_check_details": [],
         "mode_independent_checks_defined": 3,
         "mode_independent_checks_evaluated": 3,
-        "mode_independent_checks_pass": 2,
-        "mode_independent_checks_fail": 1,
+        "mode_independent_checks_pass": 3,
+        "mode_independent_checks_fail": 0,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": false,
+        "mode_independent_oracle_pass": true,
         "check_outcomes": [
           {
             "index": 0,
@@ -20860,8 +20878,8 @@
             "column": "alarm",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": false,
-            "detail": "`alarm` == 0 siempre: 1/21 violaciones (ej: 1)"
+            "passed": true,
+            "detail": "`alarm` == 0 siempre: OK"
           },
           {
             "index": 1,
@@ -20935,7 +20953,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 2,
+        "rows": 1,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21010,7 +21028,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 12,
+        "rows": 11,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21067,7 +21085,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 12,
+        "rows": 11,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21124,7 +21142,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 12,
+        "rows": 11,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21190,7 +21208,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21256,7 +21274,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21313,7 +21331,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21379,7 +21397,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21445,7 +21463,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21511,7 +21529,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 6,
+        "rows": 5,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21577,7 +21595,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 21,
+        "rows": 20,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21661,7 +21679,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 12,
+        "rows": 11,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21772,7 +21790,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 12,
+        "rows": 11,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21874,7 +21892,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -21967,7 +21985,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22051,7 +22069,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22135,7 +22153,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22228,7 +22246,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22321,7 +22339,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 101,
+        "rows": 100,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22405,7 +22423,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 5,
+        "rows": 4,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22498,7 +22516,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 201,
+        "rows": 200,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22609,7 +22627,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22720,7 +22738,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22831,7 +22849,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -22933,7 +22951,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -23026,7 +23044,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -23119,7 +23137,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -23194,7 +23212,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 1,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -23269,17 +23287,20 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 4,
-        "checks_pass": 3,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 3,
+        "checks_pass": 1,
+        "checks_fail": 2,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`b_out`@t=1.5: esperado 1±0, obtenido 0",
+          "`b_out`@t=2.5: esperado 0±0, obtenido 1"
+        ],
         "mode_independent_checks_defined": 3,
         "mode_independent_checks_evaluated": 3,
-        "mode_independent_checks_pass": 3,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 1,
+        "mode_independent_checks_fail": 2,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -23296,8 +23317,8 @@
             "column": "b_out",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`b_out`@t=1.5: esperado 1±0, obtenido 1"
+            "passed": false,
+            "detail": "`b_out`@t=1.5: esperado 1±0, obtenido 0"
           },
           {
             "index": 2,
@@ -23305,8 +23326,8 @@
             "column": "b_out",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`b_out`@t=2.5: esperado 0±0, obtenido 0"
+            "passed": false,
+            "detail": "`b_out`@t=2.5: esperado 0±0, obtenido 1"
           }
         ]
       }
@@ -23371,17 +23392,21 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 4,
-        "checks_pass": 4,
-        "checks_fail": 0,
-        "oracle_pass": true,
-        "failed_check_details": [],
+        "rows": 3,
+        "checks_pass": 1,
+        "checks_fail": 3,
+        "oracle_pass": false,
+        "failed_check_details": [
+          "`r_out`@t=1.5: esperado -4.0±1e-09, obtenido 2",
+          "`i_out`@t=1.5: esperado 6±0, obtenido 1",
+          "`b_out`@t=1.5: esperado 1±0, obtenido 0"
+        ],
         "mode_independent_checks_defined": 4,
         "mode_independent_checks_evaluated": 4,
-        "mode_independent_checks_pass": 4,
-        "mode_independent_checks_fail": 0,
+        "mode_independent_checks_pass": 1,
+        "mode_independent_checks_fail": 3,
         "mode_independent_checks_not_evaluated": 0,
-        "mode_independent_oracle_pass": true,
+        "mode_independent_oracle_pass": false,
         "check_outcomes": [
           {
             "index": 0,
@@ -23398,8 +23423,8 @@
             "column": "r_out",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`r_out`@t=1.5: esperado -4.0±1e-09, obtenido -4"
+            "passed": false,
+            "detail": "`r_out`@t=1.5: esperado -4.0±1e-09, obtenido 2"
           },
           {
             "index": 2,
@@ -23407,8 +23432,8 @@
             "column": "i_out",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`i_out`@t=1.5: esperado 6±0, obtenido 6"
+            "passed": false,
+            "detail": "`i_out`@t=1.5: esperado 6±0, obtenido 1"
           },
           {
             "index": 3,
@@ -23416,8 +23441,8 @@
             "column": "b_out",
             "scope": "mode_independent",
             "scope_rationale": "model/interface behavioral requirement",
-            "passed": true,
-            "detail": "`b_out`@t=1.5: esperado 1±0, obtenido 1"
+            "passed": false,
+            "detail": "`b_out`@t=1.5: esperado 1±0, obtenido 0"
           }
         ]
       }
@@ -23464,7 +23489,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 2,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -23575,7 +23600,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 6,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -23712,18 +23737,65 @@
         ]
       },
       "cs": {
-        "execution": "error",
-        "error": "EXIT 3221225477: ",
-        "checks_pass": 0,
-        "checks_fail": 5,
-        "oracle_pass": false,
+        "execution": "ok",
+        "rows": 2,
+        "checks_pass": 5,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "failed_check_details": [],
         "mode_independent_checks_defined": 5,
-        "mode_independent_checks_evaluated": 0,
-        "mode_independent_checks_pass": 0,
+        "mode_independent_checks_evaluated": 5,
+        "mode_independent_checks_pass": 5,
         "mode_independent_checks_fail": 0,
-        "mode_independent_checks_not_evaluated": 5,
-        "mode_independent_oracle_pass": false,
-        "check_outcomes": []
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -0.2±1e-09, obtenido -0.2"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1"
+          },
+          {
+            "index": 4,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK"
+          }
+        ]
       }
     },
     {
@@ -23795,7 +23867,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 5,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -23914,18 +23986,56 @@
         ]
       },
       "cs": {
-        "execution": "error",
-        "error": "EXIT 3221225477: ",
-        "checks_pass": 0,
-        "checks_fail": 4,
-        "oracle_pass": false,
+        "execution": "ok",
+        "rows": 2,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "failed_check_details": [],
         "mode_independent_checks_defined": 4,
-        "mode_independent_checks_evaluated": 0,
-        "mode_independent_checks_pass": 0,
+        "mode_independent_checks_evaluated": 4,
+        "mode_independent_checks_pass": 4,
         "mode_independent_checks_fail": 0,
-        "mode_independent_checks_not_evaluated": 4,
-        "mode_independent_oracle_pass": false,
-        "check_outcomes": []
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -1.0±1e-09, obtenido -1"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_log",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30"
+          },
+          {
+            "index": 3,
+            "type": "final_value",
+            "column": "y_sat",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1"
+          }
+        ]
       }
     },
     {
@@ -23979,7 +24089,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 3,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -24071,18 +24181,47 @@
         ]
       },
       "cs": {
-        "execution": "error",
-        "error": "EXIT 3221225477: ",
-        "checks_pass": 0,
-        "checks_fail": 3,
-        "oracle_pass": false,
+        "execution": "ok",
+        "rows": 2,
+        "checks_pass": 3,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "failed_check_details": [],
         "mode_independent_checks_defined": 3,
-        "mode_independent_checks_evaluated": 0,
-        "mode_independent_checks_pass": 0,
+        "mode_independent_checks_evaluated": 3,
+        "mode_independent_checks_pass": 3,
         "mode_independent_checks_fail": 0,
-        "mode_independent_checks_not_evaluated": 3,
-        "mode_independent_oracle_pass": false,
-        "check_outcomes": []
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "final_value",
+            "column": "y_inv",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_inv` final: esperado -0.1±1e-09, obtenido -0.1"
+          },
+          {
+            "index": 1,
+            "type": "final_value",
+            "column": "y_sqrt",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0"
+          },
+          {
+            "index": 2,
+            "type": "final_value",
+            "column": "y_sat",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1"
+          }
+        ]
       }
     },
     {
@@ -24145,7 +24284,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -24256,7 +24395,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -24367,7 +24506,7 @@
       },
       "cs": {
         "execution": "ok",
-        "rows": 3,
+        "rows": 2,
         "checks_pass": 4,
         "checks_fail": 0,
         "oracle_pass": true,
@@ -24477,18 +24616,56 @@
         ]
       },
       "cs": {
-        "execution": "error",
-        "error": "EXIT 3221225477: ",
-        "checks_pass": 0,
-        "checks_fail": 4,
-        "oracle_pass": false,
+        "execution": "ok",
+        "rows": 10,
+        "checks_pass": 4,
+        "checks_fail": 0,
+        "oracle_pass": true,
+        "failed_check_details": [],
         "mode_independent_checks_defined": 4,
-        "mode_independent_checks_evaluated": 0,
-        "mode_independent_checks_pass": 0,
+        "mode_independent_checks_evaluated": 4,
+        "mode_independent_checks_pass": 4,
         "mode_independent_checks_fail": 0,
-        "mode_independent_checks_not_evaluated": 4,
-        "mode_independent_oracle_pass": false,
-        "check_outcomes": []
+        "mode_independent_checks_not_evaluated": 0,
+        "mode_independent_oracle_pass": true,
+        "check_outcomes": [
+          {
+            "index": 0,
+            "type": "no_nan_inf",
+            "column": "y_inv",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_inv` sin NaN/Inf: OK"
+          },
+          {
+            "index": 1,
+            "type": "no_nan_inf",
+            "column": "y_sqrt",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sqrt` sin NaN/Inf: OK"
+          },
+          {
+            "index": 2,
+            "type": "no_nan_inf",
+            "column": "y_log",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_log` sin NaN/Inf: OK"
+          },
+          {
+            "index": 3,
+            "type": "no_nan_inf",
+            "column": "y_sat",
+            "scope": "mode_independent",
+            "scope_rationale": "model/interface behavioral requirement",
+            "passed": true,
+            "detail": "`y_sat` sin NaN/Inf: OK"
+          }
+        ]
       }
     }
   ]

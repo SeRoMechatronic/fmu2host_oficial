@@ -1,0 +1,4 @@
+path,scenarios,executed,errors,checks_evaluated,checks_pass,checks_fail
+exporter-provided binary + FMPy,10,10,0,42,42,0
+FMPy source-compiled binary + FMPy,10,10,0,42,42,0
+fmu2host source-compiled static executable,10,10,0,42,42,0

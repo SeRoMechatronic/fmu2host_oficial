@@ -1,0 +1,1154 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-10T09:54:32.958224+00:00",
+  "model": "ValoresExtremos",
+  "fmpy_version": "0.3.29",
+  "compilation": {
+    "tool": "FMPy 0.3.29",
+    "reused_precompiled_copy": true
+  },
+  "paths": [
+    {
+      "label": "exporter-provided binary + FMPy",
+      "fmu_sha256": "7552a2c408bb1f00633719a9bebbaf701ad74de84f5c245819c9859b4b93c7a0",
+      "win64_binary_sha256": "c42366ae4725ae12cc1d51975928939dac43880349d998deaaa3456a121ebead",
+      "summary": {
+        "scenarios_attempted": 10,
+        "execution_ok": 10,
+        "execution_error": 0,
+        "checks_defined": 42,
+        "checks_evaluated": 42,
+        "checks_pass": 42,
+        "checks_fail": 0,
+        "oracle_pass_scenarios": 10
+      },
+      "records": [
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-001",
+          "title": "u=0.0 — division por cero y log de cero protegidos",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 6,
+            "checks_evaluated": 6,
+            "checks_pass": 6,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 4,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 5,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-002",
+          "title": "u=-5.0 — negativo: sqrt y log protegidos",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 5,
+            "checks_evaluated": 5,
+            "checks_pass": 5,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado -0.2±1e-09, obtenido -0.2",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 4,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-003",
+          "title": "u=1.0 — valor nominal: todas las operaciones validas",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 5,
+            "checks_evaluated": 5,
+            "checks_pass": 5,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado 0.0±1e-06, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 4,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-004",
+          "title": "u=-1.0 — simetrico al nominal positivo",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-005",
+          "title": "u=2.0 — por encima de saturacion",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 3,
+            "checks_evaluated": 3,
+            "checks_pass": 3,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 1.4142±0.001, obtenido 1.41421",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado 0.6931±0.001, obtenido 0.693147",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-006",
+          "title": "u=-10.0 — saturacion profunda negativa",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 3,
+            "checks_evaluated": 3,
+            "checks_pass": 3,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado -0.1±1e-09, obtenido -0.1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-007",
+          "title": "u=1e-11 — por debajo del umbral de guarda",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1e-11±1e-20, obtenido 1e-11",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-008",
+          "title": "u=1e30 — cerca de Inf, es_finito=false",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 0±0, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "no_nan_inf",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-009",
+          "title": "u=100 — valor tipico positivo con resultados conocidos",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 0.01±1e-09, obtenido 0.01",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 10.0±1e-06, obtenido 10",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado 4.6052±0.001, obtenido 4.60517",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-010",
+          "title": "Sin NaN ni Inf en todos los casos — barrido completo",
+          "cs": {
+            "execution": "ok",
+            "samples": 11,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "no_nan_inf",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "no_nan_inf",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "no_nan_inf",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "FMPy source-compiled binary + FMPy",
+      "fmu_sha256": "047845f24efac062a244e1809240c41f074057a4496a63a8676a28a14a70a274",
+      "win64_binary_sha256": "be3d37891ecf897014bf4fa354549b46bef06164a2778f166aa6705a64c77272",
+      "summary": {
+        "scenarios_attempted": 10,
+        "execution_ok": 10,
+        "execution_error": 0,
+        "checks_defined": 42,
+        "checks_evaluated": 42,
+        "checks_pass": 42,
+        "checks_fail": 0,
+        "oracle_pass_scenarios": 10
+      },
+      "records": [
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-001",
+          "title": "u=0.0 — division por cero y log de cero protegidos",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 6,
+            "checks_evaluated": 6,
+            "checks_pass": 6,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 4,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 5,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-002",
+          "title": "u=-5.0 — negativo: sqrt y log protegidos",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 5,
+            "checks_evaluated": 5,
+            "checks_pass": 5,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado -0.2±1e-09, obtenido -0.2",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 4,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-003",
+          "title": "u=1.0 — valor nominal: todas las operaciones validas",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 5,
+            "checks_evaluated": 5,
+            "checks_pass": 5,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado 0.0±1e-06, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 4,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-004",
+          "title": "u=-1.0 — simetrico al nominal positivo",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-005",
+          "title": "u=2.0 — por encima de saturacion",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 3,
+            "checks_evaluated": 3,
+            "checks_pass": 3,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 1.4142±0.001, obtenido 1.41421",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado 0.6931±0.001, obtenido 0.693147",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-006",
+          "title": "u=-10.0 — saturacion profunda negativa",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 3,
+            "checks_evaluated": 3,
+            "checks_pass": 3,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado -0.1±1e-09, obtenido -0.1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 0.0±1e-09, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado -1.0±1e-09, obtenido -1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-007",
+          "title": "u=1e-11 — por debajo del umbral de guarda",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 1e+30±1e+20, obtenido 1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado -1e+30±1e+20, obtenido -1e+30",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1e-11±1e-20, obtenido 1e-11",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 1±0, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-008",
+          "title": "u=1e30 — cerca de Inf, es_finito=false",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "es_finito",
+                "passed": true,
+                "detail": "`es_finito` final: esperado 0±0, obtenido 0",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "no_nan_inf",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-009",
+          "title": "u=100 — valor tipico positivo con resultados conocidos",
+          "cs": {
+            "execution": "ok",
+            "samples": 3,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "final_value",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` final: esperado 0.01±1e-09, obtenido 0.01",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "final_value",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` final: esperado 10.0±1e-06, obtenido 10",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "final_value",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` final: esperado 4.6052±0.001, obtenido 4.60517",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "final_value",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` final: esperado 1.0±1e-09, obtenido 1",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        },
+        {
+          "model": "ValoresExtremos",
+          "scenario": "TC-VE-010",
+          "title": "Sin NaN ni Inf en todos los casos — barrido completo",
+          "cs": {
+            "execution": "ok",
+            "samples": 11,
+            "unsupported_inputs": [],
+            "unresolved_outputs": [],
+            "checks_defined": 4,
+            "checks_evaluated": 4,
+            "checks_pass": 4,
+            "checks_fail": 0,
+            "oracle_pass": true,
+            "check_outcomes": [
+              {
+                "index": 0,
+                "type": "no_nan_inf",
+                "column": "y_inv",
+                "passed": true,
+                "detail": "`y_inv` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 1,
+                "type": "no_nan_inf",
+                "column": "y_sqrt",
+                "passed": true,
+                "detail": "`y_sqrt` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 2,
+                "type": "no_nan_inf",
+                "column": "y_log",
+                "passed": true,
+                "detail": "`y_log` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              },
+              {
+                "index": 3,
+                "type": "no_nan_inf",
+                "column": "y_sat",
+                "passed": true,
+                "detail": "`y_sat` sin NaN/Inf: OK",
+                "scope_rationale": "model/interface behavioral requirement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "fmu2host source-compiled static executable",
+      "summary": {
+        "scenarios_attempted": 10,
+        "execution_ok": 10,
+        "execution_error": 0,
+        "checks_defined": 42,
+        "checks_evaluated": 42,
+        "checks_pass": 42,
+        "checks_fail": 0
+      },
+      "records": [
+        {
+          "scenario": "TC-VE-001",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-002",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-003",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-004",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-005",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-006",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-007",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-008",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-009",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        },
+        {
+          "scenario": "TC-VE-010",
+          "execution": "ok",
+          "returncode": null,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "conclusion": "The corrected source-compiled host completes all ten scenarios, matching both FMPy paths.  The former access violations were caused by sampling outputs after changing the input but before fmi2DoStep; advancing the FMU before reading outputs resolves the stale discrete-relation state and the crash.",
+  "causal_evidence": "Targeted tracing localized the former negative-input failure to the first Boolean output read, inside the exporter-generated square-root guard, before the first fmi2DoStep. Reordering the CS loop to set inputs, complete fmi2DoStep, and then sample outputs removes the failure in the same executable and scenarios."
+}

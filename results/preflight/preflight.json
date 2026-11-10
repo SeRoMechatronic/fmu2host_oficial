@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-10T09:42:51.135651+00:00",
+  "validator": "FMPy 0.3.29",
+  "policy": "FMUs with no reported FMI contract violation are accepted into the conformance population. Rejected archives may be retained only as explicit negative diagnostics.",
+  "archives": 30,
+  "accepted": 28,
+  "rejected": 2,
+  "records": [
+    {
+      "model": "ArranqueSuaveMotor",
+      "fmu": "models/ArranqueSuaveMotor/ArranqueSuaveMotor.fmu",
+      "sha256": "6950666805cae3883f197d15c6224f09b1a24c67b9c98e6f391a23dfd0fc5398",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "ArraysVectores",
+      "fmu": "models/ArraysVectores/ArraysVectores.fmu",
+      "sha256": "937bb338a47903a7b12af1c2c472b31c54174e211497a7c9cba7605707ccdd37",
+      "decision": "reject",
+      "problem_count": 1,
+      "problems": [
+        "Variable \"alguno_true\" (line 507) has an illegal combination of causality=\"output\" and variability=\"fixed\"."
+      ]
+    },
+    {
+      "model": "BooleanLogica",
+      "fmu": "models/BooleanLogica/BooleanLogica.fmu",
+      "sha256": "d827667a4ad8d2e0903bb48794590c676f1d588f0956f9e29aece82815149a04",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "CodigoErrorDiagnostico",
+      "fmu": "models/CodigoErrorDiagnostico/CodigoErrorDiagnostico.fmu",
+      "sha256": "2973fcd307ba37102875f3545bb1faeb50e66aae529c9bfb105ee2ba5086bbf9",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "ContadorEventos",
+      "fmu": "models/ContadorEventos/ContadorEventos.fmu",
+      "sha256": "69eb9aebd5844e0a2c4cdd08917bc30b789449b20bd92e3594f5f2a540cf4d37",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "CrecimientoPoblacional",
+      "fmu": "models/CrecimientoPoblacional/CrecimientoPoblacional.fmu",
+      "sha256": "0fba40a713a28b92adfb06d1e911851018eedf934edaaae2b01071435f8d9c45",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "CSPuro_SinME",
+      "fmu": "models/CS_Puro/CSPuro_SinME.fmu",
+      "sha256": "6d15958ffc536593ce6b1d0881bc02c320a29fe75de3b76f67f36edc1796784e",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "CTPID",
+      "fmu": "models/CTPID/CTPID.fmu",
+      "sha256": "a70bdd91322ebad01b20d84aafbc3f6acdf360541c079ddb683775a17834a895",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "CuerposAcoplados",
+      "fmu": "models/CuerposAcoplados/CuerposAcoplados.fmu",
+      "sha256": "4cc2c6ff88a3e06398ae8803cfe285eb283db50a7845f63300f9e8d655ab821e",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "EtapaSecuenciador",
+      "fmu": "models/EtapaSecuenciador/EtapaSecuenciador.fmu",
+      "sha256": "3b46496238102068dfa63e2205196b055fffddaab080fa530ce648c30ea24823",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "FrenadoABS",
+      "fmu": "models/FrenadoABS/FrenadoABS.fmu",
+      "sha256": "ff62735f9cb08004da9ba3fb28b79c4f2fcf24ef48c7fd8d50acf531d574f578",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "MatrizEstado",
+      "fmu": "models/MatrizEstado/MatrizEstado.fmu",
+      "sha256": "b7b9a6c248415354f22230985cdf2a203c7965ae0ba23b8f7a224f894569359b",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "Mi_Modelo_Nuevo",
+      "fmu": "models/Mi_Modelo_Nuevo/Mi_Modelo_Nuevo.fmu",
+      "sha256": "5dd277fe957de51f232d803dbe768679b40d9be3f959325fd6fb440fa9cf777b",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "MuchosEstados",
+      "fmu": "models/MuchosEstados/MuchosEstados.fmu",
+      "sha256": "04e5ceff4d1817a90b56bcddccaeed8b3fe81bd3aceb40bffac78dc7a79e29fa",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "MultiplexorCanales",
+      "fmu": "models/MultiplexorCanales/MultiplexorCanales.fmu",
+      "sha256": "0e3c836717abacd344388bc07ac6c85c5d4de382c59273d91cd25545a0020ee3",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "NivelDeposito",
+      "fmu": "models/NivelDeposito/NivelDeposito.fmu",
+      "sha256": "1f2cf20c36331e3685db86a21ba11e4d234debffeab5388f55a1997e4050bddc",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "OsciladorArmonico",
+      "fmu": "models/OsciladorArmonico/OsciladorArmonico.fmu",
+      "sha256": "5dfb16eef8e765249728da58360c3a0a979f236e18d639ffcf226b0b6b4332a7",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "PenduloNoLineal",
+      "fmu": "models/PenduloNoLineal/PenduloNoLineal.fmu",
+      "sha256": "59ae3fe851768c0bb01612fcce38e465fdb982145ffe4720fe84d49b7a1686f7",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "PotVumetro",
+      "fmu": "models/PotVumetro/PotVumetro.fmu",
+      "sha256": "5b6313f20419edcbc322ceda9e776d241c93d28e332ce6b6eb53b298e51c4472",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "ReguladorBateria",
+      "fmu": "models/ReguladorBateria/ReguladorBateria.fmu",
+      "sha256": "de1589880a555baa22cf7ae59cb18c0628ee13444b8be3ac6c8b213dac1aef41",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "SelectorModo",
+      "fmu": "models/SelectorModo/SelectorModo.fmu",
+      "sha256": "d0734072d68ccc829215eaca4f8fac9b5e8c7dcc578b575c2d67b5c9be67efe7",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "SinInputs",
+      "fmu": "models/SinInputs/SinInputs.fmu",
+      "sha256": "12098c2f2b002e0d12d97880f2618ba68c3df1b91564c0ed25d5c1575b212337",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "SistemaLorenz",
+      "fmu": "models/SistemaLorenz/SistemaLorenz.fmu",
+      "sha256": "157e6400b4e93c7c0850c1c7807074741550c1ea9e9db9feb8019cc3a907dcf5",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "StringInputOutput",
+      "fmu": "models/StringInputOutput/StringInputOutput.fmu",
+      "sha256": "494529e61ddee29fc2584d587f1ff677662e8a73e090b0b99afcc97e50a573eb",
+      "decision": "reject",
+      "problem_count": 6,
+      "problems": [
+        "The variable \"alert_msg\" (line 323) is of type String and must have variability != \"continuous\".",
+        "The variable \"mode_operation\" (line 332) is of type String and must have variability != \"continuous\".",
+        "The variable \"status\" (line 341) is of type String and must have variability != \"continuous\".",
+        "The variable \"tag_sensor\" (line 350) is of type String and must have variability != \"continuous\".",
+        "The variable \"_D_outputAlias_alert_msg\" (line 358) is of type String and must have variability != \"continuous\".",
+        "The variable \"_D_outputAlias_status\" (line 366) is of type String and must have variability != \"continuous\"."
+      ]
+    },
+    {
+      "model": "StringsParametros",
+      "fmu": "models/StringsParametros/StringsParametros.fmu",
+      "sha256": "33785d68d40951bb33f99a70ad3066ecfae6053f621db310e9509b5901c47c7e",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "SuspensionActiva",
+      "fmu": "models/SuspensionActiva/SuspensionActiva.fmu",
+      "sha256": "c18273750b130b8a77e436dc0e703052244637a6dac3096b6decb13f785588e9",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "testROMAN",
+      "fmu": "models/testROMAN/testROMAN.fmu",
+      "sha256": "2198c6d69fa4fa0c19be67145578f168c66a31305234c6cb86f9349cbd6acd61",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "testUPM",
+      "fmu": "models/testUPM/testUPM.fmu",
+      "sha256": "67986255c9e749e0c949b4a4465a4b68ca3aa10dbf1e29ab549c136beda1ac4d",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "TiposMixtos",
+      "fmu": "models/TiposMixtos/TiposMixtos.fmu",
+      "sha256": "a5693c74b87315262cd2be25e9470f214c6a63db6f45ef9cb607e95eb516b8fb",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    },
+    {
+      "model": "ValoresExtremos",
+      "fmu": "models/ValoresExtremos/ValoresExtremos.fmu",
+      "sha256": "7552a2c408bb1f00633719a9bebbaf701ad74de84f5c245819c9859b4b93c7a0",
+      "decision": "accept",
+      "problem_count": 0,
+      "problems": []
+    }
+  ]
+}

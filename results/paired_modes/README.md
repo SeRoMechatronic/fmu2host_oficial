@@ -5,18 +5,18 @@
 | Mode | Scenarios | Executed | Execution errors | Oracle-pass scenarios | Passed checks | Failed checks |
 |---|---:|---:|---:|---:|---:|---:|
 | ME | 279 | 279 | 0 | 242 | 669 | 93 |
-| CS | 279 | 263 | 16 | 218 | 615 | 147 |
+| CS | 279 | 267 | 12 | 213 | 615 | 147 |
 
 ## Mode-independent semantic checks
 
 | Mode | Defined | Evaluated | Passed | Failed | Not evaluated after execution error | Eligible scenarios | Oracle-pass scenarios |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | ME | 749 | 749 | 656 | 93 | 0 | 268 | 231 |
-| CS | 749 | 705 | 607 | 98 | 44 | 268 | 212 |
+| CS | 749 | 721 | 607 | 114 | 28 | 268 | 207 |
 
 The denominator is the number of checks defined before execution. Checks in a scenario that does not execute are reported as not evaluated, not converted into failed semantic assertions.
 
-Both modes executed successfully for **263/279** scenarios. Both satisfied the retained oracle for **218/279** scenarios; their pass/fail classification agreed for **255/279** scenarios.
+Both modes executed successfully for **267/279** scenarios. Both satisfied the retained oracle for **213/279** scenarios; their pass/fail classification agreed for **250/279** scenarios.
 
 ## Execution errors
 
@@ -32,10 +32,6 @@ Both modes executed successfully for **263/279** scenarios. Both satisfied the r
 - `TC-ES-010` (EtapaSecuenciador, CS): EXIT 1: Error: fmi2DoStep failed
 - `TC-ES-011` (EtapaSecuenciador, CS): EXIT 1: Error: fmi2DoStep failed
 - `TC-ES-012` (EtapaSecuenciador, CS): EXIT 1: Error: fmi2DoStep failed
-- `TC-VE-002` (ValoresExtremos, CS): EXIT 3221225477: 
-- `TC-VE-004` (ValoresExtremos, CS): EXIT 3221225477: 
-- `TC-VE-006` (ValoresExtremos, CS): EXIT 3221225477: 
-- `TC-VE-010` (ValoresExtremos, CS): EXIT 3221225477: 
 
 ## Interpretation boundary
 

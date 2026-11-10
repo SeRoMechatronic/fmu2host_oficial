@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,value,mode_operation,tag_sensor,scaled_value,alarm,alert_msg,status\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         StringInputOutput_Inputs in = {0};
         get_inputs(t, &in);
         if (has_value) in.value = (double)cli_value;
@@ -86,6 +86,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input tag_sensor failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         StringInputOutput_Outputs out = {0};
         fmu_real_t got_scaled_value = 0.0;
         if (FMU_CALL(m, get_real, &vr_scaled_value, 1, &got_scaled_value) > FMU_WARNING) {
@@ -113,14 +120,6 @@ int main(int argc, char *argv[])
         out.status = (const char *)got_status;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%s,%s,%.10g,%d,%s,%s\n", t, in.value, (in.mode_operation ? in.mode_operation : ""), (in.tag_sensor ? in.tag_sensor : ""), out.scaled_value, (int)out.alarm, (out.alert_msg ? out.alert_msg : ""), (out.status ? out.status : ""));
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

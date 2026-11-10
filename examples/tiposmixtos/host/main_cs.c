@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,i_in,b_in,r_in,r_abs,i_out,b_out,r_out\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         TiposMixtos_Inputs in = {0};
         get_inputs(t, &in);
         if (has_i_in) in.i_in = (int)cli_i_in;
@@ -116,6 +116,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input r_in failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         TiposMixtos_Outputs out = {0};
         fmu_real_t got_r_abs = 0.0;
         if (FMU_CALL(m, get_real, &vr_r_abs, 1, &got_r_abs) > FMU_WARNING) {
@@ -143,14 +150,6 @@ int main(int argc, char *argv[])
         out.r_out = (double)got_r_out;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%d,%d,%.10g,%.10g,%d,%d,%.10g\n", t, (int)in.i_in, (int)in.b_in, in.r_in, out.r_abs, (int)out.i_out, (int)out.b_out, out.r_out);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

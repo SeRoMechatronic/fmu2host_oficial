@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,canal_0,canal_1,canal_seleccion,canal_2,canal_3,canal_activo,canal_valido,salida\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         MultiplexorCanales_Inputs in = {0};
         get_inputs(t, &in);
         if (has_canal_0) in.canal_0 = (double)cli_canal_0;
@@ -157,6 +157,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input canal_3 failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         MultiplexorCanales_Outputs out = {0};
         fmu_int_t got_canal_activo = 0;
         if (FMU_CALL(m, get_integer, &vr_canal_activo, 1, &got_canal_activo) > FMU_WARNING) {
@@ -178,14 +185,6 @@ int main(int argc, char *argv[])
         out.salida = (double)got_salida;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%.10g,%d,%.10g,%.10g,%d,%d,%.10g\n", t, in.canal_0, in.canal_1, (int)in.canal_seleccion, in.canal_2, in.canal_3, (int)out.canal_activo, (int)out.canal_valido, out.salida);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

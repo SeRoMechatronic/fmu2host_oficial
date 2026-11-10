@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,consigna,temperatura,ledAlcanzado,ledPorDebajo,ledPorEncima,ventilador\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         CTPID_Inputs in = {0};
         get_inputs(t, &in);
         if (has_consigna) in.consigna = (double)cli_consigna;
@@ -95,6 +95,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input temperatura failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         CTPID_Outputs out = {0};
         fmu_bool_t got_ledalcanzado = 0;
         if (FMU_CALL(m, get_boolean, &vr_ledalcanzado, 1, &got_ledalcanzado) > FMU_WARNING) {
@@ -122,14 +129,6 @@ int main(int argc, char *argv[])
         out.ventilador = (double)got_ventilador;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%.10g,%d,%d,%d,%.10g\n", t, in.consigna, in.temperatura, (int)out.ledalcanzado, (int)out.ledpordebajo, (int)out.ledporencima, out.ventilador);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

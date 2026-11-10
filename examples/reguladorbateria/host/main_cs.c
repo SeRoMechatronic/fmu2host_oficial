@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,carga_conectada,tension_bateria,carga_completa,cargando,fallo_sobretension,corriente_carga\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         ReguladorBateria_Inputs in = {0};
         get_inputs(t, &in);
         if (has_carga_conectada) in.carga_conectada = (int)cli_carga_conectada;
@@ -95,6 +95,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input tension_bateria failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         ReguladorBateria_Outputs out = {0};
         fmu_bool_t got_carga_completa = 0;
         if (FMU_CALL(m, get_boolean, &vr_carga_completa, 1, &got_carga_completa) > FMU_WARNING) {
@@ -122,14 +129,6 @@ int main(int argc, char *argv[])
         out.corriente_carga = (double)got_corriente_carga;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%d,%.10g,%d,%d,%d,%.10g\n", t, (int)in.carga_conectada, in.tension_bateria, (int)out.carga_completa, (int)out.cargando, (int)out.fallo_sobretension, out.corriente_carga);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

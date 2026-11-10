@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,u,todos_activos,y1,y2,y3,y4,y5,y6,y7,y8\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         MuchosEstados_Inputs in = {0};
         get_inputs(t, &in);
         if (has_u) in.u = (double)cli_u;
@@ -79,6 +79,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input u failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         MuchosEstados_Outputs out = {0};
         fmu_bool_t got_todos_activos = 0;
         if (FMU_CALL(m, get_boolean, &vr_todos_activos, 1, &got_todos_activos) > FMU_WARNING) {
@@ -136,14 +143,6 @@ int main(int argc, char *argv[])
         out.y8 = (double)got_y8;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%d,%.10g,%.10g,%.10g,%.10g,%.10g,%.10g,%.10g,%.10g\n", t, in.u, (int)out.todos_activos, out.y1, out.y2, out.y3, out.y4, out.y5, out.y6, out.y7, out.y8);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

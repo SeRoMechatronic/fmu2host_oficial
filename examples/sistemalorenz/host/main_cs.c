@@ -37,7 +37,14 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,on_attractor,x_out,y_out,z_out\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         SistemaLorenz_Outputs out = {0};
         fmu_bool_t got_on_attractor = 0;
         if (FMU_CALL(m, get_boolean, &vr_on_attractor, 1, &got_on_attractor) > FMU_WARNING) {
@@ -65,14 +72,6 @@ int main(int argc, char *argv[])
         out.z_out = (double)got_z_out;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%d,%.10g,%.10g,%.10g\n", t, (int)out.on_attractor, out.x_out, out.y_out, out.z_out);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

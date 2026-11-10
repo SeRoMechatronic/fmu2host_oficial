@@ -48,3 +48,4 @@ install_manifest.txt
 # Local experiment scratch data
 *.tmp
 *.bak
+/results/extremevalues_isolation/work/

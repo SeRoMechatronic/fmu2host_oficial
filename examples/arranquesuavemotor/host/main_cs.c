@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,orden_arranque,carga_motor,en_rampa,fallo_sobrecarga,motor_en_marcha,tension_aplicada\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         ArranqueSuaveMotor_Inputs in = {0};
         get_inputs(t, &in);
         if (has_orden_arranque) in.orden_arranque = (int)cli_orden_arranque;
@@ -95,6 +95,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input carga_motor failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         ArranqueSuaveMotor_Outputs out = {0};
         fmu_bool_t got_en_rampa = 0;
         if (FMU_CALL(m, get_boolean, &vr_en_rampa, 1, &got_en_rampa) > FMU_WARNING) {
@@ -122,14 +129,6 @@ int main(int argc, char *argv[])
         out.tension_aplicada = (double)got_tension_aplicada;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%d,%.10g,%d,%d,%d,%.10g\n", t, (int)in.orden_arranque, in.carga_motor, (int)out.en_rampa, (int)out.fallo_sobrecarga, (int)out.motor_en_marcha, out.tension_aplicada);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

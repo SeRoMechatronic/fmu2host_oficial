@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,consigna_manual,modo_operacion,codigo_estado,fallo_modo,salida_actuador\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         SelectorModo_Inputs in = {0};
         get_inputs(t, &in);
         if (has_consigna_manual) in.consigna_manual = (double)cli_consigna_manual;
@@ -94,6 +94,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input modo_operacion failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         SelectorModo_Outputs out = {0};
         fmu_int_t got_codigo_estado = 0;
         if (FMU_CALL(m, get_integer, &vr_codigo_estado, 1, &got_codigo_estado) > FMU_WARNING) {
@@ -115,14 +122,6 @@ int main(int argc, char *argv[])
         out.salida_actuador = (double)got_salida_actuador;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%d,%d,%d,%.10g\n", t, in.consigna_manual, (int)in.modo_operacion, (int)out.codigo_estado, (int)out.fallo_modo, out.salida_actuador);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

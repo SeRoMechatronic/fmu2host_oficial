@@ -72,7 +72,15 @@ def main() -> int:
         help="configured CMake build tree",
     )
     parser.add_argument("--skip-generation-timing", action="store_true")
+    parser.add_argument(
+        "--timing-repetitions",
+        type=int,
+        default=10,
+        help="repeated generation runs per model (default: 10)",
+    )
     args = parser.parse_args()
+    if args.timing_repetitions < 1:
+        parser.error("--timing-repetitions must be at least 1")
     if args.build_dir is None:
         parser.error("set --build-dir or FMU2HOST_BUILD_DIR")
     build_dir = args.build_dir.resolve()
@@ -84,6 +92,7 @@ def main() -> int:
         tested_names.add(normalized(config.parent.parent.parent.name))
 
     records = []
+    timing_rows = []
     generator = ROOT / "tools" / "fmu_codegen_host.py"
     for index, fmu in enumerate(sorted((ROOT / "models").rglob("*.fmu")), 1):
         root = xml_from_fmu(fmu)
@@ -102,26 +111,34 @@ def main() -> int:
             variabilities[variable.get("variability", "continuous")] += 1
         derivatives = root.find("./ModelStructure/Derivatives")
         generation_seconds = None
+        generation_seconds_runs = []
         generated_bytes = None
         generated_files = None
         if not args.skip_generation_timing:
             with tempfile.TemporaryDirectory(prefix="fmu2host_evidence_") as temporary:
                 temporary_path = Path(temporary)
                 copied_fmu = temporary_path / fmu.name
-                output = temporary_path / "host"
                 shutil.copy2(fmu, copied_fmu)
-                started = time.perf_counter()
-                process = subprocess.run(
-                    [sys.executable, str(generator), str(copied_fmu), str(output)],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.PIPE,
-                    text=True,
-                    encoding="utf-8",
-                    errors="replace",
-                )
-                generation_seconds = time.perf_counter() - started
-                if process.returncode != 0:
-                    raise RuntimeError(f"generation failed for {fmu}: {process.stderr[-500:]}")
+                output = None
+                for repetition in range(1, args.timing_repetitions + 1):
+                    output = temporary_path / f"host_{repetition:02d}"
+                    started = time.perf_counter()
+                    process = subprocess.run(
+                        [sys.executable, str(generator), str(copied_fmu), str(output)],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.PIPE,
+                        text=True,
+                        encoding="utf-8",
+                        errors="replace",
+                    )
+                    elapsed = time.perf_counter() - started
+                    if process.returncode != 0:
+                        raise RuntimeError(f"generation failed for {fmu}: {process.stderr[-500:]}")
+                    generation_seconds_runs.append(elapsed)
+                    timing_rows.append(
+                        {"model": model_name, "repetition": repetition, "seconds": elapsed}
+                    )
+                generation_seconds = statistics.median(generation_seconds_runs)
                 generated = [path for path in output.rglob("*") if path.is_file()]
                 generated_bytes = sum(path.stat().st_size for path in generated)
                 generated_files = len(generated)
@@ -147,6 +164,8 @@ def main() -> int:
             "source_files": len(source_files),
             "source_bytes": sum(path.stat().st_size for path in source_files),
             "generation_seconds": generation_seconds,
+            "generation_seconds_runs": generation_seconds_runs,
+            "generation_seconds_distribution": quantiles(generation_seconds_runs),
             "generated_files": generated_files,
             "generated_bytes": generated_bytes,
             "me_executable_bytes": me_exe.stat().st_size if me_exe else None,
@@ -164,12 +183,17 @@ def main() -> int:
         if size is not None
     ]
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "platform": platform.platform(),
         "python": platform.python_version(),
         "generator_sha256": sha256(generator),
         "build_configuration": "Release executables from an external CMake build tree",
+        "generation_timing_method": (
+            f"{args.timing_repetitions} repeated runs per model; each model contributes its "
+            "median to the cross-model distribution"
+        ),
+        "generation_timing_repetitions": args.timing_repetitions,
         "models": len(records),
         "behaviorally_evaluated_models": sum(record["behavioral_suite"] for record in records),
         "me_executables": sum(record["me_executable_bytes"] is not None for record in records),
@@ -193,6 +217,10 @@ def main() -> int:
         writer = csv.DictWriter(handle, fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(records)
+    with (output / "generation_timings.csv").open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, ["model", "repetition", "seconds"])
+        writer.writeheader()
+        writer.writerows(timing_rows)
 
     gen = manifest["generation_seconds"]
     exe = manifest["executable_bytes"]
@@ -205,7 +233,8 @@ def main() -> int:
     ]
     if gen:
         lines.append(
-            f"- Generation including archive extraction: median **{gen['median']:.3f} s** "
+            f"- Generation including archive extraction ({args.timing_repetitions} runs/model; "
+            f"cross-model distribution of per-model medians): median **{gen['median']:.3f} s** "
             f"(IQR {gen['q1']:.3f}--{gen['q3']:.3f} s; range {gen['min']:.3f}--{gen['max']:.3f} s)"
         )
     if exe:
@@ -217,7 +246,8 @@ def main() -> int:
     lines += [
         "",
         "Hashes, per-model feature counts, source sizes, generated sizes, and executable sizes are in "
-        "`artifact_manifest.json` and `model_metrics.csv`.",
+        "`artifact_manifest.json` and `model_metrics.csv`; all raw timing observations are in "
+        "`generation_timings.csv`.",
         "",
     ]
     (output / "README.md").write_text("\n".join(lines), encoding="utf-8")

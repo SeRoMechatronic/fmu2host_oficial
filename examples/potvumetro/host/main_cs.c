@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,pot,led1,led2,led3,led4,led5\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         PotVumetro_Inputs in = {0};
         get_inputs(t, &in);
         if (has_pot) in.pot = (double)cli_pot;
@@ -75,6 +75,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input pot failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         PotVumetro_Outputs out = {0};
         fmu_bool_t got_led1 = 0;
         if (FMU_CALL(m, get_boolean, &vr_led1, 1, &got_led1) > FMU_WARNING) {
@@ -108,14 +115,6 @@ int main(int argc, char *argv[])
         out.led5 = (int)got_led5;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%d,%d,%d,%d,%d\n", t, in.pot, (int)out.led1, (int)out.led2, (int)out.led3, (int)out.led4, (int)out.led5);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

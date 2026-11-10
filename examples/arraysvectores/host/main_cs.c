@@ -40,7 +40,14 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,suma_real,suma_int,v_doble[1],v_doble[2],v_doble[3],v_doble[4],alguno_true\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         ArraysVectores_Outputs out = {0};
         fmu_real_t got_suma_real = 0.0;
         if (FMU_CALL(m, get_real, &vr_suma_real, 1, &got_suma_real) > FMU_WARNING) {
@@ -86,14 +93,6 @@ int main(int argc, char *argv[])
         out.alguno_true = (int)got_alguno_true;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%d,%.10g,%.10g,%.10g,%.10g,%d\n", t, out.suma_real, (int)out.suma_int, out.v_doble_1, out.v_doble_2, out.v_doble_3, out.v_doble_4, (int)out.alguno_true);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

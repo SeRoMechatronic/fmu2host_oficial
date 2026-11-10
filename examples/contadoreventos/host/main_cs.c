@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,evento,reset,cuenta,decenas,desbordamiento,unidades\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         ContadorEventos_Inputs in = {0};
         get_inputs(t, &in);
         if (has_evento) in.evento = (int)cli_evento;
@@ -95,6 +95,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input reset failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         ContadorEventos_Outputs out = {0};
         fmu_int_t got_cuenta = 0;
         if (FMU_CALL(m, get_integer, &vr_cuenta, 1, &got_cuenta) > FMU_WARNING) {
@@ -122,14 +129,6 @@ int main(int argc, char *argv[])
         out.unidades = (int)got_unidades;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%d,%d,%d,%d,%d,%d\n", t, (int)in.evento, (int)in.reset, (int)out.cuenta, (int)out.decenas, (int)out.desbordamiento, (int)out.unidades);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

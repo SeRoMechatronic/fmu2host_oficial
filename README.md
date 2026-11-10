@@ -15,15 +15,20 @@ public repository.
 ## Evidence at a glance
 
 - 30/30 source FMUs regenerate successfully.
+- Standards preflight accepts 28 archives; `ArraysVectores` and
+  `StringInputOutput` are retained only as explicit invalid-input diagnostics.
 - 30 ME and 30 CS Release executables compile on Windows/MSVC.
 - The retained ME regression suite executes 279/279 scenarios; 242 satisfy all
   of their original oracles (669/762 checks).
-- In the paired-mode diagnostic, CS completes 263/279 scenarios. The 16
-  execution failures comprise 12 `fmi2DoStep` failures for the periodic-event
-  sequencer and four access violations in the exported extreme-values model.
+- In the corrected paired-mode diagnostic, CS completes 267/279 scenarios. The
+  remaining 12 execution failures are `fmi2DoStep` failures for the
+  periodic-event sequencer.
 - The frozen purpose-based subset contains 749 mode-independent checks. ME
-  passes 656/749; CS passes 607/705 evaluated checks, with 44 not evaluated
+  passes 656/749; CS passes 607/721 evaluated checks, with 28 not evaluated
   after execution errors.
+- A three-path `ExtremeValues` experiment identifies the former access
+  violations as output-before-step ordering and verifies the generated-host
+  correction on all ten scenarios.
 - FMPy 0.3.29 triangulation records independent importer/lifecycle results for
   the six anomalous FMUs.
 - All raw summaries, hashes, and per-model metrics are under `results/`.
@@ -67,6 +72,7 @@ release artifacts.
 From the repository root:
 
 ```powershell
+python tools\preflight_fmi_contracts.py
 python tools\regen_all.py
 cmake -S . -B build -G "Visual Studio 17 2022" -A x64
 cmake --build build --config Release
@@ -86,7 +92,9 @@ $env:FMU2HOST_BUILD_DIR = (Resolve-Path build)
 python tools\run_all_tests.py
 python tools\run_paired_modes.py
 python tools\run_fmpy_triangulation.py
-python tools\collect_evidence.py
+python tools\run_extremevalues_isolation.py
+python tools\export_oracle_catalog.py
+python tools\collect_evidence.py --timing-repetitions 10
 ```
 
 `run_all_tests.py` returns a non-zero status when any retained oracle fails;
@@ -101,8 +109,13 @@ The principal evidence files are:
 - `results/paired_modes/README.md`
 - `results/paired_modes/paired_modes.json`
 - `results/fmpy_triangulation/triangulation.json`
+- `results/extremevalues_isolation/isolation.json`
+- `results/preflight/preflight.json`
+- `results/oracles/oracle_catalog.csv`
+- `results/oracles/excluded_solver_specific.csv`
 - `results/evidence/artifact_manifest.json`
 - `results/evidence/model_metrics.csv`
+- `results/evidence/generation_timings.csv`
 
 ## Supported semantics and boundaries
 
@@ -133,7 +146,7 @@ that a published release can be tied to the exact evaluated artifacts.
 
 ## Citation and release
 
-The evaluated public snapshot is identified by the Git tag `article-v1.0`.
+The evaluated public snapshot is identified by the Git tag `article-v1.1`.
 The SHA-256 manifest binds that tag to the evaluated FMUs and generator. The
 manuscript is maintained separately and is not part of the tag.
 

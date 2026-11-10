@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,u,es_finito,y_inv,y_log,y_sat,y_sqrt\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         ValoresExtremos_Inputs in = {0};
         get_inputs(t, &in);
         if (has_u) in.u = (double)cli_u;
@@ -75,6 +75,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input u failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         ValoresExtremos_Outputs out = {0};
         fmu_bool_t got_es_finito = 0;
         if (FMU_CALL(m, get_boolean, &vr_es_finito, 1, &got_es_finito) > FMU_WARNING) {
@@ -108,14 +115,6 @@ int main(int argc, char *argv[])
         out.y_sqrt = (double)got_y_sqrt;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%d,%.10g,%.10g,%.10g,%.10g\n", t, in.u, (int)out.es_finito, out.y_inv, out.y_log, out.y_sat, out.y_sqrt);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);

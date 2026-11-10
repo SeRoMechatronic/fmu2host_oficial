@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
     SIM_PRINT("t,umbral,a,b,clk,cuenta_flancos,above_threshold,y_and,y_latch,y_or,y_xor\n");
     double t = 0.0;
-    for (;;) {
+    while (t < cfg.t_end) {
         BooleanLogica_Inputs in = {0};
         get_inputs(t, &in);
         if (has_umbral) in.umbral = (double)cli_umbral;
@@ -139,6 +139,13 @@ int main(int argc, char *argv[])
             SIM_ERROR("Error: setting input clk failed\n");
             m->terminate(m); return 1;
         }
+        double step = cfg.h;
+        if (t + step > cfg.t_end) step = cfg.t_end - t;
+        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
+            SIM_ERROR("Error: fmi2DoStep failed\n");
+            m->terminate(m); return 1;
+        }
+        t += step;
         BooleanLogica_Outputs out = {0};
         fmu_int_t got_cuenta_flancos = 0;
         if (FMU_CALL(m, get_integer, &vr_cuenta_flancos, 1, &got_cuenta_flancos) > FMU_WARNING) {
@@ -178,14 +185,6 @@ int main(int argc, char *argv[])
         out.y_xor = (int)got_y_xor;
         on_outputs(t, &out);
         SIM_PRINT("%.10g,%.10g,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", t, in.umbral, (int)in.a, (int)in.b, (int)in.clk, (int)out.cuenta_flancos, (int)out.above_threshold, (int)out.y_and, (int)out.y_latch, (int)out.y_or, (int)out.y_xor);
-        if (t >= cfg.t_end) break;
-        double step = cfg.h;
-        if (t + step > cfg.t_end) step = cfg.t_end - t;
-        if (FMU_CALL(m, do_step, (fmu_real_t)t, (fmu_real_t)step) > FMU_WARNING) {
-            SIM_ERROR("Error: fmi2DoStep failed\n");
-            m->terminate(m); return 1;
-        }
-        t += step;
         SIM_DELAY(step);
     }
     m->terminate(m);
